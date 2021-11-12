@@ -308,7 +308,7 @@ class MyParents extends Component
         
 
         if(!$my_parent){
-            $this->errorMsg = 'غير موجود';
+            $this->errorMsg = __('messages.not_found_parent');
         }else{
             $directory = 'parent_attachments/'.$namefolder;
             if(isset($directory)){
