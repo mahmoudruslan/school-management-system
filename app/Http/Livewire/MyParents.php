@@ -18,9 +18,9 @@ class MyParents extends Component
     use SaveImgTrait;
     use WithFileUploads;
     public $parent_id;
-    public $moodedit = false;
+    public $editMode = false;
     public $currentStep = 1;
-    public $addMood = false;
+    public $addMode = false;
     public $photos = [];
     public
 
@@ -49,8 +49,7 @@ class MyParents extends Component
     $religion_mother_id,
     $address_mother;
 
-    public $successMsgEdit = '';
-    public $errorMsgEdit = '';
+
 
     public $successMsg = '';
     public $errorMsg = '';
@@ -67,7 +66,7 @@ class MyParents extends Component
     #######################################  start Add parents  #############################################
     public function Add()
     {
-        $this->addMood = true;
+        $this->addMode = true;
         $this->clearForm();
         $this->successMsg = '';
         $this->errorMsg = '';
@@ -145,8 +144,8 @@ class MyParents extends Component
     }
     // Back to Parents' table
     public function toParentList(){
-        $this->moodedit = false;
-        $this->addMood = false;
+        $this->editMode = false;
+        $this->addMode = false;
     }
 
 
@@ -195,7 +194,7 @@ class MyParents extends Component
             $this->successMsg = __('messages.success');
             $this->clearForm();
 
-            $this->currentStep = 1;
+            $this->addMode = false;
         }catch(Exception $e){
             $this->currentStep = 1;
             $this->errorMsg = $e->getMessage();
@@ -209,7 +208,7 @@ class MyParents extends Component
     public function edit($id)
     {
         $this->currentStep = 1;
-        $this-> moodedit = true;
+        $this-> editMode = true;
         
         $this->parent_id = $id;
         $parents = TheParent::find($id);
@@ -283,18 +282,24 @@ class MyParents extends Component
         ]);
         if (!empty($this->photos)) {//Check if the parent has attachments
             foreach($this->photos as $photo){//To store more than one attachment
-                $name_photo = $this->saveimg($photo,$this->phone_father,'parent_attachments');//look trait
+                //في حالة التعديل من الممكن أن نضيف مرفقات وفي هذه الحالة سيكون فولدر ولي الأمر موجود بالفعل وفي هذه الحالة نخزن المرفقات في فولدر ولي الامر مباشرة بدون إنشاء فولدر برقمه
+                $my_path = 'app/parent_attachments/'.$this->phone_father;
+                if(!Storage::exists($my_path)){
+                    $name_photo = $this->saveimg($photo,$this->phone_father,'parent_attachments');//look trait
+                }else{
+                    $photo->storeAs($my_path, $name_photo);
+                }
                 ParentsAttachments::create([
                 'photos'=>  $name_photo,
                 'parents_id'=> $id,
                 ]);
             }
         }
-        $this->successMsgEdit = __('messages.success_edit');
-        $this-> moodedit = false;
+        $this->successMsg = __('messages.success_edit');
+        $this-> editMode = false;
         }catch(Exception $e){
             $this->currentStep = 1;
-            $this->errorMsgEdit = $e->getMessage();
+            $this->errorMsg = $e->getMessage();
         }
     }
     #######################################  end Edit parents  #############################################
@@ -311,27 +316,22 @@ class MyParents extends Component
             $this->errorMsg = __('messages.not_found_parent');
         }else{
             $directory = 'parent_attachments/'.$namefolder;
-            if(isset($directory)){
+
+            if(Storage::exists($directory)){
+
                 Storage::deleteDirectory($directory);
             }
-
             $my_parent->delete();
             $this->successMsg = __('messages.success_delete');
 
-
-
-
-            
         }
-        
-
 
     }
 
     public function clearMessages()
     {
-        $this->successMsgEdit = '';
-        $this->errorMsgEdit = '';
+
+
         $this->successMsg = '';
         $this->errorMsg = '';
     }

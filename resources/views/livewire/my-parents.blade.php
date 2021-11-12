@@ -14,12 +14,10 @@
 
 
 
-    @if ($moodedit)
+    @if ($editMode || $addMode)
         @include('livewire.add-parents')
     @else
-        @if ($addMood)
-        @include('livewire.add-parents')
-        @else
+      
         <button wire:click="Add"  type="button" class="button x-small" >
             {{ __('parents.add_parents') }}
         </button>
@@ -119,7 +117,6 @@
                     </tbody>
                 </table>
             </div>
-        @endif 
     @endif
 
 

@@ -108,20 +108,16 @@
                                 <option value="{{$religion->id}}">{{$religion['name_'.app()->getLocale()]}}</option>
                             @endforeach
                         </select>
-                        
                     </div>
-
                     </div>
             <label for="title">{{__('parents.address_mother')}}</label><br>
             @error('address_mother') <span class="error text-danger">{{ $message }}</span> @enderror
             <textarea id="taskTitle" wire:model="address_mother" class='form-control'>
             </textarea>
-            @if ($addMood)
-            <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="secondStepSubmit" type="button">{{__('parents.next')}}</button>
-
+            @if ($addMode)
+                <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="secondStepSubmit" type="button">{{__('parents.next')}}</button>
             @else
-            <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="secondStepSubmitEdit" type="button">{{__('parents.next')}}</button>
-
+                <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="secondStepSubmitEdit" type="button">{{__('parents.next')}}</button>
             @endif
             <button class="btn btn-sm nextBtn btn-lg mt-3 btn-danger" type="button" wire:click="back(1)">{{__('parents.back')}}</button>
 

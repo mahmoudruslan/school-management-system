@@ -115,15 +115,14 @@
             @error('address_father') <span class="error text-danger">{{ $message }}</span> @enderror
             <textarea id="taskTitle" wire:model="address_father" class='form-control'>
             </textarea>
-            @if ($addMood)
-            <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="firstStepSubmit" type="button">{{__('parents.next')}}</button>
-            <button class="btn btn-danger btn-sm nextBtn btn-lg mt-3" wire:click="toParentList" type="button">{{__('parents.back')}}</button>
+            @if ($addMode)
+                <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="firstStepSubmit" type="button">{{__('parents.next')}}</button>
 
             @else
-            <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="firstStepSubmitEdit" type="button">{{__('parents.next')}}</button>
+                <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="firstStepSubmitEdit" type="button">{{__('parents.next')}}</button>
+            @endif
             <button class="btn btn-danger btn-sm nextBtn btn-lg mt-3" wire:click="toParentList" type="button">{{__('parents.back')}}</button>
 
-            @endif
         </div>
         {{-- begin father data --}}
 
