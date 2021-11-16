@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             NationalitySeeder::class,
             ReligionSeeder::class,
             AdminSeeder::class,
-            GenderSeeder::class,
             SpecializationSeeder::class,
 
         ]);

@@ -19,8 +19,9 @@ class CreateTeachersTable extends Migration
             $table->string('password');
             $table->string('name_ar');
             $table->string('name_en');
-            $table->unsignedBigInteger('gender_id');
-            $table->foreign('gender_id')->references('id')->on('genders')->onDelete('cascade');
+            $table->string('gender');
+
+
             $table->unsignedBigInteger('specialization_id');
             $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('cascade');
             $table->string('joining_date');
