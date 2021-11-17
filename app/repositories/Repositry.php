@@ -3,18 +3,21 @@
 namespace App\repositories;
 
 use App\Http\interfaces\arry;
+use App\Http\interfaces\Repositoryinterface;
+use App\models\Specialization;
+use App\models\Teacher;
 
-class Repositry implements \App\Http\interfaces\Repositoryinterface
+class Repositry implements Repositoryinterface
 {
 
     public function index()
     {
-        // TODO: Implement index() method.
+        return Teacher::all();
     }
 
-    public function create(arry $date)
+    public function create()
     {
-        // TODO: Implement create() method.
+        return Specialization::all();
     }
 
     public function update(arry $data, $id)

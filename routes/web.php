@@ -55,10 +55,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
     ############################# begin Parents ##############################################
     Route::group(['namespace' => 'parents'],function(){
         Route::resource('Parents', 'TheParentsController');
-        
-        
+
+
     });
     ############################# end Parents ##############################################
+
+
+    ############################# begin Teachers ##############################################
+    Route::group(['namespace' => 'Teachers'],function(){
+        Route::resource('Teachers', 'TeachersController');
+
+    });
+    ############################# end Teachers ##############################################
 
 Route::view('empty','empty');
 
@@ -77,14 +85,12 @@ Route::view('empty','empty');
 
 
 
-        //Route::post('Sections', 'GradeController@Sections')->name('Sections.index');//دا عشان الايرور بس
         Route::post('Students', 'GradeController@Students')->name('Students.create');//دا عشان الايرور بس
         Route::post('Students-index', 'GradeController@Students-index')->name('Students.index');//دا عشان الايرور بس
         Route::post('Promotion-index', 'GradeController@Promotion-index')->name('Promotion.index');//دا عشان الايرور بس
         Route::post('Promotion-create', 'GradeController@Promotion-create')->name('Promotion.create');//دا عشان الايرور بس
         Route::post('Graduated-create', 'GradeController@Graduated-create')->name('Graduated.create');//دا عشان الايرور بس
         Route::post('Graduated-index', 'GradeController@Graduated-index')->name('Graduated.index');//دا عشان الايرور بس
-        Route::post('Teachers-index', 'GradeController@Teachers-index')->name('Teachers.index');//دا عشان الايرور بس
         Route::post('Fees-index', 'GradeController@Fees-index')->name('Fees.index');//دا عشان الايرور بس
 
 

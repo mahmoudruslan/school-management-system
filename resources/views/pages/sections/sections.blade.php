@@ -34,7 +34,7 @@
                 <div class="acd-des">
                     {{-- start my according classrooms --}}
                     @foreach ($grade->classrooms as $classroom)
-                        
+
                         <div id="accordion">
                             <div class="card">
 
@@ -70,7 +70,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php $i = 0;?>
-                                                    
+
                                                         @foreach ($classroom->sections as $section)
                                                         <?php $i++;?>
                                                             <tr>
@@ -108,7 +108,7 @@
                                                                             </button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                
+
                                                                             <form action="{{route('Sections.update','test')}}" method="POST">
                                                                                 {{method_field('patch')}}
                                                                                 @csrf
@@ -116,17 +116,17 @@
                                                                                     <div class="col">
                                                                                         <input type="text" name="name_ar" class="form-control" value="{{$section->name_ar}}" placeholder="{{__('sections.section_name_ar')}}">
                                                                                     </div>
-                                                
+
                                                                                     <div class="col">
                                                                                         <input type="text" name="name_en" class="form-control" value="{{$section->name_en}}" placeholder="{{__('sections.section_name_en')}}">
                                                                                         <input type="hidden" name="id" class="form-control" value="{{$section->id}}" >
 
                                                                                     </div>
-                                                
+
                                                                                 </div>
                                                                                 <br>
-                                                
-                                                
+
+
                                                                                 <div class="col">
                                                                                     <label for="inputName" class="control-label">{{__('sections.select_grade')}}</label>
                                                                                     <select name="grade_id" class="custom-select" onchange="console.log($(this).val())">
@@ -142,7 +142,7 @@
                                                                                     <label for="inputName"
                                                                                             class="control-label">{{__('sections.select_classroom')}}</label>
                                                                                     <select name="classroom_id" class="custom-select">
-                                                                                                                
+
                                                                                             <option>{{$section->classrooms['name_'.app()->getLocale()]}}</option>
                                                                                     </select>
                                                                                 </div><br>
@@ -150,7 +150,7 @@
                                                                                     <div class="form-check">
                                                                                         <input class="form-check-input" name="status" type="checkbox" value="1" id="flexCheckChecked" checked>
                                                                                         <label class="form-check-label" for="flexCheckChecked">
-                                                                                        {{__('sections.status')}} 
+                                                                                        {{__('sections.status')}}
                                                                                         </label>
                                                                                     </div>
                                                                                 </div>
@@ -163,8 +163,8 @@
                                                                                         @endforeach
                                                                                     </select>
                                                                                 </div> --}}
-                                                
-                                                
+
+
                                                                             </div>
                                                                             <div class="modal-footer">
                                                                                 <button type="button" class="btn btn-secondary"
@@ -192,7 +192,7 @@
                                                                                     <span aria-hidden="true">&times;</span>
                                                                                 </button>
                                                                             </div>
-                                                                        
+
                                                                             <div class="modal-footer">
                                                                                 <form action="{{ route('Sections.destroy', 'test') }}" method="POST">
                                                                                     {{ method_field('Delete') }}
@@ -282,10 +282,24 @@
                     </div><br>
 
                     <div class="col">
+                        <label for="inputName" class="control-label">{{__('sections.select_teacher')}}</label>
+                        <select name="teacher_id[]" class="custom-select" multiple aria-label="multiple select example">
+                            <option selected>{{__('sections.select_teacher')}}</option>
+                            @foreach($teachers as $teacher)
+
+                            <option value="{{$teacher->id}}">{{$teacher->name_ar}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <br>
+
+
+
+                    <div class="col">
                         <div class="form-check">
                             <input class="form-check-input" name="status" type="checkbox" value="1" id="flexCheckChecked" checked>
                             <label class="form-check-label" for="flexCheckChecked">
-                                {{__('sections.status')}} 
+                                {{__('sections.status')}}
                             </label>
                         </div>
                     </div>

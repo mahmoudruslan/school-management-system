@@ -17,6 +17,7 @@ return [
     'name_grade' => 'اسم المرحلة',
     'select_grade'=> 'حدد المرحلة',
     'select_classroom'=> 'حدد الصف',
+    'select_teacher'=> 'حدد المعلم',
 
     'title_page' => 'قائمة الأقسام',
     'List_sections' => 'قائمة الأقسام',

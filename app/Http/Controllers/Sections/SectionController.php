@@ -7,6 +7,8 @@ use App\Http\Requests\SectionRequest;
 use App\models\Grade;
 use App\models\Classroom;
 use App\models\Section;
+use App\models\Teacher;
+use App\models\TeacherSection;
 use Exception;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -28,9 +30,10 @@ class SectionController extends Controller
             'id'
 
         ])->get();
-        
+        $teachers = Teacher::all();
 
-        return view('pages.sections.sections',compact(['grades']));
+
+        return view('pages.sections.sections',compact(['grades','teachers']));
     }
 
     /**
@@ -51,20 +54,27 @@ class SectionController extends Controller
      */
     public function store(SectionRequest $request)
     {
+
         try{
             if(!$request->status){
                 $request->status = 0;
             }
-        Section::create([
-            'name_ar' => $request->name_ar,
-            'name_en' => $request->name_en,
-            'grade_id' => $request->grade_id,
-            'status' => $request->status,
-            'classroom_id' => $request->classroom_id,
-        ]);
+            $sections = new Section();
+
+
+
+                $sections->name_ar = $request->name_ar;
+                $sections->name_en = $request->name_en;
+                $sections->grade_id = $request->grade_id;
+                $sections->status = $request->status;
+                $sections->classroom_id = $request->classroom_id;
+                $sections->save();
+
+          $sections->teachers()->attach($request->teacher_id);
+
         toastr()->success(__('messages.success'));
-  
-        return redirect()->back();  
+
+        return redirect()->back();
       }catch(\Exception $e)
           {
           return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -120,9 +130,9 @@ class SectionController extends Controller
                     $request->status = 0;
                 }
             toastr()->success(__('messages.success_edit'));
-            return redirect()->back();  
+            return redirect()->back();
             }
-            
+
         }catch(Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
 
