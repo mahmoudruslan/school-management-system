@@ -33,7 +33,8 @@ return [
     'This is field must be no more than 200 characters' => 'This is field must be no more than 200 characters',
     'This is field must be no more than 50 characters' => 'This is field must be no more than 50 characters',
     'This is field must be no more than 8 characters' => 'This is field must be no more than 8 characters',
-    'This field must be an email' => 'This field must be an email'
+    'This field must be an email' => 'This field must be an email',
+    'Stop playing in the code'=> 'Stop playing in the code'
 
 
 

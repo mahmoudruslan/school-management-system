@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-    protected $fillable = ['name_ar', 'name_en','email','gender','specialization_id','joining_date','address'];
+    protected $fillable = ['name_ar', 'name_en', 'password','email','gender','specialization_id','joining_date','address'];
     public $timestamps = true;
+
+    public static function findOrFile()
+    {
+    }
 
 
     public function specializations(){

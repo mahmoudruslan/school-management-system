@@ -25,7 +25,8 @@ class SectionRequest extends FormRequest
     {
         return [
         'name_ar' => 'required|max:50',
-        'name_ar' => 'required|max:50',
+            'name_en' => 'required|max:50',
+            'teacher_id' => 'required',
         'grade_id' => 'required',
         'classroom_id' => 'required',
         ];
@@ -38,9 +39,10 @@ class SectionRequest extends FormRequest
             'name_en.required' => __('messages.This field is required'),
             'grade_id.required' => __('messages.This field is required'),
             'classroom_id.required' => __('messages.This field is required'),
+            'teacher_id.required' => __('messages.This field is required'),
             'name_ar.max' => __('messages.The name field must be no more than 50 characters'),
             'name_en.max' => __('messages.The name field must be no more than 50 characters'),
-        
+
         ];
     }
 

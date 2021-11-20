@@ -13,7 +13,7 @@ return [
     |
     */
 
- 
+
     'success' => 'تم حفظ البيانات بنجاح',
     'success_edit' => 'تم التعديل بنجاح',
     'error_grade' => 'هذه المرحلة غير موجودة',
@@ -33,7 +33,8 @@ return [
     'This is field must be no more than 50 characters' => 'يجب ألا يزيد هذا الحقل عن 50 حرف',
     'This is field must be no more than 8 characters' => 'يجب ألا يزيد هذا الحقل عن 8 حرف',
     'This field must be an email' => 'هذا الحقل يجب أن يكون بريد إلكتروني',
-    'The format is invalid.' => 'التنسيق غير صالح'
+    'The format is invalid.' => 'التنسيق غير صالح',
+    'Stop playing in the code'=>'بطل لعب في الكود'
 
 
 

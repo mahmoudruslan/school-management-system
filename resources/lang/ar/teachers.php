@@ -20,6 +20,7 @@ return [
     'add_teachers' => 'إضافة معلمين',
     'edit_teachers'=> 'تعديل المعلم',
     'delete_teachers'=> 'حذف المعلم',
+    'select_specialization'=>'اختر تخصص',
     'warning_teachers'=> 'سيتم حذف الصفوف الدراسية التابعة لها',
     'Warning' => 'تحذير',
     'teacher_name_ar' => 'اسم المعلم بالعربية',
@@ -38,8 +39,8 @@ return [
     'Edit'=>'تعديل',
     'exists'=>'المرحلة موجودة مسبقا',
     'Delete'=>'حذف',
-    'Close' => 'اغلاق',
-    'Are you sure you want to delete the stage?' => 'هل أنت متأكد أنك تريد حذف المعلم؟'
+    'close' => 'اغلاق',
+    'teacher_delete' => 'هل أنت متأكد أنك تريد حذف المعلم؟'
 
 
 ];

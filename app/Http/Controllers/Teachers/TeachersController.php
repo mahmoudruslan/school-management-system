@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Teachers;
 
 use App\Http\Controllers\Controller;
 use App\Http\interfaces\Repositoryinterface;
+use App\Http\Requests\TeachersRequest;
 use App\models\Specialization;
 use App\models\Teacher;
 use Illuminate\Http\Request;
+use Hash;
 
 class TeachersController extends Controller
 {
@@ -15,11 +17,8 @@ class TeachersController extends Controller
     {
         $this->teacher = $teacher;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function index()
     {
         $teachers = $this->teacher->index();
@@ -28,71 +27,38 @@ class TeachersController extends Controller
     }
 
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $specializations = $this->teacher->create();
-        return view('pages.teachers.add_teachers',compact('specializations'));
+
+        $specializations = $this->teacher->getSpecializations();
+        return view('pages.teachers.create',compact('specializations'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(TeachersRequest $request)
     {
-        //
+
+        return $this->teacher->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $specializations = $this->teacher->getSpecializations();
+        $teacher = $this->teacher->edit($id);
+        return view('pages.teachers.edit',compact(['specializations','teacher']));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(TeachersRequest $request)
     {
-        //
+        return $this->teacher->update( $request);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Request $request)
     {
-        //
+        return $this->teacher->delete($request);
     }
 }

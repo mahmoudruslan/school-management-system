@@ -18,8 +18,9 @@ return [
     'title_page' => 'Teachers list',
     'List_teachers' => 'List teachers',
     'add_teachers' => 'Add teachers',
-    'edit_teachers'=> 'edit teachers',
-    'delete_teachers'=> 'delete teachers',
+    'edit_teachers'=> 'Edit teachers',
+    'delete_teachers'=> 'Delete teachers',
+    'select_specialization'=>'Select Specialization',
     'warning_teachers'=> 'Your teachers will be deleted',
     'warning' => 'Warning',
     'teacher_name_ar' => 'teacher name_ar',
@@ -30,7 +31,7 @@ return [
     'gender'=>'gender',
     'male'=>'Male',
     'female'=>'Female',
-    'specialization'=>'specialization',
+    'specialization'=>'Specialization',
     'joining_date'=>'joining date',
     'address'=> 'Address',
     'Processes'=>'Processes',
@@ -39,7 +40,7 @@ return [
 
     'exists'=>'This field already exists',
     'Delete'=>'Delete',
-    'Close' => 'Close',
-    'Are you sure you want to delete the teacher?' => 'Are you sure you want to delete the teacher?'
+    'close' => 'Close',
+    'teacher_delete' => 'Are you sure you want to delete the teacher?'
 
 ];

@@ -39,6 +39,7 @@ return [
     'delete?'=>'Are you sure you want to delete the section?',
     'delete_Class_Error'=>'The Class cannot be Deleted because it contains Sections',
     'Are you sure you want to delete the stage?' => 'Are you sure you want to delete the stage?',
+    'back' => 'Back',
     'close' => 'Close',
 
 

@@ -8,7 +8,6 @@ use App\models\Grade;
 use App\models\Classroom;
 use App\models\Section;
 use App\models\Teacher;
-use App\models\TeacherSection;
 use Exception;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -36,22 +35,24 @@ class SectionController extends Controller
         return view('pages.sections.sections',compact(['grades','teachers']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function create()
     {
-        return 'create function';
+        $grades = Grade::select([
+            'name_' . LaravelLocalization::getCurrentLocale() . ' as name',
+            'name_ar',//مررت االعربي والانجليزي تاني من غير اازز النييم عشان لما اجي استدعيهم من الداتا بيز في فورمة التعديل اعرف اجيم قيمة الانبوت العربي وقيمة الانبوت الانجليزي  ايا كان لغة الموقع الحالية
+            'name_en',
+            'notes',
+            'id'
+
+        ])->get();
+        $teachers = Teacher::all();
+        return view('pages.sections.create',compact(['grades','teachers']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function store(SectionRequest $request)
     {
 
@@ -81,43 +82,48 @@ class SectionController extends Controller
       }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+        try{
+            $section = Section::find($id);
+
+            if(!$section){
+                toastr()->error(__('messages.error_section'));
+                return redirect()->back();
+            }else{
+                $grades = Grade::select([
+                    'name_' . LaravelLocalization::getCurrentLocale() . ' as name',
+                    'name_ar',//مررت االعربي والانجليزي تاني من غير اازز النييم عشان لما اجي استدعيهم من الداتا بيز في فورمة التعديل اعرف اجيم قيمة الانبوت العربي وقيمة الانبوت الانجليزي  ايا كان لغة الموقع الحالية
+                    'name_en',
+                    'notes',
+                    'id'
+
+                ])->get();
+                $teachers = Teacher::all();
+
+                return view('pages.sections.edit', compact(['grades', 'teachers', 'section']));
+            }
+        }catch(Exception $e){
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(SectionRequest $request)
     {
+
         try{
             $sections = Section::find($request->id);
 
             if(!$sections){
-                toastr()->error(__('messages.error'));
+                toastr()->error(__('messages.error_section'));
                 return redirect()->back();
             }else{
-
+                if(empty($request->status)){
+                    $request->status = 0;
+                }
                 $sections->update([
                     'name_ar' => $request->name_ar,
                     'name_en' => $request->name_en,
@@ -126,9 +132,7 @@ class SectionController extends Controller
                     'classroom_id' => $request->classroom_id,
                 ]);
 
-                if(!$request->status){
-                    $request->status = 0;
-                }
+                $sections->teachers()->sync($request->teacher_id);
             toastr()->success(__('messages.success_edit'));
             return redirect()->back();
             }
@@ -139,12 +143,7 @@ class SectionController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Request $request)
     {
         try {
