@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sections;
 
 use App\Http\Controllers\Controller;
+use App\Http\interfaces\Repositoryinterface;
 use App\Http\Requests\SectionRequest;
 use App\models\Grade;
 use App\models\Classroom;
