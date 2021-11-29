@@ -31,7 +31,7 @@ class TeachersRequest extends FormRequest
             'address'=> 'required|max:200',
             'joining_date'=> 'required',
             'specialization_id'=> 'required',
-            'gender'=> 'required|in:$2y$10$NgiCAwLGJ6yMl/ZDlNmBBu07oegjK1JG9VGiRhdMrmI4VmdzuRQQS,$2y$10$FkGE1UxATWFSWUuRPxqdu.uccMpntdV6r3662YMA.HDyssiNlJdYa',
+            'gender'=> 'required|in:male,female',
 
 
         ];

@@ -17,7 +17,7 @@ class CreateSectionsTable extends Migration
             $table->id();
             $table->string('name_ar');
             $table->string('name_en');
-            $table->integer('status');
+            $table->integer('status')->default(1)->nullable();
             $table->integer('grade_id')->unsigned();
             $table->bigInteger('classroom_id')->unsigned();
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');

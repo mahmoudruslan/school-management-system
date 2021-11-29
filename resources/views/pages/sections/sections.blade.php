@@ -1,31 +1,27 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__('sections.List_sections')}}
-@endsection
+    {{__('List_sections')}}
+@stop
 @section('content')
 
     <!-- start error messages -->
-    @if ($errors->any())
+    @if(Session::has('error'))
         <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            {{ Session::get('error')}}
         </div>
     @endif
     <!-- end error messages -->
     {{-- start according gray --}}
     <div class="card-body">
         <a class="button x-small" href="{{route('Sections.create')}}">
-            {{__('sections.add_section')}}</a>
+            {{__('add_section')}}</a>
     </div>
     <div class="accordion gray plus-icon round">
         <?php $x=0;?>
         @foreach ($grades as $grade)
             <div class="acd-group">
-                <a href="#" class="acd-heading">{{$grade->name}}</a>
+                <a href="#" class="acd-heading">{{$grade['name_'.app()->getLocale()]}}</a>
                 <div class="acd-des">
                     {{-- start my according classrooms --}}
                     @foreach ($grade->classrooms as $classroom)
@@ -93,7 +89,7 @@
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 <h5 class="modal-title" id="exampleModalLabel">
-                                                                                    {{ trans('sections.delete?') }}
+                                                                                    {{ __('delete?') }}
                                                                                 </h5>
                                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                     <span aria-hidden="true">&times;</span>
@@ -106,10 +102,10 @@
                                                                                     @csrf
                                                                                     <input id="id" type="hidden" name="id" class="form-control" value="{{$section ->id}}">
                                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                                        {{ trans('sections.close') }}
+                                                                                        {{ __('close') }}
                                                                                     </button>
                                                                                     <button type="submit" class="btn btn-danger">
-                                                                                        {{ trans('sections.Delete') }}
+                                                                                        {{ __('Delete') }}
                                                                                     </button>
                                                                                 </form>
                                                                             </div>

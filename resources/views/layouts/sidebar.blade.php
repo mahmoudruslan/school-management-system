@@ -7,13 +7,13 @@
                     <!-- menu item Dashboard-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard">
-                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">{{__('main-side-bar.Dashboard')}}</span>
+                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">{{__('Dashboard')}}</span>
                             </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="dashboard" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="index.html">{{__('main-side-bar.Dashboard')}} 01</a> </li>
+                            <li> <a href="index.html">{{__('Dashboard')}} 01</a> </li>
 
                         </ul>
                     </li>
@@ -21,12 +21,12 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#elements">
                             <div class="pull-left"><i class="ti-palette"></i><span
-                                    class="right-nav-text">{{__('main-side-bar.grades')}}</span></div>
+                                    class="right-nav-text">{{__('grades')}}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="elements" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{route('grades.index')}}">{{__('main-side-bar.List of grades')}}</a></li>
+                            <li><a href="{{route('grades.index')}}">{{__('List of grades')}}</a></li>
 
                         </ul>
                     </li>
@@ -34,12 +34,12 @@
                    <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#classes-menu">
                         <div class="pull-left"><i class="fa fa-building"></i><span
-                                class="right-nav-text">{{__('main-side-bar.classes')}}</span></div>
+                                class="right-nav-text">{{__('classes')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="classes-menu" class="collapse" data-parent="#sidebarnav">
-                        <li><a href="{{route('Classrooms.index')}}">{{__('main-side-bar.List_classes')}}</a></li>
+                        <li><a href="{{route('Classrooms.index')}}">{{__('List_classes')}}</a></li>
                     </ul>
                 </li>
 
@@ -48,41 +48,41 @@
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">
                         <div class="pull-left"><i class="fas fa-chalkboard"></i></i><span
-                                class="right-nav-text">{{__('main-side-bar.sections')}}</span></div>
+                                class="right-nav-text">{{__('sections')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
-                        <li><a href="{{route('Sections.index')}}">{{__('main-side-bar.List_sections')}}</a></li>
+                        <li><a href="{{route('Sections.index')}}">{{__('List_sections')}}</a></li>
                     </ul>
                 </li>
 
 
                 <!-- students-->
                 <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i class="fas fa-user-graduate"></i>{{__('main-side-bar.students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i class="fas fa-user-graduate"></i>{{__('students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                     <ul id="students-menu" class="collapse">
                         <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Student_information">{{__('main-side-bar.Student_information')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Student_information">{{__('Student_information')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                             <ul id="Student_information" class="collapse">
-                                <li> <a href="{{route('Students.create')}}">{{__('main-side-bar.add_student')}}</a></li>
-                                <li> <a href="{{route('Students.index')}}">{{__('main-side-bar.list_students')}}</a></li>
+                                <li> <a href="{{route('Students.create')}}">{{__('add_student')}}</a></li>
+                                <li> <a href="{{route('Students.index')}}">{{__('list_students')}}</a></li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_upgrade">{{__('main-side-bar.Students_Promotions')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_upgrade">{{__('Students_Promotions')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                             <ul id="Students_upgrade" class="collapse">
-                                <li> <a href="{{route('Promotion.index')}}">{{__('main-side-bar.add_Promotion')}}</a></li>
-                                <li> <a href="{{route('Promotion.create')}}">{{__('main-side-bar.list_Promotions')}}</a> </li>
+                                <li> <a href="{{route('Promotion.index')}}">{{__('add_Promotion')}}</a></li>
+                                <li> <a href="{{route('Promotion.create')}}">{{__('list_Promotions')}}</a> </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Graduate students">{{__('main-side-bar.Graduate_students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Graduate students">{{__('Graduate_students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                             <ul id="Graduate students" class="collapse">
-                                <li> <a href="{{route('Graduated.create')}}">{{__('main-side-bar.add_Graduate')}}</a> </li>
-                                <li> <a href="{{route('Graduated.index')}}">{{__('main-side-bar.list_Graduate')}}</a> </li>
+                                <li> <a href="{{route('Graduated.create')}}">{{__('add_Graduate')}}</a> </li>
+                                <li> <a href="{{route('Graduated.index')}}">{{__('list_Graduate')}}</a> </li>
                             </ul>
                         </li>
                     </ul>
@@ -94,12 +94,12 @@
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu">
                         <div class="pull-left"><i class="fas fa-chalkboard-teacher"></i><span
-                                class="right-nav-text">{{__('main-side-bar.Teachers')}}</span></div>
+                                class="right-nav-text">{{__('Teachers')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="{{route('Teachers.index')}}">{{__('main-side-bar.List_Teachers')}}</a> </li>
+                        <li> <a href="{{route('Teachers.index')}}">{{__('List_Teachers')}}</a> </li>
                     </ul>
                 </li>
 
@@ -108,12 +108,12 @@
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu">
                         <div class="pull-left"><i class="fas fa-user-tie"></i><span
-                                class="right-nav-text">{{__('parents.parents')}}</span></div>
+                                class="right-nav-text">{{__('parents')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="{{route('Parents.index')}}">{{__('parents.list_parents')}}</a> </li>
+                        <li> <a href="{{route('Parents.index')}}">{{__('list_parents')}}</a> </li>
 
                     </ul>
                 </li>
@@ -122,7 +122,7 @@
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Accounts-menu">
                         <div class="pull-left"><i class="fas fa-money-bill-wave-alt"></i><span
-                                class="right-nav-text">{{__('main-side-bar.Accounts')}}</span></div>
+                                class="right-nav-text">{{__('Accounts')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
@@ -135,7 +135,7 @@
                 <!-- Attendance-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Attendance-icon">
-                        <div class="pull-left"><i class="fas fa-calendar-alt"></i><span class="right-nav-text">{{__('main-side-bar.Attendance')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-calendar-alt"></i><span class="right-nav-text">{{__('Attendance')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
@@ -149,7 +149,7 @@
                 <!-- Exams-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Exams-icon">
-                        <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{__('main-side-bar.Exams')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{__('Exams')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
@@ -164,7 +164,7 @@
                 <!-- library-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#library-icon">
-                        <div class="pull-left"><i class="fas fa-book"></i><span class="right-nav-text">{{__('main-side-bar.library')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-book"></i><span class="right-nav-text">{{__('library')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
@@ -179,7 +179,7 @@
                 <!-- Onlinec lasses-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Onlineclasses-icon">
-                        <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{__('main-side-bar.Onlineclasses')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{__('Onlineclasses')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
@@ -194,7 +194,7 @@
                 <!-- Settings-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Settings-icon">
-                        <div class="pull-left"><i class="fas fa-cogs"></i><span class="right-nav-text">{{__('main-side-bar.Settings')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-cogs"></i><span class="right-nav-text">{{__('Settings')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
@@ -209,7 +209,7 @@
                 <!-- Users-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Users-icon">
-                        <div class="pull-left"><i class="fas fa-users"></i><span class="right-nav-text">{{__('main-side-bar.Users')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-users"></i><span class="right-nav-text">{{__('Users')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>

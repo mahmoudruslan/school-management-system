@@ -1,23 +1,29 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__('sections.add_section')}}
+    {{__('add_section')}}
 @stop
 
 
 @section('content')
-
+    <!-- start error messages -->
+    @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{ Session::get('error')}}
+        </div>
+    @endif
+    <!-- end error messages -->
     <form action="{{route('Sections.store')}}" method="POST">
         {{ csrf_field() }}
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputEmail4">{{__('sections.section_name_ar')}}</label><br>
+            <label for="inputEmail4">{{__('section_name_ar')}}</label><br>
             @error('name_ar') <span class="error text-danger">{{ $message }}</span> @enderror
             <input type="text" name="name_ar" class="form-control">
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputPassword4">{{__('sections.section_name_en')}}</label><br>
+            <label for="inputPassword4">{{__('section_name_en')}}</label><br>
             @error('name_en') <span class="error text-danger">{{ $message }}</span> @enderror
             <input type="text" name="name_en" class="form-control">
 
@@ -28,23 +34,23 @@
 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputName" class="control-label">{{__('sections.select_grade')}}</label><br>
+            <label for="inputName" class="control-label">{{__('select_grade')}}</label><br>
             @error('grade_id') <span class="error text-danger">{{ $message }}</span> @enderror
             <select name="grade_id" class="custom-select"
                     onchange="console.log($(this).val())">
                 <!--placeholder-->
                 <option value="" selected
-                        disabled>{{__('sections.select_grade')}}
+                        disabled>{{__('select_grade')}}
                 </option>
                 @foreach ($grades as $grade)
-                    <option value="{{$grade->id}}">{{$grade->name}}</option>
+                    <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="form-group col-md-6">
             <label for="inputName"
-                   class="control-label">{{__('sections.select_classroom')}}</label><br>
+                   class="control-label">{{__('select_classroom')}}</label><br>
             @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
             <select name="classroom_id" class="custom-select">
 
@@ -54,7 +60,7 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputName" class="control-label">{{__('sections.select_teacher')}}</label><br>
+            <label for="inputName" class="control-label">{{__('select_teacher')}}</label><br>
 
             <select name="teacher_id[]" class="custom-select {{$errors->has('teacher_id') ? "is-invalid":" "}}" multiple aria-label="multiple select example">
 
@@ -73,14 +79,14 @@
             <div class="form-check">
                 <input class="form-check-input" name="status" type="checkbox" value="1" id="flexCheckChecked" checked>
                 <label class="form-check-label" for="flexCheckChecked">
-                    {{__('sections.status')}}
+                    {{__('status')}}
                 </label>
             </div>
         </div>
 
     </div>
-        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('sections.submit')}}</button>
-        <a href="{{route('Sections.index')}}" class="btn btn-danger" type="button">{{__('sections.back')}}</a>
+        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('submit')}}</button>
+        <a href="{{route('Sections.index')}}" class="btn btn-danger" type="button">{{__('back')}}</a>
 </form>
 @endsection
 @section('js')

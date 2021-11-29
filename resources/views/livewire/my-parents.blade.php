@@ -19,7 +19,7 @@
     @else
       
         <button wire:click="Add"  type="button" class="button x-small" >
-            {{ __('parents.add_parents') }}
+            {{ __('add_parents') }}
         </button>
 
         
@@ -31,28 +31,28 @@
                     <tr id="myUL">
                         <th>#</th>
         
-                        <th>{{__("parents.email")}}</th>
-                        <th>{{__("parents.name_father")}}</th>
+                        <th>{{__("email")}}</th>
+                        <th>{{__("name_father")}}</th>
         
-                        <th>{{__("parents.national_id_father")}}</th>
-                        <th>{{__("parents.passport_id_father")}}</th>
-                        <th>{{__("parents.phone_father")}}</th>
-                        <th>{{__("parents.job_father")}}</th>
-                        <th>{{__("parents.blood_Type_father_id")}}</th>
-                        <th>{{__("parents.nationality_father_id")}}</th>
-                        <th>{{__("parents.religion_father_id")}}</th>
-                        <th>{{__("parents.address_father")}}</th>
-                        <th>{{__("parents.name_mother")}}</th>
+                        <th>{{__("national_id_father")}}</th>
+                        <th>{{__("passport_id_father")}}</th>
+                        <th>{{__("phone_father")}}</th>
+                        <th>{{__("job_father")}}</th>
+                        <th>{{__("blood_Type_father_id")}}</th>
+                        <th>{{__("nationality_father_id")}}</th>
+                        <th>{{__("religion_father_id")}}</th>
+                        <th>{{__("address_father")}}</th>
+                        <th>{{__("name_mother")}}</th>
         
-                        <th>{{__("parents.phone_mother")}}</th>
-                        <th>{{__("parents.job_mother")}}</th>
-                        <th>{{__("parents.nationality_mother_id")}}</th>
-                        <th>{{__("parents.religion_mother_id")}}</th>
-                        <th>{{__("parents.national_id_mother")}}</th>
-                        <th>{{__("parents.passport_id_mother")}}</th>
-                        <th>{{__("parents.blood_Type_mother_id")}}</th>
-                        <th>{{__("parents.address_mother")}}</th>
-                        <th class="pl-5 pr-4">{{__("parents.Processes")}}</th>
+                        <th>{{__("phone_mother")}}</th>
+                        <th>{{__("job_mother")}}</th>
+                        <th>{{__("nationality_mother_id")}}</th>
+                        <th>{{__("religion_mother_id")}}</th>
+                        <th>{{__("national_id_mother")}}</th>
+                        <th>{{__("passport_id_mother")}}</th>
+                        <th>{{__("blood_Type_mother_id")}}</th>
+                        <th>{{__("address_mother")}}</th>
+                        <th class="pl-5 pr-4">{{__("Processes")}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -101,11 +101,11 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                {{__('parents.delete_attachment')}}
+                                                {{__('delete_attachment')}}
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('parents.Close')}}</button>
-                                                <button type="button" class="btn btn-danger" wire:click="delete({{$my_parent->id}})" data-dismiss="modal">{{__('parents.delete')}}</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+                                                <button type="button" class="btn btn-danger" wire:click="delete({{$my_parent->id}})" data-dismiss="modal">{{__('delete')}}</button>
                                             </div>
                                         </div>
                                     </div>

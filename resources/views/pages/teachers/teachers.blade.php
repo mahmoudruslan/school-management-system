@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{ __('teachers.List_teachers') }}
+    {{ __('List_teachers') }}
 @stop
 
 
@@ -15,7 +15,7 @@
     @endif
     <!-- end error messages -->
     <a href="{{route('Teachers.create')}}" type="button" class="button x-small">
-        {{ trans('teachers.add_teachers') }}
+        {{ __('add_teachers') }}
     </a>
     <br><br>
 
@@ -26,12 +26,12 @@
 
             <tr>
                 <th>#</th>
-                <th>{{__("teachers.Name")}}</th>
-                <th>{{__("teachers.gender")}}</th>
-                <th>{{__("teachers.specialization")}}</th>
-                <th>{{__("teachers.joining_date")}}</th>
-                <th>{{__("teachers.address")}}</th>
-                <th>{{__("teachers.Processes")}}</th>
+                <th>{{__("Name")}}</th>
+                <th>{{__("gender")}}</th>
+                <th>{{__("specialization")}}</th>
+                <th>{{__("joining_date")}}</th>
+                <th>{{__("address")}}</th>
+                <th>{{__("Processes")}}</th>
 
             </tr>
             </thead>
@@ -42,7 +42,7 @@
                 <tr>
                     <td>{{$i}}</td>
                     <td>{{$teacher['name_'.app()->getLocale()]}}</td>
-                    <td>{{__('teachers.'.$teacher ->gender)}}</td>
+                    <td>{{__($teacher ->gender)}}</td>
                     <td>{{$teacher ->specializations['name_'.app()->getLocale()]}}</td>
                     <td>{{$teacher ->joining_date}}</td>
                     <td>{{$teacher ->address}}</td>
@@ -63,7 +63,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">
-                                    {{ __('teachers.teacher_delete') }}
+                                    {{ __('teacher_delete') }}
                                 </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -76,10 +76,10 @@
                                     @csrf
                                     <input type="hidden" name="id"  value="{{$teacher ->id}}">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        {{ __('teachers.close') }}
+                                        {{ __('close') }}
                                     </button>
                                     <button type="submit" class="btn btn-danger">
-                                        {{ trans('teachers.Delete') }}
+                                        {{ __('Delete') }}
                                     </button>
                                 </form>
                             </div>

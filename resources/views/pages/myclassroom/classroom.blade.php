@@ -2,27 +2,23 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__("classroom.list_classrooms")}}
+    {{__("list_classrooms")}}
 @stop
 
 
 @section('content')
 
-    {{-- start show validation error --}}
-    @if ($errors->any())
+    <!-- start error messages -->
+    @if(Session::has('error'))
         <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            {{ Session::get('error')}}
         </div>
     @endif
-    {{-- end show validation error --}}
+    <!-- end error messages -->
 
     <!-- start add_modal_classroom button -->
     <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
-        {{ trans('classroom.add_classroom') }}
+        {{ __('add_classroom') }}
     </button>
     <br><br>
     <!-- end add_modal_classroom button -->
@@ -32,9 +28,9 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{__("classroom.name_classroom")}}</th>
-                    <th>{{__("classroom.name_grade")}}</th>
-                    <th>{{__("classroom.Processes")}}</th>
+                    <th>{{__("name_classroom")}}</th>
+                    <th>{{__("name_grade")}}</th>
+                    <th>{{__("Processes")}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,9 +39,9 @@
                 <?php $i++; ?>
                     <tr>
 
-                        <td>{{ $i}}</td>                                    
+                        <td>{{ $i}}</td>
                         <td>
-                                {{$classroom -> name}}
+                                {{$classroom['name_'.app()->getLocale()]}}
                         </td>
                             <td>{{$classroom->gradess['name_'.app()->getLocale()]}}</td>
                             <td>
@@ -62,7 +58,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                                                {{ trans('classroom.edit_classroom') }}
+                                                {{ __('edit_classroom') }}
                                             </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -76,14 +72,14 @@
                                                 <div class="row">
 
                                                     <div class="col">
-                                                        <label for="name_ar" class="mr-sm-2">{{ trans('classroom.name_classroom_ar') }}
+                                                        <label for="name_ar" class="mr-sm-2">{{ __('name_classroom_ar') }}
                                                             :</label>
                                                         <input id="name_ar" value="{{ $classroom->name_ar }}" type="text" name="name_ar" class="form-control">
                                                         <input value="{{ $classroom->id }}" type="hidden" name="id" class="form-control">
                                                     </div>
 
                                                     <div class="col">
-                                                        <label for="name_en" class="mr-sm-2">{{ trans('classroom.name_classroom_en') }}
+                                                        <label for="name_en" class="mr-sm-2">{{ __('name_classroom_en') }}
                                                             :</label>
                                                         <input value="{{ $classroom->name_en }}" type="text" class="form-control" name="name_en">
                                                     </div>
@@ -91,7 +87,7 @@
 
                                                     <div class="col">
                                                         <label for="grade_id"
-                                                        class="mr-sm-2">{{ trans('classroom.name_grade') }}
+                                                        class="mr-sm-2">{{ __('name_grade') }}
                                                         :</label>
                                                         <div class="box">
                                                             <select class="fancyselect" name="grade_id">
@@ -99,20 +95,20 @@
                                                                     {{$classroom ->gradess['name_'.app()->getLocale()]}}
                                                                 </option>
                                                                 @foreach ($grades as $grade)
-                                                                    <option value="{{$grade->id}}">{{$grade ->name}}</option>
+                                                                    <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
 
                                                 </div>
-                                            
+
                                                 <br><br>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">{{ trans('grades.Close') }}</button>
-                                            <button type="submit" class="btn btn-success">{{ trans('grades.submit') }}</button>
+                                                data-dismiss="modal">{{ __('Close') }}</button>
+                                            <button type="submit" class="btn btn-success">{{ __('submit') }}</button>
                                         </div>
                                         </form>
                                             <!-- end add_form -->
@@ -125,7 +121,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">{{ trans('classroom.warning_classroom') }}</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">{{ __('warning_classroom') }}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -136,8 +132,8 @@
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{$classroom->id}}">
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ trans('grades.Close') }}</button>
-                                                    <button type="submit" class="btn btn-danger">{{ trans('grades.Delete')}}</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
+                                                    <button type="submit" class="btn btn-danger">{{ __('Delete')}}</button>
                                                 </div>
                                         </form>
                                     </div>
@@ -157,39 +153,39 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                        {{ trans('classroom.add_classroom') }}
+                        {{ __('add_classroom') }}
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                
+
                     <form action="{{route('Classrooms.store')}}" method="POST">
                         @csrf
                         <div class="row">
 
                             <div class="col">
-                                <label for="name_ar" class="mr-sm-2">{{ trans('classroom.classroom_name_ar') }}
+                                <label for="name_ar" class="mr-sm-2">{{ __('classroom_name_ar') }}
                                     :</label>
                                 <input id="name_ar" type="text" name="name_ar" class="form-control">
                             </div>
 
                             <div class="col">
-                                <label for="name_en" class="mr-sm-2">{{ trans('classroom.classroom_name_en') }}
+                                <label for="name_en" class="mr-sm-2">{{ __('classroom_name_en') }}
                                     :</label>
                                 <input type="text" class="form-control" name="name_en">
                             </div>
-                            
+
                             <div class="col">
                                 <label for="grade_id"
-                                class="mr-sm-2">{{ trans('classroom.name_grade') }}
+                                class="mr-sm-2">{{ __('name_grade') }}
                                 :</label>
                                 <div class="box">
                                     <select class="fancyselect" name="grade_id">
-                                        
+
                                         @foreach ($grades as $grade)
-                                            <option value="{{$grade ->id}}">{{$grade ->name}}</option>
+                                            <option value="{{$grade ->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -200,8 +196,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">{{ trans('grades.Close') }}</button>
-                    <button type="submit" class="btn btn-success">{{ trans('grades.submit') }}</button>
+                        data-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="submit" class="btn btn-success">{{ __('submit') }}</button>
                 </div>
                 </form>
                 <!-- end add_form -->

@@ -7,6 +7,6 @@
 
 @section('content')
 
-<livewire:add-parents />
+<div class="alert alret-success">{{__('rezk')}}</div>
 @endsection
 

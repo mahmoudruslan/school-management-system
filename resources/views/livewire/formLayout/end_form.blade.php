@@ -7,15 +7,15 @@
   <div class="modal-content">
 
     <div class="modal-body">
-        <h3>{{__('parents.Are you sure you want to save the data?')}}</h3>
+        <h3>{{__('Are you sure you want to save the data?')}}</h3>
         </div>
         <div class="modal-footer">
           @if ($addMode)
-            <button style="background: #72ab2a;color:white" class="btn btn-lg" wire:click="submitForm" type="button">{{__('parents.finish')}}</button>
+            <button style="background: #72ab2a;color:white" class="btn btn-lg" wire:click="submitForm" type="button">{{__('finish')}}</button>
           @else
-            <button style="background: #72ab2a;color:white" class="btn btn-lg" wire:click="submitFormEdit({{$parent_id}})" type="button">{{__('parents.finish')}}</button>
+            <button style="background: #72ab2a;color:white" class="btn btn-lg" wire:click="submitFormEdit({{$parent_id}})" type="button">{{__('finish')}}</button>
           @endif
-          <button class="btn btn-danger nextBtn btn-lg" type="button" wire:click="back(2)">{{__('parents.back')}}</button>
+          <button class="btn btn-danger nextBtn btn-lg" type="button" wire:click="back(2)">{{__('back')}}</button>
         </div>
   </div>
 </div>

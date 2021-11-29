@@ -17,7 +17,7 @@
         Laravel Livewire Wizard Form Example - ItSolutionStuff.com
       </div>
       <div class="card-body">
-        <livewire:wizard />
+        
       </div>
     </div>
         
