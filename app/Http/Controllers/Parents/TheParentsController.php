@@ -17,9 +17,6 @@ class TheParentsController extends Controller
     public function index()
     {
 
-        TheParent::with('motherReligions')->find(5);
-
-        
         return view('pages.parents.my_parents');
     }
 

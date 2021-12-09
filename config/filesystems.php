@@ -47,12 +47,12 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-        'parent_attachments' => [
+
+
+        'attachments' => [
             'driver' => 'local',
-            'root' => storage_path('app/parent_attachments'),
+            'root' => public_path('/'),
         ],
-
-
 
         'public' => [
             'driver' => 'local',

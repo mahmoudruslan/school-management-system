@@ -63,15 +63,13 @@
 
                                                                     <td>{{$section['name_'.app()->getLocale()]}}</td>
 
-                                                                @if ($section-> status == 1)
+
                                                                     <td>
-                                                                        <span class="badge badge-success">active</span>
+                                                                        <span class="badge {{$section->status == 'Active'? 'badge-success' : 'badge-danger'}}">{{__($section->status)}}</span>
                                                                     </td>
-                                                                @else
-                                                                    <td>
-                                                                        <span class="badge badge-danger">not-active</span>
-                                                                    </td>
-                                                                @endif
+
+
+
                                                                 <td>
                                                                     <button style="color: white" type="button" data-toggle="modal" class="btn btn-danger" data-target="#delete{{$section ->id}}">
                                                                         <i class="fa fa-trash"></i>

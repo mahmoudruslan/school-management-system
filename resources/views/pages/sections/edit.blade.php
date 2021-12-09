@@ -37,9 +37,8 @@
                 <select  name="grade_id" class="custom-select"
                         onchange="console.log($(this).val())">
                     <!--placeholder-->
-                    <option value="" selected
-                            disabled>{{__('select_grade')}}
-                    </option>
+                    <option value="{{$section->grades->id}}" selected >{{$section->grades['name_'.app()->getLocale()]}}</option>
+
                     @foreach ($grades as $grade)
                         <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                     @endforeach
@@ -48,9 +47,10 @@
 
             <div class="form-group col-md-6">
                 <label for="inputName"
-                       class="control-label">{{__('select_classroom')}}</label><br>
+                       class="control-label">{{__('Classroom')}}</label><br>
                 @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                 <select name="classroom_id" class="custom-select">
+                    <option value="{{$section->classrooms->id}}" selected >{{$section->classrooms['name_'.app()->getLocale()]}}</option>
 
 
                 </select>
@@ -80,6 +80,7 @@
                 <br>
                 <br>
                 <div class="form-check">
+                    <input name="status" type="hidden" value="0">
                     <input class="form-check-input" name="status" type="checkbox" value="1" id="flexCheckChecked" checked>
                     <label class="form-check-label" for="flexCheckChecked">
                         {{__('status')}}
@@ -88,32 +89,11 @@
             </div>
 
         </div>
-        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('submit')}}</button>
+        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('Submit')}}</button>
         <a href="{{route('Sections.index')}}" class="btn btn-danger" type="button">{{__('back')}}</a>
     </form>
 @endsection
 @section('js')
-    <script>
-        $(document).ready(function () {
-            $('select[name="grade_id"]').on('change', function () {
-                var grade_id = $(this).val();
-                if (grade_id) {
-                    $.ajax({
-                        url: "{{ URL::to('classrooms') }}/" + grade_id,
-                        type: "GET",
-                        dataType: "json",
-                        success: function (data) {
-                            $('select[name="classroom_id"]').empty();
-                            $.each(data, function (key, value) {
-                                $('select[name="classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
-                            });
-                        },
-                    });
-                } else {
-                    console.log('AJAX load did not work');
-                }
-            });
-        });
-    </script>
+
 @endsection
 

@@ -26,6 +26,53 @@
 <script src="{{ URL::asset('assets/js/sweetalert2.js') }}"></script>
 <!-- toastr -->
 @yield('js')
+<script>
+    $(document).ready(function () {
+        $('select[name="grade_id"]').on('change', function () {
+            let grade_id = $(this).val();
+            if (grade_id) {
+                $.ajax({
+                    url: "{{URL::to('classrooms') }}/" + grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="classroom_id"]').empty();
+                        $('select[name="classroom_id"]').append('<option selected disabled >{{__('Choose Classroom')}}...</option>');
+                        $.each(data, function (key, value) {
+
+                            $('select[name="classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $('select[name="classroom_id"]').on('change',function () {
+            let classroom_id = $(this).val();
+            if (classroom_id) {
+                $.ajax({
+                    url: "{{URL::to('section') }}/" + classroom_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="section_id"]').empty();
+                        $('select[name="section_id"]').append('<option selected disabled >{{__('Choose Section')}}...</option>');
+                        $.each(data, function (key, value) {
+
+                            $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
 <script src="{{ URL::asset('assets/js/toastr.js') }}"></script>
 <!-- validation -->
 <script src="{{ URL::asset('assets/js/validation.js') }}"></script>

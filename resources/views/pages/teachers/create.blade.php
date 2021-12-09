@@ -3,8 +3,6 @@
 @section('title')
     {{__('add_teachers')}}
 @stop
-
-
 @section('content')
     <!-- start error messages -->
     @if(Session::has('error'))
@@ -17,7 +15,7 @@
         @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">{{__('email')}}</label><br>
+                <label for="inputEmail4">{{__('Email')}}</label><br>
                 @error('email')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input name="email" type="email" class="form-control" id="inputEmail4" >
             </div>
@@ -48,7 +46,7 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputCity">{{__('address')}}</label><br>
+                <label for="inputCity">{{__('Address')}}</label><br>
                 @error('address')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input name="address" type="text" class="form-control">
             </div>
@@ -79,7 +77,7 @@
         </div>
 
             <div class="form-group col-md-6">
-                <label for="inputState">{{__('gender')}}</label><br>
+                <label for="inputState">{{__('Gender')}}</label><br>
                 @error('gender')<span class="error text-danger">{{ $message }}<br></span>@enderror
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male">
@@ -93,7 +91,7 @@
         </div>
 
 
-        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('submit')}}</button>
+        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('Submit')}}</button>
         <a href="{{route('Teachers.index')}}" class="btn btn-danger" type="button">{{__('back')}}</a>
     </form>
 

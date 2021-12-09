@@ -34,14 +34,14 @@ class GeadeRequest extends FormRequest
     {
         return [
 
-            'name_ar.required' => __('messages.This field is required'),
-            'name_en.required' => __('messages.This field is required'),
-            'name_ar.unique' => __('messages.This field must be unique'),
-            'name_en.unique' => __('messages.This field must be unique'),
-            'name_ar.max' => __('messages.The name field must be no more than 100 characters'),
-            'name_en.max' => __('messages.The name field must be no more than 100 characters'),
-            'notes.max' => __('messages.The notes field must be no more than 250 characters'),
-        
+            'name_ar.required' => __('This field is required'),
+            'name_en.required' => __('This field is required'),
+            'name_ar.unique' => __('This field must be unique'),
+            'name_en.unique' => __('This field must be unique'),
+            'name_ar.max' => __('The name field must be no more than 100 characters'),
+            'name_en.max' => __('The name field must be no more than 100 characters'),
+            'notes.max' => __('The notes field must be no more than 250 characters'),
+
         ];
     }
 }

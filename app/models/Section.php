@@ -11,6 +11,10 @@ protected $fillable = ['id','name_ar','name_en','grade_id','status','classroom_i
 public $timestamps =  true;
 
 
+    public function getStatusAttribute($value){
+        return $value == '1'? 'Active' : 'Not Active';
+    }
+
     public function grades(){
         return $this ->belongsTo('App\models\Grade','grade_id');
     }

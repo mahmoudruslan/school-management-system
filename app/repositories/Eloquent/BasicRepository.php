@@ -6,7 +6,7 @@ use App\repositories\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class BasicRepository implements EloquentRepositoryInterface
+abstract class BasicRepository implements EloquentRepositoryInterface
 {
     protected $model;
     public function __construct(Model $model)
@@ -48,6 +48,12 @@ class BasicRepository implements EloquentRepositoryInterface
         $model->update($attributes);
         return $model;
     }
+
+
+
+
+
+
 
     public function destroy($id):bool
     {

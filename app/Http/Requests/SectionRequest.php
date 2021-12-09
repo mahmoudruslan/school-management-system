@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class SectionRequest extends FormRequest
 {
@@ -23,25 +24,28 @@ class SectionRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-        'name_ar' => 'required|max:50',
+
+        return  [
+            'name_ar' => 'required|max:50',
             'name_en' => 'required|max:50',
             'teacher_id' => 'required',
-        'grade_id' => 'required',
-        'classroom_id' => 'required',
+            'grade_id' => 'required',
+            'classroom_id' => 'required',
         ];
+
     }
+
     public function messages()
     {
         return [
 
-            'name_ar.required' => __('messages.This field is required'),
-            'name_en.required' => __('messages.This field is required'),
-            'grade_id.required' => __('messages.This field is required'),
-            'classroom_id.required' => __('messages.This field is required'),
-            'teacher_id.required' => __('messages.This field is required'),
-            'name_ar.max' => __('messages.The name field must be no more than 50 characters'),
-            'name_en.max' => __('messages.The name field must be no more than 50 characters'),
+            'name_ar.required' => __('This field is required'),
+            'name_en.required' => __('This field is required'),
+            'grade_id.required' => __('This field is required'),
+            'classroom_id.required' => __('This field is required'),
+            'teacher_id.required' => __('This field is required'),
+            'name_ar.max' => __('The name field must be no more than 50 characters'),
+            'name_en.max' => __('The name field must be no more than 50 characters'),
 
         ];
     }

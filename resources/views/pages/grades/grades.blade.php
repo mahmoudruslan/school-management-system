@@ -20,7 +20,7 @@
     @endif
     <!-- end error messages -->
     <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
-        {{ __('add_Grade') }}
+        {{ __('Add Grade') }}
     </button>
     <br><br>
 
@@ -92,18 +92,16 @@
                                                         rows="3">{{ $grade->notes}}</textarea>
                                             </div>
                                             <br><br>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">{{ __('Close') }}</button>
-                                        <button type="submit" class="btn btn-success">{{ __('submit') }}</button>
-                                    </div>
-                                    </form>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">{{ __('Close') }}</button>
+                                                <button type="submit" class="btn btn-success">{{ __('submit') }}</button>
+                                            </div>
+                                        </form>
                                     <!-- end add_form -->
-
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <!-- end edit_modal_Grade -->
                         <!-- start delete_modal_Grade -->
                         <div class="modal fade" id="delete{{$grade ->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,7 +146,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                            {{ __('add_Grade') }}
+                            {{ __('Add Grade') }}
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -168,27 +166,25 @@
                                     <label for="name_en" class="mr-sm-2">{{ __('stage_name_en') }}
                                         :</label>
                                     <input type="text" class="form-control" name="name_en">
-
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">{{ __('Notes') }}
                                     :</label>
-                                <textarea class="form-control" name="notes" id="exampleFormControlTextarea1"
-                                    rows="3"></textarea>
+                                <textarea class="form-control" name="notes" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
                             <br><br>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ __('Close') }}</button>
-                        <button type="submit" class="btn btn-success">{{ __('submit') }}</button>
-                    </div>
-                    </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">{{ __('Close') }}</button>
+                                <button type="submit" class="btn btn-success">{{ __('Submit') }}</button>
+                            </div>
+                        </form>
                         <!-- end add_form -->
+                    </div>
                 </div>
             </div>
-    </div>
+        </div>
     <!-- end add_modal_Grade -->
 
 @endsection

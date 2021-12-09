@@ -17,12 +17,12 @@
     @if ($editMode || $addMode)
         @include('livewire.add-parents')
     @else
-      
+
         <button wire:click="Add"  type="button" class="button x-small" >
             {{ __('add_parents') }}
         </button>
 
-        
+
         {{-- myTable --}}
         <div class="table-responsive">
                 <table  id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
@@ -30,10 +30,10 @@
                     <thead>
                     <tr id="myUL">
                         <th>#</th>
-        
-                        <th>{{__("email")}}</th>
-                        <th>{{__("name_father")}}</th>
-        
+
+                        <th>{{__("Email")}}</th>
+                        <th>{{__("Father's Name")}}</th>
+
                         <th>{{__("national_id_father")}}</th>
                         <th>{{__("passport_id_father")}}</th>
                         <th>{{__("phone_father")}}</th>
@@ -42,8 +42,8 @@
                         <th>{{__("nationality_father_id")}}</th>
                         <th>{{__("religion_father_id")}}</th>
                         <th>{{__("address_father")}}</th>
-                        <th>{{__("name_mother")}}</th>
-        
+                        <th>{{__("Mother\'s Name")}}</th>
+
                         <th>{{__("phone_mother")}}</th>
                         <th>{{__("job_mother")}}</th>
                         <th>{{__("nationality_mother_id")}}</th>
@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                         <?php $i = 0?>
-                        
+
                             @foreach ($my_parents as $my_parent)
                             <?php $i++?>
                             <tr>
@@ -82,7 +82,7 @@
                             <td>{{$my_parent->motherBloodType->name}}</td>
                             <td>{{$my_parent->address_mother}}</td>
                             <td>
-                               
+
                                 <button wire:click="edit({{$my_parent->id}})" class="btn btn-info" type="button" >
                                     <i class="fa fa-edit"></i>
                                 </button>
@@ -90,12 +90,12 @@
                                 <button style="color: white" data-toggle="modal" data-target="#exampleModal{{$my_parent->id}}"  class="btn btn-danger" type="button" >
                                     <i class="fa fa-trash"></i>
                                 </button>
-                                
+
                                 <div class="modal fade" id="exampleModal{{$my_parent->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                            
+
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -107,7 +107,6 @@
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
                                                 <button type="button" class="btn btn-danger" wire:click="delete({{$my_parent->id}})" data-dismiss="modal">{{__('delete')}}</button>
                                             </div>
-                                        </div>
                                     </div>
                                     </div>
                                 </div>

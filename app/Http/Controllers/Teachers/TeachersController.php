@@ -38,7 +38,7 @@ class TeachersController extends Controller
     {
         try {
             $this->teacher->create($request->all());
-            toastr()->success(__('messages.success'));
+            toastr()->success(__('success'));
             return redirect()->back();
 
         }catch (\Exception $e){
@@ -60,7 +60,7 @@ class TeachersController extends Controller
     {
         try {
             $this->teacher->update($request->all(),$request->id);
-            toastr()->success(__('messages.success_edit'));
+            toastr()->success(__('success_edit'));
             return redirect()->back();
         }catch (\Exception $e){
             return redirect()->back()->with(['error'=>$e->getMessage()]);
@@ -72,7 +72,7 @@ class TeachersController extends Controller
     {
         try {
             $this->teacher->destroy($request->id);
-            toastr()->success(__('messages.success_delete'));
+            toastr()->success(__('success_delete'));
             return redirect()->back();
         }catch (\Exception $e){
             return redirect()->back()->with(['error'=>$e->getMessage()]);

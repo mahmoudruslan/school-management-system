@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 define('PAGINATION_COUNT',2);
 /*
 |--------------------------------------------------------------------------
@@ -26,55 +28,36 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 
-
-
-
     ############################# begin grades ##############################################
     Route::group(['namespace' => 'grades'],function(){
         Route::resource('grades', 'GradeController');
 
     });
-    ############################# end grades #############################################
-
-
     ############################# begin Classroom #########################################
     Route::group(['namespace' => 'Classrooms'],function(){
         Route::resource('Classrooms', 'ClassroomController');
     });
-    ############################# end Classroom ############################################
-
-
 
     ############################# begin sections ##############################################
     Route::group(['namespace' => 'Sections'],function(){
         Route::resource('Sections', 'SectionController');
         Route::get('classrooms/{id}','SectionController@getClassrooms');
     });
-    ############################# end sections ##############################################
-
     ############################# begin Parents ##############################################
     Route::group(['namespace' => 'parents'],function(){
         Route::resource('Parents', 'TheParentsController');
-
-
     });
-    ############################# end Parents ##############################################
-
-
     ############################# begin Teachers ##############################################
     Route::group(['namespace' => 'Teachers'],function(){
         Route::resource('Teachers', 'TeachersController');
-
     });
-    ############################# end Teachers ##############################################
-
-Route::view('empty','empty');
-
-
-
-
-
-
+    ############################# begin Teachers ##############################################
+    Route::group(['namespace' => 'Students'],function(){
+        Route::resource('Students', 'StudentsController');
+        Route::get('section/{id}','StudentsController@getSections');
+        Route::post('save-attachments','StudentsController@saveAttachments')->name('save.attachments');
+        Route::post('delete-attachments','StudentsController@deleteAttachments')->name('delete.attachments');
+    });
 
 
 
@@ -85,8 +68,12 @@ Route::view('empty','empty');
 
 
 
-        Route::post('Students', 'GradeController@Students')->name('Students.create');//دا عشان الايرور بس
-        Route::post('Students-index', 'GradeController@Students-index')->name('Students.index');//دا عشان الايرور بس
+
+
+
+
+
+
         Route::post('Promotion-index', 'GradeController@Promotion-index')->name('Promotion.index');//دا عشان الايرور بس
         Route::post('Promotion-create', 'GradeController@Promotion-create')->name('Promotion.create');//دا عشان الايرور بس
         Route::post('Graduated-create', 'GradeController@Graduated-create')->name('Graduated.create');//دا عشان الايرور بس

@@ -22,9 +22,9 @@ class SectionController extends Controller
 
 
 
-
     public function index(GradesRepository $g,TeachersRepository $t)
     {
+
         $grades = $g->getAll();
         $teachers = $t->getAll();
         return view('pages.sections.sections',compact(['grades','teachers']));
@@ -43,9 +43,7 @@ class SectionController extends Controller
 
     public function store(SectionRequest $request)
     {
-
         try{
-
             $Section = $this->section-> create($request->all());
             $sectionFind = $this->section->getById($Section->id);
             $sectionFind->teachers()->attach($request->teacher_id);
@@ -80,7 +78,6 @@ class SectionController extends Controller
 
             toastr()->success(__('success_edit'));
             return redirect()->route('Sections.index');
-
         }catch(Exception $e){
             return redirect()->route('Sections.index')->with(['error' => $e->getMessage()]);
         }
@@ -99,7 +96,7 @@ class SectionController extends Controller
     }
 
 
-    public function getClassrooms($id,ClassroomsRepository $c)//related javascript code
+    public function getClassrooms($id,ClassroomsRepository $c)//related ajax code
     {
         $list_classes = $c->getAll()->where("grade_id", $id)->pluck("name_".LaravelLocalization::getCurrentLocale(), "id");
         return $list_classes;

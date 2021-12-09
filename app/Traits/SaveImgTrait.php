@@ -1,16 +1,60 @@
 <?php
 namespace App\Traits;
+use App\models\Image;
+use Facade\Ignition\Support\Packagist\Package;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use function PHPUnit\Framework\directoryExists;
 
 trait SaveImgTrait
 {
-    function saveimg($photo,$name_folder, $name_disk)
+    function saveimg($name_folder, $photo_owner_id, $model_path, $images)
     {
-       
         
-        $photo->storeAs($name_folder, $photo->getClientOriginalName(), $disk = $name_disk);
-    
-        $name_photo = $photo->getClientOriginalName();
-        return $name_photo;
+        foreach($images as $image) {
+            
+            $photo = $image->getClientOriginalExtension();
+            $name = time() . Str::random(6) . '.' . $photo;
+            Image::create([
+                'filename' => $name,
+                'imageable_id' => $photo_owner_id,
+                'imageable_type' => $model_path,
+            ]);
+            $image->storeAs($name_folder,$name,'attachments');
+            //$image->move($name_folder,$name);
+
+
+        }
+    }
+
+
+
+    function deleteDirectory($directory_path,$id){
+        $image_ids = Image::where('imageable_id',$id)->select('id')->get();
+        foreach ($image_ids as $image_id){
+            $image = Image::find($image_id->id);
+            $image->delete();
+        }
+        if(directoryExists($directory_path)){
+            File::deleteDirectory(public_path($directory_path));
+        }
+    }
+
+    function deleteFiles($directory_path,$file_name,$id){
+        try {
+
+            File::delete('attachments/'.$directory_path.'/'.$file_name);
+            $image = Image::find($id);
+            $image->delete();
+
+            $files = File::allFiles('attachments/'.$directory_path);
+            if(empty($files)){
+                File::deleteDirectory(public_path('attachments/'.$directory_path));
+            }
+        }catch (\Exception $e){
+            return redirect()->back()->with(['error'=>$e->getMessage()]);
+        }
 
     }
+
 }

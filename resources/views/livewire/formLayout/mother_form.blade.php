@@ -16,7 +16,7 @@
 
             <div class="col">{{--شمال--}}
 
-                
+
                 <label for="title">{{__('name_mother_en')}}</label><br>
                 @error('name_mother_en') <span class="error text-danger">{{ $message }}</span> @enderror
                 <input type="text" wire:model="name_mother_en" class="form-control" id="taskTitle">
@@ -46,19 +46,19 @@
                             <label for="title">{{__('passport_id_mother')}}</label><br>
                             @error('passport_id_mother') <span class="error text-danger">{{ $message }}</span> @enderror
                             <input type="text" wire:model="passport_id_mother" class="form-control" id="taskTitle">
-                            
+
                         </div>
                         <div class="col">
                             <label for="title">{{__('national_id_mother')}}</label><br>
                             @error('national_id_mother') <span class="error text-danger">{{ $message }}</span> @enderror
                             <input type="text" wire:model="national_id_mother" class="form-control" id="taskTitle">
-                            
+
                         </div>
                         <div class="col">
                             <label for="title">{{__('phone_mother')}}</label><br>
                             @error('phone_mother') <span class="error text-danger">{{ $message }}</span> @enderror
                             <input type="text" wire:model="phone_mother" class="form-control" id="taskTitle">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -71,14 +71,14 @@
                         <input type="file" wire:model="photos" accept="image/*" multiple>
                     </div>
 
-                    
+
                 </div>
 
                 <div class="col">
                     <label for="title">{{__('nationality_mother_id')}}</label><br>
                     @error('nationality_mother_id') <span class="error text-danger">{{ $message }}</span> @enderror
                     <select wire:model="nationality_mother_id" class="custom-select">
-                        <option selected>{{__('choose_nationality')}}...</option>
+                        <option selected>{{__('Choose nationality')}}...</option>
                         @foreach ($nationalitys as $nationality)
                             <option value="{{$nationality->id}}">{{$nationality['name_'.app()->getLocale()]}}</option>
                         @endforeach
@@ -96,14 +96,14 @@
                                 <option value="{{$bloodtype->id}}">{{$bloodtype->name}}</option>
                             @endforeach
                         </select>
-                        
+
                     </div>
 
                     <div class="col">
                         <label for="title">{{__('religion_mother_id')}}</label><br>
                         @error('religion_mother_id') <span class="error text-danger">{{ $message }}</span> @enderror
                         <select wire:model="religion_mother_id" class="custom-select">
-                            <option selected>{{__('choose_religion')}}...</option>
+                            <option selected>{{__('Choose Religion')}}...</option>
                             @foreach ($religions as $religion)
                                 <option value="{{$religion->id}}">{{$religion['name_'.app()->getLocale()]}}</option>
                             @endforeach
@@ -122,7 +122,7 @@
             <button class="btn btn-sm nextBtn btn-lg mt-3 btn-danger" type="button" wire:click="back(1)">{{__('back')}}</button>
 
         </div>
-    
+
         {{-- begin mother data --}}
-    
+
 

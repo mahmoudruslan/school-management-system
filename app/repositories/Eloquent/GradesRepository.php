@@ -12,16 +12,6 @@ class GradesRepository extends BasicRepository implements GradesRepositoryInterf
     {
         Parent::__construct($model);
     }
-    public function destroy($id):bool
-    {
 
-        $model = $this->model->find($id);
-        if(!$model)
-        {
-            throw new ModelNotFoundException(__('not_found'));
-        }
-        return $model->delete();
-
-    }
 
 }

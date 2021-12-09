@@ -97,6 +97,6 @@
 
 
         <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('submit')}}</button>
-        <a href="{{route('index')}}" class="btn btn-danger" type="button">{{__('sections.back')}}</a>
+        <a href="{{route('Teachers.index')}}" class="btn btn-danger" type="button">{{__('back')}}</a>
     </form>
 @endsection

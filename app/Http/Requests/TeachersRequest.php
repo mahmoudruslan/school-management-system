@@ -39,21 +39,21 @@ class TeachersRequest extends FormRequest
     public function messages()
     {
         return [
-            'gender.required' => __('messages.This field is required'),
-            'specialization_id.required' => __('messages.This field is required'),
-            'joining_date.required' => __('messages.This field is required'),
-            'email.required' => __('messages.This field is required'),
-            'email.email' => __('messages.This field must be an email'),
-            'name_ar.required' => __('messages.This field is required'),
-            'name_en.required' => __('messages.This field is required'),
-            'name_ar.max' => __('messages.This is field must be no more than 50 characters'),
+            'gender.required' => __('This field is required'),
+            'specialization_id.required' => __('This field is required'),
+            'joining_date.required' => __('This field is required'),
+            'email.required' => __('This field is required'),
+            'email.email' => __('This field must be an email'),
+            'name_ar.required' => __('This field is required'),
+            'name_en.required' => __('This field is required'),
+            'name_ar.max' => __('This is field must be no more than 50 characters'),
 
-            'name_en.max' => __('messages.This is field must be no more than 50 characters'),
-            'password.required' => __('messages.This field is required'),
-            'password.max' => __('messages.This is field must be no more than 8 characters'),
+            'name_en.max' => __('This is field must be no more than 50 characters'),
+            'password.required' => __('This field is required'),
+            'password.max' => __('This is field must be no more than 8 characters'),
 
-            'address.required' => __('messages.This field is required'),
-            'address.max' => __('messages.This is field must be no more than 200 characters'),
+            'address.required' => __('This field is required'),
+            'address.max' => __('This is field must be no more than 200 characters'),
 
 
 

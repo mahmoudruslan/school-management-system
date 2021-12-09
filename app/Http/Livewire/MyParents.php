@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\models\Image;
 use App\models\TheParent;
+use Illuminate\Support\Facades\File;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\models\BloodType;
@@ -12,6 +14,7 @@ use App\models\Religion;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\SaveImgTrait;
 use Illuminate\Support\Facades\Storage;
+use function PHPUnit\Framework\directoryExists;
 
 class MyParents extends Component
 {
@@ -153,7 +156,7 @@ class MyParents extends Component
     public function submitForm()
     {
         try{
-            TheParent::create([
+            $parent = TheParent::create([
 
                 'email'=> $this->email,
                 'password'=> Hash::make($this->password),
@@ -180,17 +183,13 @@ class MyParents extends Component
                 'religion_mother_id'=> $this-> religion_mother_id,
                 'address_mother' => $this-> address_mother
             ]);
-            $P_id = TheParent::where('national_id_father', $this->national_id_father)->select('id')->get();
 
-            if (!empty($this->photos)) {//Check if the parent has attachments
-                foreach($this->photos as $photo){//To store more than one attachment
-                    $name_photo = $this->saveimg($photo,$this->phone_father,'parent_attachments');
-                    ParentsAttachments::create([
-                    'photos'=>  $name_photo,
-                    'parents_id'=> $P_id[0]->id,
-                    ]);
-                }
-            }
+
+                 $this->saveimg('attachments/parents/'.$this->name_father_ar,$parent->id,'App\models\TheParent',$this->photos );
+
+
+
+
             $this->successMsg = __('success');
             $this->clearForm();
 
@@ -209,7 +208,7 @@ class MyParents extends Component
     {
         $this->currentStep = 1;
         $this-> editMode = true;
-        
+
         $this->parent_id = $id;
         $parents = TheParent::find($id);
         $this->email = $parents->email;
@@ -281,19 +280,8 @@ class MyParents extends Component
             'address_mother' => $this-> address_mother
         ]);
         if (!empty($this->photos)) {//Check if the parent has attachments
-            foreach($this->photos as $photo){//To store more than one attachment
-                //في حالة التعديل من الممكن أن نضيف مرفقات وفي هذه الحالة سيكون فولدر ولي الأمر موجود بالفعل وفي هذه الحالة نخزن المرفقات في فولدر ولي الامر مباشرة بدون إنشاء فولدر برقمه
-                $my_path = 'app/parent_attachments/'.$this->phone_father;
-                if(!Storage::exists($my_path)){
-                    $name_photo = $this->saveimg($photo,$this->phone_father,'parent_attachments');//look trait
-                }else{
-                    $photo->storeAs($my_path, $name_photo);
-                }
-                ParentsAttachments::create([
-                'photos'=>  $name_photo,
-                'parents_id'=> $id,
-                ]);
-            }
+
+            $this->saveimg('attachments/parents/'.$this->name_father_ar, $id,'App\models\TheParent',$this->photos);//look trait
         }
         $this->successMsg = __('success_edit');
         $this-> editMode = false;
@@ -309,18 +297,13 @@ class MyParents extends Component
     public function delete($id)
     {
         $my_parent = TheParent::find($id);
-        $namefolder = $my_parent->phone_father;
-        
+        $directory_path = 'attachments/parents/'.$my_parent->name_father_ar;
+
 
         if(!$my_parent){
             $this->errorMsg = __('not_found_parent');
         }else{
-            $directory = 'parent_attachments/'.$namefolder;
-
-            if(Storage::exists($directory)){
-
-                Storage::deleteDirectory($directory);
-            }
+           $this->deleteDirectory($directory_path,$id);//lock trait save image
             $my_parent->delete();
             $this->successMsg = __('success_delete');
 
