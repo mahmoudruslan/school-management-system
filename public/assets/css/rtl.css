@@ -30466,5 +30466,5 @@ div.style-customizer .content-chooser input[type="radio"]:checked ~ label {
         }
 
         .mybutton span {
-            color: white; // for testing purpose
+            color: white; 
         }
