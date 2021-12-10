@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{ __('List_teachers') }}
+    {{ __('List Teachers') }}
 @stop
 
 
@@ -15,7 +15,7 @@
     @endif
     <!-- end error messages -->
     <a href="{{route('Teachers.create')}}" type="button" class="button x-small">
-        {{ __('add_teachers') }}
+        {{ __('Add Teachers') }}
     </a>
     <br><br>
 
@@ -27,20 +27,18 @@
             <tr>
                 <th>#</th>
                 <th>{{__("Name")}}</th>
-                <th>{{__("gender")}}</th>
-                <th>{{__("specialization")}}</th>
-                <th>{{__("joining_date")}}</th>
-                <th>{{__("address")}}</th>
+                <th>{{__("Gender")}}</th>
+                <th>{{__("Specialization")}}</th>
+                <th>{{__("Joining Date")}}</th>
+                <th>{{__("Address")}}</th>
                 <th>{{__("Processes")}}</th>
 
             </tr>
             </thead>
             <tbody>
-            <?php $i = 0; ?>
             @foreach ($teachers as $teacher)
-                <?php $i++; ?>
                 <tr>
-                    <td>{{$i}}</td>
+                    <td>{{$loop->index+1}}</td>
                     <td>{{$teacher['name_'.app()->getLocale()]}}</td>
                     <td>{{__($teacher ->gender)}}</td>
                     <td>{{$teacher ->specializations['name_'.app()->getLocale()]}}</td>
@@ -57,26 +55,27 @@
 
 
                 </tr>
-                {{-- start delete_modal_section --}}
+                {{-- start delete teacher --}}
                 <div class="modal fade" id="delete{{$teacher ->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">
-                                    {{ __('teacher_delete') }}
-                                </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-
+                            <div class="modal-body">
+                                <h5 class="modal-title" id="exampleModalLabel">{{__('Warning')}}:
+                                    {{ __('Are you sure you want to delete the teacher?') }}
+                                </h5>
+                            </div>
                             <div class="modal-footer">
                                 <form action="{{ route('Teachers.destroy','test') }}" method="POST">
                                     {{ method_field('Delete') }}
                                     @csrf
                                     <input type="hidden" name="id"  value="{{$teacher ->id}}">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        {{ __('close') }}
+                                        {{ __('Close') }}
                                     </button>
                                     <button type="submit" class="btn btn-danger">
                                         {{ __('Delete') }}

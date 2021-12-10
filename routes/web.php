@@ -23,7 +23,7 @@ Route::group(['middleware' => 'guest'],function(){//عشان اللي عامل �
 
     ############################# Package MCamara ###########################################
 
-Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']],function(){
+Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath','auth']],function(){
     ############################# dashboard ###########################################
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
@@ -46,6 +46,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
     ############################# begin Parents ##############################################
     Route::group(['namespace' => 'parents'],function(){
         Route::resource('Parents', 'TheParentsController');
+
     });
     ############################# begin Teachers ##############################################
     Route::group(['namespace' => 'Teachers'],function(){
@@ -55,14 +56,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
     Route::group(['namespace' => 'Students'],function(){
         Route::resource('Students', 'StudentsController');
         Route::get('section/{id}','StudentsController@getSections');
-        Route::post('save-attachments','StudentsController@saveAttachments')->name('save.attachments');
-        Route::post('delete-attachments','StudentsController@deleteAttachments')->name('delete.attachments');
     });
 
-
-
-
-
+    ############################# begin save and delete attachments ##############################################
+    Route::post('save-attachments/{id}','HomeController@saveAttachments')->name('save.attachments');
+    Route::post('delete-attachments/{id}','HomeController@deleteAttachments')->name('delete.attachments');
 
 
 

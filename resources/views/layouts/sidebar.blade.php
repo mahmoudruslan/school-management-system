@@ -34,12 +34,12 @@
                    <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#classes-menu">
                         <div class="pull-left"><i class="fa fa-building"></i><span
-                                class="right-nav-text">{{__('classes')}}</span></div>
+                                class="right-nav-text">{{__('Classrooms')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="classes-menu" class="collapse" data-parent="#sidebarnav">
-                        <li><a href="{{route('Classrooms.index')}}">{{__('List_classes')}}</a></li>
+                        <li><a href="{{route('Classrooms.index')}}">{{__('Classrooms List')}}</a></li>
                     </ul>
                 </li>
 
@@ -47,27 +47,27 @@
                 <!-- sections-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">
-                        <div class="pull-left"><i class="fas fa-chalkboard"></i></i><span
-                                class="right-nav-text">{{__('sections')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-chalkboard"></i><span
+                                class="right-nav-text">{{__('Sections')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
-                        <li><a href="{{route('Sections.index')}}">{{__('List_sections')}}</a></li>
+                        <li><a href="{{route('Sections.index')}}">{{__('Classrooms List')}}</a></li>
                     </ul>
                 </li>
 
 
                 <!-- students-->
                 <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i class="fas fa-user-graduate"></i>{{__('students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i class="fas fa-user-graduate"></i>{{__('Students')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>
                     <ul id="students-menu" class="collapse">
 {{--                        <li>--}}
 {{--                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Student_information">{{__('Student_information')}}<div class="pull-right"><i class="ti-plus"></i></div><div class="clearfix"></div></a>--}}
 {{--                            <ul id="Student_information" class="collapse">--}}
-                        <li> <a href="{{route('Students.index')}}">{{__('list students')}}</a></li>
+                        <li> <a href="{{route('Students.index')}}">{{__('Students List')}}</a></li>
 
-                        <li> <a href="{{route('Students.create')}}">{{__('add student')}}</a></li>
+                        <li> <a href="{{route('Students.create')}}">{{__('Add Student')}}</a></li>
 {{--                            </ul>--}}
 {{--                        </li>--}}
 
@@ -100,7 +100,7 @@
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="{{route('Teachers.index')}}">{{__('List_Teachers')}}</a> </li>
+                        <li> <a href="{{route('Teachers.index')}}">{{__('List Teachers')}}</a> </li>
                     </ul>
                 </li>
 
@@ -109,12 +109,12 @@
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu">
                         <div class="pull-left"><i class="fas fa-user-tie"></i><span
-                                class="right-nav-text">{{__('parents')}}</span></div>
+                                class="right-nav-text">{{__('Parents')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="{{route('Parents.index')}}">{{__('list_parents')}}</a> </li>
+                        <li> <a href="{{route('Parents.index')}}">{{__('Parents List')}}</a> </li>
 
                     </ul>
                 </li>
@@ -165,7 +165,7 @@
                 <!-- library-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#library-icon">
-                        <div class="pull-left"><i class="fas fa-book"></i><span class="right-nav-text">{{__('library')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-book"></i><span class="right-nav-text">{{__('Library')}}</span></div>
                         <div class="pull-right"><i class="ti-plus"></i></div>
                         <div class="clearfix"></div>
                     </a>

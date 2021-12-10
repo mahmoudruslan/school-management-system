@@ -30259,7 +30259,7 @@ div.style-customizer .content-chooser input[type="radio"]:checked ~ label {
         }
 
         /* The expanding image container (positioning is needed to position the close button and the text) */
-        .container {
+        .show-container {
             position: relative;
             display: none;
         }

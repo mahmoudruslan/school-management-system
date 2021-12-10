@@ -36,6 +36,8 @@ class StudentsRequest extends FormRequest
             'religion_id'=> 'required|numeric',
             'academic_year'=> 'required',
             'address'=> 'required|max:100',
+            'gender'=> 'required',
+
 
 
         ];
@@ -44,7 +46,6 @@ class StudentsRequest extends FormRequest
         {
             $rules += [
                 'password'=> 'required|max:8',
-                'gender'=> 'required',
 
             ];
         }

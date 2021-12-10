@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__('edit_teachers')}}
+    {{__('Edit Teachers')}}
 @stop
 
 
@@ -20,28 +20,30 @@
         <input type="hidden" value="{{$teacher->id}}" name="id">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">{{__('email')}}</label><br>
+                <label for="inputEmail4">{{__('Email')}}</label><br>
                 @error('email')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input value="{{$teacher->email}}" name="email" type="email" class="form-control" id="inputEmail4" >
             </div>
 
+
+
             <div class="form-group col-md-6">
-                <label for="inputPassword4">{{__('password')}}</label><br>
-                @error('password')<span class="error text-danger">{{ $message }}</span>@enderror
-                <input name="password" type="password" class="form-control">
+                <label for="inputZip">{{__('Joining Date')}}</label><br>
+                @error('joining_date')<span class="error text-danger">{{ $message }}</span>@enderror
+                <input value="{{$teacher->joining_date}}" class="form-control" type="text"  id="datepicker-action" name="joining_date" data-date-format="yyyy-mm-dd">
             </div>
 
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">{{__('teacher_name_ar')}}</label><br>
+                <label for="inputEmail4">{{__('Teacher Name_ar')}}</label><br>
                 @error('name_ar')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input value="{{$teacher->name_ar}}" name="name_ar" type="text" class="form-control">
             </div>
 
             <div class="form-group col-md-6">
-                <label for="inputPassword4">{{__('teacher_name_en')}}</label><br>
+                <label for="inputPassword4">{{__('Teacher Name_en')}}</label><br>
                 @error('name_en')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input value="{{$teacher->name_en}}" name="name_en" type="text" class="form-control">
             </div>
@@ -51,28 +53,18 @@
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputCity">{{__('address')}}</label><br>
+                <label for="inputCity">{{__('Address')}}</label><br>
                 @error('address')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input value="{{$teacher->address}}" name="address" type="text" class="form-control">
             </div>
 
-
+            @error('password')<span class="error text-danger">{{ $message }}</span>@enderror
             <div class="form-group col-md-6">
-                <label for="inputZip">{{__('joining_date')}}</label><br>
-                @error('joining_date')<span class="error text-danger">{{ $message }}</span>@enderror
-                <input value="{{$teacher->joining_date}}" class="form-control" type="text"  id="datepicker-action" name="joining_date" data-date-format="yyyy-mm-dd">
-            </div>
-
-        </div>
-
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputState">{{__('specialization')}}</label><br>
+                <label for="inputState">{{__('Specialization')}}</label><br>
                 @error('specialization_id')<span class="error text-danger">{{ $message }}</span>@enderror
                 <select name="specialization_id" class="custom-select">
 
-                    <option value="" selected disabled>{{__('select_specialization')}}
+                    <option value="" selected disabled>{{__('Choose Specialization')}}
                     </option>
                     @foreach($specializations as $specialization)
                         <option value="{{$specialization->id}}">{{$specialization['name_'.app()->getLocale()]}}</option>
@@ -81,22 +73,28 @@
 
             </div>
 
-            <div class="form-group col-md-6">
-                <label for="inputState">{{__('gender')}}</label><br>
-                @error('gender')<span class="error text-danger">{{ $message }}<br></span>@enderror
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="male">
-                    <label class="form-check-label" for="inlineRadio1">{{__('male')}}</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="female">
-                    <label class="form-check-label" for="inlineRadio2">{{__('female')}}</label>
-                </div>
-            </div>
         </div>
 
 
-        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('submit')}}</button>
-        <a href="{{route('Teachers.index')}}" class="btn btn-danger" type="button">{{__('back')}}</a>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputState">{{__('Gender')}}</label><br>
+                @error('gender')<span class="error text-danger">{{ $message }}<br></span>@enderror
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
+                    <label class="form-check-label" for="inlineRadio1">{{__('Male')}}</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="0">
+                    <label class="form-check-label" for="inlineRadio2">{{__('Female')}}</label>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('Submit')}}</button>
+        <a href="{{route('Teachers.index')}}" class="btn btn-danger" type="button">{{__('Back')}}</a>
     </form>
 @endsection

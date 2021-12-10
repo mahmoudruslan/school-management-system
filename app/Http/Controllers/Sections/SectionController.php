@@ -47,7 +47,7 @@ class SectionController extends Controller
             $Section = $this->section-> create($request->all());
             $sectionFind = $this->section->getById($Section->id);
             $sectionFind->teachers()->attach($request->teacher_id);
-            toastr()->success(__('success'));
+            toastr()->success(__('Data saved successfully'));
             return redirect()->back();
         }catch(\Exception $e)
             {
@@ -76,7 +76,7 @@ class SectionController extends Controller
             $sectionFind = $this->section->getById($Section->id);
             $sectionFind->teachers()->sync($request->teacher_id);
 
-            toastr()->success(__('success_edit'));
+            toastr()->success(__('Data updated successfully'));
             return redirect()->route('Sections.index');
         }catch(Exception $e){
             return redirect()->route('Sections.index')->with(['error' => $e->getMessage()]);
@@ -88,7 +88,7 @@ class SectionController extends Controller
     {
         try {
             $this->section->destroy($request->id);
-            toastr()->success(__('success_delete'));
+            toastr()->success(__('Data deleted successfully'));
             return redirect()->back();
         } catch (Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);

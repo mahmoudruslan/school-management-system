@@ -10,8 +10,8 @@ class Teacher extends Model
     protected $fillable = ['name_ar', 'name_en', 'password','email','gender','specialization_id','joining_date','address'];
     public $timestamps = true;
 
-    public static function findOrFile()
-    {
+    public function getGenderAttribute($value){
+        return $value == '1'? 'Male' : 'Female';
     }
 
 

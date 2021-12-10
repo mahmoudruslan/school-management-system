@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Teachers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeachersRequest;
 use App\models\Specialization;
-use App\repositories\Eloquent\BasicRepository;
 use App\repositories\TeachersRepositoryInterface;
 use Illuminate\Http\Request;
 use Hash;
@@ -38,7 +37,7 @@ class TeachersController extends Controller
     {
         try {
             $this->teacher->create($request->all());
-            toastr()->success(__('success'));
+            toastr()->success(__('Data saved successfully'));
             return redirect()->back();
 
         }catch (\Exception $e){
@@ -56,12 +55,13 @@ class TeachersController extends Controller
     }
 
 
-    public function update(TeachersRequest $request)
+    public function update(TeachersRequest  $request)
     {
         try {
-            $this->teacher->update($request->all(),$request->id);
-            toastr()->success(__('success_edit'));
-            return redirect()->back();
+            $this->teacher->update($request->only('name_ar', 'name_en', 'email' , 'password', 'specialization_id',
+                'joining_date', 'address'),$request->id);
+            toastr()->success(__('Data updated successfully'));
+            return redirect()->route('Teachers.index');
         }catch (\Exception $e){
             return redirect()->back()->with(['error'=>$e->getMessage()]);
         }
@@ -72,7 +72,7 @@ class TeachersController extends Controller
     {
         try {
             $this->teacher->destroy($request->id);
-            toastr()->success(__('success_delete'));
+            toastr()->success(__('Data deleted successfully'));
             return redirect()->back();
         }catch (\Exception $e){
             return redirect()->back()->with(['error'=>$e->getMessage()]);

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{__('Information Student')}}
+    {{__('Student Information')}}
 
 @endsection
 
@@ -11,12 +11,12 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active show" id="home-02-tab" data-toggle="tab" href="#home-02" role="tab" aria-controls="home-02" aria-selected="true">
-                        {{__('Information Student')}}
+                        {{__('Student Information')}}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-02-tab" data-toggle="tab" href="#profile-02" role="tab" aria-controls="profile-02" aria-selected="false">
-                        {{trans('Attachments Student')}}
+                        {{__('Student Attachments')}}
                     </a>
                 </li>
             </ul>
@@ -65,7 +65,7 @@
                             @endif
                         </tr>
                         <tr>
-                            <td class="col-md-2"><h6>{{__("Educational grade")}}</h6></td>
+                            <td class="col-md-2"><h6>{{__("Grade")}}</h6></td>
                             <td class="col-md-6"><h6>{{$student->grades['name_'.app()->getLocale()]}}</h6></td>
                         </tr>
 
@@ -111,7 +111,7 @@
                         <div class="card-body">
                             <!--but your table gallery-->
 
-                            <form method="POST" action="{{route('save.attachments')}}" enctype="multipart/form-data">
+                            <form method="POST" action="{{route('save.attachments',$student->id)}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-md-3" style="display: inline-block">
                                     <div class="form-group">
@@ -119,7 +119,7 @@
                                             <input accept="image/*" name="photos[]" type="file" class="custom-file-input" id="customFile" multiple required>
                                             <label class="custom-file-label" for="customFile">{{__('Attachments')}}: <span class="text-danger">*</span></label>
                                             <input type="hidden" name="name_ar" value="{{$student->name_ar}}">
-                                            <input type="hidden" name="id" value="{{$student->id}}">
+                                            <input type="hidden" name="model" value="Student">
 
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@
                                         <span><i class="fa fa-trash"></i></span>
                                     </button>
                                     <img class="myimg" style="width: 100%;height: 100%"
-                                         src="{{URL::asset('attachments/students/'.$student->name_ar.'/'.$image->filename)}}"
+                                         src="{{URL::asset('attachments/Students/'.$student->name_ar.'/'.$image->filename)}}"
                                          alt="" onclick="myFunction(this);">
                                     <div class="desc">{{$image->filename}}</div>
                                 </div>
@@ -143,7 +143,7 @@
                             @endforeach
                             </div>
                             <!-- The expanding image container -->
-                            <div class="container mt-10">
+                            <div class="show-container mt-10">
                                 <!-- Close the image -->
                                 <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
                                 <!-- Expanded image -->
@@ -156,7 +156,7 @@
                 </div>
             </div>
         </div>
-            <a href="{{route('Students.index')}}" type="button" class="button">{{__('back')}}</a>
+            <a href="{{route('Students.index')}}" type="button" class="button">{{__('Back')}}</a>
         </div>
     </div>
 

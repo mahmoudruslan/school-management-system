@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{__('Edit student')}}
+    {{__('Edit Student')}}
 @stop
 @section('content')
     <!-- start error messages -->
@@ -16,19 +16,19 @@
         <input type="hidden" name="id" value="{{$student->id}}">
         <div class="form-row">
             <div class="col-md-6">
-                <label for="inputEmail4">{{__('name_ar')}}</label><br>
+                <label for="inputEmail4">{{__('Name_ar')}}</label><br>
                 @error('name_ar')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input value="{{$student->name_ar}}" name="name_ar" type="text" class="form-control">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPassword4">{{__('name_en')}}</label><br>
+                <label for="inputPassword4">{{__('Name_en')}}</label><br>
                 @error('name_en')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input value="{{$student->name_en}}" name="name_en" type="text" class="form-control">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputEmail4">{{__('email')}}</label><br>
+                <label for="inputEmail4">{{__('Email')}}</label><br>
                 @error('email')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input value="{{$student->email}}" name="email" type="email" class="form-control" id="inputEmail4" >
             </div>
@@ -53,7 +53,7 @@
                         </select>
                     </div>
                     <div class="col">
-                        <label for="inputPassword4">{{__('Blood type')}}</label><br>
+                        <label for="inputPassword4">{{__('Blood Type')}}</label><br>
                         @error('blood_type_id')<span class="error text-danger">{{ $message }}</span>@enderror
                         <select name="blood_type_id" class="custom-select">
 
@@ -78,7 +78,7 @@
                         </select>
                     </div>
                     <div class="col">
-                        <label for="inputPassword4">{{__('Academic year')}}</label><br>
+                        <label for="inputPassword4">{{__('Academic Year')}}</label><br>
                         @error('academic_year')<span class="error text-danger">{{ $message }}</span>@enderror
                         <select name="academic_year" class="custom-select">
                             <option value="{{$student->academic_year}}" selected >{{$student->academic_year}}</option>
@@ -94,7 +94,7 @@
             <div class="col">
                 <div class="form-row">
                     <div class="col">
-                        <label for="inputState">{{__('Educational grade')}}</label><br>
+                        <label for="inputState">{{__('Grade')}}</label><br>
                         @error('grade_id')<span class="error text-danger">{{ $message }}</span>@enderror
                         <select name="grade_id" class="custom-select">
                             <option value="{{$student->grades->id}}" selected >{{$student->grades['name_'.app()->getLocale()]}}</option>
@@ -127,7 +127,6 @@
             </div>
             <div class="col">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
                         <label for="inputState">{{__('Religion')}}</label><br>
                         @error('date_of_birth')<span class="error text-danger">{{ $message }}</span>@enderror
                         <select name="religion_id" class="custom-select">
@@ -136,9 +135,22 @@
                                 <option value="{{$religion->id}}" >{{$religion['name_'.app()->getLocale()]}}</option>
                             @endforeach
                         </select>
-                    </div>
+                </div><br>
+                <div class="col">
+                <label for="inputState">{{__('Gender')}}</label><br>
+                @error('gender')<span class="error text-danger">{{ $message }}</span>@enderror<br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="1">
+                    <label class="form-check-label" for="inlineRadio1">{{__('Male')}}</label>
                 </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="0">
+                    <label class="form-check-label" for="inlineRadio2">{{__('Female')}}</label>
+                </div>
+                </div>
+
             </div>
+
         </div>
         <div class="form-check">
             <input  name="entry_status" type="hidden" value="0" >
@@ -146,6 +158,6 @@
             <label class="form-check-label" for="flexCheckChecked">{{__('Noob')}}</label>
         </div><br>
         <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('Submit')}}</button>
-        <a href="{{route('Students.index')}}" class="btn btn-danger" type="button">{{__('back')}}</a>
+        <a href="{{route('Students.index')}}" class="btn btn-danger" type="button">{{__('Back')}}</a>
     </form>
 @endsection

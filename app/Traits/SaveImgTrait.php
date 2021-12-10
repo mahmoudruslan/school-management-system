@@ -1,7 +1,6 @@
 <?php
 namespace App\Traits;
 use App\models\Image;
-use Facade\Ignition\Support\Packagist\Package;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use function PHPUnit\Framework\directoryExists;
@@ -10,9 +9,9 @@ trait SaveImgTrait
 {
     function saveimg($name_folder, $photo_owner_id, $model_path, $images)
     {
-        
+
         foreach($images as $image) {
-            
+
             $photo = $image->getClientOriginalExtension();
             $name = time() . Str::random(6) . '.' . $photo;
             Image::create([

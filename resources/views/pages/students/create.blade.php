@@ -14,12 +14,12 @@
         @csrf
         <div class="form-row">
             <div class="col-md-6">
-                <label for="inputEmail4">{{__('name_ar')}}</label><br>
+                <label for="inputEmail4">{{__('Name_ar')}}</label><br>
                 @error('name_ar')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input name="name_ar" type="text" class="form-control">
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPassword4">{{__('name_en')}}</label><br>
+                <label for="inputPassword4">{{__('Name_en')}}</label><br>
                 @error('name_en')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input name="name_en" type="text" class="form-control">
             </div>
@@ -31,7 +31,7 @@
                 <input name="email" type="email" class="form-control" id="inputEmail4" >
             </div>
             <div class="form-group col-md-6">
-                <label for="inputPassword4">{{__('password')}}</label><br>
+                <label for="inputPassword4">{{__('Password')}}</label><br>
                 @error('password')<span class="error text-danger">{{ $message }}</span>@enderror
                 <input name="password" type="password" class="form-control">
             </div>
@@ -92,10 +92,10 @@
             <div class="col">
                 <div class="form-row">
                     <div class="col">
-                        <label for="inputState">{{__('Educational grade')}}</label><br>
+                        <label for="inputState">{{__('Grade')}}</label><br>
                         @error('grade_id')<span class="error text-danger">{{ $message }}</span>@enderror
                         <select name="grade_id" class="custom-select">
-                            <option value="" selected disabled>{{__('Choose Educational grade')}}</option>
+                            <option value="" selected disabled>{{__('Choose Grade')}}</option>
                             @foreach($data['grades'] as $grade)
                                 <option value="{{$grade->id}}" >{{$grade['name_'.app()->getLocale()]}}</option>
                             @endforeach
@@ -127,20 +127,14 @@
                             @endforeach
                         </select>
                     </div>
-
-
                     <div class="form-group col-md-6">
                         <label for="inputState">{{__('Date of birth')}}</label><br>
                         @error('date_of_birth')<span class="error text-danger">{{ $message }}</span>@enderror
                         <input class="form-control" type="text"  id="datepicker-action" name="date_of_birth" data-date-format="yyyy-mm-dd">
                     </div>
-
                 </div>
             </div>
-
         </div>
-
-
         <div class="form-row">
             <div class="col">
                 <div class="form-row">
@@ -177,7 +171,7 @@
         </div><br>
 
         <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('Submit')}}</button>
-        <a href="{{route('Students.index')}}" class="btn btn-danger" type="button">{{__('back')}}</a>
+        <a href="{{route('Students.index')}}" class="btn btn-danger" type="button">{{__('Back')}}</a>
     </form>
 @endsection
 

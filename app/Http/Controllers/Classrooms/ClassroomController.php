@@ -27,7 +27,7 @@ class ClassroomController extends Controller
     {
         try{
             $this->classRoom->create($request->all());
-            toastr()->success(__('success'));
+            toastr()->success(__('Data saved successfully'));
             return redirect()->back();
         }catch(\Exception $e)
             {
@@ -42,7 +42,7 @@ class ClassroomController extends Controller
     {
         try{
             $this->classRoom->update($request->all(),$request->id);
-            toastr()->success(__('success_edit'));
+            toastr()->success(__('Data updated successfully'));
             return redirect()->back();
         }catch(\Exception $e) {
             return redirect()->back()->with(['error'=>$e->getMessage()]);
@@ -55,10 +55,10 @@ class ClassroomController extends Controller
             $sections = Section::where('classroom_id', $request -> id)->pluck('classroom_id');
             if(count($sections) == 0){
                 $this->classRoom->destroy($request->id);
-                toastr()->success(__('success_delete'));
+                toastr()->success(__('Data deleted successfully'));
                 return redirect()->back();
             }else {
-                toastr()->error(__('notcascde_classroom'));
+                toastr()->error(__('Sections related to this classroom must be deleted first'));
                 return redirect()->back();
             }
         }catch(\Exception $e)

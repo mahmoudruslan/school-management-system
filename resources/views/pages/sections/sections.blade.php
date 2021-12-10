@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__('List_sections')}}
+    {{__('Sections List')}}
 @stop
 @section('content')
 
@@ -15,7 +15,7 @@
     {{-- start according gray --}}
     <div class="card-body">
         <a class="button x-small" href="{{route('Sections.create')}}">
-            {{__('add_section')}}</a>
+            {{__('Add Section')}}</a>
     </div>
     <div class="accordion gray plus-icon round">
         <?php $x=0;?>
@@ -54,73 +54,62 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php $i = 0;?>
-
-                                                        @foreach ($classroom->sections as $section)
-                                                        <?php $i++;?>
+                                                    @foreach ($classroom->sections as $section)
                                                             <tr>
-                                                                <td>{{$i}}</td>
-
-                                                                    <td>{{$section['name_'.app()->getLocale()]}}</td>
-
-
-                                                                    <td>
-                                                                        <span class="badge {{$section->status == 'Active'? 'badge-success' : 'badge-danger'}}">{{__($section->status)}}</span>
-                                                                    </td>
-
-
-
+                                                                <td>{{$loop->index}}</td>
+                                                                <td>{{$section['name_'.app()->getLocale()]}}</td>
+                                                                <td>
+                                                                    <span class="badge {{$section->status == 'Active'? 'badge-success' : 'badge-danger'}}">{{__($section->status)}}</span>
+                                                                </td>
                                                                 <td>
                                                                     <button style="color: white" type="button" data-toggle="modal" class="btn btn-danger" data-target="#delete{{$section ->id}}">
                                                                         <i class="fa fa-trash"></i>
                                                                     </button>
-
                                                                     <a href="{{route('Sections.edit',$section ->id)}}"  class="btn btn-info" type="button">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
                                                                 </td>
                                                             </tr>
+                                                            {{-- start delete_modal_section --}}
+                                                            <div class="modal fade" id="delete{{$section ->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">
+                                                                                {{ __('Are you sure you want to delete the Section?') }}
+                                                                            </h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
 
-                                                        {{-- start delete_modal_section --}}
-                                                                <div class="modal fade" id="delete{{$section ->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <h5 class="modal-title" id="exampleModalLabel">
-                                                                                    {{ __('delete?') }}
-                                                                                </h5>
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                    <span aria-hidden="true">&times;</span>
+                                                                        <div class="modal-footer">
+                                                                            <form action="{{ route('Sections.destroy','test') }}" method="POST">
+                                                                                {{ method_field('Delete') }}
+                                                                                @csrf
+                                                                                <input id="id" type="hidden" name="id" class="form-control" value="{{$section ->id}}">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                                                    {{ __('Close') }}
                                                                                 </button>
-                                                                            </div>
-
-                                                                            <div class="modal-footer">
-                                                                                <form action="{{ route('Sections.destroy','test') }}" method="POST">
-                                                                                    {{ method_field('Delete') }}
-                                                                                    @csrf
-                                                                                    <input id="id" type="hidden" name="id" class="form-control" value="{{$section ->id}}">
-                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                                        {{ __('close') }}
-                                                                                    </button>
-                                                                                    <button type="submit" class="btn btn-danger">
-                                                                                        {{ __('Delete') }}
-                                                                                    </button>
-                                                                                </form>
-                                                                            </div>
+                                                                                <button type="submit" class="btn btn-danger">
+                                                                                    {{ __('Delete') }}
+                                                                                </button>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                {{-- end delete_modal_section --}}
-                                                            @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            {{-- end my table --}}
+                                                            </div>
+                                                        {{-- end delete_modal_section --}}
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
+                                        {{-- end my table --}}
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
                     {{-- end my according classrooms --}}
                 </div>
             </div>
@@ -128,29 +117,4 @@
     </div>
     {{-- end my according gray --}}
 @endsection
-@section('js')
-<script>
 
-    $(document).ready(function () {
-        $('select[name="grade_id"]').on('change', function () {
-            var grade_id = $(this).val();
-            if (grade_id) {
-                $.ajax({
-                    url: "{{ URL::to('classrooms') }}/" + grade_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="classroom_id"]').empty();
-                        $.each(data, function (key, value) {
-                            $('select[name="classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                });
-            } else {
-                console.log('AJAX load did not work');
-            }
-        });
-    });
-
-</script>
-@endsection

@@ -8,7 +8,7 @@
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>برنامج مورا سوفت لادارة المدارس</title>
+    <title>إدارة المدارس</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico" />
@@ -23,7 +23,6 @@
 </head>
 
 <body>
-
     <div class="wrapper">
 
         <!--=================================
@@ -40,6 +39,7 @@ preloader -->
  login-->
 
         <section class="height-100vh d-flex align-items-center page-section-ptb login"
+        
             style="background-image: url(assets/images/login-bg.jpg);">
             <div class="container">
                 <div class="row justify-content-center no-gutters vertical-align">

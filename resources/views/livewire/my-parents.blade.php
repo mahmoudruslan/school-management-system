@@ -5,22 +5,14 @@
         {{ $successMsg }}
     </div>
 @endif
-@if(!empty($errorMsg))
-    <div class="alert alert-danger">
-        <button type="button" class="close" wire:click="clearMessages">x</button>
-        {{ $errorMsg }}
-    </div>
-@endif
-
-
 
     @if ($editMode || $addMode)
-        @include('livewire.add-parents')
+        @include('livewire.create')
     @else
 
         <button wire:click="Add"  type="button" class="button x-small" >
-            {{ __('add_parents') }}
-        </button>
+            {{ __('Add Parent') }}
+        </button><br><br><br>
 
 
         {{-- myTable --}}
@@ -30,95 +22,59 @@
                     <thead>
                     <tr id="myUL">
                         <th>#</th>
-
-                        <th>{{__("Email")}}</th>
                         <th>{{__("Father's Name")}}</th>
+                        <th>{{__("Mother's Name")}}</th>
+                        <th>{{__("Father's Phone")}}</th>
+                        <th>{{__("Mother's Phone")}}</th>
 
-                        <th>{{__("national_id_father")}}</th>
-                        <th>{{__("passport_id_father")}}</th>
-                        <th>{{__("phone_father")}}</th>
-                        <th>{{__("job_father")}}</th>
-                        <th>{{__("blood_Type_father_id")}}</th>
-                        <th>{{__("nationality_father_id")}}</th>
-                        <th>{{__("religion_father_id")}}</th>
-                        <th>{{__("address_father")}}</th>
-                        <th>{{__("Mother\'s Name")}}</th>
-
-                        <th>{{__("phone_mother")}}</th>
-                        <th>{{__("job_mother")}}</th>
-                        <th>{{__("nationality_mother_id")}}</th>
-                        <th>{{__("religion_mother_id")}}</th>
-                        <th>{{__("national_id_mother")}}</th>
-                        <th>{{__("passport_id_mother")}}</th>
-                        <th>{{__("blood_Type_mother_id")}}</th>
-                        <th>{{__("address_mother")}}</th>
                         <th class="pl-5 pr-4">{{__("Processes")}}</th>
                     </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 0?>
-
-                            @foreach ($my_parents as $my_parent)
-                            <?php $i++?>
+                        @foreach ($my_parents as $my_parent)
                             <tr>
-                            <td>{{$i}}</td>
-                            <td>{{$my_parent->email}}</td>
-                            <td>{{$my_parent['name_father_'.app()->getLocale()]}}</td>
-                            <td>{{$my_parent->national_id_father}}</td>
-                            <td>{{$my_parent->passport_id_father}}</td>
-                            <td>{{$my_parent->phone_father}}</td>
-                            <td>{{$my_parent['job_father_'.app()->getLocale()]}}</td>
-                            <td>{{$my_parent->fatherBloodType->name}}</td>
-                            <td>{{$my_parent->fatherNationality['name_'.app()->getLocale()]}}</td>
-                            <td>{{$my_parent->fatherReligions['name_'.app()->getLocale()]}}</td>
-                            <td>{{$my_parent->address_father}}</td>
-                            <td>{{$my_parent['name_mother_'.app()->getLocale()]}}</td>
-                            <td>{{$my_parent->phone_mother}}</td>
-                            <td>{{$my_parent['job_mother_'.app()->getLocale()]}}</td>
-                            <td>{{$my_parent->motherNationality['name_'.app()->getLocale()]}}</td>
-                            <td>{{ $my_parent->motherReligions['name_'.app()->getLocale()] }}</td>
-                            <td>{{$my_parent->national_id_mother}}</td>
-                            <td>{{$my_parent->passport_id_mother}}</td>
-                            <td>{{$my_parent->motherBloodType->name}}</td>
-                            <td>{{$my_parent->address_mother}}</td>
-                            <td>
+                                <td>{{$loop->index+1}}</td>
+                                    <td>{{$my_parent['name_father_'.app()->getLocale()]}}</td>
+                                    <td>{{$my_parent['name_mother_'.app()->getLocale()]}}</td>
+                                    <td>{{$my_parent->phone_father}}</td>
+                                    <td>{{$my_parent->phone_mother}}</td>
+                                <td>
+                                     <button wire:click="show({{$my_parent->id}})" class="btn btn-warning" type="button" >
+                                         <i class="far fa-eye"></i>
+                                    </button>
 
-                                <button wire:click="edit({{$my_parent->id}})" class="btn btn-info" type="button" >
-                                    <i class="fa fa-edit"></i>
-                                </button>
+                                    <button wire:click="edit({{$my_parent->id}})" class="btn btn-info" type="button" >
+                                        <i class="fa fa-edit"></i>
+                                    </button>
 
-                                <button style="color: white" data-toggle="modal" data-target="#exampleModal{{$my_parent->id}}"  class="btn btn-danger" type="button" >
-                                    <i class="fa fa-trash"></i>
-                                </button>
-
-                                <div class="modal fade" id="exampleModal{{$my_parent->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                {{__('delete_attachment')}}
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                                                <button type="button" class="btn btn-danger" wire:click="delete({{$my_parent->id}})" data-dismiss="modal">{{__('delete')}}</button>
-                                            </div>
-                                    </div>
+                                    <button style="color: white" data-toggle="modal" data-target="#exampleModal{{$my_parent->id}}"  class="btn btn-danger" type="button" >
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="exampleModal{{$my_parent->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body"><h6>{{__('Warning')}}:
+                                                {{__('Attachments related to the parent will be deleted')}}</h6>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+                                            <button type="button" class="btn btn-danger" wire:click="delete({{$my_parent->id}})" data-dismiss="modal">{{__('Delete')}}</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                            @endforeach
+                            </div>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
     @endif
-
-
 </div>
 
 

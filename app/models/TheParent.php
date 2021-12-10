@@ -9,11 +9,12 @@ class TheParent extends Model
     protected $guarded = [];
     public $timestamps = true;
 
+
+
     public function images()
     {
         return $this->morphMany('App\models\Image', 'imageable');
     }
-
 
     // religions
     public function fatherReligions(){

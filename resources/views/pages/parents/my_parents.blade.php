@@ -2,7 +2,7 @@
 
 
 @section('title')
-    {{__('list_parents')}}
+    {{__('Parents List')}}
 @endsection
 @section('content')
 

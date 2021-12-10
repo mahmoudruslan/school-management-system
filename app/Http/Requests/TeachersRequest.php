@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class TeachersRequest extends FormRequest
 {
@@ -23,19 +24,29 @@ class TeachersRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules =  [
             'email' => 'required|email',
-            'password' => 'required|max:8',
             'name_ar' => 'required|max:50',
             'name_en' => 'required|max:50',
             'address'=> 'required|max:200',
             'joining_date'=> 'required',
             'specialization_id'=> 'required',
-            'gender'=> 'required|in:male,female',
+            'gender'=> 'required|in:1,0',
 
 
         ];
+        // in update case
+        if(!Request::input('id') > '0')
+        {
+            $rules += [
+                'password' => 'required|max:8',
+
+
+            ];
+        }
+        return $rules;
     }
+
     public function messages()
     {
         return [

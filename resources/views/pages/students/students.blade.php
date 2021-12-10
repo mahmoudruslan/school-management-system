@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__('Student List')}}
+    {{__('Students List')}}
 @stop
 
 
@@ -20,7 +20,7 @@
                     <th>{{__("Name")}}</th>
                     <th>{{__("Religion")}}</th>
                     <th>{{__("Gender")}}</th>
-                    <th>{{__("Educational grade")}}</th>
+                    <th>{{__("Grade")}}</th>
                     <th>{{__("Classroom")}}</th>
                     <th>{{__("Section")}}</th>
                     <th>{{__("Nationality")}}</th>
@@ -70,12 +70,12 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h6>{{__('Warning: When you delete a student, all attachments will be deleted...')}}</h6>
+                                            <h6>{{__('Warning')}}:{{__('When you delete a Student, all attachments will be deleted...')}}</h6>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
 
-                                            <button type="submit" class="btn btn-danger">{{__('delete')}}</button>
+                                            <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
 
                                         </div>
                                     </div>

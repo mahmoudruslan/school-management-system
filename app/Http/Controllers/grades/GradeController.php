@@ -29,7 +29,7 @@ class GradeController extends Controller
   {
     try{
         $this->Grade->create($request->all());
-      toastr()->success(__('success'));
+      toastr()->success(__('Data saved successfully'));
       return redirect()->back();
     }catch(\Exception $e)
         {
@@ -43,7 +43,7 @@ class GradeController extends Controller
   {
     try{
         $this->Grade->update($request->all(),$request->id);
-        toastr()->success(__('success_edit'));
+        toastr()->success(__('Data updated successfully'));
         return redirect()->back();
     }catch(\Exception $e)
     {
@@ -58,11 +58,11 @@ class GradeController extends Controller
     try{
         $ClassroomsOfTheGrade = Classroom::where('grade_id', $request -> id)->pluck('grade_id');//بيجيب كام جرييد اي دي بيحمل نفس الاي دي بتاع المرحلة
           if(count($ClassroomsOfTheGrade) !== 0){
-            toastr()->error(__('notcascde_grade'));
+            toastr()->error(__('It is not possible to delete the stage because there are classes affiliated with it'));
             return redirect()->back();
           }else{
               $this->Grade->destroy($request->id);
-            toastr()->success(__('success_delete'));
+            toastr()->error(__('Data deleted successfully'));
             return redirect()->back();
           }
     }catch(\Exception $e)

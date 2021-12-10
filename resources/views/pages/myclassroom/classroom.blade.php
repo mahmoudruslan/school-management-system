@@ -2,7 +2,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__("list_classrooms")}}
+    {{__("Classrooms List")}}
 @stop
 
 
@@ -29,8 +29,8 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>{{__("Name Classroom")}}</th>
-                    <th>{{__("Name Grade")}}</th>
+                    <th>{{__("Classroom Name")}}</th>
+                    <th>{{__("Grade Name")}}</th>
                     <th>{{__("Processes")}}</th>
                 </tr>
             </thead>
@@ -67,16 +67,16 @@
                                         @csrf
                                         <div class="row">
                                             <div class="col">
-                                                <label for="name_ar" class="mr-sm-2">{{ __('Name Classroom_ar') }}:</label>
+                                                <label for="name_ar" class="mr-sm-2">{{ __('Classroom Name_ar') }}:</label>
                                                 <input id="name_ar" value="{{ $classroom->name_ar }}" type="text" name="name_ar" class="form-control">
                                                 <input value="{{ $classroom->id }}" type="hidden" name="id" class="form-control">
                                             </div>
 
                                             <div class="col">
-                                                <label for="name_en" class="mr-sm-2">{{ __('Name Classroom_en') }}:</label>
+                                                <label for="name_en" class="mr-sm-2">{{ __('Classroom Name_en') }}:</label>
                                                 <input value="{{ $classroom->name_en }}" type="text" class="form-control" name="name_en">
                                             </div>
-                                            <div class="col"><label for="grade_id" class="mr-sm-2">{{ __('Name Grade') }}:</label>
+                                            <div class="col"><label for="grade_id" class="mr-sm-2">{{ __('Grade Name') }}:</label>
                                                 <div class="box">
                                                     <select class="fancyselect" name="grade_id">
                                                         <option value="{{$classroom ->gradess->id}}">
@@ -92,7 +92,7 @@
                                         <br><br>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Close') }}</button>
-                                            <button type="submit" class="btn btn-success">{{ __('submit') }}</button>
+                                            <button type="submit" class="btn btn-success">{{ __('Submit') }}</button>
                                         </div>
                                     </form>
                                     <!-- end add_form -->
@@ -106,12 +106,12 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{ __('warning_classroom') }}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Are you sure you want to delete the classroom?') }}</h5>
                                     <form action="{{route('Classrooms.destroy', 'test')}}" method="POST">
                                         {{method_field('Delete')}}
                                         @csrf
@@ -147,16 +147,16 @@
                         @csrf
                         <div class="row">
                             <div class="col">
-                                <label for="name_ar" class="mr-sm-2">{{ __('Name Classroom_ar') }}:</label>
+                                <label for="name_ar" class="mr-sm-2">{{ __('Classroom Name_ar') }}:</label>
                                 <input id="name_ar" type="text" name="name_ar" class="form-control">
                             </div>
                             <div class="col">
-                                <label for="name_en" class="mr-sm-2">{{ __('Name Classroom_en') }}:</label>
+                                <label for="name_en" class="mr-sm-2">{{ __('Classroom Name_en') }}:</label>
                                 <input type="text" class="form-control" name="name_en">
                             </div>
 
                             <div class="col">
-                                <label for="grade_id" class="mr-sm-2">{{ __('Name Grade') }}:</label>
+                                <label for="grade_id" class="mr-sm-2">{{ __('Grade Name') }}:</label>
                                 <div class="box">
                                     <select class="fancyselect" name="grade_id">
                                         @foreach ($grades as $grade)
@@ -179,8 +179,5 @@
     </div>
     <!-- end add_modal_classroom -->
 @endsection
-
-
-
 
 
