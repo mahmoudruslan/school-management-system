@@ -8,6 +8,8 @@ use App\repositories\Eloquent\GradesRepository;
 use App\repositories\Eloquent\TeachersRepository;
 use App\repositories\SectionsRepositoryInterface;
 use Exception;
+use App\models\Student;
+use App\repositories\Eloquent\StudentsRepository;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -84,12 +86,20 @@ class SectionController extends Controller
     }
 
 
-    public function destroy(Request $request)
+    public function destroy(Request $request,StudentsRepository $s)
     {
         try {
-            $this->section->destroy($request->id);
-            toastr()->success(__('Data deleted successfully'));
-            return redirect()->back();
+
+            $sections = $s->getAll()->where('section_id', $request -> id)->pluck('section_id');
+            if(count($sections) > '0'){
+                toastr()->error(__('Student related to this section must be deleted first'));
+                return redirect()->back();
+            }
+                $this->section->destroy($request->id);
+                toastr()->success(__('Data deleted successfully'));
+                return redirect()->back();
+
+
         } catch (Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }

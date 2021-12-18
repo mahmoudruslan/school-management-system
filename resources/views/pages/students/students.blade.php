@@ -6,6 +6,13 @@
 
 
 @section('content')
+    <!-- start error messages -->
+    @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{ Session::get('error')}}
+        </div>
+    @endif
+    <!-- end error messages -->
     <a href="{{route('Students.create')}}" type="button" class="button x-small" >
         {{ __('Add Student') }}
     </a>
@@ -23,8 +30,6 @@
                     <th>{{__("Grade")}}</th>
                     <th>{{__("Classroom")}}</th>
                     <th>{{__("Section")}}</th>
-                    <th>{{__("Nationality")}}</th>
-                    <th>{{__("Date of birth")}}</th>
                     <th class="pl-5 pr-4">{{__("Processes")}}</th>
                 </tr>
             </thead>
@@ -35,11 +40,11 @@
                         <td>{{$student['name_'.app()->getLocale()]}}</td>
                         <td>{{$student->religions['name_'.app()->getLocale()]}}</td>
                         <td>{{__($student->gender)}}</td>
-                        <td>{{$student->grades['name_'.app()->getLocale()]}}</td>
-                        <td>{{$student->classrooms['name_'.app()->getLocale()]}}</td>
-                        <td>{{$student->sections['name_'.app()->getLocale()]}}</td>
-                        <td>{{$student->nationalities['name_'.app()->getLocale()]}}</td>
-                        <td>{{$student->date_of_birth}}</td>
+                        <td>{{$student->grades['name_'.app()->getLocale()] ?? ''}}</td>
+                        <td>{{$student->classrooms['name_'.app()->getLocale()] ?? ''}}</td>
+                        <td>{{$student->sections['name_'.app()->getLocale()] ??  ''}}</td>
+
+
                         <td>
                             <a href="{{route('Students.show',$student->id)}}" class="btn btn-warning" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
 

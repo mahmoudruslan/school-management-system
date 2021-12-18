@@ -27087,7 +27087,12 @@ ul.list-unstyled li {
     color: #ffffff;
 }
 .side-menu-fixed .side-menu li a[aria-expanded="true"] .pull-right i:before {
-    content: "\e622";
+    font-family: "Font Awesome 5 Free";
+    content: "\f077";
+    display: inline-block;
+    padding-left: 3px;
+    vertical-align: middle;
+    font-weight: 900;
 }
 .side-menu-fixed .side-menu li a {
     width: 100%;

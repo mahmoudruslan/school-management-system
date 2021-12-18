@@ -13,6 +13,10 @@ class SectionsRepository extends BasicRepository implements SectionsRepositoryIn
     {
         parent::__construct($model);
     }
+    public function getRelatedStuff($col_name,$id)
+    {
+        return $this->model->where($col_name,$id)->pluck($col_name);
+    }
 
 
 

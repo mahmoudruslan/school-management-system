@@ -17,6 +17,13 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             AdminSeeder::class,
             SpecializationSeeder::class,
+            GradeSeeder::class,
+            ClassroomSeeder::class,
+            TeacherSeeder::class,
+            SectionSeeder::class,
+            ParentSeeder::class,
+            StudentSeeder::class,
+
 
         ]);
     }

@@ -32,4 +32,20 @@ class StudentsRepository extends BasicRepository implements StudentsRepositoryIn
         $data['classrooms'] = $this->c->getAll();
         return $data;
     }
+
+    public function getRelatedStuff($col_name,$id)
+    {
+        return $this->model->where($col_name,$id)->pluck($col_name);
+    }
+
+    public function destroy($id):bool
+    {
+        $model = $this->model->find($id);
+        if(!$model)
+        {
+            throw new ModelNotFoundException(__('not_found'));
+        }
+        return $model->forceDelete();
+
+    }
 }

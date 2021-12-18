@@ -11,5 +11,6 @@ interface SectionsRepositoryInterface
     public function getById($id);
     public function update(array $attributes,int $id):object;
     public function destroy($id):bool;
+    public function getRelatedStuff($col_name,$id);
 
 }

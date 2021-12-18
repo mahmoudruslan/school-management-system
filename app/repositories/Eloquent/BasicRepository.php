@@ -50,15 +50,8 @@ abstract class BasicRepository implements EloquentRepositoryInterface
     }
 
 
-
-
-
-
-
     public function destroy($id):bool
     {
-
-
         $model = $this->model->find($id);
         if(!$model)
         {

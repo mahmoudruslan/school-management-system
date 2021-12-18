@@ -36,9 +36,6 @@ class StudentsRequest extends FormRequest
             'religion_id'=> 'required|numeric',
             'academic_year'=> 'required',
             'address'=> 'required|max:100',
-            'gender'=> 'required',
-
-
 
         ];
         // in update case
@@ -46,13 +43,11 @@ class StudentsRequest extends FormRequest
         {
             $rules += [
                 'password'=> 'required|max:8',
+                'gender'=> 'required',
 
             ];
         }
-
-
         return $rules;
-
     }
 
     public function messages()

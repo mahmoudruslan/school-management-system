@@ -15,4 +15,6 @@ interface StudentsRepositoryInterface
     public function update(array $attributes,int $id):object;
     public function destroy($id):bool;
     public function getData();
+    public function getRelatedStuff($col_name,$id);
+
 }

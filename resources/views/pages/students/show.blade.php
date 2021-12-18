@@ -5,6 +5,13 @@
 @endsection
 
 @section('content')
+    <!-- start error messages -->
+    @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{ Session::get('error')}}
+        </div>
+    @endif
+    <!-- end error messages -->
     <!-- row -->
     <div class="card card-body card-statistics h-100">
         <div class="tab nav-border">
@@ -58,11 +65,8 @@
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Entry Status")}}</h6></td>
-                            @if($student->entry_status == '1')
-                                <td class="col-md-6"><h6>{{__('Noob')}}</h6></td>
-                            @else
-                                <td class="col-md-6"><h6>{{__('Left to return')}}</h6></td>
-                            @endif
+                                <td class="col-md-6"><h6>{{__($student->entry_status)}}</h6></td>
+
                         </tr>
                         <tr>
                             <td class="col-md-2"><h6>{{__("Grade")}}</h6></td>
@@ -71,17 +75,17 @@
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Classroom")}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->classrooms['name_'.app()->getLocale()]}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->classrooms['name_'.app()->getLocale()] ?? ''}}</h6></td>
                         </tr>
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Section")}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->sections['name_'.app()->getLocale()]}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->sections['name_'.app()->getLocale()] ?? ''}}</h6></td>
                         </tr>
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Blood Type")}}</h6></td>
-                            <td class="col-md-6"><h6>{{__($student->bloodTypes->name)}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->bloodTypes->name ?? ''}}</h6></td>
                         </tr>
 
                         <tr>

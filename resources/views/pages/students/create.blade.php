@@ -28,7 +28,7 @@
             <div class="form-group col-md-6">
                 <label for="inputEmail4">{{__('Email')}}</label><br>
                 @error('email')<span class="error text-danger">{{ $message }}</span>@enderror
-                <input name="email" type="email" class="form-control" id="inputEmail4" >
+                <input name="email" type="email" class="form-control" id="inputEmail4">
             </div>
             <div class="form-group col-md-6">
                 <label for="inputPassword4">{{__('Password')}}</label><br>
@@ -44,9 +44,10 @@
                         @error('nationality_id')<span class="error text-danger">{{ $message }}</span>@enderror
                         <select name="nationality_id" class="custom-select">
 
-                            <option value="" selected disabled>{{__('Choose nationality')}}</option>
+                            <option value="" selected disabled>{{__('Choose Nationality')}}</option>
                             @foreach($data['nationalities'] as $nationality)
-                                <option value="{{$nationality->id}}">{{$nationality['name_'.app()->getLocale()]}}</option>
+                                <option
+                                    value="{{$nationality->id}}">{{$nationality['name_'.app()->getLocale()]}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -71,7 +72,8 @@
                         <select name="parent_id" class="custom-select">
                             <option value="" selected disabled>{{__('Choose Parent')}}</option>
                             @foreach($data['TheParents'] as $TheParent)
-                                <option value="{{$TheParent->id}}">{{$TheParent['name_father_'.app()->getLocale()]}}</option>
+                                <option
+                                    value="{{$TheParent->id}}">{{$TheParent['name_father_'.app()->getLocale()]}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -81,8 +83,7 @@
                         <select name="academic_year" class="custom-select">
                             <option value="" selected disabled>{{__('Choose Academic year')}}</option>
                             <?php $curren_year = date('Y');?>
-                            <option value="{{$curren_year}}" >{{$curren_year}}</option>
-                            <option value="{{$curren_year + 1}}" >{{$curren_year + 1}}</option>
+                            <option value="{{$curren_year}}">{{$curren_year}}</option>
                         </select>
                     </div>
                 </div>
@@ -97,7 +98,7 @@
                         <select name="grade_id" class="custom-select">
                             <option value="" selected disabled>{{__('Choose Grade')}}</option>
                             @foreach($data['grades'] as $grade)
-                                <option value="{{$grade->id}}" >{{$grade['name_'.app()->getLocale()]}}</option>
+                                <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -123,14 +124,15 @@
                         <select name="religion_id" class="custom-select">
                             <option value="" selected disabled>{{__('Choose Religion')}}</option>
                             @foreach($data['religions'] as $religion)
-                                <option value="{{$religion->id}}" >{{$religion['name_'.app()->getLocale()]}}</option>
+                                <option value="{{$religion->id}}">{{$religion['name_'.app()->getLocale()]}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputState">{{__('Date of birth')}}</label><br>
                         @error('date_of_birth')<span class="error text-danger">{{ $message }}</span>@enderror
-                        <input class="form-control" type="text"  id="datepicker-action" name="date_of_birth" data-date-format="yyyy-mm-dd">
+                        <input class="form-control" type="text" id="datepicker-action" name="date_of_birth"
+                               data-date-format="yyyy-mm-dd">
                     </div>
                 </div>
             </div>
@@ -140,8 +142,9 @@
                 <div class="form-row">
                     <label for="inputState">{{__('Address')}}</label>
                     @error('address')<span class="error text-danger"><br>{{ $message }}</span>@enderror
-                    <input class="form-control" type="text"  name="address">
-                </div><br>
+                    <input class="form-control" type="text" name="address">
+                </div>
+                <br>
             </div>
             <div class="col">
                 <div class="form-row">
@@ -160,7 +163,7 @@
                     <div class="form-group col-md-6">
                         <label for="inputState">{{__('Attachments')}}  {{__('(Optional)')}}</label><br>
                         @error('photos')<span class="error text-danger">{{ $message }}</span>@enderror
-                        <input name="photos[]" type="file" accept="image/*" multiple >
+                        <input name="photos[]" type="file" accept="image/*" multiple>
                     </div>
                 </div>
             </div>
@@ -168,7 +171,8 @@
         <div class="form-check">
             <input class="form-check-input" name="entry_status" type="checkbox" value="1" id="flexCheckChecked" checked>
             <label class="form-check-label" for="flexCheckChecked">{{__('Noob')}}</label>
-        </div><br>
+        </div>
+        <br>
 
         <button style="background: #72ab2a;color: white" type="submit" class="btn">{{__('Submit')}}</button>
         <a href="{{route('Students.index')}}" class="btn btn-danger" type="button">{{__('Back')}}</a>

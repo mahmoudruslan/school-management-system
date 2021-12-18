@@ -43,6 +43,15 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\repositories\Eloquent\StudentsRepository'
         );
 
+        $this->app->bind(
+            'App\repositories\PromotionsRepositoryInterface',
+            'App\repositories\Eloquent\PromotionsRepository'
+        );
+
+        $this->app->bind(
+            'App\repositories\GraduatedRepositoryInterface',
+            'App\repositories\Eloquent\GraduatedRepository'
+        );
 
 
 

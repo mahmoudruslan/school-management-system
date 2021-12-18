@@ -27097,6 +27097,9 @@ ul.list-unstyled li {
     font-weight: 500;
     color: #878787;
 }
+
+
+
 .side-menu-fixed .side-menu li.navigation-header i {
     display: none;
     font-size: 16px;
@@ -27111,8 +27114,16 @@ ul.list-unstyled li {
     float: left;
 }
 .side-menu-fixed .side-menu li a[aria-expanded="true"] .pull-right i:before {
-    content: "\e622";
+    font-family: "Font Awesome 5 Free";
+    content: "\f077";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+    font-weight: 900;
 }
+
+
+
 .side-menu-fixed .side-menu li a {
     width: 100%;
     text-transform: capitalize;

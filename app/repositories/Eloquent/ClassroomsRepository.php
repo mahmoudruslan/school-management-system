@@ -15,4 +15,8 @@ class ClassroomsRepository extends BasicRepository implements ClassroomsReposito
     }
 
 
+    public function getRelated($id)
+    {
+        return $this->model->where('classroom_id',$id)->pluck('classroom_id');
+    }
 }

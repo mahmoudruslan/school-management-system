@@ -24,25 +24,26 @@ class CreateStudentsTable extends Migration
 
 
             $table->unsignedBigInteger('nationality_id');
-            $table->foreign('nationality_id')->references('id')->on('nationalities')->onDelete('cascade');
+            $table->foreign('nationality_id')->references('id')->on('nationalities');
             $table->unsignedBigInteger('blood_type_id')->nullable();
-            $table->foreign('blood_type_id')->references('id')->on('blood_types')->onDelete('cascade');
+            $table->foreign('blood_type_id')->references('id')->on('blood_types');
             $table->string('date_of_birth');
             $table->unsignedBigInteger('religion_id');
-            $table->foreign('religion_id')->references('id')->on('religions')->onDelete('cascade');
+            $table->foreign('religion_id')->references('id')->on('religions');
 
-            $table->unsignedInteger('grade_id');
-            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
+            $table->unsignedInteger('grade_id')->nullable();
+            $table->foreign('grade_id')->references('id')->on('grades');
             $table->unsignedBigInteger('classroom_id')->nullable();
-            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->unsignedBigInteger('section_id');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
+            $table->unsignedBigInteger('section_id')->nullable();
+            $table->foreign('section_id')->references('id')->on('sections');
             $table->unsignedBigInteger('parent_id');
-            $table->foreign('parent_id')->references('id')->on('the_parents')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('the_parents');
             $table->string('academic_year');
             $table->string('gender');
             $table->string('address');
             $table->string('entry_status')->default('0');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

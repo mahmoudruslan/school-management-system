@@ -78,7 +78,7 @@
                     <label for="title">{{__("Mother's Nationality")}}</label><br>
                     @error('nationality_mother_id') <span class="error text-danger">{{ $message }}</span> @enderror
                     <select wire:model="nationality_mother_id" class="custom-select">
-                        <option selected>{{__('Choose nationality')}}...</option>
+                        <option selected>{{__('Choose Nationality')}}...</option>
                         @foreach ($nationalitys as $nationality)
                             <option value="{{$nationality->id}}">{{$nationality['name_'.app()->getLocale()]}}</option>
                         @endforeach

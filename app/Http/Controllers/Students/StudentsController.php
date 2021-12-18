@@ -22,8 +22,10 @@ class StudentsController extends Controller
 
     public function index()
     {
+
         $students = $this->student->getAll();
         return view('pages.students.students',compact('students'));
+
     }
 
 
@@ -61,7 +63,9 @@ class StudentsController extends Controller
     public function show($id)
     {
         $student = $this->student->getById($id);
-        return view('pages.students.show',compact('student'));
+        $section_student = $student->sections;
+
+        return view('pages.students.show',compact(['student','section_student']));
     }
 
 
@@ -82,7 +86,7 @@ class StudentsController extends Controller
             'blood_type_id', 'date_of_birth', 'religion_id', 'grade_id', 'classroom_id', 'section_id', 'parent_id',
             'academic_year', 'gender','address','entry_status'),$request->id);
         toastr()->success(__('Data updated successfully'));
-        return redirect()->back();
+        return redirect()->route('Students.index');
         }catch(\Exception $e)
             {
                 return redirect()->back()->with(['error' => $e->getMessage()]);

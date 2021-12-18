@@ -26,7 +26,7 @@
 <script src="{{ URL::asset('assets/js/sweetalert2.js') }}"></script>
 <!-- toastr -->
 @yield('js')
-<script>
+<script>//for all grade and classroom and section select
     $(document).ready(function () {
         $('select[name="grade_id"]').on('change', function () {
             let grade_id = $(this).val();
@@ -72,6 +72,82 @@
             }
         });
     });
+    //for new grade and classroom and section
+
+    $(document).ready(function () {
+        $('select[name="grade_id_new"]').on('change', function () {
+            let grade_id = $(this).val();
+            if (grade_id) {
+                $.ajax({
+                    url: "{{URL::to('classrooms') }}/" + grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="classroom_id_new"]').empty();
+                        $('select[name="classroom_id_new"]').append('<option selected disabled >{{__('Choose Classroom')}}...</option>');
+                        $.each(data, function (key, value) {
+
+                            $('select[name="classroom_id_new"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('select[name="classroom_id_new"]').on('change',function () {
+            let classroom_id = $(this).val();
+            if (classroom_id) {
+                $.ajax({
+                    url: "{{URL::to('section') }}/" + classroom_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="section_id_new"]').empty();
+                        $('select[name="section_id_new"]').append('<option selected disabled >{{__('Choose Section')}}...</option>');
+                        $.each(data, function (key, value) {
+
+                            $('select[name="section_id_new"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+
+
+    $(function () {
+        $("#btn_delete_all").click(function () {
+            var selected = new Array();
+            $("#datatable input[type=checkbox]:checked").each(function () {
+                selected.push(this.value);
+            });
+
+            if (selected.length > 0) {
+                $('#delete_all').modal('show')
+                $('input[id="delete_all_id"]').val(selected);
+            }
+        });
+    });
+
+    $(function () {
+        $("#btn_return_all").click(function () {
+            var selected = new Array();
+            $("#datatable input[type=checkbox]:checked").each(function () {
+                selected.push(this.value);
+            });
+
+            if (selected.length > 0) {
+                $('#return_all').modal('show')
+                $('input[id="return_all_id"]').val(selected);
+            }
+        });
+    });
+
 </script>
 <script src="{{ URL::asset('assets/js/toastr.js') }}"></script>
 <!-- validation -->
