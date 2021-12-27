@@ -41,6 +41,13 @@
         @else
             <link href="{{ URL::asset('assets/css/rtl.css') }}" rel="stylesheet">
         @endif
+
+        <!-- invoice css -->
+        @if (App::getLocale() == 'en')
+            <link href="{{ URL::asset('assets/css/ltr-invoice.css') }}" rel="stylesheet">
+        @else
+            <link href="{{ URL::asset('assets/css/rtl-invoice.css') }}" rel="stylesheet">
+        @endif
     </head>
 <body>
     <div class="wrapper"  style="font-family: 'Cairo', sans-serif">

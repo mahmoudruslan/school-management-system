@@ -67,26 +67,39 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
     });
 
 
+    ####################### begin Students fees ###################################################################
+        Route::group(['namespace' => 'Fees'],function(){
+            Route::resource('Fees', 'FeeController');
+
+        });
+
+    ####################### begin Students fees invoices ############################################################
+    Route::group(['namespace' => 'FeesInvoices'],function(){
+        Route::resource('FeesInvoices', 'FeesInvoicesController');
+
+    });
+    ####################### begin Students fees invoices ############################################################
+    Route::group(['namespace' => 'StudentReceipt'],function(){
+        Route::resource('StudentReceipt', 'StudentReceiptController');
+
+    });
+    ####################### begin Students fees invoices ############################################################
+    Route::group(['namespace' => 'FundAccounts'],function(){
+        Route::resource('FundAccounts', 'FundAccountsController');
+
+    });
+    ####################### begin Fee processing ############################################################
+    Route::group(['namespace' => 'FeeProcessing'],function(){
+        Route::resource('FeeProcessing', 'FeeProcessingController');
+
+    });
+
 
     ############################# begin save and delete attachments ################################################
     Route::post('save-attachments/{id}','HomeController@saveAttachments')->name('save.attachments');
     Route::post('delete-attachments/{id}','HomeController@deleteAttachments')->name('delete.attachments');
-
-
-
-
-
-
-Route::get('empty',function(){
-    return view('empty');
+    Route::get('empty',function (){
+        return view('empty');
+    });
 });
 
-
-
-
-        Route::post('Fees-index', 'GradeController@Fees-index')->name('Fees.index');//دا عشان الايرور بس
-
-
-
-
-});

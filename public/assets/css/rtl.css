@@ -25487,12 +25487,11 @@ button:focus {
 
 .button {
     background: #84ba3f;
-    padding: 10px 20px;
+    padding: 0.375rem 0.75rem;
     font-size: 1rem;
     letter-spacing: 1px;
     border: 0;
     color: #ffffff;
-    text-transform: uppercase;
     font-weight: 500;
     display: inline-block;
     border-radius: 3px;
@@ -30442,7 +30441,7 @@ div.style-customizer .content-chooser input[type="radio"]:checked ~ label {
         }
 
         /* The expanding image container (positioning is needed to position the close button and the text) */
-        
+
         .show-container {
             position: relative;
             display: none;
@@ -30478,5 +30477,5 @@ div.style-customizer .content-chooser input[type="radio"]:checked ~ label {
         }
 
         .mybutton span {
-            color: white; 
+            color: white;
         }

@@ -53,7 +53,30 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\repositories\Eloquent\GraduatedRepository'
         );
 
+        $this->app->bind(
+            'App\repositories\FeesRepositoryInterface',
+            'App\repositories\Eloquent\FeesRepository'
+        );
 
+        $this->app->bind(
+            'App\repositories\FeesInvoicesRepositoryInterface',
+            'App\repositories\Eloquent\FeesInvoicesRepository'
+        );
+
+        $this->app->bind(
+            'App\repositories\StudentReceiptRepositoryInterface',
+            'App\repositories\Eloquent\StudentReceiptRepository'
+        );
+
+        $this->app->bind(
+            'App\repositories\FundAccountsRepositoryInterface',
+            'App\repositories\Eloquent\FundAccountsRepository'
+        );
+
+        $this->app->bind(
+            'App\repositories\FeeProcessingRepositoryInterface',
+            'App\repositories\Eloquent\FeeProcessingRepository'
+        );
 
     }
 

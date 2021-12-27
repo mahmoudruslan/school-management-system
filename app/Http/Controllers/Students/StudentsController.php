@@ -70,9 +70,9 @@ class StudentsController extends Controller
 
 
 
-    public function edit(Request $request)
+    public function edit(Request $request,$id)
     {
-        $student = $this->student->getById($request->id);
+        $student = $this->student->getById($id);
         $data = $this->student->getData();
         return view('pages.students.edit',compact(['data','student']));
     }

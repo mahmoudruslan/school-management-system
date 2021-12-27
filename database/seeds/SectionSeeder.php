@@ -1,5 +1,6 @@
 <?php
 
+use App\models\Classroom;
 use App\models\Section;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -53,7 +54,7 @@ class SectionSeeder extends Seeder
                 'name_en'=> $x['en'],
                 'status'=> 1,
                 'grade_id'=> 1,
-                'classroom_id'=> rand('1','3'),
+                'classroom_id'=> Classroom::all()->unique()->random()->id,
             ]);
         }
     }

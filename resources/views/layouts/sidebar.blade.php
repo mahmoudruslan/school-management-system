@@ -63,29 +63,22 @@
                     <ul id="students-menu" class="collapse">
                         <li> <a href="{{route('Students.index')}}">{{__('Students List')}}</a></li>
                         <li> <a href="{{route('Students.create')}}">{{__('Add Student')}}</a></li>
-
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_upgrade">{{__('Promotions')}}<div class="pull-right"><i class="fas fa-chevron-down"></i></div><div class="clearfix"></div></a>
                             <ul id="Students_upgrade" class="collapse">
                                 <li> <a href="{{route('Promotions.index')}}">{{__('Promotions List')}}</a> </li>
                                 <li> <a href="{{route('Promotions.create')}}">{{__('Add Promotion')}}</a></li>
-
                             </ul>
                         </li>
-
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#Graduate students">{{__('Graduations')}}<div class="pull-right"><i class="fas fa-chevron-down"></i></div><div class="clearfix"></div></a>
                             <ul id="Graduate students" class="collapse">
                                 <li> <a href="{{route('Graduated.index')}}">{{__('Graduating students')}}</a> </li>
                                 <li> <a href="{{route('Graduated.create')}}">{{__('Add graduations')}}</a> </li>
-
                             </ul>
                         </li>
                     </ul>
                 </li>
-
-
-
                 <!-- Teachers-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu">
@@ -113,7 +106,6 @@
 
                     </ul>
                 </li>
-
                 <!-- Accounts-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Accounts-menu">
@@ -123,8 +115,10 @@
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="{{route('Fees.index')}}">الرسوم الدراسية</a> </li>
-                        <li> <a href="calendar-list.html">List Calendar</a> </li>
+                        <li> <a href="{{route('Fees.index')}}">{{__('Fees List')}}</a></li>
+                        <li> <a href="{{route('FeesInvoices.index')}}">{{__('Billing List')}}</a> </li>
+                        <li> <a href="{{route('StudentReceipt.index')}}">{{__('Arrest receipts')}}</a> </li>
+                        <li> <a href="{{route('FeeProcessing.index')}}">{{__('Accounting treatments')}}</a> </li>
                     </ul>
                 </li>
 
