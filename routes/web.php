@@ -93,6 +93,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
         Route::resource('FeeProcessing', 'FeeProcessingController');
 
     });
+    ####################### begin Payments ############################################################
+    Route::group(['namespace' => 'Payments'],function(){
+        Route::resource('Payments', 'PaymentsController');
+
+    });
 
 
     ############################# begin save and delete attachments ################################################

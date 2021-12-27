@@ -119,6 +119,7 @@
                         <li> <a href="{{route('FeesInvoices.index')}}">{{__('Billing List')}}</a> </li>
                         <li> <a href="{{route('StudentReceipt.index')}}">{{__('Arrest receipts')}}</a> </li>
                         <li> <a href="{{route('FeeProcessing.index')}}">{{__('Accounting treatments')}}</a> </li>
+                        <li> <a href="{{route('Payments.index')}}">{{__('Payment List')}}</a> </li>
                     </ul>
                 </li>
 
@@ -218,14 +219,8 @@
     <!-- Left Sidebar End-->
 
     <!--================================= -->
-
-
-
                 <div class="content-wrapper">
             <div class="page-title">
-
-
-
                 <div class="page-title">
                     <div class="row">
                         <div class="col-sm-6">

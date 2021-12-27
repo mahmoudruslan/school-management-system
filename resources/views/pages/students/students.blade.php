@@ -60,7 +60,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{route('StudentReceipt.show',$student->id)}}"><i style="color: #1e7e34" class="fas fa-dollar-sign"></i>&nbsp; &nbsp;{{__('Catch Receipt')}}</a>
                                     <a class="dropdown-item" href="{{route('FeeProcessing.show',$student->id)}}"><i style="color: #1e7e34" class="fad fa-money-check-edit-alt"></i>&nbsp; &nbsp;{{__('Fee exclusion')}}</a>
-{{--                                    <a class="dropdown-item" href="{{route('Payment_students.show',$student->id)}}"><i style="color:goldenrod" class="fas fa-donate"></i>&nbsp; &nbsp;سند صرف</a>--}}
+                                    <a class="dropdown-item" href="{{route('Payments.show',$student->id)}}"><i style="color:goldenrod" class="fas fa-donate"></i>&nbsp;{{__('Receipt')}}</a>
                                     <a class="dropdown-item" data-target="#Delete_Student{{ $student->id }}" data-toggle="modal" href="#">
                                         <i style="color: red" class="fa fa-trash"></i>&nbsp;{{__('Delete student')}}
                                     </a>

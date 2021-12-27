@@ -78,6 +78,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\repositories\Eloquent\FeeProcessingRepository'
         );
 
+        $this->app->bind(
+            'App\repositories\PaymentsRepositoryInterface',
+            'App\repositories\Eloquent\PaymentsRepository'
+        );
+
     }
 
     /**
