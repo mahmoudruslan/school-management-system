@@ -53,7 +53,7 @@
     "Grade Name_ar" : "اسم المرحلة",
     "Grade Name_en" : "اسم المرحلة",
     "It is not possible to delete the stage because there are classes affiliated with it":"لايمكن حذف المرحلة بسبب وجود صفوف تابعة لها",
-    "Are you sure you want to delete the stage?": "متاكد انك تريد حزف المرحلة الدراسية؟",
+    "Are you sure you want to delete the stage?": "متاكد انك تريد حذف المرحلة الدراسية؟",
     "Notes" : "ملاحظات",
 
 
@@ -67,10 +67,11 @@
     "This classroom does not exist" : "هذا الصف غير موجود",
     "Choose Classroom": "اختر الصف",
     "Classrooms List":"قائمة الصفوف الدراسية",
-    "Are you sure you want to delete the classroom?": "متاكد انك تريد حزف الصف الدراسي؟",
+    "Are you sure you want to delete the classroom?": "متاكد انك تريد حذف الصف الدراسي؟",
     "Sections related to this classroom must be deleted first": "يجب ان تحذف الاقسام الدراسيه المتعلقه بهذا الصف اولا",
     "Classroom can't be deleted, there are things about it": "لا يمكن حذف الصف الدراسي ، بسبب وجود متعلقات",
 
+    "Section Name": "اسم القسم",
     "Sections":"الاقسام",
     "Section":"القسم",
     "Sections List":"قائمة الاقسام الدراسية",

@@ -24,10 +24,8 @@ class StudentsController extends Controller
     {
 
         $students = $this->student->getAll();
-        return view('pages.students.students',compact('students'));
-
+        return view('pages.students.index',compact('students'));
     }
-
 
 
     public function create()
@@ -59,12 +57,10 @@ class StudentsController extends Controller
     }
 
 
-
     public function show($id)
     {
         $student = $this->student->getById($id);
         $section_student = $student->sections;
-
         return view('pages.students.show',compact(['student','section_student']));
     }
 
@@ -76,7 +72,6 @@ class StudentsController extends Controller
         $data = $this->student->getData();
         return view('pages.students.edit',compact(['data','student']));
     }
-
 
 
     public function update(StudentsRequest $request)
@@ -94,7 +89,6 @@ class StudentsController extends Controller
     }
 
 
-
     public function destroy(Request $request)
     {
         try {
@@ -109,8 +103,6 @@ class StudentsController extends Controller
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
-
-
 
 
     public function getSections($id,SectionsRepository $s)//related ajax code

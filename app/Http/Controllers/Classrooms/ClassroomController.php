@@ -21,7 +21,7 @@ class ClassroomController extends Controller
     {
         $grades = $g->getAll();
         $classrooms = $this->classroom->getAll();
-            return view('pages.myclassroom.classroom',compact(['grades','classrooms']));
+            return view('pages.myclassroom.index',compact(['grades','classrooms']));
     }
 
 
@@ -36,8 +36,6 @@ class ClassroomController extends Controller
                 return redirect()->back()->with(['error'=>$e->getMessage()]);
         }
     }
-
-
 
 
     public function update(ClassroomRequest $request)
@@ -56,7 +54,7 @@ class ClassroomController extends Controller
         try{
             $student = $stud->getRelatedStuff('classroom_id',$request->id);//في طلاب عندهم الكلاس رووم اي دي دا؟ تب كم واحد؟
             $sections = $sec->getRelatedStuff('classroom_id',$request -> id);
-            if(count([$sections,$student]) > 0){
+            if(count($sections) > 0 || count($student) > 0 ){
                 toastr()->error(__("Classroom can't be deleted, there are things about it"));
                 return redirect()->back();
             }

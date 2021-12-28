@@ -19,7 +19,7 @@ class GradeController extends Controller
   public function index()
   {
     $grades = $this->Grade->getAll();
-    return view('pages.grades.grades',compact(['grades']));
+    return view('pages.grades.index',compact(['grades']));
 
   }
 
@@ -39,7 +39,7 @@ class GradeController extends Controller
 
 
 
-  public function update(GeadeRequest $request)
+  public function update(Request $request)
   {
     try{
         $this->Grade->update($request->all(),$request->id);

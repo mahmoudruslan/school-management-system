@@ -16,8 +16,6 @@
     <a href="{{route('Students.create')}}" type="button" class="button x-small" >
         {{ __('Add Student') }}
     </a><br><br>
-
-
     {{-- myTable --}}
     <div class="table-responsive">
         <table  id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center" >

@@ -7,7 +7,6 @@ use App\Http\Requests\TeachersRequest;
 use App\models\Specialization;
 use App\repositories\TeachersRepositoryInterface;
 use Illuminate\Http\Request;
-use Hash;
 
 class TeachersController extends Controller
 {
@@ -22,7 +21,7 @@ class TeachersController extends Controller
     public function index()
     {
         $teachers = $this->teacher->getAll();
-        return view('pages.teachers.teachers',compact('teachers'));
+        return view('pages.teachers.index',compact('teachers'));
     }
 
 

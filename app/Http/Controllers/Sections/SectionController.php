@@ -29,7 +29,7 @@ class SectionController extends Controller
 
         $grades = $g->getAll();
         $teachers = $t->getAll();
-        return view('pages.sections.sections',compact(['grades','teachers']));
+        return view('pages.sections.index',compact(['grades','teachers']));
     }
 
 
