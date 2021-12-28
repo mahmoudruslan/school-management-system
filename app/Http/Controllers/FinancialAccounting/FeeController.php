@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Fees;
+namespace App\Http\Controllers\FinancialAccounting;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FeeRequest;
+use App\repositories\Eloquent\FeesInvoicesRepository;
 use App\repositories\Eloquent\GradesRepository;
 use App\repositories\Eloquent\StudentsRepository;
 use App\repositories\FeesRepositoryInterface;
@@ -20,7 +22,7 @@ class FeeController extends Controller
     public function index()
     {
         $fees = $this->fee->getAll();
-        return view('pages.fees.fees',compact('fees'));
+        return view('pages.fees.index',compact('fees'));
     }
 
 
@@ -31,7 +33,7 @@ class FeeController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(FeeRequest $request)
     {
         try {
             $this->fee->create($request->all());
@@ -60,7 +62,7 @@ class FeeController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(FeeRequest $request, $id)
     {
         try {
             $this->fee->update($request->all(),$id);
@@ -73,9 +75,15 @@ class FeeController extends Controller
 
 
 
-    public function destroy($id)
+    public function destroy($id,FeesInvoicesRepository $fi)
     {
         try {
+            $feeInvoices = $fi->getAll()->where('fee_id',$id)->pluck('id');
+            if(count($feeInvoices) > 0)
+            {
+                toastr()->error(__('These fees have been added to some students before, so they cannot be deleted '));
+                return redirect()->back();
+            }
             $this->fee->destroy($id);
             toastr()->success(__('Data deleted successfully'));
             return redirect()->back();

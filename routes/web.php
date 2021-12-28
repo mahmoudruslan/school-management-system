@@ -66,38 +66,28 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
         Route::get('return-students','GraduatedController@returnStudents')->name('return.students');
     });
 
-
-    ####################### begin Students fees ###################################################################
-        Route::group(['namespace' => 'Fees'],function(){
+################################################## begin Financial Accounting ##########################################
+    ####################### begin Students fees #####################################
+        Route::group(['namespace' => 'FinancialAccounting'],function(){
             Route::resource('Fees', 'FeeController');
 
+        ####################### begin Students fees invoices ############################
+            Route::resource('FeesInvoices', 'FeesInvoicesController');
+
+        ####################### begin Students fees invoices ############################
+            Route::resource('StudentReceipt', 'StudentReceiptController');
+
+        ####################### begin Students fees invoices ############################
+            Route::resource('FundAccounts', 'FundAccountsController');
+
+        ####################### begin Fee processing ####################################
+            Route::resource('FeeProcessing', 'FeeProcessingController');
+
+        ####################### begin Payments ##########################################
+            Route::resource('Payments', 'PaymentsController');
+
         });
-
-    ####################### begin Students fees invoices ############################################################
-    Route::group(['namespace' => 'FeesInvoices'],function(){
-        Route::resource('FeesInvoices', 'FeesInvoicesController');
-
-    });
-    ####################### begin Students fees invoices ############################################################
-    Route::group(['namespace' => 'StudentReceipt'],function(){
-        Route::resource('StudentReceipt', 'StudentReceiptController');
-
-    });
-    ####################### begin Students fees invoices ############################################################
-    Route::group(['namespace' => 'FundAccounts'],function(){
-        Route::resource('FundAccounts', 'FundAccountsController');
-
-    });
-    ####################### begin Fee processing ############################################################
-    Route::group(['namespace' => 'FeeProcessing'],function(){
-        Route::resource('FeeProcessing', 'FeeProcessingController');
-
-    });
-    ####################### begin Payments ############################################################
-    Route::group(['namespace' => 'Payments'],function(){
-        Route::resource('Payments', 'PaymentsController');
-
-    });
+################################################## begin Financial Accounting ##########################################
 
 
     ############################# begin save and delete attachments ################################################

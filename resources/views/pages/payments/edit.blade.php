@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    {{__('Edit Fee exclusion')}}
+    {{__('Edit Payments')}}
 @stop
 
 @section('content')
@@ -11,7 +11,6 @@
             <ul>
                 <li>{{ Session::get('error')}}</li>
             </ul>
-
         </div>
     @endif
     <!-- end error messages -->
@@ -40,7 +39,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -50,9 +48,8 @@
                             </div>
                         </div><br>
                         <button class="button" type="submit">{{__('Submit')}}</button>
-{{--                        <a class="btn btn-secondary" href="{{route('FeeProcessing.index')}}">{{__('Back')}}</a>--}}
+                        <a class="btn btn-secondary" href="{{route('Payments.index')}}">{{__('Back')}}</a>
                     </form>
-
                 </div>
             </div>
         </div>

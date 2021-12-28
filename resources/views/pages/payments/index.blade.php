@@ -31,42 +31,15 @@
                     <td>{{$payment->amount}}</td>
                     <td>{{$payment->description}}</td>
                     <td>
-
                         <a href="{{route('Payments.edit',$payment->id)}}" class="btn btn-info btn-sm" >
                             <i class="fa fa-edit"></i>
                         </a>
-
                         <button style="color: white" data-toggle="modal" data-target="#exampleModal{{$payment->id}}"  class="btn btn-danger btn-sm" type="button">
                             <i class="fa fa-trash"></i>
                         </button>
-
-
-                        <form action="{{route('Payments.destroy',$payment->id)}}" method="POST">
-                            {{ method_field('Delete') }}
-                            @csrf
-                            <div class="modal fade" id="exampleModal{{$payment->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <h6>{{__('Warning')}}:{{__('Are you sure you want to delete the payment?')}}</h6>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-
-                                            <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </td>
                 </tr>
+                @include('pages.payments.delete')
             @endforeach
             </tbody>
         </table>

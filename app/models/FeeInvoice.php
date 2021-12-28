@@ -9,6 +9,10 @@ class FeeInvoice extends Model
     protected $fillable = ['student_id','date','grade_id','classroom_id','fee_id','amount','description'];
     public $timestamps = true;
 
+    public function setDateAttribute($value)
+    {
+            return $this->attributes['date'] = date('y-m-d');
+    }
     public function students()
     {
         return $this->belongsTo('App\models\Student','student_id');

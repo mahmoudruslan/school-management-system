@@ -17,8 +17,8 @@ class CreateStudentAccountsTable extends Migration
             $table->foreignId('fee_processing_id')->nullable()->references('id')->on('fee_processings')->onDelete('cascade');
             $table->foreignId('payment_id')->nullable()->references('id')->on('payments')->onDelete('cascade');
             $table->string('type');
-            $table->decimal('debit')->nullable();
-            $table->decimal('credit')->nullable();
+            $table->decimal('debit')->default('0.00');
+            $table->decimal('credit')->default('0.00');
             $table->timestamps();
         });
     }

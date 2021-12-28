@@ -23,18 +23,21 @@
                         {{ method_field('PUT') }}
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="inputState">{{__('Fee Name_ar')}}</label>
+                                <label for="inputState">{{__('Fee Name_ar')}}</label><br>
+                                @error('name_ar') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <input type="text" name="name_ar" value="{{$fee->name_ar}}" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="Classroom_id">{{__('Fee Name_en')}} : <span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span></label><br>
+                                @error('name_en') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <input type="text" name="name_en" value="{{$fee->name_en}}" class="form-control">
                             </div>
 
                             <div class="form-group col">
                                 <label for="section_id">{{__('Amount')}} : <span
-                                        class="text-danger">*</span> </label>
+                                        class="text-danger">*</span> </label><br>
+                                @error('amount') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <input type="text" name="amount" value="{{$fee->amount}}" class="form-control">
                             </div>
 
@@ -42,35 +45,39 @@
 
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="inputState">{{__('Grade')}}</label>
+                                <label for="inputState">{{__('Grade')}}</label><br>
+                                @error('grade_id') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select class="custom-select mr-sm-2" name="grade_id" required>
 
                                     @foreach($grades as $grade)
-                                        <option selected disabled>{{$grade['name_'.app()->getLocale()]}}</option>
+                                        <option value="{{$grade->id}}" selected>{{$grade['name_'.app()->getLocale()]}}</option>
                                         <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col">
                                 <label for="Classroom_id">{{trans('Classrooms')}}: <span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span></label><br>
+                                @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select class="custom-select mr-sm-2" name="classroom_id" >
-                                    <option selected disabled>{{$fee->classrooms['name_'.app()->getLocale()]}}</option>
+                                    <option value="{{$fee->classrooms->id}}" selected>{{$fee->classrooms['name_'.app()->getLocale()]}}</option>
                                 </select>
                             </div>
                             <div class="form-group col">
                                 <label for="section_id">{{__('Year')}} : <span
-                                        class="text-danger">*</span></label>
+                                        class="text-danger">*</span></label><br>
+                                @error('year') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select name="year" class="custom-select">
-                                    <option value="" selected disabled>{{$fee->year}}</option>
                                     <?php $curren_year = date('Y');?>
+                                        <option value="{{$fee->year}}" selected>{{$fee->year}}</option>
                                     <option value="{{$curren_year}}">{{$curren_year}}</option>
                                 </select>
                             </div>
 
                         </div><br>
                         <div class="form-group">
-                            <label for="exampleFormControlTextarea1">{{__('Notes') }}:</label>
+                            <label for="exampleFormControlTextarea1">{{__('Notes') }}:</label><br>
+                            @error('notes') <span class="error text-danger">{{ $message }}</span> @enderror
                             <textarea class="form-control" name="notes" id="exampleFormControlTextarea1" rows="3">{{$fee->notes}}</textarea>
                         </div>
                         <br><br>

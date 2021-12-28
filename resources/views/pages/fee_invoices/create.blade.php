@@ -65,7 +65,6 @@
                                 </div><br>
                                 <input type="hidden" name="grade_id" value="{{$student->grade_id}}">
                                 <input type="hidden" name="classroom_id" value="{{$student->classroom_id}}">
-
                                 <button type="submit" class="button">{{__('Submit')}}</button>
                                 <a href="{{route('Students.index')}}" class="btn btn-danger">{{__('Back')}}</a>
                             </div>

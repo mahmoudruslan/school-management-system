@@ -11,9 +11,6 @@
         </div>
     @endif
     <!-- end error messages -->
-
-
-
     {{-- myTable --}}
     <div class="table-responsive">
         <table  id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center" >
@@ -30,14 +27,19 @@
                     <td>{{$loop->index+1}}</td>
                     <td>{{$student['name_'.app()->getLocale()]}}</td>
                     <td>
-{{--                        <a href="{{route('fees.fay')}}" class="btn btn-warning" role="button" aria-pressed="true">--}}
-{{--                            {{__('Pay the fees')}}--}}
-{{--                        </a>--}}
-
-{{--                        <a href="{{route('fees.payments')}}" class="btn btn-info" >--}}
-{{--                            {{__('View Payments')}}--}}
-{{--                        </a>--}}
-
+                        <div class="dropdown show">
+                            <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{__('Processes')}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{route('FeesInvoices.show',$student->id)}}">
+                                    <i style="color: #0000cc" class="fa fa-edit"></i>&nbsp;{{__('Add a fee invoice')}}&nbsp;
+                                </a>
+                                <a class="dropdown-item" href="{{route('StudentReceipt.show',$student->id)}}"><i style="color: #1e7e34" class="fas fa-dollar-sign"></i>&nbsp; &nbsp;{{__('Catch Receipt')}}</a>
+                                <a class="dropdown-item" href="{{route('FeeProcessing.show',$student->id)}}"><i style="color: #1e7e34" class="fad fa-money-check-edit-alt"></i>&nbsp; &nbsp;{{__('Fee exclusion')}}</a>
+                                <a class="dropdown-item" href="{{route('Payments.show',$student->id)}}"><i style="color:goldenrod" class="fas fa-donate"></i>&nbsp;{{__('Receipt')}}</a>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             @endforeach

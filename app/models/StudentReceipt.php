@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentReceipt extends Model
 {
-    protected $fillable = ['student_id', 'debit', 'description'];
+    protected $fillable = ['student_id', 'debit', 'description', 'date'];
     public $timestamps = true;
 
     public function students()

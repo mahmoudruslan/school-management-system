@@ -15,7 +15,7 @@ class CreateFeeInvoicesTable extends Migration
     {
         Schema::create('fee_invoices', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->unsignedInteger('grade_id');
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');

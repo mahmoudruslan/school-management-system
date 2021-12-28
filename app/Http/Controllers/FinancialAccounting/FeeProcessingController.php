@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\FeeProcessing;
+namespace App\Http\Controllers\FinancialAccounting;
 
 use App\Http\Controllers\Controller;
-use App\models\StudentAccount;
+use App\repositories\Eloquent\FeesInvoicesRepository;
+use App\repositories\Eloquent\StudentAccountsRepository;
 use App\repositories\Eloquent\StudentsRepository;
 use App\repositories\FeeProcessingRepositoryInterface;
 use Illuminate\Http\Request;
@@ -26,13 +27,16 @@ class FeeProcessingController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(Request $request,StudentAccountsRepository $sa)
     {
         DB::beginTransaction();
         try {
-            $debit = StudentAccount::where('student_id',$request->student_id)->sum('debit');
-            $credit = StudentAccount::where('student_id',$request->student_id)->sum('credit');
-            $countStudent = StudentAccount::where('student_id',$request->student_id)->pluck('student_id');
+            $where = $sa->where('student_id',$request->student_id);
+            $debit = $where->sum('debit');//student debit
+            $credit = $where->sum('credit');//student credit
+
+            //number of student bills
+            $countStudent = $where->pluck('student_id');
             if(!count($countStudent) > 0 || $debit - $credit == 0)
             {
                 toastr()->error(__('This student does not owe any money'));
@@ -42,20 +46,14 @@ class FeeProcessingController extends Controller
                 toastr()->error(__('This student owes only ') .($debit - $credit). __(' pounds'));
                 return redirect()->back();
             }
-            $feeProcessing = $this->feeProcessing->create([
-                'date' => date('y-m-d'),
-                'student_id' => $request->student_id,
-                'amount' => $request->amount,
-                'description' => $request->description,
-            ]);
-
-            StudentAccount::create([
+            $feeProcessing = $this->feeProcessing->create($request->all());
+            $sa->create([
                 'student_id' => $request->student_id,
                 'fee_processing_id' => $feeProcessing->id,
                 'type' => 'Fee exclusion',
-                'debit' => '00.0',
                 'credit' => $request->amount,
             ]);
+
             DB::commit();
             toastr()->success(__('Data saved successfully'));
              return  redirect()->route('FeeProcessing.index');
@@ -66,10 +64,11 @@ class FeeProcessingController extends Controller
     }
 
     //create
-    public function show($student_id,StudentsRepository $s)
+    public function show($student_id,StudentsRepository $s,FeesInvoicesRepository $f)
     {
+        $feeInvoices = $f->getAll()->where('student_id',$student_id);
         $student = $s->getById($student_id);
-        return view('pages.fee_processing.create',compact('student'));
+        return view('pages.fee_processing.create',compact('student','feeInvoices'));
     }
 
 
@@ -80,14 +79,16 @@ class FeeProcessingController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id,StudentAccountsRepository $sa)
     {
         DB::beginTransaction();
         try {
-            $debit = StudentAccount::where('student_id',$request->student_id)->sum('debit');
-            $credit = StudentAccount::where('student_id',$request->student_id)->sum('credit');
+            $where = $sa->where('student_id',$request->student_id);
+            $debit = $where->sum('debit');//student debit
+            $credit = $where->sum('credit');//student credit
+            //number of student bills
+            $countStudent = $where->pluck('student_id');
             $currentAmount = $this->feeProcessing->getById($id);
-            $countStudent = StudentAccount::where('student_id',$request->student_id)->pluck('student_id');
             if(!count($countStudent) > 0)
             {
                 toastr()->error(__('This student does not owe any money'));
@@ -97,15 +98,13 @@ class FeeProcessingController extends Controller
                 toastr()->error(__('This student owes only ') .($debit - $credit + $currentAmount->amount). __(' pounds'));
                 return redirect()->back();
             }
-            $this->feeProcessing->update([
-                'date' => date('y-m-d'),
-                'amount' => $request->amount,
-                'description' => $request->description,
-            ],$id);
-            $studentAccount = StudentAccount::where('fee_processing_id',$id);
-            $studentAccount->update([
+            $this->feeProcessing->update($request->all(),$id);
+
+            $sa_id = $sa->where('fee_processing_id',$id)->first()->id;
+            $sa->update([
                 'credit' => $request->amount,
-            ]);
+            ],$sa_id);
+
             DB::commit();
             toastr()->success(__('Data updated successfully'));
             return  redirect()->route('FeeProcessing.index');

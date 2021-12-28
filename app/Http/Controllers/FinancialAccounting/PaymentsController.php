@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Payments;
+namespace App\Http\Controllers\FinancialAccounting;
 
 use App\Http\Controllers\Controller;
 use App\models\StudentAccount;
 use App\repositories\Eloquent\FundAccountsRepository;
+use App\repositories\Eloquent\StudentAccountsRepository;
 use App\repositories\Eloquent\StudentsRepository;
 use App\repositories\PaymentsRepositoryInterface;
 use Illuminate\Http\Request;
@@ -27,30 +28,23 @@ class PaymentsController extends Controller
 
 
 
-    public function store(Request $request,FundAccountsRepository $f)
+    public function store(Request $request,FundAccountsRepository $f,StudentAccountsRepository $sa)
     {
         DB::beginTransaction();
         try {
-            $payment = $this->payment->create([
-                'date' => date('y-m-d'),
-                'student_id' => $request->student_id,
-                'amount' => $request->amount,
-                'description' => $request->description,
-            ]);
+            $payment = $this->payment->create($request->all());
             $f->create([
-                'date' => date('y-m-d'),
                 'payment_id' => $payment->id,
-                'debit' => '00.0',
                 'credit' => $request->amount,
                 'description' => $request->description,
             ]);
-            StudentAccount::create([
+            $sa->create([
                 'student_id' => $request->student_id,
                 'payment_id' => $payment->id,
                 'type' => 'payment',
                 'debit' => $request->amount,
-                'credit' => '00.0',
             ]);
+
             DB::commit();
             toastr()->success(__('Data saved successfully'));
             return  redirect()->route('Payments.index');
@@ -75,26 +69,26 @@ class PaymentsController extends Controller
     }
 
 
-    public function update(Request $request, $id,FundAccountsRepository $f)
+    public function update(Request $request, $id,FundAccountsRepository $f,StudentAccountsRepository $sa)
     {
 
         DB::beginTransaction();
         try {
 
-            $this->payment->update([
-                'date' => date('y-m-d'),
-                'amount' => $request->amount,
-                'description' => $request->description,
-            ],$id);
+            $this->payment->update($request->all(),$id);
+
             $fund_id = $f->getAll()->where('payment_id',$id)->first()->id;
+
             $f->update([
                 'credit' => $request->amount,
                 'description' => $request->description
             ],$fund_id);
-            $studentAccount = StudentAccount::where('payment_id',$id);
-            $studentAccount->update([
+
+            $sa_id = $sa->where('payment_id',$id)->first()->id;
+            $sa->update([
                 'debit' => $request->amount,
-            ]);
+            ],$sa_id);
+
             DB::commit();
             toastr()->success(__('Data updated successfully'));
             return  redirect()->route('Payments.index');

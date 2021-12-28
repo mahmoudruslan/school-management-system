@@ -15,10 +15,10 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->decimal('amount');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

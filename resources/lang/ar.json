@@ -202,7 +202,8 @@
     "Receipt": "سند صرف",
     "Create a voucher of exchange": "إنشاء سند صرف",
     "Are you sure you want to delete the payment?": "هل أنت متأكد أنك تريد حذف عملية الدفع؟",
-
+    "These fees have been added to some students before, so they cannot be deleted ": "تم إضافة هذه الرسوم علي بعض الطلاب من قبل لذلك لا يمكن حذفها",
+    "Edit Payments": "تعديل المدفوعات",
 
 
     "This field is required" : "هذا الحقل مطلوب",
