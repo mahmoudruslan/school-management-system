@@ -207,6 +207,19 @@
     "Edit Payments": "تعديل المدفوعات",
 
 
+
+    "Attendance":"الحضور والغياب",
+    "Absence Recording": "تسجيل الغياب",
+    "List of attendance and absence": "قائمة الحضور والغياب",
+    "Show students": "عرض الطلاب",
+    "Absent": "غائب",
+    "Student absence detection": "كشف غياب الطلاب",
+    "Absence is recorded":"تم تسجيل الغياب",
+    "There is no absence":"لا يوجد غياب",
+
+
+
+
     "This field is required" : "هذا الحقل مطلوب",
     "This field must be numbers":"هذا الحقل يجب أن يكون أرقام",
     "This field must be unique" : "هذا الاسم موجود من قبل",
@@ -276,7 +289,6 @@
     "add_Graduate":"اضافة تخرج جديد",
     "list_Graduate":"قائمة التخرجات",
     "Accounts":"الحسابات",
-    "Attendance":"الحضور والغياب",
     "Exams":"الامتحانات",
     "library":"المكتبة",
     "Onlineclasses":"حصص اونلاين",

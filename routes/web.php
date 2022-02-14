@@ -88,7 +88,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
 
         });
 ################################################## begin Financial Accounting ##########################################
-
+    ####################### begin Students fees #####################################
+    Route::group(['namespace' => 'Attendances'],function() {
+        Route::resource('Attendances', 'AttendancesController');
+        Route::get('show-layout/{id}','AttendancesController@showLayout')->name('Attendances.showLayout');
+        Route::get('show-student/{id}','AttendancesController@ShowSectionStudents')->name('Attendances.ShowSectionStudents');
+        Route::get('index/{id}','AttendancesController@indexx')->name('Attendances.indexx');
+        Route::get('absence-detection/{id}','AttendancesController@absenceDetection')->name('Attendances.absenceDetection');
+    });
 
     ############################# begin save and delete attachments ################################################
     Route::post('save-attachments/{id}','HomeController@saveAttachments')->name('save.attachments');
@@ -96,5 +103,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
     Route::get('empty',function (){
         return view('empty');
     });
+    Route::get('xx','HomeController@xx');
 });
 

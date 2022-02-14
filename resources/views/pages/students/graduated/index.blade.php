@@ -27,7 +27,6 @@
             <tr id="myUL">
                 <th>#</th>
                 <th>{{__("Name")}}</th>
-                <th>{{__("Religion")}}</th>
                 <th>{{__("Gender")}}</th>
                 <th>{{__("Grade")}}</th>
                 <th>{{__("Classroom")}}</th>
@@ -42,7 +41,6 @@
                         <input type="checkbox" class="mr-4" value="{{$student->id}}">{{$loop->index+1}}
                     </td>
                     <td>{{$student['name_'.app()->getLocale()]}}</td>
-                    <td>{{$student->religions['name_'.app()->getLocale()]}}</td>
                     <td>{{__($student->gender)}}</td>
                     <td>{{$student->grades['name_'.app()->getLocale()] ?? ''}}</td>
                     <td>{{$student->classrooms['name_'.app()->getLocale()] ?? ''}}</td>

@@ -20,7 +20,7 @@ class FeesInvoicesController extends Controller
 
     public function index()
     {
-        $feeInvoices = $this->feesInvoices->getAll();
+        $feeInvoices = $this->feesInvoices->getData(['id','fee_id','description','date','student_id']);
         return view('pages.fee_invoices.index',compact('feeInvoices'));
     }
 
@@ -68,7 +68,7 @@ class FeesInvoicesController extends Controller
     {
         $feesInvoice = $this->feesInvoices->getById($id);
         $student = $s->getById($feesInvoice->student_id);
-        $fees = $f->getAll()->where('grade_id',$student->grades->id)->where('classroom_id',$student->classrooms->id);
+        $fees = $f->getData(['name_ar','name_en','grade_id','classroom_id'])->where('grade_id',$student->grades->id)->where('classroom_id',$student->classrooms->id);
         return view('pages.fee_invoices.edit',compact(['student','fees','feesInvoice']));
 
     }

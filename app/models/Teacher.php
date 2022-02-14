@@ -22,4 +22,8 @@ class Teacher extends Model
     public function sections(){
         return $this->belongsToMany('App\models\Section','App\models\TeacherSection');
     }
+    public function students()
+    {
+        return $this->hasManyThrough('App\models\Student','App\models\TeacherSection','teacher_id','section_id');
+    }
 }

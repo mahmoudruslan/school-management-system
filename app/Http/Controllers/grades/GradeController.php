@@ -5,20 +5,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GeadeRequest;
 use App\repositories\GradesRepositoryInterface;
 use App\models\Classroom;
+use App\models\Grade;
 use Illuminate\Http\Request;
 class GradeController extends Controller
 {
-    private $Grade;
-    public function __construct(GradesRepositoryInterface $Grade)
+    private $grade;
+    public function __construct(GradesRepositoryInterface $grade)
     {
-        $this->Grade = $Grade;
+        $this->grade = $grade;
     }
 
 
 
   public function index()
   {
-    $grades = $this->Grade->getAll();
+    $grades = $this->grade->getData();
     return view('pages.grades.index',compact(['grades']));
 
   }
@@ -28,7 +29,7 @@ class GradeController extends Controller
   public function store(GeadeRequest $request)
   {
     try{
-        $this->Grade->create($request->all());
+        $this->grade->create($request->all());
       toastr()->success(__('Data saved successfully'));
       return redirect()->back();
     }catch(\Exception $e)
@@ -42,7 +43,7 @@ class GradeController extends Controller
   public function update(Request $request)
   {
     try{
-        $this->Grade->update($request->all(),$request->id);
+        $this->grade->update($request->all(),$request->id);
         toastr()->success(__('Data updated successfully'));
         return redirect()->back();
     }catch(\Exception $e)
@@ -61,7 +62,7 @@ class GradeController extends Controller
             toastr()->error(__('It is not possible to delete the stage because there are classes affiliated with it'));
             return redirect()->back();
           }else{
-              $this->Grade->destroy($request->id);
+              $this->grade->destroy($request->id);
             toastr()->error(__('Data deleted successfully'));
             return redirect()->back();
           }

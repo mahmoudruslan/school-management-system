@@ -12,4 +12,5 @@ class StudentReceiptRepository extends BasicRepository implements StudentReceipt
     {
         parent::__construct($model);
     }
+
 }

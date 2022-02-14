@@ -131,9 +131,8 @@
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Attendance-icon" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                        <li> <a href="themify-icons.html">Themify icons</a> </li>
-                        <li> <a href="weather-icon.html">Weather icons</a> </li>
+                        <li> <a href="{{route('Attendances.indexx',$teacher_id = 2)}}">{{__('Student absence detection')}}</a> </li>
+                        <li> <a href="{{route('Attendances.showLayout',$teacher_id = 2)}}">{{__('Absence Recording')}}</a> </li>
                     </ul>
                 </li>
 

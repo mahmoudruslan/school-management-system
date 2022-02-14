@@ -42,12 +42,9 @@
                     <td>{{$fee->year}}</td>
                     <td>{{$fee->notes}}</td>
                     <td>
-                        <!--<a href="{{route('Fees.show',$fee->id)}}" class="btn btn-warning" role="button" aria-pressed="true">
-                                عرض طلاب الصف
-                            </a>-->
-                            <a href="{{route('Fees.edit',$fee->id)}}" class="btn btn-info" >
-                                <i class="fa fa-edit"></i>
-                            </a>
+                        <a href="{{route('Fees.edit',$fee->id)}}" class="btn btn-info" >
+                            <i class="fa fa-edit"></i>
+                        </a>
                         <button style="color: white" data-toggle="modal" data-target="#exampleModal{{$fee->id}}"  class="btn btn-danger" type="button" >
                             <i class="fa fa-trash"></i>
                         </button>

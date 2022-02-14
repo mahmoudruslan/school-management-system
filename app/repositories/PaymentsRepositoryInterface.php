@@ -4,7 +4,7 @@ namespace App\repositories;
 
 interface PaymentsRepositoryInterface
 {
-    public function getAll():object;
+    public function getData($columns='*'):object;
     public function getById($id);
     public function create(array $attributes);
     public function update(array $attributes,int $id):object;

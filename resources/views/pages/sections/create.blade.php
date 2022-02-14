@@ -18,13 +18,13 @@
         <input type="hidden" name="create" value="1">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputEmail4">{{__('Section name_ar')}}</label><br>
+            <label for="inputEmail4">{{__('Section Name_ar')}}</label><br>
             @error('name_ar') <span class="error text-danger">{{ $message }}</span> @enderror
             <input type="text" name="name_ar" class="form-control">
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputPassword4">{{__('Section name_en')}}</label><br>
+            <label for="inputPassword4">{{__('Section Name_en')}}</label><br>
             @error('name_en') <span class="error text-danger">{{ $message }}</span> @enderror
             <input type="text" name="name_en" class="form-control">
 
@@ -64,7 +64,7 @@
 
                 @foreach($teachers as $teacher)
 
-                    <option value="{{$teacher->id}}">{{$teacher->name_ar}}</option>
+                    <option value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
                 @endforeach
             </select>
             @if($errors->has('teacher_id'))

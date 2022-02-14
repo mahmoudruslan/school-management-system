@@ -12,4 +12,5 @@ class FeesInvoicesRepository extends BasicRepository implements FeesInvoicesRepo
     {
         parent::__construct($model);
     }
+
 }

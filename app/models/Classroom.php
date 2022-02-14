@@ -15,7 +15,7 @@ class Classroom extends Model
 
 
 
-    public function gradess()
+    public function grades()
     {
         return $this->belongsTo('App\models\Grade','grade_id');
     }

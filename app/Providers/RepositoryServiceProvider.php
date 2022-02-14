@@ -88,6 +88,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\repositories\Eloquent\StudentAccountsRepository'
         );
 
+        $this->app->bind(
+            'App\repositories\AttendancesRepositoryInterface',
+            'App\repositories\Eloquent\AttendancesRepository'
+        );
+
     }
 
     /**

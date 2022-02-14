@@ -21,14 +21,14 @@ class FeeController extends Controller
 
     public function index()
     {
-        $fees = $this->fee->getAll();
+        $fees = $this->fee->getData();
         return view('pages.fees.index',compact('fees'));
     }
 
 
     public function create(GradesRepository $g)
     {
-        $grades = $g->getAll();
+        $grades = $g->getData();
         return view('pages.fees.create',compact('grades'));
     }
 
@@ -45,18 +45,9 @@ class FeeController extends Controller
     }
 
 
-    public function show($id,StudentsRepository $s)
-    {
-        $fee = $this->fee->getById($id);
-        $students = $s->getAll()->where('grade_id',$fee->grade_id)->where('classroom_id',$fee->classroom_id);
-
-        return view('pages.fees.show',compact(['students','fee']));
-    }
-
-
     public function edit($id, GradesRepository $g)
     {
-        $grades = $g->getAll();
+        $grades = $g->getData();
         $fee = $this->fee->getById($id);
         return view('pages.fees.edit',compact(['fee','grades']));
     }
@@ -78,7 +69,7 @@ class FeeController extends Controller
     public function destroy($id,FeesInvoicesRepository $fi)
     {
         try {
-            $feeInvoices = $fi->getAll()->where('fee_id',$id)->pluck('id');
+            $feeInvoices = $fi->getData('fee_id')->where('fee_id',$id)->pluck('id');
             if(count($feeInvoices) > 0)
             {
                 toastr()->error(__('These fees have been added to some students before, so they cannot be deleted '));

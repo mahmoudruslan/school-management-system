@@ -22,7 +22,7 @@ class CreateAttendancesTable extends Migration
             $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->date('date');
-            $table->integer('status');
+            $table->integer('status')->default('1');
             $table->timestamps();
         });
     }

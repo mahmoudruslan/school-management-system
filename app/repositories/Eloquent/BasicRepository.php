@@ -2,6 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
+use App\models\Grade;
 use App\repositories\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -14,10 +15,16 @@ abstract class BasicRepository implements EloquentRepositoryInterface
         $this->model = $model;
     }
 
-    public function getAll():object
+    public function getData($columns='*'):object
     {
-        return $this->model->all();
+        return $this->model->all($columns);
     }
+
+    // public function thisModel():object
+    // {
+    //     return $this->model;
+    // }
+
 
     public function create(array $attributes)
     {

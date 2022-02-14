@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\FinancialAccounting;
 
 use App\Http\Controllers\Controller;
-use App\models\StudentAccount;
 use App\repositories\Eloquent\FundAccountsRepository;
 use App\repositories\Eloquent\StudentAccountsRepository;
 use App\repositories\Eloquent\StudentsRepository;
@@ -22,7 +21,7 @@ class PaymentsController extends Controller
 
     public function index()
     {
-        $payments = $this->payment->getAll();
+        $payments = $this->payment->getData();
         return view('pages.payments.index',compact('payments'));
     }
 
@@ -77,7 +76,7 @@ class PaymentsController extends Controller
 
             $this->payment->update($request->all(),$id);
 
-            $fund_id = $f->getAll()->where('payment_id',$id)->first()->id;
+            $fund_id = $f->getData(['id','payment_id'])->where('payment_id',$id)->first()->id;
 
             $f->update([
                 'credit' => $request->amount,

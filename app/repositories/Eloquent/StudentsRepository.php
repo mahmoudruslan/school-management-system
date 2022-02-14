@@ -7,7 +7,6 @@ use App\models\Nationality;
 use App\models\Religion;
 use App\models\Student;
 use App\models\TheParent;
-use App\repositories\model;
 use App\repositories\StudentsRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -19,17 +18,16 @@ class StudentsRepository extends BasicRepository implements StudentsRepositoryIn
     {
         parent::__construct($model);
         $this->g = $g;
-        $this->c = $g;
+        $this->c = $c;
     }
 
-
-    public function getData(){
+    public function getMyData(){
         $data['nationalities'] = Nationality::all();
         $data['religions'] = Religion::all();
         $data['Blood_types'] = BloodType::all();
-        $data['TheParents'] = TheParent::all();
-        $data['grades'] = $this->g->getAll();
-        $data['classrooms'] = $this->c->getAll();
+        $data['TheParents'] = TheParent::all('id', 'name_father_ar', 'name_father_en');
+        $data['grades'] = $this->g->getData();
+        $data['classrooms'] = $this->c->getData();
         return $data;
     }
 

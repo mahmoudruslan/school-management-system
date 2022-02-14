@@ -28,7 +28,14 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
-
+    public function xx()
+    {
+        $your_string = ' mahmoud
+                ahmed
+                kora
+                jhjuhj';
+        return substr_count( $your_string, " " );
+    }
 
     //save parents and students attachment
     public function saveAttachments(Request $request,$id): RedirectResponse

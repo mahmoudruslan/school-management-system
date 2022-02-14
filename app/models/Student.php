@@ -66,4 +66,10 @@ class Student extends Model
         return $this->belongsTo('App\models\TheParent','parent_id');
     }
 
-}
+    // sections
+    public function attendances()
+    {
+        return $this->hasMany('App\models\Attendance', 'student_id');
+    }
+
+    }

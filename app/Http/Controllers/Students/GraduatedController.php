@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
+use App\models\Attendance;
 use App\repositories\Eloquent\GradesRepository;
 use App\repositories\Eloquent\StudentsRepository;
 use App\repositories\GraduatedRepositoryInterface;
@@ -19,14 +20,14 @@ class GraduatedController extends Controller
 
     public function index()
     {
-        $students = $this->student->getAll();
-        return view('pages.students.graduated.graduated',compact('students'));
+        $students = $this->student->getData();
+        return view('pages.students.graduated.index',compact('students'));
     }
 
 
     public function create(GradesRepository $g)
     {
-        $grades = $g->getAll();
+        $grades = $g->getData();
         return view('pages.students.graduated.create',compact(['grades']));
     }
 
@@ -34,7 +35,7 @@ class GraduatedController extends Controller
     public function store(Request $request,StudentsRepository $s)
     {
         try{
-            $students = $s->getAll()
+            $students = $s->getData()
                 ->where('grade_id', $request->grade_id)
                 ->where('classroom_id', $request->classroom_id)
                 ->where('section_id', $request->section_id);
@@ -42,6 +43,8 @@ class GraduatedController extends Controller
             if (count($students) > 0) {
                 foreach ($students as $student) {
                     $student->delete();
+
+                    Attendance::where('student_id', $student->id)->delete();
                 }
             }
             toastr()->success(__('Data saved successfully'));

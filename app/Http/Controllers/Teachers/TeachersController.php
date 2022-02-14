@@ -20,7 +20,7 @@ class TeachersController extends Controller
 
     public function index()
     {
-        $teachers = $this->teacher->getAll();
+        $teachers = $this->teacher->getData();
         return view('pages.teachers.index',compact('teachers'));
     }
 

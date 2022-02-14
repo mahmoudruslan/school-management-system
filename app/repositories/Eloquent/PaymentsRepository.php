@@ -11,4 +11,5 @@ class PaymentsRepository extends BasicRepository implements PaymentsRepositoryIn
     {
         parent::__construct($model);
     }
+
 }

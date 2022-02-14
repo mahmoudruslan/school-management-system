@@ -20,7 +20,7 @@ class StudentReceiptController extends Controller
 
     public function index()
     {
-        $receipts = $this->studentReceipt->getAll();
+        $receipts = $this->studentReceipt->getData();
         return view('pages.student_receipt.index',compact(['receipts']));
     }
 
@@ -89,7 +89,7 @@ class StudentReceiptController extends Controller
             //update in student_receipt table
             $this->studentReceipt->update($request->all(),$id);
 
-            $fund_id = $f->getAll()->where('receipt_id',$id)->first()->id;
+            $fund_id = $f->getData(['id', 'receipt_id'])->where('receipt_id',$id)->first()->id;
 
             //update in fund_account table
             $f->update([

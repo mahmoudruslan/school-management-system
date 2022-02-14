@@ -23,14 +23,14 @@ class StudentsController extends Controller
     public function index()
     {
 
-        $students = $this->student->getAll();
+        $students = $this->student->getData(['id', 'name_ar', 'name_en', 'gender', 'grade_id', 'classroom_id', 'section_id']);
         return view('pages.students.index',compact('students'));
     }
 
 
     public function create()
     {
-        $data = $this->student->getData();
+        $data = $this->student->getMyData();
         return view('pages.students.create',compact(['data']));
     }
 
@@ -69,7 +69,7 @@ class StudentsController extends Controller
     public function edit(Request $request,$id)
     {
         $student = $this->student->getById($id);
-        $data = $this->student->getData();
+        $data = $this->student->getMyData();
         return view('pages.students.edit',compact(['data','student']));
     }
 
@@ -107,7 +107,7 @@ class StudentsController extends Controller
 
     public function getSections($id,SectionsRepository $s)//related ajax code
     {
-        $list_sections = $s->getAll()->where("classroom_id", $id)->pluck("name_".LaravelLocalization::getCurrentLocale(), "id");
+        $list_sections = $s->getData()->where("classroom_id", $id)->pluck("name_".LaravelLocalization::getCurrentLocale(), "id");
         return $list_sections;
     }
 }

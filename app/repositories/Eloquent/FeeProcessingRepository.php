@@ -11,4 +11,5 @@ class FeeProcessingRepository extends BasicRepository implements FeeProcessingRe
     {
         parent::__construct($model);
     }
+
 }

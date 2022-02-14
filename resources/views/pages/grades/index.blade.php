@@ -32,7 +32,7 @@
             <tbody>
                 @foreach ($grades as $grade)
                     <tr>
-                        <td>{{$loop->index}}</td>
+                        <td>{{$loop->index+1}}</td>
                         <td>{{$grade['name_'.app()->getLocale()]}}</td>
                         <td>{{$grade ->notes}}</td>
                         <td>

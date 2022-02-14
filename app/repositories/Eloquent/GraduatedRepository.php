@@ -3,22 +3,22 @@
 namespace App\repositories\Eloquent;
 
 use App\models\Student;
-use Illuminate\Database\Eloquent\Model;
+use App\repositories\GraduatedRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class GraduatedRepository extends BasicRepository implements \App\repositories\GraduatedRepositoryInterface
+class GraduatedRepository extends BasicRepository implements GraduatedRepositoryInterface
 {
     public function __construct(Student $model)
     {
         parent::__construct($model);
     }
 
-    public function getAll():object
+    public function getData($columns='*'):object
     {
         return $this->model->onlyTrashed()->get();
     }
 
-
+    
     public function getById($id)
     {
         $model = $this->model->withTrashed()->find($id);

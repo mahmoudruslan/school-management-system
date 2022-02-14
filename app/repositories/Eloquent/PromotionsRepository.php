@@ -11,7 +11,6 @@ class PromotionsRepository extends BasicRepository implements PromotionsReposito
     {
         parent::__construct($model);
     }
-
     public function create(array $attributes)
     {
         return $this->model->updateOrCreate($attributes);

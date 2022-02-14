@@ -11,7 +11,6 @@ class StudentAccountsRepository extends BasicRepository implements StudentAccoun
     {
         parent::__construct($model);
     }
-
     public function where($column, $val)
     {
         return $this->model->where($column,$val);

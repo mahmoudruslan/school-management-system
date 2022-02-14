@@ -11,4 +11,5 @@ class FeesRepository extends BasicRepository implements FeesRepositoryInterface
     {
         parent::__construct($model);
     }
+
 }

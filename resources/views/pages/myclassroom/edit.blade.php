@@ -27,8 +27,8 @@
                         <div class="col"><label for="grade_id" class="mr-sm-2">{{ __('Grade Name') }}:</label>
                             <div class="box">
                                 <select class="fancyselect" name="grade_id">
-                                    <option value="{{$classroom ->gradess->id}}">
-                                        {{$classroom ->gradess['name_'.app()->getLocale()]}}
+                                    <option value="{{$classroom ->grades->id}}">
+                                        {{$classroom ->grades['name_'.app()->getLocale()]}}
                                     </option>
                                     @foreach ($grades as $grade)
                                         <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>

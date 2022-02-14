@@ -19,4 +19,5 @@ class ClassroomsRepository extends BasicRepository implements ClassroomsReposito
     {
         return $this->model->where('classroom_id',$id)->pluck('classroom_id');
     }
+
 }

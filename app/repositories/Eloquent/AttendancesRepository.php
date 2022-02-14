@@ -2,7 +2,15 @@
 
 namespace App\repositories\Eloquent;
 
-class AttendancesRepository
+use App\models\Attendance;
+use App\repositories\AttendancesRepositoryInterface;
+
+class AttendancesRepository extends BasicRepository implements AttendancesRepositoryInterface
 {
+    public $model;
+    public function __construct(Attendance $model)
+    {
+        $this->model = $model;
+    }
 
 }

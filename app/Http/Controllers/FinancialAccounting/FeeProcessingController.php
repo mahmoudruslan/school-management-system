@@ -20,12 +20,9 @@ class FeeProcessingController extends Controller
 
     public function index()
     {
-        $feeProcessing = $this->feeProcessing->getAll();
+        $feeProcessing = $this->feeProcessing->getData();
         return view('pages.fee_processing.index',compact('feeProcessing'));
     }
-
-
-
 
     public function store(Request $request,StudentAccountsRepository $sa)
     {
@@ -66,7 +63,7 @@ class FeeProcessingController extends Controller
     //create
     public function show($student_id,StudentsRepository $s,FeesInvoicesRepository $f)
     {
-        $feeInvoices = $f->getAll()->where('student_id',$student_id);
+        $feeInvoices = $f->getData('student_id')->where('student_id',$student_id);
         $student = $s->getById($student_id);
         return view('pages.fee_processing.create',compact('student','feeInvoices'));
     }

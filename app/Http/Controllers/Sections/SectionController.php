@@ -24,20 +24,19 @@ class SectionController extends Controller
 
 
 
-    public function index(GradesRepository $g,TeachersRepository $t)
+    public function index(GradesRepository $g)
     {
 
-        $grades = $g->getAll();
-        $teachers = $t->getAll();
-        return view('pages.sections.index',compact(['grades','teachers']));
+        $grades = $g->getData();
+        return view('pages.sections.index',compact(['grades']));
     }
 
 
 
     public function create(GradesRepository $g,TeachersRepository $t)
     {
-        $grades = $g->getAll();
-        $teachers = $t->getAll();
+        $grades = $g->getData();
+        $teachers = $t->getData(['id', 'name_en', 'name_ar']);
         return view('pages.sections.create',compact(['grades','teachers']));
     }
 
@@ -62,8 +61,8 @@ class SectionController extends Controller
     {
         try{
             $section = $this->section->getById($id);
-            $grades = $g->getAll();
-            $teachers = $t->getAll();
+            $grades = $g->getData();
+            $teachers = $t->getData(['id', 'name_ar', 'name_en']);
             return view('pages.sections.edit', compact(['grades', 'teachers', 'section']));
         }catch(Exception $e){
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -90,7 +89,7 @@ class SectionController extends Controller
     {
         try {
 
-            $sections = $s->getAll()->where('section_id', $request -> id)->pluck('section_id');
+            $sections = $s->getData('section_id')->where('section_id', $request -> id)->pluck('section_id');
             if(count($sections) > '0'){
                 toastr()->error(__('Student related to this section must be deleted first'));
                 return redirect()->back();
@@ -108,7 +107,7 @@ class SectionController extends Controller
 
     public function getClassrooms($id,ClassroomsRepository $c)//related ajax code
     {
-        $list_classes = $c->getAll()->where("grade_id", $id)->pluck("name_".LaravelLocalization::getCurrentLocale(), "id");
+        $list_classes = $c->getData()->where("grade_id", $id)->pluck("name_".LaravelLocalization::getCurrentLocale(), "id");
         return $list_classes;
     }
 }

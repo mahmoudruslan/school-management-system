@@ -18,6 +18,7 @@
                 <th class="alert-danger">#</th>
                 <th class="alert-danger">{{__("Student Name")}}</th>
                 <th class="alert-danger">{{__("Amount")}}</th>
+                <th class="alert-danger">{{__("Date")}}</th>
                 <th class="alert-danger">{{__("Description")}}</th>
                 <th class="pl-5 pr-4 alert-danger">{{__("Processes")}}</th>
             </tr>
@@ -28,6 +29,7 @@
                     <td>{{$loop->index+1}}</td>
                     <td>{{$receipt->students['name_'.app()->getLocale()]}}</td>
                     <td>{{$receipt->debit}}</td>
+                    <td>{{$receipt->date}}</td>
                     <td>{{$receipt->description}}</td>
                     <td>
                         <a href="{{route('StudentReceipt.edit',$receipt->id)}}" class="btn btn-info btn-sm" >

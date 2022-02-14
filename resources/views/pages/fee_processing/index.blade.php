@@ -19,6 +19,7 @@
                 <th class="alert-danger">#</th>
                 <th class="alert-danger">{{__("Student Name")}}</th>
                 <th class="alert-danger">{{__("Amount")}}</th>
+                <th class="alert-danger">{{__("date")}}</th>
                 <th class="alert-danger">{{__("Description")}}</th>
                 <th class="pl-5 pr-4 alert-danger">{{__("Processes")}}</th>
             </tr>
@@ -29,6 +30,7 @@
                     <td>{{$loop->index+1}}</td>
                     <td>{{$feeProcess->students['name_'.app()->getLocale()]}}</td>
                     <td>{{$feeProcess->amount}}</td>
+                    <td>{{$feeProcess->date}}</td>
                     <td>{{$feeProcess->description}}</td>
                     <td>
 

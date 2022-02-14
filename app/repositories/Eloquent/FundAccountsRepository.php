@@ -11,4 +11,5 @@ class FundAccountsRepository extends BasicRepository implements FundAccountsRepo
     {
         parent::__construct($model);
     }
+
 }

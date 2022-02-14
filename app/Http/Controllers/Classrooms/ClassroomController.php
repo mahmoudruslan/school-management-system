@@ -7,7 +7,6 @@ use App\repositories\Eloquent\GradesRepository;
 use App\repositories\Eloquent\StudentsRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClassroomRequest;
-use App\models\Section;
 use App\repositories\Eloquent\SectionsRepository;
 
 class ClassroomController extends Controller
@@ -19,8 +18,8 @@ class ClassroomController extends Controller
     }
     public function index(GradesRepository $g)
     {
-        $grades = $g->getAll();
-        $classrooms = $this->classroom->getAll();
+        $grades = $g->getData();
+        $classrooms = $this->classroom->getData();
             return view('pages.myclassroom.index',compact(['grades','classrooms']));
     }
 

@@ -32,7 +32,7 @@
                     <tr>
                         <td>{{ $loop->index + 1}}</td>
                         <td>{{$classroom['name_'.app()->getLocale()]}}</td>
-                        <td>{{$classroom->gradess['name_'.app()->getLocale()]}}</td>
+                        <td>{{$classroom->grades['name_'.app()->getLocale()]}}</td>
                         <td>
                             <button style="color: white" type="button" data-toggle="modal" class="btn btn-danger" data-target="#delete{{$classroom ->id}}">
                                 <i class="fa fa-trash"></i>

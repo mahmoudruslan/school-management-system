@@ -14,6 +14,9 @@ public $timestamps =  true;
     public function getStatusAttribute($value){
         return $value == '1'? 'Active' : 'Not Active';
     }
+    public function students(){
+        return $this ->hasMany('App\models\Student','section_id');
+    }
 
     public function grades(){
         return $this ->belongsTo('App\models\Grade','grade_id');
