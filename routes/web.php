@@ -87,15 +87,24 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => ['loc
             Route::resource('Payments', 'PaymentsController');
 
         });
-################################################## begin Financial Accounting ##########################################
-    ####################### begin Students fees #####################################
+################################################## begin Attendances ##########################################
+
     Route::group(['namespace' => 'Attendances'],function() {
         Route::resource('Attendances', 'AttendancesController');
         Route::get('show-layout/{id}','AttendancesController@showLayout')->name('Attendances.showLayout');
-        Route::get('show-student/{id}','AttendancesController@ShowSectionStudents')->name('Attendances.ShowSectionStudents');
         Route::get('index/{id}','AttendancesController@indexx')->name('Attendances.indexx');
-        Route::get('absence-detection/{id}','AttendancesController@absenceDetection')->name('Attendances.absenceDetection');
     });
+    ################################################## begin Subjects ##########################################
+    Route::resource('Subjects', 'Subjects\SubjectController');
+    ################################################## begin exams ###############################################
+    Route::resource('results', 'ResultsController');
+    Route::get('create/{teacher_id}','ResultsController@create1')->name('results.create1');
+    Route::get('create2','ResultsController@create2')->name('results.create2');
+
+    Route::get('index','ResultsController@index1')->name('results.index1');
+    Route::get('index2/{classroom_id}','ResultsController@index2')->name('results.index2');
+    
+
 
     ############################# begin save and delete attachments ################################################
     Route::post('save-attachments/{id}','HomeController@saveAttachments')->name('save.attachments');

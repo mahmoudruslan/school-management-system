@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    {{__('Add Fees')}}
+    {{__('Add Subjects')}}
 @stop
 @section('content')
     <!-- row -->
@@ -18,33 +18,27 @@
                             </button>
                         </div>
                     @endif
-                    <form method="post" action="{{ route('Fees.store') }}">
+                    <form method="post" action="{{route('Subjects.store')}}">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="inputState">{{__('Fee Name_ar')}}</label><br>
+                                <label for="inputState">{{__('Subject Name_ar')}} : <span
+                                    class="text-danger">*</span>
+                                </label><br>
                                 @error('name_ar') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <input type="text" name="name_ar" class="form-control">
                             </div>
                             <div class="form-group col">
-                                <label for="Classroom_id">{{__('Fee Name_en')}} : <span
+                                <label for="Classroom_id">{{__('Subject Name_en')}} : <span
                                         class="text-danger">*</span></label><br>
                                 @error('name_en') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <input type="text" name="name_en" class="form-control">
                             </div>
-
-                            <div class="form-group col">
-                                <label for="section_id">{{__('Amount')}} : <span
-                                        class="text-danger">*</span> </label><br>
-                                @error('amount') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <input type="number" name="amount" class="form-control">
-                            </div>
-
                         </div><br>
-
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="inputState">{{__('Grade')}}</label><br>
+                                <label for="inputState">{{__('Grade')}} : <span
+                                    class="text-danger">*</span></label><br>
                                 @error('grade_id') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select class="custom-select mr-sm-2" name="grade_id" required>
                                     <option selected disabled>{{__('Choose Grade')}}...</option>
@@ -62,33 +56,19 @@
                                 </select>
                             </div>
                             <div class="form-group col">
-                                <label for="section_id">{{__('Year')}} : <span
+                                <label for="section_id">{{__('Choose Teacher')}} : <span
                                         class="text-danger">*</span></label><br>
-                                @error('year') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <select name="year" class="custom-select">
-                                    <option value="" selected disabled>{{__('Choose Year')}}</option>
-                                    <?php $curren_year = date('Y');?>
-                                    <option value="{{$curren_year}}">{{$curren_year}}</option>
+                                @error('teacher_id') <span class="error text-danger">{{ $message }}</span> @enderror
+                                <select name="teacher_id" class="custom-select">
+                                    @foreach ($teachers as $teacher)
+                                        <option value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
-
-                        </div><br>
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">{{ __('Notes') }}:</label><br>
-                            @error('notes') <span class="error text-danger">{{ $message }}</span> @enderror
-                            <textarea class="form-control" name="notes" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <br>
-                        <div class="form-check">
-                            <input class="form-check-input" name="all_student" type="checkbox" value="1" id="flexCheckChecked" checked>
-                            <label class="form-check-label" for="flexCheckChecked">
-                                {{__('Add to all students')}}
-                            </label>
-                          </div>
-                        <br><br>
-
+                        </div><br><br>
                         <button type="submit" class="button">{{__("Submit")}}</button>
-                        <a href="{{route('Fees.index')}}" class="btn btn-secondary">{{__("Back")}}</a>
+                        <a href="{{route('Subjects.index')}}" class="btn btn-secondary">{{__("Back")}}</a>
                     </form>
 
                 </div>

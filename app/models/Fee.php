@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fee extends Model
 {
-    protected $fillable = ['name_ar', 'name_en', 'amount', 'grade_id', 'classroom_id', 'notes', 'year'];
+    protected $fillable = ['all_student', 'name_ar', 'name_en', 'amount', 'grade_id', 'classroom_id', 'notes', 'year'];
     public $timestamps = true;
 
 

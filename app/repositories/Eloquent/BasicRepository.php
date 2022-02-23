@@ -20,10 +20,10 @@ abstract class BasicRepository implements EloquentRepositoryInterface
         return $this->model->all($columns);
     }
 
-    // public function thisModel():object
-    // {
-    //     return $this->model;
-    // }
+    public function myModel():object
+    {
+        return $this->model;
+    }
 
 
     public function create(array $attributes)

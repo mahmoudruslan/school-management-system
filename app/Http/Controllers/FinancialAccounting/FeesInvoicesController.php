@@ -24,7 +24,7 @@ class FeesInvoicesController extends Controller
         return view('pages.fee_invoices.index',compact('feeInvoices'));
     }
 
-    public function store(Request $request,FeesRepository $f,StudentAccountsRepository $sa)
+    public function store(Request $request,FeesRepository $f, StudentAccountsRepository $sa)
     {
         DB::beginTransaction();
         try{
@@ -59,7 +59,7 @@ class FeesInvoicesController extends Controller
     public function show($id,StudentsRepository $s,FeesRepository $f)
     {
         $student = $s->getById($id);
-        $fees = $f->getAll()->where('grade_id',$student->grades->id)->where('classroom_id',$student->classrooms->id);
+        $fees = $f->getData()->where('grade_id',$student->grades->id)->where('classroom_id',$student->classrooms->id);
         return view('pages.fee_invoices.create',compact('student','fees'));
     }
 

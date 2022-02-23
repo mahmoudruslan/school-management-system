@@ -93,6 +93,17 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\repositories\Eloquent\AttendancesRepository'
         );
 
+        $this->app->bind(
+            'App\repositories\SubjectsRepositoryInterface',
+            'App\repositories\Eloquent\SubjectsRepository'
+        );
+
+        $this->app->bind(
+            'App\repositories\ResultsRepositoryInterface',
+            'App\repositories\Eloquent\ResultsRepository'
+        );
+
+
     }
 
     /**

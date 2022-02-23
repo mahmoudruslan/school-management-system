@@ -63,22 +63,40 @@
                     <ul id="students-menu" class="collapse">
                         <li> <a href="{{route('Students.index')}}">{{__('Students List')}}</a></li>
                         <li> <a href="{{route('Students.create')}}">{{__('Add Student')}}</a></li>
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_upgrade">{{__('Promotions')}}<div class="pull-right"><i class="fas fa-chevron-down"></i></div><div class="clearfix"></div></a>
-                            <ul id="Students_upgrade" class="collapse">
-                                <li> <a href="{{route('Promotions.index')}}">{{__('Promotions List')}}</a> </li>
-                                <li> <a href="{{route('Promotions.create')}}">{{__('Add Promotion')}}</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Graduate students">{{__('Graduations')}}<div class="pull-right"><i class="fas fa-chevron-down"></i></div><div class="clearfix"></div></a>
-                            <ul id="Graduate students" class="collapse">
-                                <li> <a href="{{route('Graduated.index')}}">{{__('Graduating students')}}</a> </li>
-                                <li> <a href="{{route('Graduated.create')}}">{{__('Add graduations')}}</a> </li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
+
+
+                <!-- Promotions-->
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Promotions-menu">
+                        <div class="pull-left"><i class="fas fa-chalkboard-teacher"></i><span
+                                class="right-nav-text">{{__('Promotions')}}</span></div>
+                        <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="Promotions-menu" class="collapse" data-parent="#sidebarnav">
+                        <li> <a href="{{route('Promotions.index')}}">{{__('Promotions List')}}</a> </li>
+                        <li> <a href="{{route('Promotions.create')}}">{{__('Add Promotion')}}</a></li>
+                    </ul>
+                </li>
+
+
+                <!-- Graduations-->
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Graduated-menu">
+                        <div class="pull-left"><i class="fas fa-chalkboard-teacher"></i><span
+                                class="right-nav-text">{{__('Graduating students')}}</span></div>
+                        <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="Graduated-menu" class="collapse" data-parent="#sidebarnav">
+                        <li> <a href="{{route('Graduated.index')}}">{{__('Graduating students')}}</a> </li>
+                        <li> <a href="{{route('Graduated.create')}}">{{__('Add graduations')}}</a> </li>
+                    </ul>
+                </li>
+
+
                 <!-- Teachers-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu">
@@ -89,6 +107,7 @@
                     </a>
                     <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
                         <li> <a href="{{route('Teachers.index')}}">{{__('List Teachers')}}</a> </li>
+                        <li> <a href="{{route('Teachers.create')}}">{{__('Add Teachers')}}</a> </li>
                     </ul>
                 </li>
 
@@ -135,33 +154,29 @@
                         <li> <a href="{{route('Attendances.showLayout',$teacher_id = 2)}}">{{__('Absence Recording')}}</a> </li>
                     </ul>
                 </li>
+                <!-- Subjects-->
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Subjects-icon">
+                        <div class="pull-left"><i class="fas fa-calendar-alt"></i><span class="right-nav-text">{{__('Subjects')}}</span></div>
+                        <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="Subjects-icon" class="collapse" data-parent="#sidebarnav">
+                        <li> <a href="{{route('Subjects.index')}}">{{__('Subjects')}}</a> </li>
+                        <li> <a href="{{route('Subjects.create')}}">{{__('Add Subjects')}}</a> </li>
+                    </ul>
+                </li>
 
                 <!-- Exams-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Exams-icon">
-                        <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{__('Exams')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{__('Results')}}</span></div>
                         <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                        <li> <a href="themify-icons.html">Themify icons</a> </li>
-                        <li> <a href="weather-icon.html">Weather icons</a> </li>
-                    </ul>
-                </li>
-
-
-                <!-- library-->
-                <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#library-icon">
-                        <div class="pull-left"><i class="fas fa-book"></i><span class="right-nav-text">{{__('Library')}}</span></div>
-                        <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
-                        <div class="clearfix"></div>
-                    </a>
-                    <ul id="library-icon" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                        <li> <a href="themify-icons.html">Themify icons</a> </li>
-                        <li> <a href="weather-icon.html">Weather icons</a> </li>
+                        <li> <a href="{{route('results.index1')}}">{{__('Results List')}}</a> </li>
+                        <li> <a href="{{route('results.create1',$teacher_id = 2)}}">{{__('Add Results')}}</a> </li>
                     </ul>
                 </li>
 

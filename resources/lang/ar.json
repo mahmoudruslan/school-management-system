@@ -161,6 +161,7 @@
     "Fees List": "قائمة الرسوم",
     "Add Fees": "إضافة رسوم",
     "Fee Name": "اسم الرسم",
+    "Add to all students":"إضافة علي جميع الطلاب",
     "Fee Name_ar": "اسم الرسم بالعربية",
     "Fee Name_en": "اسم الرسم بالانجليزية",
     "Amount": "المبلغ",
@@ -205,6 +206,7 @@
     "Are you sure you want to delete the payment?": "هل أنت متأكد أنك تريد حذف عملية الدفع؟",
     "These fees have been added to some students before, so they cannot be deleted ": "تم إضافة هذه الرسوم علي بعض الطلاب من قبل لذلك لا يمكن حذفها",
     "Edit Payments": "تعديل المدفوعات",
+    "Fees must be paid first":"يجب دفع الرسوم أولاً",
 
 
 
@@ -216,7 +218,39 @@
     "Student absence detection": "كشف غياب الطلاب",
     "Absence is recorded":"تم تسجيل الغياب",
     "There is no absence":"لا يوجد غياب",
+    "today's date":"تاريخ اليوم",
 
+
+
+    "Subject Name":"اسم المادة",
+    "Subject":"المادة",
+    "Subjects List":"قائمة المواد",
+    "Add Subjects":"إضافة مواد",
+    "Subject Name_ar": "اسم المادة بالعربية",
+    "Subject Name_en": "اسم المادة بالانجليزية",
+    "Edit Subject":"تعديل المادة",
+    "Subjects":"المواد الدراسية",
+
+
+    "Results":"النتائج الدراسية",
+    "Result Name":"اسم الاختبار",
+    "Results List":"قائمة النتائج",
+    "Add Results":"إضافة نتائج",
+    "Result Name_ar": "اسم الاختبار بالعربية",
+    "Result Name_en": "اسم الاختبار بالانجليزية",
+    "Edit Result":"تعديل النتيجة",
+    "Choose Subject":"اختر مادة",
+    "First semester":"الفصل الدراسي الأول",
+    "Second semester":"الفصل الدراسي الثاني",
+    "Choose term":"اختر فصل دراسي",
+    "Term":"الفصل الدراسي",
+    "Degree":"الدرجة",
+    "From":"من",
+    "No results":"لا يوجد نتائج",
+    "There are no students":"لا يوجد طلاب",
+    "These results were previously recorded for these students":"تم تسجيل هذه النتائج مسبقًا لهؤلاء الطلاب",
+    "Are you sure you want to delete this student's result?":"متأكد أنك تريد حذف نتيجة هذا الطالب؟",
+    "Student Result":"نتيجة الطالب",
 
 
 

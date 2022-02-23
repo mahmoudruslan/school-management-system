@@ -35,13 +35,9 @@
                         <td>{{$attendance->classrooms['name_'.app()->getLocale()]}}</td>
                         <td>{{$attendance->sections['name_'.app()->getLocale()]}}</td>
                         <td>
-                            {{-- <a href="{{route('Attendances.edit',$attendance->id)}}" class="btn btn-info" >
-                                <i class="fa fa-edit"></i>
-                            </a> --}}
-                            <button style="color: white" data-toggle="modal" data-target="#exampleModal"
-                            class="btn btn-danger" type="button" >
-                                <i class="fa fa-trash"></i>
-                            </button>
+                            <a class="btn btn-warning" href="{{route('Students.show',$attendance->students->id)}}">
+                                <i class="far fa-eye "></i>&nbsp;{{__('Show student information')}}
+                            </a>
                         </td>
                     </tr>
                 @endforeach

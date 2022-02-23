@@ -14,17 +14,18 @@
     @endif
     <!-- end error messages -->
 
-    <h5 style="font-family: 'Cairo', sans-serif;color: red"> تاريخ اليوم : {{ date('Y-m-d') }}</h5>
-    <h5 style="font-family: 'Cairo', sans-serif;color: red">{{$students->first()->grades['name_'.app()->getLocale()]}}</h5>
-    <h5 style="font-family: 'Cairo', sans-serif;color: red">{{$students->first()->classrooms['name_'.app()->getLocale()]}}</h5>
-    <h5 style="font-family: 'Cairo', sans-serif;color: red">{{$students->first()->sections['name_'.app()->getLocale()]}}</h5>
-
+    <ul style="list-style: none;color:#3f51b5;font-size: 14px">
+        <li>{{__('today\'s date')}} : {{ date('Y-m-d') }}</li>
+        <li>{{__('Grade')}} : {{$students->first()->grades['name_'.app()->getLocale()]??''}}</li>
+        <li>{{__('Classroom')}} : {{$students->first()->classrooms['name_'.app()->getLocale()]??''}}</li>
+        <li>{{__('Section')}} : {{$students->first()->sections['name_'.app()->getLocale()]??''}}</li>
+    </ul><br>
     <form method="post" action="{{ route('Attendances.store') }}">
 
         @csrf
         <div class="table-responsive">
             <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
-                   style="text-align: center">
+                style="text-align: center">
                 <thead>
                 <tr>
                     <th class="alert-success">#</th>
@@ -44,11 +45,9 @@
                             <td>
                                 <div class="form-check inline">
                                     <input class="form-check-input" type="checkbox" value="0" name="status[{{$student->id}}]" id="flexCheckCheckedDisabled" 
-                                    @foreach($attendances as $attendance)
-                                        @if($attendance->date == substr($attendance->date, 0, 2).date('y-m-d') && $attendance->student_id == $student->id && $attendance->status == 0)
-                                            disabled checked
+                                        @if(count($attendances->where('date',substr(now(), 0, 10))) > 0 && count($attendances->where('section_id',$section_id)) > 0)
+                                            disabled 
                                         @endif
-                                    @endforeach
                                     >
                                     <label class="form-check-label text-danger" for="flexCheckCheckedDisabled">
                                         {{__('Absent')}}
@@ -66,9 +65,14 @@
                 </tbody>
             </table>
         </div>
-        <P>
-            <button class="button"  type="submit" >{{__('Submit') }}</button>
-        </P>
+        @if(count($attendances->where('date',substr(now(), 0, 10))) > 0 && count($attendances->where('section_id',$section_id)) > 0)
+            <button disabled class="btn btn-danger" type="submit" >{{__('Absence is recorded') }}</button>
+        @else
+            <button class="button" type="submit" >{{__('Submit')}}</button>
+        @endif
     </form><br>
+@endsection
+@section('js')
+
 @endsection
 

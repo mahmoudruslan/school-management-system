@@ -38,7 +38,7 @@ class StudentReceiptController extends Controller
             if(!count($countStudent) > 0 || $debit - $credit == 0)
             {
                 toastr()->error(__('This student does not owe any money'));
-                return redirect()->back();
+                return redirect()->route('Students.index');
             }elseif ($request->debit > $debit - $credit)//check if the amount bigger than debit account
             {
                 toastr()->error(__('This student owes only ') .($debit - $credit). __(' pounds'));
@@ -62,7 +62,7 @@ class StudentReceiptController extends Controller
 
             DB::commit();
             toastr()->success(__('Data saved successfully'));
-            return redirect()->back();
+            return redirect()->route('Students.index');
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->with(['error' => $e->getMessage()]);
