@@ -8,5 +8,5 @@ interface FeesInvoicesRepositoryInterface
     public function getById($id);
     public function create(array $attributes);
     public function update(array $attributes,int $id):object;
-    public function destroy($id):bool;
+    public function destroy($id);
 }

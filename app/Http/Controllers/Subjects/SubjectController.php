@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Subjects;
 use App\Http\Controllers\Controller;
 use App\repositories\Eloquent\ClassroomsRepository;
 use App\repositories\Eloquent\GradesRepository;
-use App\repositories\Eloquent\SubjectsRepository;
 use App\repositories\Eloquent\TeachersRepository;
+use App\repositories\SubjectsRepositoryInterface;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
 
     private $subject;
-    public function __construct(SubjectsRepository $subject)
+    public function __construct(SubjectsRepositoryInterface $subject)
     {
         $this->subject = $subject;
     }
@@ -35,13 +35,9 @@ class SubjectController extends Controller
 
     public function store(Request $request)
     {
-        try {
             $this->subject->create($request->all());
-            toastr()->success(__('Data saved successfully'));
-            return redirect()->back();
-        }catch(\Exception $e){
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+            return redirect()->route('Subjects.index');
+
     }
 
     public function edit($id, GradesRepository $g, ClassroomsRepository $c, TeachersRepository $t)
@@ -56,25 +52,14 @@ class SubjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
             $this->subject->update($request->all(),$id);
-            toastr()->success(__('Data updated successfully'));
             return redirect()->route('Subjects.index');
-        }catch(\Exception $e){
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
     }
 
 
     public function destroy($id)
     {
-        try {
-            $this->subject->destroy($id);
-            toastr()->success(__('Data deleted successfully'));
-            return redirect()->back();
-        }catch(\Exception $e){
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
-
+        $this->subject->destroy($id);
+        return redirect()->back();
     }
 }

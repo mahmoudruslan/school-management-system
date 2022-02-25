@@ -16,12 +16,12 @@
                     <div class="row">
                         <div class="col">
                             <label for="name_ar" class="mr-sm-2">{{ __('Grade Name_ar') }}:</label>
-                            <input id="name_ar" type="text" name="name_ar" class="form-control">
+                            <input id="name_ar" type="text" name="name_ar" class="form-control" required>
 
                         </div>
                         <div class="col">
                             <label for="name_en" class="mr-sm-2">{{ __('Grade Name_en') }}:</label>
-                            <input type="text" class="form-control" name="name_en">
+                            <input type="text" class="form-control" name="name_en" required>
                         </div>
                     </div>
                     <div class="form-group">

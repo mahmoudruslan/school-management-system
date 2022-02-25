@@ -15,12 +15,12 @@ abstract class BasicRepository implements EloquentRepositoryInterface
         $this->model = $model;
     }
 
-    public function getData($columns='*'):object
+    public function getData($columns = '*'): object
     {
         return $this->model->all($columns);
     }
 
-    public function myModel():object
+    public function myModel(): object
     {
         return $this->model;
     }
@@ -28,8 +28,13 @@ abstract class BasicRepository implements EloquentRepositoryInterface
 
     public function create(array $attributes)
     {
-
-        return $this->model->create($attributes);
+        try {
+             $create = $this->model->create($attributes);
+            toastr()->success(__('Data saved successfully'));
+            return $create;
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 
 
@@ -37,34 +42,42 @@ abstract class BasicRepository implements EloquentRepositoryInterface
     public function getById($id)
     {
         $model = $this->model->find($id);
-        if(!$model)
-        {
-            throw new ModelNotFoundException(__('not_found'));
+        if (!$model) {
+            throw new ModelNotFoundException(__('Item not found'));
         }
         return $model;
     }
 
 
-    public function update(array $attributes,int $id):object
+    public function update(array $attributes, int $id): object
     {
-        $model = $this->model->find($id);
-        if(!$model)
-        {
-            throw new ModelNotFoundException(__('not_found'));
+        try {
+            $model = $this->model->find($id);
+            if (!$model) {
+                throw new ModelNotFoundException(__('Item not found'));
+            }
+            $model->update($attributes);
+            toastr()->success(__('Data updated successfully'));
+            return $model;
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
         }
-        $model->update($attributes);
-        return $model;
     }
 
 
-    public function destroy($id):bool
+    public function destroy($id)
     {
-        $model = $this->model->find($id);
-        if(!$model)
-        {
-            throw new ModelNotFoundException(__('not_found'));
-        }
-        return $model->delete();
+        try {
 
+            $model = $this->model->find($id);
+            if (!$model) {
+                //دي بتغير نص الايرور اللي راح السيشن ف بدل ميروح بشرح المشكلة بيروح بالكلمة اللي انا كتبتها دي ودي زيادة أمان عشان محدش يعرف المشكلة فين بالظبط والتراي والكاتش بتظهر الكلام دا في الألرت
+                throw new ModelNotFoundException(__('Item not found'));
+            }
+            toastr()->success(__('Data deleted successfully'));
+            return $model->delete();
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 }

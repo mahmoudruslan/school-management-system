@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Sections;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SectionRequest;
 use App\repositories\Eloquent\ClassroomsRepository;
 use App\repositories\Eloquent\GradesRepository;
 use App\repositories\Eloquent\TeachersRepository;
 use App\repositories\SectionsRepositoryInterface;
-use Exception;
-use App\models\Student;
 use App\repositories\Eloquent\StudentsRepository;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -22,93 +21,57 @@ class SectionController extends Controller
         $this->section = $section;
     }
 
-
-
     public function index(GradesRepository $g)
     {
-
         $grades = $g->getData();
-        return view('pages.sections.index',compact(['grades']));
+        return view('pages.sections.index', compact(['grades']));
     }
 
-
-
-    public function create(GradesRepository $g,TeachersRepository $t)
+    public function create(GradesRepository $g, TeachersRepository $t)
     {
         $grades = $g->getData();
         $teachers = $t->getData(['id', 'name_en', 'name_ar']);
-        return view('pages.sections.create',compact(['grades','teachers']));
+        return view('pages.sections.create', compact(['grades', 'teachers']));
     }
-
-
 
     public function store(SectionRequest $request)
     {
-        try{
-            $Section = $this->section-> create($request->all());
-            $sectionFind = $this->section->getById($Section->id);
-            $sectionFind->teachers()->attach($request->teacher_id);
-            toastr()->success(__('Data saved successfully'));
-            return redirect()->back();
-        }catch(\Exception $e)
-            {
-                return redirect()->back()->with(['error' => $e->getMessage()]);
-            }
+        $Section = $this->section->create($request->all());
+        $sectionFind = $this->section->getById($Section->id);
+        $sectionFind->teachers()->attach($request->teacher_id);
+        return redirect()->back();
     }
 
-
-    public function edit($id,GradesRepository $g,TeachersRepository $t)
+    public function edit($id, GradesRepository $g, TeachersRepository $t)
     {
-        try{
-            $section = $this->section->getById($id);
-            $grades = $g->getData();
-            $teachers = $t->getData(['id', 'name_ar', 'name_en']);
-            return view('pages.sections.edit', compact(['grades', 'teachers', 'section']));
-        }catch(Exception $e){
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        $section = $this->section->getById($id);
+        $grades = $g->getData();
+        $teachers = $t->getData(['id', 'name_ar', 'name_en']);
+        return view('pages.sections.edit', compact(['grades', 'teachers', 'section']));
     }
-
 
     public function update(SectionRequest $request)
     {
-        try{
-            $Section = $this->section->update($request->all(),$request->id);
-            $sectionFind = $this->section->getById($Section->id);
-            $sectionFind->teachers()->sync($request->teacher_id);
-
-            toastr()->success(__('Data updated successfully'));
-            return redirect()->route('Sections.index');
-        }catch(Exception $e){
-            return redirect()->route('Sections.index')->with(['error' => $e->getMessage()]);
-        }
+        $Section = $this->section->update($request->all(), $request->id);
+        $sectionFind = $this->section->getById($Section->id);
+        $sectionFind->teachers()->sync($request->teacher_id);
+        return redirect()->route('Sections.index');
     }
 
-
-    public function destroy(Request $request,StudentsRepository $s)
+    public function destroy(Request $request, StudentsRepository $s)
     {
-        try {
-
-            $sections = $s->getData('section_id')->where('section_id', $request -> id)->pluck('section_id');
-            if(count($sections) > '0'){
-                toastr()->error(__('Student related to this section must be deleted first'));
-                return redirect()->back();
-            }
-                $this->section->destroy($request->id);
-                toastr()->success(__('Data deleted successfully'));
-                return redirect()->back();
-
-
-        } catch (Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
+        $sections = $s->getData('section_id')->where('section_id', $request->id)->pluck('section_id');
+        if (count($sections) > '0') {
+            toastr()->error(__('Student related to this section must be deleted first'));
+            return redirect()->back();
         }
+        $this->section->destroy($request->id);
+        return redirect()->back();
     }
 
-
-    public function getClassrooms($id,ClassroomsRepository $c)//related ajax code
+    public function getClassrooms($id, ClassroomsRepository $c) //related ajax code
     {
-        $list_classes = $c->getData()->where("grade_id", $id)->pluck("name_".LaravelLocalization::getCurrentLocale(), "id");
+        $list_classes = $c->getData()->where("grade_id", $id)->pluck("name_" . LaravelLocalization::getCurrentLocale(), "id");
         return $list_classes;
     }
 }
-

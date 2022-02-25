@@ -35,7 +35,6 @@ class FeeController extends Controller
 
     public function store(FeeRequest $request, StudentAccountsRepository $s_a, FeesInvoicesRepository $f_i, StudentsRepositoryInterface $s)
     {
-        try {
             if ($request->all_student == '1') //if you want add the fee to all srudent
             {
                 $fee = $this->fee->create($request->all()); //insert in fees table
@@ -62,16 +61,12 @@ class FeeController extends Controller
                         'fee_invoice_id' => $fee_invoice->id
                     ]);
                 }
-                toastr()->success(__('Data saved successfully'));
                 return redirect()->back();
             } else {
                 $this->fee->create($request->all());
-                toastr()->success(__('Data saved successfully'));
                 return redirect()->back();
             }
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+
     }
 
 
@@ -85,13 +80,9 @@ class FeeController extends Controller
 
     public function update(FeeRequest $request, $id)
     {
-        try {
             $this->fee->update($request->all(), $id);
-            toastr()->success(__('Data updated successfully'));
             return redirect()->route('Fees.index');
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+
     }
 
 

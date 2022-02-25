@@ -19,7 +19,6 @@ class ResultsController extends Controller
 
     public function index1(GradesRepositoryInterface $g)
     {
-        //$results = $this->result->getData();
         $grades = $g->getData();
         return view('pages.results.index1', compact('grades'));
     }
@@ -40,7 +39,6 @@ class ResultsController extends Controller
 
     public function store(Request $request, ResultsRepositoryInterface $r)
     {
-        try {
             foreach (array_keys($request->degree) as $studnet_id) { // in this array key = student_id _ value = degree
 
                 if (
@@ -66,11 +64,8 @@ class ResultsController extends Controller
                     ]);
                 }
             }
-            toastr()->success(__('Data saved successfully'));
             return redirect()->back();
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+
     }
 
     public function edit($id)
@@ -96,9 +91,11 @@ class ResultsController extends Controller
         $debit = $s_a->myModel()->where('student_id', $student_id)->select('debit')->sum('debit');
 
         $student = $s->getById($student_id);
+
         $student_result = $r->getData()
             ->where('student_id', $student->id)
             ->where('grade_id', $student->grade_id);
+
         $classrooms = $student_result->unique('classroom_id');
 
         return view('pages.students.result', compact(['student_result', 'classrooms', 'credit', 'debit']));
@@ -106,26 +103,18 @@ class ResultsController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
             $this->result->update([
                 'degree' => $request->degree
             ], $id);
-            toastr()->success(__('Data updated successfully'));
             return redirect()->back();
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+
     }
 
 
     public function destroy($id)
     {
-        try {
             $this->result->destroy($id);
-            toastr()->success(__('Data deleted successfully'));
             return redirect()->back();
-        } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-        }
+
     }
 }

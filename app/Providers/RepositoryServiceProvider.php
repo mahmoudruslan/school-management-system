@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+// use App\repositories\Eloquent\BooksRepository;
+// use App\repositories\BooksRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -102,6 +104,16 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\repositories\ResultsRepositoryInterface',
             'App\repositories\Eloquent\ResultsRepository'
         );
+
+        $this->app->bind(
+            'App\repositories\BooksRepositoryInterface',
+            'App\repositories\Eloquent\BooksRepository'
+        );
+
+        // $this->app->bind(
+        //     BooksRepositoryInterface::class,
+        //     BooksRepository::class
+        // );
 
 
     }

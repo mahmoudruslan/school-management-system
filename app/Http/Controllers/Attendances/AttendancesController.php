@@ -27,7 +27,6 @@ class AttendancesController extends Controller
 
     public function store(Request $request)
     {
-        try {
             foreach ($request->student_id as $id){
 
                     $this->attendance->create([
@@ -39,13 +38,8 @@ class AttendancesController extends Controller
                         'date' => date('y-m-d'),
                         'status' => $request->status[$id]??'1'
                     ]);
-                    toastr()->success(__('Absence is recorded')); 
             }
             return redirect()->back();
-        }catch(\Exception $e){
-            return redirect()->back()->with(['error' => $e->getMessage()]);
-
-        }
     }
 
     public function showLayout($id,TeachersRepository $t,GradesRepository $g)

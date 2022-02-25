@@ -183,15 +183,14 @@
 
                 <!-- Onlinec lasses-->
                 <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Onlineclasses-icon">
-                        <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{__('Onlineclasses')}}</span></div>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Books-icon">
+                        <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{__('Books')}}</span></div>
                         <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
                         <div class="clearfix"></div>
                     </a>
-                    <ul id="Onlineclasses-icon" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                        <li> <a href="themify-icons.html">Themify icons</a> </li>
-                        <li> <a href="weather-icon.html">Weather icons</a> </li>
+                    <ul id="Books-icon" class="collapse" data-parent="#sidebarnav">
+                        <li> <a href="{{route('books.index')}}">{{__('Books List')}}</a> </li>
+
                     </ul>
                 </li>
 
