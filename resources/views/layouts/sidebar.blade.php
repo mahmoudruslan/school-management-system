@@ -184,31 +184,23 @@
                 <!-- Onlinec lasses-->
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#Books-icon">
-                        <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{__('Books')}}</span></div>
+                        <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{__('Books')}}</span></div>
                         <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Books-icon" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="{{route('books.index')}}">{{__('Books List')}}</a> </li>
+                        <li> <a href="{{route('books.index')}}">{{__('Books')}}</a> </li>
+                        <li> <a href="{{route('books.create')}}">{{__('Add book')}}</a> </li>
 
                     </ul>
                 </li>
-
 
                 <!-- Settings-->
                 <li>
-                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#Settings-icon">
-                        <div class="pull-left"><i class="fas fa-cogs"></i><span class="right-nav-text">{{__('Settings')}}</span></div>
-                        <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
-                        <div class="clearfix"></div>
+                    <a href="{{route('school_data.index')}}" >
+                        <i class="fas fa-cogs"></i><span class="right-nav-text">{{__('school data')}}</span>
                     </a>
-                    <ul id="Settings-icon" class="collapse" data-parent="#sidebarnav">
-                        <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                        <li> <a href="themify-icons.html">Themify icons</a> </li>
-                        <li> <a href="weather-icon.html">Weather icons</a> </li>
-                    </ul>
                 </li>
-
 
                 <!-- Users-->
                 <li>

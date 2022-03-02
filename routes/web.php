@@ -25,7 +25,7 @@ Route::group(['middleware' => 'guest'], function () { //عشان اللي عام
 
 ############################# Package MCamara ###########################################
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth','throttle:10,1']], function () {
     ############################# dashboard ################################################################
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
@@ -104,10 +104,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
     ################################################## begin Books ##########################################
     Route::resource('books', 'BooksController');
+    Route::get('download/{id}', 'BooksController@download')->name('books.download');
 
-
-
+    ################################################## begin settings ###############################################
+    Route::resource('school_data', 'SchoolDataController');
     ############################# begin save and delete attachments ################################################
+
+    Route::group([ 'middleware' => ['throttle:10,1']], function () {
+
+        //دي ميدل ويير نازلة مع لارفيل عشان لو حد عمل ريكوستات كتيير علي السيرفر ورا بعض يوقفه وقت معين ميعرفش يعمل ريكوستات     دقيقة مثلا اوي زي من 
+    });
+
+
+
+
     Route::post('save-attachments/{id}', 'HomeController@saveAttachments')->name('save.attachments');
     Route::post('delete-attachments/{id}', 'HomeController@deleteAttachments')->name('delete.attachments');
     Route::get('empty', function () {

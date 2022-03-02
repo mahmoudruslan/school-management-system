@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 
@@ -115,7 +116,6 @@ preloader -->
     <!-- plugin_path -->
     <script>
         var plugin_path = 'js/';
-
     </script>
 
     <!-- chart -->

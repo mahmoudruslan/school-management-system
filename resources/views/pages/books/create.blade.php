@@ -1,80 +1,82 @@
 @extends('layouts.master')
+
 @section('title')
-    {{__('Add Books')}}
+    {{ __('Add book') }}
 @stop
+
 @section('content')
     <!-- row -->
     <div class="row">
-
         <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
-                <div class="card-body">
-
-                    @if (Session::has('error'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{{Session::get('error')}}</strong>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
-                    <form method="post" action="{{route('books.store')}}">
-                        @csrf
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="inputState">{{__('Book Name_ar')}} : <span
-                                    class="text-danger">*</span>
-                                </label><br>
-                                @error('name_ar') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <input type="text" name="name_ar" class="form-control">
+            <div class="card-body">
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{ session()->get('error') }}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                <div class="col-xs-12">
+                    <div class="col-md-12">
+                        <br>
+                        <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="title">{{ __('Book name') }}</label>
+                                    <input type="text" name="title" class="form-control">
+                                </div>
                             </div>
-                            <div class="form-group col">
-                                <label for="Classroom_id">{{__('Book Name_en')}} : <span
-                                        class="text-danger">*</span></label><br>
-                                @error('name_en') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <input type="text" name="name_en" class="form-control">
-                            </div>
-                        </div><br>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label for="inputState">{{__('Grade')}} : <span
-                                    class="text-danger">*</span></label><br>
-                                @error('grade_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <select class="custom-select mr-sm-2" name="grade_id" required>
-                                    <option selected disabled>{{__('Choose Grade')}}...</option>
-                                    @foreach($grades as $grade)
-                                        <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group col">
-                                <label for="Classroom_id">{{trans('Classrooms')}}: <span
-                                        class="text-danger">*</span></label><br>
-                                @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <select class="custom-select mr-sm-2" name="classroom_id" >
-
-                                </select>
-                            </div>
-                            <div class="form-group col">
-                                <label for="section_id">{{__('Choose Teacher')}} : <span
-                                        class="text-danger">*</span></label><br>
-                                @error('teacher_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <select name="teacher_id" class="custom-select">
-                                    @foreach ($teachers as $teacher)
-                                        <option value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
-                                    @endforeach
-
-                                </select>
-                            </div>
-                        </div><br><br>
-                        <button type="submit" class="button">{{__("Submit")}}</button>
-                        <a href="{{route('books.index')}}" class="btn btn-secondary">{{__("Back")}}</a>
-                    </form>
-
+                            <br>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="grade_id">{{ trans('Grade') }} : <span
+                                                class="text-danger">*</span></label>
+                                        <select class="custom-select mr-sm-2" name="grade_id">
+                                            <option selected disabled>{{ trans('Choose Grade') }}...</option>
+                                            @foreach ($grades as $grade)
+                                                <option value="{{ $grade->id }}">
+                                                    {{ $grade['name_' . app()->getLocale()] }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="classroom_id">{{ trans('Classroom') }} : <span
+                                                class="text-danger">*</span></label>
+                                        <select class="custom-select mr-sm-2" name="classroom_id">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="section_id">{{ trans('Section') }} : </label>
+                                        <select class="custom-select mr-sm-2" name="section_id">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div class="form-row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="formFileMultiple"
+                                            class="form-label">{{ __('Attachments') }}</label>
+                                        <input class="form-control" type="file" id="formFileMultiple" name="file_name"
+                                            required>
+                                        <input type="hidden" name="teacher_id" value="2">
+                                    </div>
+                                </div>
+                            </div><br>
+                            <button class="button"
+                                type="submit">{{ __('Submit') }}</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
     <!-- row closed -->
 @endsection

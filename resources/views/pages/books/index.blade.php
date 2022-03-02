@@ -1,56 +1,68 @@
 @extends('layouts.master')
+
 @section('title')
-    {{__('Subjects List')}}
+    {{ __('Books') }}
 @stop
 
 @section('content')
-    <!-- start error messages -->
-    @if(Session::has('error'))
-        <div class="alert alert-danger">
-            {{ Session::get('error')}}
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-12 mb-30">
+            <div class="card-body">
+                <div class="col-xl-12 mb-30">
+                    <div class="card-body">
+                        <a href="{{ route('books.create') }}" class="button"
+                            type="button">{{ __('Add book') }}</a>
+                        <br><br>
+                        <div class="table-responsive">
+                            <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
+                                data-page-length="50" style="text-align: center">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{ __('Book name') }}</th>
+                                        <th>{{ __('Teacher Name') }}</th>
+                                        <th>{{ __('Grade') }}</th>
+                                        <th>{{ __('Classroom') }}</th>
+                                        <th>{{ __('Section') }}</th>
+                                        <th>{{ __('Processes') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($books as $book)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $book->title }}</td>
+                                            <td>{{ $book->teachers['name_' . app()->getLocale()] }}</td>
+                                            <td>{{ $book->grades['name_' . app()->getLocale()] }}</td>
+                                            <td>{{ $book->classrooms['name_' . app()->getLocale()] }}</td>
+                                            <td>{{ $book->sections['name_' . app()->getLocale()] }}</td>
+                                            @foreach ($book->images as $img)
+                                                <td>{{ $img->id }}</td>
+                                            @endforeach
+                                            <td>
+                                                <form class="d-inline"
+                                                    action="{{ route('books.download', $book->file_name) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('patch')
+                                                    <input type="hidden" name="file_name" value="{{ $book->file_name }}">
+                                                    <input type="hidden" name="title" value="{{ $book->title }}">
+                                                    <button type="submit" class="btn btn-primary btn-sm" role="button"><i
+                                                            class="fas fa-download"></i></button>
+                                                </form>
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    data-target="#delete_book{{ $book->id }}"
+                                                    title="{{ __('Delete') }}"><i class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+                                        @include('pages.books.destroy')
+                                    @endforeach
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endif
-    <!-- end error messages -->
-    <a href="{{route('Subjects.create')}}" type="button" class="button x-small" >
-        {{ __('Add Subjects') }}
-    </a><br><br>
-
-
-    {{-- myTable --}}
-    <div class="table-responsive">
-        <table  id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center" >
-            <thead>
-            <tr id="myUL">
-                <th>#</th>
-                <th>{{__("Subject Name")}}</th>
-                <th>{{__("Grade")}}</th>
-                <th>{{__("Classroom")}}</th>
-                <th>{{__("Teacher Name")}}</th>
-
-                <th class="pl-5 pr-4">{{__("Processes")}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($books as $book)
-                <tr>
-                    <td>{{$loop->index+1}}</td>
-                    <td>{{$book['name_'.app()->getLocale()]}}</td>
-                    <td>{{$book->grades['name_'.app()->getLocale()]}}</td>
-                    <td>{{$book->classrooms['name_'.app()->getLocale()]}}</td>
-                    <td>{{$book->teachers['name_'.app()->getLocale()]}}</td>
-
-                    <td>
-                        <a href="{{route('Subjects.edit',$book->id)}}" class="btn btn-info" >
-                            <i class="fa fa-edit"></i>
-                        </a>
-                        <button style="color: white" data-toggle="modal" data-target="#exampleModal{{$book->id}}"  class="btn btn-danger" type="button" >
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-                @include('pages.books.delete')
-            @endforeach
-            </tbody>
-        </table>
     </div>
 @endsection

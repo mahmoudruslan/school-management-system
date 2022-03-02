@@ -252,7 +252,24 @@
     "Are you sure you want to delete this student's result?":"متأكد أنك تريد حذف نتيجة هذا الطالب؟",
     "Student Result":"نتيجة الطالب",
 
+    "Book name":"اسم الكتاب",
+    "Books":"الكتب",
+    "delete the book":" حذف الكتاب",
+    "Add book":"إضافة كتاب",
+    "Are you sure you want to delete the book?":"متأكد أنك تريد حذف الكتاب؟",
 
+
+    "School name in English":"اسم المدرسة بالانجليزية",
+    "School name in Arabic":"اسم المدرسة بالعربية",
+    "school time":"وقت المدرسة",
+    "school rating":"تصنيف المدرسة",
+    "Year Founded":"سنة التأسيس",
+    "phone":" الهاتف",
+    "School Manager":"مدير المدرسة",
+    "city":"المدينة",
+    "Updating data":"تحديث البيانات",
+    "school data":"بيانات المدرسة",
+    "Logo":"الشعار",
 
     "This field is required" : "هذا الحقل مطلوب",
     "This field must be numbers":"هذا الحقل يجب أن يكون أرقام",
@@ -311,7 +328,7 @@
     "Are you sure you want to delete this attachment?": "هل أنت متأكد أنك تريد حذف هذا المرفق؟",
 
 
-
+    "There are no data":"لا يوجد بيانات",
     "Item not found":"العنصر غير موجود",
     "previous" : "&laquo; Previous",
     "logout" : "تسجيل خروج",

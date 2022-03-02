@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Traits;
+
 use App\models\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -10,7 +12,7 @@ trait SaveImgTrait
     function saveimg($name_folder, $photo_owner_id, $model_path, $images)
     {
 
-        foreach($images as $image) {
+        foreach ($images as $image) {
 
             $photo = $image->getClientOriginalExtension();
             $name = time() . Str::random(6) . '.' . $photo;
@@ -19,41 +21,40 @@ trait SaveImgTrait
                 'imageable_id' => $photo_owner_id,
                 'imageable_type' => $model_path,
             ]);
-            $image->storeAs($name_folder,$name,'attachments');
-            //$image->move($name_folder,$name);
-
-
+            $image->storeAs($name_folder, $name, 'attachments');
         }
     }
 
 
 
-    function deleteDirectory($directory_path,$id){
-        $image_ids = Image::where('imageable_id',$id)->select('id')->get();
-        foreach ($image_ids as $image_id){
+    function deleteDirectory($directory_path, $id)
+    {
+        $image_ids = Image::where('imageable_id', $id)->select('id')->get();
+        foreach ($image_ids as $image_id) {
             $image = Image::find($image_id->id);
             $image->delete();
         }
-        if(directoryExists($directory_path)){
+        if (directoryExists($directory_path)) {
             File::deleteDirectory(public_path($directory_path));
         }
     }
 
-    function deleteFiles($directory_path,$file_name,$id){
+    function deleteFiles($directory_path, $file_name, $id)
+    {
         try {
-
-            File::delete('attachments/'.$directory_path.'/'.$file_name);
+            File::delete('attachments/' . $directory_path . '/' . $file_name);
             $image = Image::find($id);
-            $image->delete();
-
-            $files = File::allFiles('attachments/'.$directory_path);
-            if(empty($files)){
-                File::deleteDirectory(public_path('attachments/'.$directory_path));
+            if($image)
+            {
+                $image->delete();
             }
-        }catch (\Exception $e){
-            return redirect()->back()->with(['error'=>$e->getMessage()]);
+            
+            $files = File::allFiles('attachments/' . $directory_path);
+            if (empty($files)) {
+                File::deleteDirectory(public_path('attachments/' . $directory_path));
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
         }
-
     }
-
 }
