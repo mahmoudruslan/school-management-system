@@ -72,8 +72,8 @@ class ParentSeeder extends Seeder
         foreach($xs as $x)
         {
             TheParent::create([
-                'email'=> $x['en'].rand('1','10').Str::random(3).'.gmail.com',
-                'password'=> Hash::make('11111111'),
+                'email'=>  $x['en']. '.' .rand(1, 12).Str::random(1).'@gmail.com',
+                'password'=> '11111111',
                 'name_father_ar'=> $x['ar'],
                 'name_father_en'=> $x['en'],
                 'national_id_father'=> rand('1','30'),

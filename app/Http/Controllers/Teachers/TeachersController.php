@@ -32,7 +32,7 @@ class TeachersController extends Controller
     }
 
 
-    public function store(TeachersRequest $request)
+    public function store(Request $request)
     {
         $this->teacher->create($request->all());
         return redirect()->back();

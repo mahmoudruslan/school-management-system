@@ -87,7 +87,7 @@ class MyParents extends Component
         try{
             $parent = TheParent::create([
                 'email'=> $this->email,
-                'password'=> Hash::make($this->password),
+                'password'=> $this->password,
                 'name_father_ar'=> $this->name_father_ar,
                 'name_father_en'=> $this->name_father_en,
                 'national_id_father'=> $this->national_id_father,

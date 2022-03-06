@@ -3,8 +3,10 @@
         <nav class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <!-- logo -->
             <div class="text-left navbar-brand-wrapper">
-                <a class="navbar-brand brand-logo" href="{{url('dashboard')}}"><img src="{{URL::asset('assets/images/logo-dark.png')}}" alt=""></a>
-                <a class="navbar-brand brand-logo-mini" href="{{url('dashboard')}}"><img src="{{URL::asset('assets/images/logo-icon-dark.png')}}" alt=""></a>
+                <a class="navbar-brand brand-logo" href="#"><img
+                        src="{{ URL::asset('assets/images/logo-dark.png') }}" alt=""></a>
+                <a class="navbar-brand brand-logo-mini" href="#"><img
+                        src="{{ URL::asset('assets/images/logo-icon-dark.png') }}" alt=""></a>
             </div>
             <!-- Top bar left -->
             <ul class="nav navbar-nav mr-auto">
@@ -18,7 +20,8 @@
                         <div class="search-box not-click">
                             <input type="text" class="not-click form-control" placeholder="Search" value=""
                                 name="search">
-                            <button class="search-button" type="submit"> <i class="fa fa-search not-click"></i></button>
+                            <button class="search-button" type="submit"> <i
+                                    class="fa fa-search not-click"></i></button>
                         </div>
                     </div>
                 </li>
@@ -28,24 +31,22 @@
             <ul class="nav navbar-nav ml-auto">
 
                 <div class="dropdown" style="margin-top: 6px">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @if(App::getLocale() == 'ar')
-    
-                        {{ LaravelLocalization::getCurrentLocaleName() }}
-                        <img src="{{ URL::asset('assets/images/flags/EG.png') }}" alt="">
-
-
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @if (App::getLocale() == 'ar')
+                            {{ LaravelLocalization::getCurrentLocaleName() }}
+                            <img src="{{ URL::asset('assets/images/flags/EG.png') }}" alt="">
                         @else
-                        {{ LaravelLocalization::getCurrentLocaleName() }}
-                        <img src="{{ URL::asset('assets/images/flags/US.png') }}" alt="">
-
+                            {{ LaravelLocalization::getCurrentLocaleName() }}
+                            <img src="{{ URL::asset('assets/images/flags/US.png') }}" alt="">
                         @endif
-                    </button> 
+                    </button>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <li>
-                                <a style="margin: 0px" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                <a style="margin: 0px" rel="alternate" hreflang="{{ $localeCode }}"
+                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                     {{ $properties['native'] }}
                                 </a>
                             </li>
@@ -78,7 +79,8 @@
                                 class="float-right text-muted time">7 hrs</small> </a>
                         <a href="#" class="dropdown-item">Database report<small class="float-right text-muted time">1
                                 days</small> </a>
-                        <a href="#" class="dropdown-item">Order confirmation<small class="float-right text-muted time">2
+                        <a href="#" class="dropdown-item">Order confirmation<small
+                                class="float-right text-muted time">2
                                 days</small> </a>
                     </div>
                 </li>
@@ -111,7 +113,7 @@
                 <li class="nav-item dropdown mr-30">
                     <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
                         aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ URL::asset('assets/images/profile-avatar.jpg')}}" alt="avatar">
+                        <img src="{{ URL::asset('assets/images/profile-avatar.jpg') }}" alt="avatar">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="dropdown-header">
@@ -131,13 +133,23 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
 
-                        
-                        <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="text-danger ti-unlock"></i>{{ __('logout') }}</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+                @if (auth('student')->check())
+                        <form method="GET" action="{{ route('logout', 'student') }}">
+                @elseif(auth('teacher')->check())
+                        <form method="GET" action="{{ route('logout', 'teacher') }}">
+                @elseif(auth('parent')->check())
+                        <form method="GET" action="{{ route('logout', 'parent') }}">
+                @else
+                        <form method="GET" action="{{ route('logout', 'web') }}">
+                @endif
+                        {{-- <form method="GET" action="{{ route('logout', 'teacher') }}"> --}}
                             @csrf
-                            </form>
-                        </div>
+                            <a class="dropdown-item" href="#"
+                                onclick="event.preventDefault();this.closest('form').submit();"><i
+                                    class="bx bx-log-out"></i>تسجيل الخروج</a>
+                        </form>
+                    </div>
 
                 </li>
             </ul>

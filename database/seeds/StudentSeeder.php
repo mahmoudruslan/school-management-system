@@ -59,7 +59,7 @@ class StudentSeeder extends Seeder
                 'name_ar' => $x['ar'],
                 'name_en' => $x['en'],
                 'email' => Str::random(10).'@gmail.com',
-                'password' => Hash::make('11111111'),
+                'password' => '11111111',
                 'nationality_id' => Nationality::all()->unique()->random()->id,
                 'blood_type_id' => BloodType::all()->unique()->random()->id,
                 'date_of_birth' => '2006-5-06',

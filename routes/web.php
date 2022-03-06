@@ -16,19 +16,36 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-Auth::routes();
-Route::group(['middleware' => 'guest'], function () { //عشان اللي عامل لوج ان لو جه يدخل علي اللوجن تاني يدخله علي الداش بورد علي طول
-    Route::get('/', function () {
-        return view('auth.login'); //يعني محدش هيعرف يدخل علي الراوت دا غير اللي مش عامل لوجن
-    });
-});
+ //Auth::routes();// ->name('login')
+// Route::group(['middleware' => 'guest'], function () { 
+    // Route::get('/', function () {
+    //     return view('auth.login'); 
+    // });
+
 
 ############################# Package MCamara ###########################################
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth','throttle:10,1']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
     ############################# dashboard ################################################################
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    //Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    
 
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('login-show/{type}', 'Auth\LoginController@showForm')->name('login.show');
+
+        Route::post('/login','Auth\LoginController@login')->name('login');
+
+        Route::get('/', function () {
+            return view('auth.selection'); 
+        })->name('selection');
+    });
+    
+    Route::GET('logout/{type}','Auth\LoginController@logout')->name('logout');
+
+    Route::get('teachers/dashboard', 'HomeController@teacher')->middleware('auth:teacher');
+    Route::get('students/dashboard', 'HomeController@student')->middleware('auth:student');
+    Route::get('parents/dashboard', 'HomeController@parent')->middleware('auth:parent');
+    Route::get('admin/dashboard', 'HomeController@admin')->middleware('auth:web');
 
     ############################# begin grades ###################################################################
     Route::group(['namespace' => 'grades'], function () {

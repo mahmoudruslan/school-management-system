@@ -2,15 +2,20 @@
 
 namespace App\models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class TheParent extends Model
+class TheParent extends Authenticatable
 {
     protected $guarded = [];
     public $timestamps = true;
 
 
-
+    public function setPasswordAttribute($password)
+    {
+            $this->attributes['password'] = Hash::make($password);
+    }
+    
     public function images()
     {
         return $this->morphMany('App\models\Image', 'imageable');

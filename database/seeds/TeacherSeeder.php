@@ -49,8 +49,8 @@ class TeacherSeeder extends Seeder
         foreach($xs as $x)
         {
             Teacher::create([
-                'email'=> $x['en'].rand(1, 12).Str::random(1).'.gmail.com',
-                'password'=> Hash::make('11111111'),
+                'email'=> $x['en']. '.' .rand(1, 12).Str::random(1).'@gmail.com',
+                'password'=> '00000000',
                 'name_ar'=> $x['ar'],
                 'name_en'=> $x['en'],
                 'gender'=> 1,

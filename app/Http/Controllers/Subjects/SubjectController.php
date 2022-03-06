@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Subjects;
 
 use App\Http\Controllers\Controller;
+use App\models\Subject;
 use App\repositories\Eloquent\ClassroomsRepository;
 use App\repositories\Eloquent\GradesRepository;
 use App\repositories\Eloquent\TeachersRepository;
 use App\repositories\SubjectsRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class SubjectController extends Controller
 {

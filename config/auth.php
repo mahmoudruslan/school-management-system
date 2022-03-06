@@ -42,20 +42,20 @@ return [
             'provider' => 'users',
         ],
 
-        // 'student' => [
-        //     'driver' => 'session',
-        //     'provider' => 'students',
-        // ],
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
 
-        // 'teacher' => [
-        //     'driver' => 'session',
-        //     'provider' => 'teachers',
-        // ],
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ],
 
-        // 'parent' => [
-        //     'driver' => 'session',
-        //     'provider' => 'the_parents',
-        // ],
+        'parent' => [
+            'driver' => 'session',
+            'provider' => 'the_parents',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -88,21 +88,20 @@ return [
             'model' => App\models\User::class,
         ],
 
-        // 'studetns' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\models\Student::class,
-        // ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Student::class,
+        ],
 
-        // 'teachers' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\models\Teacher::class,
-        // ],
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Teacher::class,
+        ],
 
-        // 'the_parents' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\models\TheParent::class,
-        // ],
-
+        'the_parents' => [
+            'driver' => 'eloquent',
+            'model' => App\models\TheParent::class,
+        ],
 
     ],
 

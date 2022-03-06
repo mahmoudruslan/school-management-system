@@ -14,19 +14,39 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    // public function index()
+    // {
+    //     return view('dashboard');
+    // }
+
+    public function teacher()
     {
-        return view('dashboard');
+        return view('dashboards.teacher');
+    }
+
+    public function student()
+    {
+        return view('dashboards.student');
+    }
+
+    public function parent()
+    {
+        return view('dashboards.parents');
+    }
+
+    public function admin()
+    {
+        return view('dashboards.admin');
     }
 
 
