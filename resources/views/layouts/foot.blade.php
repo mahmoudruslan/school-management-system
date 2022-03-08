@@ -32,7 +32,7 @@
             let grade_id = $(this).val();
             if (grade_id) {
                 $.ajax({
-                    url: "{{URL::to('classrooms') }}/" + grade_id,
+                    url: "{{URL::to('admin/classrooms') }}/" + grade_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -55,7 +55,7 @@
             let classroom_id = $(this).val();
             if (classroom_id) {
                 $.ajax({
-                    url: "{{URL::to('section') }}/" + classroom_id,
+                    url: "{{URL::to('admin/section') }}/" + classroom_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -79,7 +79,7 @@
             let grade_id = $(this).val();
             if (grade_id) {
                 $.ajax({
-                    url: "{{URL::to('classrooms') }}/" + grade_id,
+                    url: "{{URL::to('admin/classrooms') }}/" + grade_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -101,7 +101,7 @@
             let classroom_id = $(this).val();
             if (classroom_id) {
                 $.ajax({
-                    url: "{{URL::to('section') }}/" + classroom_id,
+                    url: "{{URL::to('admin/section') }}/" + classroom_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

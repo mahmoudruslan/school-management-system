@@ -64,12 +64,12 @@
                 <label for="inputName" class="control-label">{{__('Choose Teacher')}}</label><br>
                 <select  name="teacher_id[]" class="custom-select {{ $errors->has('teacher_id') ? ' is-invalid' : '' }}" multiple aria-label="multiple select example">
                     @foreach($section->teachers as $teacher)
-                        <option selected value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
+                        <option selected value="{{$teacher->id}}">{{$teacher->admin['name_'.app()->getLocale()]}}</option>
                     @endforeach
 
 
                     @foreach($teachers as $teacher)
-                        <option value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
+                        <option value="{{$teacher->id}}">{{$teacher->admin['name_'.app()->getLocale()]}}</option>
                     @endforeach
                 </select>
                 @if($errors->has('teacher_id'))

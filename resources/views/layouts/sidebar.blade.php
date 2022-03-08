@@ -65,7 +65,6 @@
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i class="fas fa-user-graduate"></i>{{__('Students')}}<div class="pull-right"><i class="fas fa-chevron-down"></i></div><div class="clearfix"></div></a>
                     <ul id="students-menu" class="collapse">
                         <li> <a href="{{route('Students.index')}}">{{__('Students List')}}</a></li>
-                        <li> <a href="{{route('Students.create')}}">{{__('Add Student')}}</a></li>
                     </ul>
                 </li>
 

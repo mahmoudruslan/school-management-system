@@ -30,8 +30,8 @@ class TeachersRequest extends FormRequest
             'name_en' => 'required|max:50',
             'address'=> 'required|max:200',
             'joining_date'=> 'required',
-            'specialization_id'=> 'required',
-            'gender'=> 'required|in:1,0',
+            'phone'=> 'required',
+            
 
 
         ];
@@ -40,8 +40,7 @@ class TeachersRequest extends FormRequest
         {
             $rules += [
                 'password' => 'required|max:8',
-
-
+                'gender'=> 'required|in:1,0',
             ];
         }
         return $rules;
@@ -51,12 +50,12 @@ class TeachersRequest extends FormRequest
     {
         return [
             'gender.required' => __('This field is required'),
-            'specialization_id.required' => __('This field is required'),
             'joining_date.required' => __('This field is required'),
             'email.required' => __('This field is required'),
             'email.email' => __('This field must be an email'),
             'name_ar.required' => __('This field is required'),
             'name_en.required' => __('This field is required'),
+            'phone.required' => __('This field is required'),
             'name_ar.max' => __('This is field must be no more than 50 characters'),
 
             'name_en.max' => __('This is field must be no more than 50 characters'),

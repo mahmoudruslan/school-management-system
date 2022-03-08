@@ -13,6 +13,11 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
+
+
+
+
+
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name_ar');
@@ -20,16 +25,12 @@ class CreateStudentsTable extends Migration
             $table->string('email');
             $table->string('password');
 
-
-
-
-            $table->unsignedBigInteger('nationality_id');
-            $table->foreign('nationality_id')->references('id')->on('nationalities');
-            $table->unsignedBigInteger('blood_type_id')->nullable();
-            $table->foreign('blood_type_id')->references('id')->on('blood_types');
+            $table->foreignId('student_nationality_id')->references('id')->on('nationalities');
+            $table->unsignedBigInteger('student_blood_type_id')->nullable();
+            $table->foreign('student_blood_type_id')->references('id')->on('blood_types');
             $table->string('date_of_birth');
-            $table->unsignedBigInteger('religion_id');
-            $table->foreign('religion_id')->references('id')->on('religions');
+            $table->string('religion');
+
 
             $table->unsignedInteger('grade_id')->nullable();
             $table->foreign('grade_id')->references('id')->on('grades');
@@ -39,9 +40,9 @@ class CreateStudentsTable extends Migration
             $table->foreign('section_id')->references('id')->on('sections');
             $table->unsignedBigInteger('parent_id');
             $table->foreign('parent_id')->references('id')->on('the_parents');
-            $table->string('academic_year');
+            $table->string('joining_date')->default(date('Y-m-d'));
             $table->string('gender');
-            $table->string('address');
+            $table->string('student_address');
             $table->string('entry_status')->default('0');
             $table->softDeletes();
             $table->timestamps();

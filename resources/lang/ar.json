@@ -16,7 +16,7 @@
     "Father's Job":"وظيفة الأب",
     "Mother's Job": "وظيفة الأم",
     "Father's National Id":  "الرقم القومي للأب",
-    "Mother's National Id": "الرقم القومي الأم",
+    "Mother's National Id": "الرقم القومي للأم",
     "Father's Passport Number": "رقم جواز سفر الأب",
     "Mother's Passport Number": "رقم جواز سفر الأم",
     "Father's Blood Type": "فصيلة دم الأب",
@@ -37,6 +37,7 @@
     "Choose Parent": "اختر ولي الأمر",
     "Attachments related to the parent will be deleted" : "سيتم حذف المرفقات المتعلقة بولي الأمر",
     "Are you sure you want to save the data?": "هل أنت متأكد أنك تريد حفظ البيانات؟",
+    "Parent's data":"بيانات ولي الأمر",
 
 
     "Add Grades" : "إضافة مراحل دراسية",
@@ -98,6 +99,15 @@
     "Edit student data": "تعديل بيانات الطالب",
     "Add a fee invoice": "إضافة فاتورة رسوم",
     "Delete student": "حذف الطالب",
+    "Muslim":"مسلم",
+    "Christian":"مسيحي",
+    "Student attachments":"مرفقات الطالب",
+    "Student Address":"عنوان الطالب",
+    "Student's blood type":"فصيلة دم الطالب",
+    "Father's blood type":"فصيلة دم الأب",
+    "Student Nationality":"جنسية الطالب",
+    "Father Nationality":"جنسية الأب",
+    "Date of Birth":"تاريخ الميلاد",
 
     "Promotions":"الترقيات",
     "Promotions List":"قائمة الترقيات",
@@ -142,6 +152,7 @@
 
 
     "Teachers":"المعلمين",
+    "phone number":"رقم الهاتف",
     "List Teachers" : "قائمة المعلمين",
     "Choose Teacher": "حدد المعلم",
     "Teachers List" : "قائمة المعلمين",
@@ -272,10 +283,15 @@
     "Logo":"الشعار",
 
     "This field is required" : "هذا الحقل مطلوب",
+    "This field must be a date":"هذا الحقل يجب أن يكون تاريخ",
     "This field must be numbers":"هذا الحقل يجب أن يكون أرقام",
     "This field must be unique" : "هذا الاسم موجود من قبل",
     "The notes field must be no more than 250 characters" : "حقل الملاحظات يجب ألا يزيد عدد الأحرف عن 250 حرفًا",
     "This is field must be no more than 100 characters" : "يجب ألا يزيد هذا الحقل عن 100 حرف",
+    "This is field must be no more than 14 number" : "يجب ألا يزيد هذا الحقل عن 14 رقم",
+    "This field must be at least 14 number" : "يجب ألا يقل هذا الحقل عن 14 رقم",
+    "This is field must be no more than 20 number" : "يجب ألا يزيد هذا الحقل عن 20 رقم",
+    "This field must be at least 6 number" : "يجب ألا يقل هذا الحقل عن 6 رقم",
     "This is field must be no more than 200 characters" : "يجب ألا يزيد هذا الحقل عن 200 حرف",
     "This is field must be no more than 50 characters" : "يجب ألا يزيد هذا الحقل عن 50 حرف",
     "This is field must be no more than 8 characters" : "يجب ألا يزيد هذا الحقل عن 8 حرف",
@@ -292,7 +308,8 @@
     "user" : "We can't find a user with that email address.",
     "Invalid email": "بريد إلكتروني غير صالح",
 
-
+    "employee":"موظف",
+    "student":"طالب",
     "Data saved successfully": "تم حفظ البيانات بنجاح",
     "Data updated successfully": "تم تعديل البيانات بنجاح",
     "Data deleted successfully": "تم حذف البيانات بنجاح",

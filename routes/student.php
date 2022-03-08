@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student']], function () {
+Route::group([
+    
+    'prefix' => LaravelLocalization::setLocale() .'/'.'student',
 
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student']
 
-    // Route::group(['namespace' => 'Teachers'], function () {
-    //     Route::resource('Teachers', 'TeachersController');
-    // });
+], function () {
 
+    Route::group(['namespace' => 'User'], function () {
+
+        Route::get('dashboard', 'HomeeController@student');
+    });
 });

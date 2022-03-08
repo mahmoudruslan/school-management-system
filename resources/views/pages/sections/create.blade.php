@@ -27,12 +27,8 @@
             <label for="inputPassword4">{{__('Section Name_en')}}</label><br>
             @error('name_en') <span class="error text-danger">{{ $message }}</span> @enderror
             <input type="text" name="name_en" class="form-control">
-
-
         </div>
-
     </div>
-
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputName" class="control-label">{{__('Grade')}}</label><br>
@@ -64,7 +60,7 @@
 
                 @foreach($teachers as $teacher)
 
-                    <option value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
+                    <option value="{{$teacher->id}}">{{$teacher->admin['name_'.app()->getLocale()]}}</option>
                 @endforeach
             </select>
             @if($errors->has('teacher_id'))

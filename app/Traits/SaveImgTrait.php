@@ -16,11 +16,11 @@ trait SaveImgTrait
 
             $photo = $image->getClientOriginalExtension();
             $name = time() . Str::random(6) . '.' . $photo;
-            Image::create([
-                'filename' => $name,
-                'imageable_id' => $photo_owner_id,
-                'imageable_type' => $model_path,
-            ]);
+            // Image::create([
+            //     'filename' => $name,
+            //     'imageable_id' => $photo_owner_id,
+            //     'imageable_type' => $model_path,
+            // ]);
             $image->storeAs($name_folder, $name, 'attachments');
         }
     }

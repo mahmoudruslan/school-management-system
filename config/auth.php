@@ -37,25 +37,18 @@ return [
 
     'guards' => [
 
-        'web' => [
+
+
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admins',
         ],
 
         'student' => [
             'driver' => 'session',
-            'provider' => 'students',
+            'provider' => 'users',
         ],
 
-        'teacher' => [
-            'driver' => 'session',
-            'provider' => 'teachers',
-        ],
-
-        'parent' => [
-            'driver' => 'session',
-            'provider' => 'the_parents',
-        ],
 
         'api' => [
             'driver' => 'token',
@@ -83,24 +76,15 @@ return [
 
     'providers' => [
 
+
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\models\Admin::class,
+        ],
+
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\models\User::class,
-        ],
-
-        'students' => [
-            'driver' => 'eloquent',
             'model' => App\models\Student::class,
-        ],
-
-        'teachers' => [
-            'driver' => 'eloquent',
-            'model' => App\models\Teacher::class,
-        ],
-
-        'the_parents' => [
-            'driver' => 'eloquent',
-            'model' => App\models\TheParent::class,
         ],
 
     ],

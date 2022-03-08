@@ -35,14 +35,11 @@ class Student extends Authenticatable
     }
 
 
-    // religions
-    public function religions(){
-        return $this->belongsTo('App\models\Religion','religion_id');
-    }
+
 
     // nationalities
     public function nationalities(){
-        return $this->belongsTo('App\models\Nationality','nationality_id');
+        return $this->belongsTo('App\models\Nationality','student_nationality_id');
     }
     // nationalities
     public function bloodTypes(){

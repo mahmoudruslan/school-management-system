@@ -3,8 +3,8 @@
         <nav class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <!-- logo -->
             <div class="text-left navbar-brand-wrapper">
-                <a class="navbar-brand brand-logo" href="#"><img
-                        src="{{ URL::asset('assets/images/logo-dark.png') }}" alt=""></a>
+                <a class="navbar-brand brand-logo" href="#"><img src="{{ URL::asset('assets/images/logo-dark.png') }}"
+                        alt=""></a>
                 <a class="navbar-brand brand-logo-mini" href="#"><img
                         src="{{ URL::asset('assets/images/logo-icon-dark.png') }}" alt=""></a>
             </div>
@@ -134,20 +134,15 @@
                         <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
 
 
-                @if (auth('student')->check())
-                        <form method="GET" action="{{ route('logout', 'student') }}">
-                @elseif(auth('teacher')->check())
-                        <form method="GET" action="{{ route('logout', 'teacher') }}">
-                @elseif(auth('parent')->check())
-                        <form method="GET" action="{{ route('logout', 'parent') }}">
-                @else
-                        <form method="GET" action="{{ route('logout', 'web') }}">
-                @endif
-                        {{-- <form method="GET" action="{{ route('logout', 'teacher') }}"> --}}
-                            @csrf
-                            <a class="dropdown-item" href="#"
-                                onclick="event.preventDefault();this.closest('form').submit();"><i
-                                    class="bx bx-log-out"></i>تسجيل الخروج</a>
+                        @if (auth('student')->check())
+                            <form method="GET" action="{{ route('logout', 'student') }}">
+                            @else
+                                <form method="GET" action="{{ route('logout', 'admin') }}">
+                        @endif
+                        @csrf
+                        <a class="dropdown-item" href="#"
+                            onclick="event.preventDefault();this.closest('form').submit();"><i
+                                class="bx bx-log-out"></i>تسجيل الخروج</a>
                         </form>
                     </div>
 

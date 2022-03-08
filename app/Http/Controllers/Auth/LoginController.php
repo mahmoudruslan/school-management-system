@@ -52,20 +52,17 @@ class LoginController extends Controller
 
     public function login(Request $request){
 
-    //    return $request;
+        //return $request;
         if (Auth::guard($request->type)->attempt(['email' => $request->email, 'password' => $request->password])) {
             if($request->type == 'student')
             {
                 return redirect()->intended(RouteServiceProvider::STUDENT);
-            }elseif($request->type == 'teacher')
-            {
-                return redirect()->intended(RouteServiceProvider::TEACHER);
-            }elseif($request->type == 'parent')
-            {
-                return redirect()->intended(RouteServiceProvider::THEPARENT);
-            }elseif($request->type == 'web')
+            }
+            elseif($request->type == 'admin')
             {
                 return redirect()->intended(RouteServiceProvider::HOME);
+            }else{
+                return redirect()->route('selection');
             }
         }else{
             return 'correct this password';

@@ -36,8 +36,8 @@
             @foreach ($teachers as $teacher)
                 <tr>
                     <td>{{$loop->index+1}}</td>
-                    <td>{{$teacher['name_'.app()->getLocale()]}}</td>
-                    <td>{{__($teacher ->gender)}}</td>
+                    <td>{{$teacher->admin['name_'.app()->getLocale()]}}</td>
+                    <td>{{__($teacher->admin->gender)}}</td>
                     <td>{{$teacher ->specializations['name_'.app()->getLocale()]}}</td>
                     <td>{{$teacher ->joining_date}}</td>
                     <td>{{$teacher ->address}}</td>
