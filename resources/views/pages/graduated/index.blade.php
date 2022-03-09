@@ -63,8 +63,8 @@
 
                     </td>
                 </tr>
-                @include('pages.students.graduated.delete')
-                @include('pages.students.graduated.return-student')
+                @include('pages.graduated.delete')
+                @include('pages.graduated.return-student')
             @endforeach
 
             </tbody>

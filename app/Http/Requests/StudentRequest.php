@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TheParentRequest extends FormRequest
+class StudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -124,13 +124,13 @@ class TheParentRequest extends FormRequest
             'religion.required' => __('This field is required'),
             'date_of_birth.required' => __('This field is required'),
             'date_of_birth.date' => __('This field must be a date'),
-            'joining_date.required' => __('This field is required'),
             'student_address.required' => __('This field is required'),
             'gender.required' => __('This field is required'),
 
             // 'entry_status.max' => __('This is field must be no more than 8 characters'),
             'email.required' => __('This field is required'),
             'email.email' => __('This field must be an email'),
+            'email.unique' => __('A user with this email address already exists.'),
             'father_name_ar.required' => __('This field is required'),
             'father_name_ar.max' => __('This is field must be no more than 100 characters'),
             'father_name_en.required' => __('This field is required'),

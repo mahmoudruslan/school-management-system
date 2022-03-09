@@ -3,7 +3,6 @@
     {{__('Add Promotion')}}
 @stop
 
-
 @section('content')
     <!-- row -->
     <div class="row">
@@ -41,23 +40,6 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col">
-                                <label for="section_id">{{__('Section')}} : <span
-                                        class="text-danger">*</span> </label>
-                                <select class="custom-select mr-sm-2" name="section_id">
-
-                                </select>
-                            </div>
-{{--                            <div class="col-md-3">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="academic_year">{{trans('Academic Year')}} : <span class="text-danger">*</span></label>--}}
-{{--                                    <select class="custom-select mr-sm-2" name="academic_year">--}}
-{{--                                        <option value="" selected disabled>{{__('Choose Academic year')}}</option>--}}
-{{--                                        <?php $curren_year = date('Y');?>--}}
-{{--                                        <option value="{{$curren_year - 1}}">{{$curren_year - 1}}</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                         </div>
                         <br><h6 style="color: #b70d00;font-family: Cairo;font-size: large">{{__('The new school stage')}}:-</h6><br>
 
@@ -78,25 +60,6 @@
 
                                 </select>
                             </div>
-                            <div class="form-group col">
-                                <label for="section_id">{{__('Section')}} : <span
-                                        class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="section_id_new" >
-
-                                </select>
-                            </div>
-
-{{--                            <div class="col-md-3">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="academic_year">{{__('Academic Year')}} : <span class="text-danger">*</span></label>--}}
-{{--                                    <select class="custom-select mr-sm-2" name="academic_year_new">--}}
-{{--                                        <option value="" selected disabled>{{__('Choose Academic year')}}</option>--}}
-{{--                                        <?php $curren_year = date('Y');?>--}}
-{{--                                        <option value="{{$curren_year}}">{{$curren_year}}</option>--}}
-{{--                                    </select>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
 
                         </div><br>
 

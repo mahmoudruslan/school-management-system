@@ -34,14 +34,12 @@ class PromotionController extends Controller
 
         $students = $s->getData(['id', 'grade_id', 'classroom_id', 'section_id'])
             ->where('grade_id', $request->grade_id)
-            ->where('classroom_id', $request->classroom_id)
-            ->where('section_id', $request->section_id);
+            ->where('classroom_id', $request->classroom_id);
         if (count($students) > 0) {
             foreach ($students as $student) {
                 $s->update([
                     'grade_id' => $request->grade_id_new,
-                    'classroom_id' => $request->classroom_id_new ?? null,
-                    'section_id' => $request->section_id_new ?? null,
+                    'classroom_id' => $request->classroom_id_new,
                     'entry_status' => 1
                 ], $student->id);
 
@@ -49,10 +47,8 @@ class PromotionController extends Controller
                     'student_id' => $student->id,
                     'from_grade_id' => $request->grade_id,
                     'from_classroom_id' => $request->classroom_id,
-                    'from_section_id' => $request->section_id,
                     'to_grade_id' => $request->grade_id_new,
                     'to_classroom_id' => $request->classroom_id_new,
-                    'to_section_id' => $request->section_id_new
                 ]);
             }
             return redirect()->back();
@@ -67,12 +63,10 @@ class PromotionController extends Controller
         $ids = explode(",", $request->ids);
         foreach ($ids as $id) {
             $promotion = $this->promotion->getById($id);
-            //foreach ($promotions as $promotion) {
             $student = $s->getById($promotion->student_id);
             $student->update([
                 'grade_id' => $promotion->from_grade_id,
                 'classroom_id' => $promotion->from_classroom_id,
-                'section_id' => $promotion->from_section_id,
                 'entry_status' => 0
             ]);
             $this->promotion->destroy($promotion->id);

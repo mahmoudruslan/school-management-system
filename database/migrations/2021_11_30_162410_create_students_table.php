@@ -33,13 +33,13 @@ class CreateStudentsTable extends Migration
 
 
             $table->unsignedInteger('grade_id')->nullable();
-            $table->foreign('grade_id')->references('id')->on('grades');
+            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->unsignedBigInteger('classroom_id')->nullable();
-            $table->foreign('classroom_id')->references('id')->on('classrooms');
+            $table->foreign('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
             $table->unsignedBigInteger('section_id')->nullable();
             $table->foreign('section_id')->references('id')->on('sections');
             $table->unsignedBigInteger('parent_id');
-            $table->foreign('parent_id')->references('id')->on('the_parents');
+            $table->foreign('parent_id')->references('id')->on('the_parents')->onDelete('cascade');
             $table->string('joining_date')->default(date('Y-m-d'));
             $table->string('gender');
             $table->string('student_address');

@@ -11,4 +11,9 @@ class HomeeController extends Controller
     {
         return view('dashboards.students.student');
     }
+
+    public function create()
+    {
+        return view('pages.students.index');
+    }
 }

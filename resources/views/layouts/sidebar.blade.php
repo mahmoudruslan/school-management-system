@@ -30,7 +30,6 @@
                         </a>
                         <ul id="elements" class="collapse" data-parent="#sidebarnav">
                             <li><a href="{{route('grades.index')}}">{{__('List of grades')}}</a></li>
-
                         </ul>
                     </li>
                    <!-- classes-->

@@ -1,10 +1,4 @@
 <div>
-    @if(!empty($successMsg))
-    <div class="alert alert-success">
-        <button type="button" class="close" wire:click="clearMessages">x</button>
-        {{ $successMsg }}
-    </div>
-@endif
 
     @if ($editMode || $addMode)
         @include('livewire.create')
@@ -14,10 +8,24 @@
             {{ __('Add Student') }}
         </button><br><br><br>
 
+        @if(!empty($successMsg))
+        <div class="alert alert-success">
+            <button type="button" class="close" wire:click="clearMessages">x</button>
+            {{ $successMsg }}
+        </div>
+    @endif
+
+    @if(!empty($errorMsg))
+    <div class="alert alert-danger">
+        <button type="button" class="close" wire:click="clearMessages">x</button>
+        {{ $errorMsg }}
+    </div>
+@endif
+
 
         {{-- myTable --}}
-        <div class="table-responsive">
-                <table  id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center" >
+        <div class="table-responsive ">
+                <table  id="datatable" class="table table-hover table-sm table-bordered p-0 data-table" data-page-length="50" style="text-align: center" >
                     <thead>
                     <tr id="myUL">
                         <th>#</th>
@@ -66,9 +74,9 @@
                                 </td>
                             </tr>
                             <div class="modal fade" id="Delete_Student{{$student->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <form action="{{route('Students.destroy','test')}}" method="POST">
+                                {{-- <form action="{{route('Students.destroy','test')}}" method="POST">
                                     {{ method_field('Delete') }}
-                                    @csrf
+                                    @csrf --}}
         
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -78,16 +86,16 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="hidden" name="id" value="{{$student->id}}">
+                                                {{-- <input type="hidden" name="id" value="{{$student->id}}"> --}}
                                                 <h6>{{__('Warning').':'. __('When you delete a Student, all attachments will be deleted...')}}</h6>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                                                <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
+                                                <button type="submit" wire:click="delete({{$student->id}})" data-dismiss="modal" class="btn btn-danger">{{__('Delete')}}</button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                {{-- </form> --}}
                             </div>
                         @endforeach
                     </tbody>

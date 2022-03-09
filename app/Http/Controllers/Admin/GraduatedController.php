@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\models\Attendance;
+use App\models\Student;
+use App\models\TheParent;
 use App\repositories\Eloquent\GradesRepository;
 use App\repositories\Eloquent\StudentsRepository;
 use App\repositories\GraduatedRepositoryInterface;
+use App\repositories\StudentsRepositoryInterface;
 use Illuminate\Http\Request;
 
 class GraduatedController extends Controller
@@ -57,6 +60,10 @@ class GraduatedController extends Controller
         $ids = explode(",", $request->ids);
         foreach ($ids as $id) {
             $this->student->getById($id)->restore();
+            $this->student->update([
+                'entry_status' => 0
+            ],$id);
+            
         }
         return redirect()->route('Graduated.index');
     }
@@ -65,8 +72,12 @@ class GraduatedController extends Controller
     {
         $ids = explode(",", $request->ids);
         foreach ($ids as $id) {
-            $this->student->destroy($id);
+
+            $parent_id = $this->student->getById($id)->parent_id;
+            $parent = TheParent::find($parent_id);
+            $parent->delete();
         }
+        toastr()->success(__('Data deleted successfully'));
         return redirect()->back();
     }
 }

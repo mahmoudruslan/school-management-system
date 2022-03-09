@@ -21,18 +21,16 @@ class CreatePromotionsTable extends Migration
 
             $table->unsignedInteger('from_grade_id');
             $table->foreign('from_grade_id')->references('id')->on('grades')->onDelete('cascade');
-            $table->unsignedBigInteger('from_classroom_id')->nullable();
+            $table->unsignedBigInteger('from_classroom_id');
             $table->foreign('from_classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->unsignedBigInteger('from_section_id')->nullable();
-            $table->foreign('from_section_id')->references('id')->on('sections')->onDelete('cascade');
+
 
 
             $table->unsignedInteger('to_grade_id');
             $table->foreign('to_grade_id')->references('id')->on('grades')->onDelete('cascade');
-            $table->unsignedBigInteger('to_classroom_id')->nullable();
+            $table->unsignedBigInteger('to_classroom_id');
             $table->foreign('to_classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->unsignedBigInteger('to_section_id')->nullable();
-            $table->foreign('to_section_id')->references('id')->on('sections')->onDelete('cascade');
+
 
             $table->timestamps();
         });

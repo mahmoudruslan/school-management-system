@@ -5,12 +5,6 @@
         @else
             <div id="step-1">
         @endif
-        @if(!empty($errorMsg))
-        <div class="alert alert-danger">
-            <button type="button" class="close" wire:click="clearMessages">x</button>
-            {{ $errorMsg }}
-        </div>
-    @endif
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="title">{{__("Name_ar")}}</label><br>
@@ -95,53 +89,53 @@
                         <option value="0">{{__('Christian')}}</option>
                 </select>
             </div>
-        </div>
+        </div><br>
 
         <div class="form-row">
-            <div class="col-md-6">
-                <label for="title">{{__('Date of birth')}}</label><br>
-                @error('date_of_birth')<span class="error text-danger">{{ $message }}</span>@enderror
-                <input class="form-control" type="text" wire:model="date_of_birth">
+            
+            <div class="form-group col-md-6">
+                <label for="title">{{__("Date of birth")}}</label><br>
+                @error('date_of_birth') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input type="text" wire:model="date_of_birth" class="form-control">
             </div>
 
-            <div class="col-md-6">
+            <div class="form-row col-md-6">
+                {{-- <div class="col-md-5">
+                    <label for="title">{{__("Parent's Attachments")}}</label><br>
+                    @error('photoss') <span class="error text-danger">{{ $message }}</span> @enderror
+                    <div class="form-group">
+                        <input type="file" wire:model="photoss"  class="form-control">
+
+                    </div>
+                </div> --}}
+                
+                <div class="col-md-4">
+                    @if($addMode)
+                        <label for="inputState">{{__('Gender')}}</label><br>
+                        @error('gender')<span class="error text-danger">{{ $message }}<br></span>@enderror
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" wire:model="gender" id="inlineRadio1" value="1">
+                            <label class="form-check-label" for="inlineRadio1">{{__('Male')}}</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" wire:model="gender" id="inlineRadio2" value="0">
+                            <label class="form-check-label" for="inlineRadio2">{{__('Female')}}</label>
+                        </div>
+                        @endif
+                </div>
+                <br>
+                <div class="col-md-2"><br>
+                    <input type="checkbox" value="Noob" id="flexCheckChecked" class="form-check-input" wire:model="entry_status">
+                    <label class="form-check-label" for="flexCheckChecked">{{__('Noob')}}</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
                 <label for="title">{{__("Student Address")}}</label><br>
                 @error('student_address') <span class="error text-danger">{{ $message }}</span> @enderror
                 <textarea wire:model="student_address" class='form-control'></textarea>
             </div>
         </div>
-
-
-        <div class="form-row col-md-8">
-            <div class="col-md-4">
-                <label for="title">{{__("Parent's Attachments")}}</label><br>
-                @error('photos') <span class="error text-danger">{{ $message }}</span> @enderror
-                <div class="form-group">
-                    <input type="file" wire:model="photos" accept="image/*" multiple>
-                </div>
-            </div>
-            <div class="col-md-4">
-                    <label for="inputState">{{__('Gender')}}</label><br>
-                    @error('gender')<span class="error text-danger">{{ $message }}<br></span>@enderror
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" wire:model="gender" id="inlineRadio1" value="1">
-                        <label class="form-check-label" for="inlineRadio1">{{__('Male')}}</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" wire:model="gender" id="inlineRadio2" value="0">
-                        <label class="form-check-label" for="inlineRadio2">{{__('Female')}}</label>
-                    </div>
-            </div>
-            <div class="col-md-4"><br>
-                <input type="checkbox" value="1" id="flexCheckChecked" class="form-check-input" wire:model="entry_status">
-                <label class="form-check-label" for="flexCheckChecked">{{__('Noob')}}</label>
-            </div>
-        </div>
-
-
-        
-        {{-- start part 1 --}}
-
             @if ($addMode)
                 <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="firstStepSubmit" type="button">{{__('Next')}}</button>
 

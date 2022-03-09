@@ -15,6 +15,18 @@
         </div>
     </div>
 </div><br>
+@if(!empty($errorMsg))
+<div class="alert alert-danger">
+    <button type="button" class="close" wire:click="clearMessages">x</button>
+    {{ $errorMsg }}
+</div>
+@endif
+@if(!empty($successMsg))
+<div class="alert alert-success">
+    <button type="button" class="close" wire:click="clearMessages">x</button>
+    {{ $successMsg }}
+</div>
+@endif
 @include('livewire.form_layout.step_1')
 @include('livewire.form_layout.step_2')
 @include('livewire.form_layout.step_3')

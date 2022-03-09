@@ -25,10 +25,8 @@
 
                 <th class="alert-danger">{{__("Previous stage")}}</th>
                 <th class="alert-danger">{{__("Previous classroom")}}</th>
-                <th class="alert-danger">{{__("Previous Section")}}</th>
                 <th class="alert-success">{{__("Current stage")}}</th>
                 <th class="alert-success">{{__("Current classroom")}}</th>
-                <th class="alert-success">{{__("Current Section")}}</th>
                 <th class="pl-5 pr-4">{{__("Processes")}}</th>
             </tr>
             </thead>
@@ -39,12 +37,10 @@
                         <input type="checkbox" class="mr-4" value="{{$promotion->id}}">{{$loop->index+1}}
                     </td>
                     <td>{{$promotion->students->name_ar}}</td>
-                    <td>{{$promotion->f_grade['name_'.app()->getLocale()] ?? ''}}</td>
-                    <td>{{$promotion->f_classroom['name_'.app()->getLocale()] ?? ''}}</td>
-                    <td>{{$promotion->f_section['name_'.app()->getLocale()] ??  ''}}</td>
-                    <td>{{$promotion->to_grade['name_'.app()->getLocale()] ?? ''}}</td>
-                    <td>{{$promotion->to_classroom['name_'.app()->getLocale()] ?? ''}}</td>
-                    <td>{{$promotion->to_section['name_'.app()->getLocale()] ??  ''}}</td>
+                    <td>{{$promotion->f_grade['name_'.app()->getLocale()]}}</td>
+                    <td>{{$promotion->f_classroom['name_'.app()->getLocale()]}}</td>
+                    <td>{{$promotion->to_grade['name_'.app()->getLocale()]}}</td>
+                    <td>{{$promotion->to_classroom['name_'.app()->getLocale()]}}</td>
 
                     <td>
 

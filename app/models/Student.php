@@ -21,11 +21,11 @@ class Student extends Authenticatable
     }
 
     public function getEntryStatusAttribute($value){
-        return $value == '1'? 'Noob' : 'Left to return';
+        return $value == 'Noob' || $value == 1? 'Noob' : 'Left to return';
     }
 
     public function getGenderAttribute($value){
-        return $value == '1'? 'Male' : 'Female';
+        return $value == '1' || $value == 'Male'? 'Male' : 'Female';
     }
 
 

@@ -26,5 +26,6 @@ Route::group([
     Route::group(['namespace' => 'User'], function () {
 
         Route::get('dashboard', 'HomeeController@student');
+        Route::get('create', 'HomeeController@create')->name('xxx');
     });
 });

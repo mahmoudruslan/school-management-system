@@ -23,10 +23,7 @@ class TheParent extends Authenticatable
 
 
 
-    public function images()
-    {
-        return $this->morphMany('App\models\Image', 'imageable');
-    }
+
 
     // nationalitys
     public function nationality()
@@ -34,9 +31,10 @@ class TheParent extends Authenticatable
         return $this->belongsTo('App\models\Nationality', 'father_nationality_id');
     }
 
-    // religions
-    public function attachments()
-    {
-        return $this->hasMany('App\models\ParentsAttachments', 'parents_id',);
-    }
+    // public function student()
+    // {
+    //     return $this->belongsTo('App\models\Nationality', 'father_nationality_id');
+    // }
+
+
 }
