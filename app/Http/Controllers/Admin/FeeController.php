@@ -22,14 +22,14 @@ class FeeController extends Controller
     public function index()
     {
         $fees = $this->fee->getData();
-        return view('pages.fees.index', compact('fees'));
+        return view('admin_dashboard.pages.fees.index', compact('fees'));
     }
 
 
     public function create(GradesRepositoryInterface $g)
     {
         $grades = $g->getData();
-        return view('pages.fees.create', compact('grades'));
+        return view('admin_dashboard.pages.fees.create', compact('grades'));
     }
 
 
@@ -74,14 +74,14 @@ class FeeController extends Controller
     {
         $grades = $g->getData();
         $fee = $this->fee->getById($id);
-        return view('pages.fees.edit', compact(['fee', 'grades']));
+        return view('admin_dashboard.pages.fees.edit', compact(['fee', 'grades']));
     }
 
 
     public function update(FeeRequest $request, $id)
     {
             $this->fee->update($request->all(), $id);
-            return redirect()->route('Fees.index');
+            return redirect()->route('fees.index');
 
     }
 

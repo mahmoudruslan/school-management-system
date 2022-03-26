@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-    protected $fillable = ['id', 'name_ar', 'name_en', 'gender', 'email','password'];
+    protected $fillable = ['id', 'name_ar', 'name_en', 'gender', 'email','password','role_id'];
     protected $hidden = [];
     public $timestamps = true;
 
@@ -23,6 +23,31 @@ class Admin extends Authenticatable
     public function teacher()
     {
         return $this->hasOne(Teacher::class,'admin_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsTo(Role::class,'role_id');
+    }
+
+    public function hasAbility($permissions)
+    {
+        $role = $this->roles;
+        if(!$role){
+            return false;
+        }
+
+        foreach($role->permissions as $permission)
+        {
+            if(is_array($permissions) && in_array($permission, $permissions)){
+                return true;
+            }elseif(is_string($permissions) && strcmp($permissions,$permission) == 0){
+                return true;
+
+            }
+                
+        }
+        return false;
     }
 
 }

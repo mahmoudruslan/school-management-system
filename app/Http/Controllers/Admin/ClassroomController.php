@@ -18,7 +18,7 @@ class ClassroomController extends Controller
     {
         $grades = $g->getData();
         $classrooms = $this->classroom->getData();
-            return view('pages.myclassroom.index',compact(['grades','classrooms']));
+            return view('admin_dashboard.pages.myclassroom.index',compact(['grades','classrooms']));
     }
 
     public function store(Request $request)

@@ -20,7 +20,7 @@ class FeeProcessingController extends Controller
     public function index()
     {
         $feeProcessing = $this->feeProcessing->getData();
-        return view('pages.fee_processing.index', compact('feeProcessing'));
+        return view('admin_dashboard.pages.fee_processing.index', compact('feeProcessing'));
     }
 
     public function store(Request $request, StudentAccountsRepository $sa)
@@ -45,7 +45,7 @@ class FeeProcessingController extends Controller
             'type' => 'Fee exclusion',
             'credit' => $request->amount,
         ]);
-        return  redirect()->route('FeeProcessing.index');
+        return  redirect()->route('feeProcessing.index');
     }
 
     //create
@@ -53,14 +53,14 @@ class FeeProcessingController extends Controller
     {
         $feeInvoices = $f->getData('student_id')->where('student_id', $student_id);
         $student = $s->getById($student_id);
-        return view('pages.fee_processing.create', compact('student', 'feeInvoices'));
+        return view('admin_dashboard.pages.fee_processing.create', compact('student', 'feeInvoices'));
     }
 
 
     public function edit($id)
     {
         $feeProcessing = $this->feeProcessing->getById($id);
-        return view('pages.fee_processing.edit', compact('feeProcessing'));
+        return view('admin_dashboard.pages.fee_processing.edit', compact('feeProcessing'));
     }
 
 
@@ -85,13 +85,13 @@ class FeeProcessingController extends Controller
         $sa->update([
             'credit' => $request->amount,
         ], $sa_id);
-        return  redirect()->route('FeeProcessing.index');
+        return  redirect()->route('feeProcessing.index');
     }
 
 
     public function destroy($id)
     {
         $this->feeProcessing->destroy($id);
-        return  redirect()->route('FeeProcessing.index');
+        return  redirect()->route('feeProcessing.index');
     }
 }

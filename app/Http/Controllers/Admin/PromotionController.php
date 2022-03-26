@@ -20,13 +20,13 @@ class PromotionController extends Controller
     public function index()
     {
         $promotions = $this->promotion->getData();
-        return view('pages.promotions.index', compact(['promotions']));
+        return view('admin_dashboard.pages.promotions.index', compact(['promotions']));
     }
 
     public function create(GradesRepository $g)
     {
         $grades = $g->getData();
-        return view('pages.promotions.create', compact('grades'));
+        return view('admin_dashboard.pages.promotions.create', compact('grades'));
     }
 
     public function store(Request $request, StudentsRepository $s)

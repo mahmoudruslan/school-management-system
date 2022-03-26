@@ -24,13 +24,13 @@ class GraduatedController extends Controller
     public function index()
     {
         $students = $this->student->getData();
-        return view('pages.graduated.index', compact('students'));
+        return view('admin_dashboard.pages.graduated.index', compact('students'));
     }
 
     public function create(GradesRepository $g)
     {
         $grades = $g->getData();
-        return view('pages.graduated.create', compact(['grades']));
+        return view('admin_dashboard.pages.graduated.create', compact(['grades']));
     }
 
     public function store(Request $request, StudentsRepository $s)
@@ -46,13 +46,13 @@ class GraduatedController extends Controller
                 Attendance::where('student_id', $student->id)->delete();
             }
         }
-        return redirect()->route('Graduated.index');
+        return redirect()->route('graduated.index');
     }
 
     public function show($id)
     {
         $student = $this->student->getById($id);
-        return view('pages.graduated.show', compact('student'));
+        return view('admin_dashboard.pages.graduated.show', compact('student'));
     }
 
     public function returnStudents(Request $request)
@@ -65,7 +65,7 @@ class GraduatedController extends Controller
             ],$id);
             
         }
-        return redirect()->route('Graduated.index');
+        return redirect()->route('graduated.index');
     }
 
     public function destroy(Request $request)

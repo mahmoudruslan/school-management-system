@@ -21,7 +21,7 @@ class StudentReceiptController extends Controller
     public function index()
     {
         $receipts = $this->studentReceipt->getData();
-        return view('pages.student_receipt.index', compact(['receipts']));
+        return view('admin_dashboard.pages.student_receipt.index', compact(['receipts']));
     }
 
     public function store(Request $request, FundAccountsRepository $f, StudentAccountsRepository $sa)
@@ -36,7 +36,7 @@ class StudentReceiptController extends Controller
 
         if (!count($countStudent) > 0 || $debit - $credit == 0) {
             toastr()->error(__('This student does not owe any money'));
-            return redirect()->route('Students.index');
+            return redirect()->route('students.index');
         } elseif ($request->debit > $debit - $credit) //check if the amount bigger than debit account
         {
             toastr()->error(__('This student owes only ') . ($debit - $credit) . __(' pounds'));
@@ -58,20 +58,20 @@ class StudentReceiptController extends Controller
             'credit' => $request->debit,
         ]);
 
-        return redirect()->route('StudentReceipt.index');
+        return redirect()->route('studentReceipt.index');
     }
 
     //create function
     public function show($id, StudentsRepository $s)
     {
         $student = $s->getById($id);
-        return view('pages.student_receipt.create', compact('student'));
+        return view('admin_dashboard.pages.student_receipt.create', compact('student'));
     }
 
     public function edit($id)
     {
         $receipt = $this->studentReceipt->getById($id);
-        return view('pages.student_receipt.edit', compact('receipt'));
+        return view('admin_dashboard.pages.student_receipt.edit', compact('receipt'));
     }
 
     public function update(Request $request, $id, FundAccountsRepository $f, StudentAccountsRepository $sa)
@@ -94,7 +94,7 @@ class StudentReceiptController extends Controller
             'credit' => $request->debit,
         ], $sa_id);
 
-        return redirect()->route('StudentReceipt.index');
+        return redirect()->route('studentReceipt.index');
     }
 
     public function destroy($id)

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
     /**
      * The policy mappings for the application.
      *
@@ -25,6 +26,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        foreach(config('global.permissions') as $ability => $value){
+
+            Gate::define($ability,function($auth) use ($ability){
+                return $auth->hasAbility($ability);
+            });
+        }
+        
     }
 }

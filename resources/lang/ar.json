@@ -283,6 +283,19 @@
     "Logo":"الشعار",
 
 
+
+    "Role name":"اسم الدور",
+    "Role":"الدور",
+    "Roles List":"قائمة الأدوار",
+    "Add roles":"إضافة أدوار",
+    "Role Name_ar": "اسم الدور بالعربية",
+    "Role Name_en": "اسم الدور بالانجليزية",
+    "Edit Role":"تعديل الدور",
+    "Roles":"الأدوار",
+    "Permissions":"الصلاحيات",
+    "Permission":"الصلاحية",
+    
+
     "A user with this email address already exists.":"يوجد بالفعل مستخدم بعنوان البريد الإلكتروني هذا.",
     "This field is required" : "هذا الحقل مطلوب",
     "This field must be a date":"هذا الحقل يجب أن يكون تاريخ",

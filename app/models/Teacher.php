@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Teacher extends Authenticatable
 {
-    protected $fillable = ['admin_id','phone','specialization_id','joining_date','address','religion'];
+    protected $fillable = ['admin_id','phone','specialization_id','joining_date','address','religion','note'];
     public $timestamps = true;
 
 

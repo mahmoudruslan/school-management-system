@@ -21,6 +21,7 @@ class CreateTeachersTable extends Migration
             $table->string('joining_date');
             $table->string('address');
             $table->string('religion');
+            $table->string('note')->nullable();
             $table->foreignId('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
             $table->timestamps();

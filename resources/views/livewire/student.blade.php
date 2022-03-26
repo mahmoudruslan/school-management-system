@@ -53,18 +53,18 @@
                                             {{__('Processes')}}
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="{{route('Students.show',$student->id)}}">
+                                            <a class="dropdown-item" href="{{route('students.show',$student->id)}}">
                                                 <i style="color: #ffc107" class="far fa-eye "></i>&nbsp;{{__('Show student information')}}
                                             </a>
                                             <button class="dropdown-item" wire:click="edit({{$student->id}})">
                                                 <i style="color:green" class="fa fa-edit"></i>&nbsp;{{__('Edit student data')}}
                                             </button>
-                                            <a class="dropdown-item" href="{{route('FeesInvoices.show',$student->id)}}">
+                                            <a class="dropdown-item" href="{{route('feesInvoices.show',$student->id)}}">
                                                 <i style="color: #0000cc" class="fa fa-edit"></i>&nbsp;{{__('Add a fee invoice')}}&nbsp;
                                             </a>
-                                            <a class="dropdown-item" href="{{route('StudentReceipt.show',$student->id)}}"><i style="color: #1e7e34" class="fas fa-dollar-sign"></i>&nbsp; &nbsp;{{__('Catch Receipt')}}</a>
-                                            <a class="dropdown-item" href="{{route('FeeProcessing.show',$student->id)}}"><i style="color: #1e7e34" class="fad fa-money-check-edit-alt"></i>&nbsp; &nbsp;{{__('Fee exclusion')}}</a>
-                                            <a class="dropdown-item" href="{{route('Payments.show',$student->id)}}"><i style="color:goldenrod" class="fas fa-donate"></i>&nbsp;{{__('Receipt')}}</a>
+                                            <a class="dropdown-item" href="{{route('studentReceipt.show',$student->id)}}"><i style="color: #1e7e34" class="fas fa-dollar-sign"></i>&nbsp; &nbsp;{{__('Catch Receipt')}}</a>
+                                            <a class="dropdown-item" href="{{route('feeProcessing.show',$student->id)}}"><i style="color: #1e7e34" class="fad fa-money-check-edit-alt"></i>&nbsp; &nbsp;{{__('Fee exclusion')}}</a>
+                                            <a class="dropdown-item" href="{{route('payments.show',$student->id)}}"><i style="color:goldenrod" class="fas fa-donate"></i>&nbsp;{{__('Receipt')}}</a>
                                             <a class="dropdown-item" href="{{route('results.show',$student->id)}}"><i style="color: #1e7e34" class="fad fa-money-check-edit-alt"></i>&nbsp;{{__('Student Result')}}</a>
                                             <a class="dropdown-item" data-target="#Delete_Student{{ $student->id }}" data-toggle="modal" href="#">
                                                 <i style="color: red" class="fa fa-trash"></i>&nbsp;{{__('Delete student')}}

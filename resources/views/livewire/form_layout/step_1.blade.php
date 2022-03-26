@@ -96,7 +96,7 @@
             <div class="form-group col-md-6">
                 <label for="title">{{__("Date of birth")}}</label><br>
                 @error('date_of_birth') <span class="error text-danger">{{ $message }}</span> @enderror
-                <input type="text" wire:model="date_of_birth" class="form-control">
+                <input type="date" wire:model="date_of_birth" class="form-control" data-date-format="yyyy-mm-dd">
             </div>
 
             <div class="form-row col-md-6">

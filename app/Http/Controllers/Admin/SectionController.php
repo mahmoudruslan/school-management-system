@@ -24,14 +24,14 @@ class SectionController extends Controller
     public function index(GradesRepository $g)
     {
         $grades = $g->getData();
-        return view('pages.sections.index', compact(['grades']));
+        return view('admin_dashboard.pages.sections.index', compact(['grades']));
     }
 
     public function create(GradesRepository $g, TeachersRepository $t)
     {
         $grades = $g->getData();
         $teachers = $t->getData('admin_id');
-        return view('pages.sections.create', compact(['grades', 'teachers']));
+        return view('admin_dashboard.pages.sections.create', compact(['grades', 'teachers']));
     }
 
     public function store(SectionRequest $request)
@@ -47,7 +47,7 @@ class SectionController extends Controller
         $section = $this->section->getById($id);
         $grades = $g->getData();
         $teachers = $t->getData(['admin_id', 'id']);
-        return view('pages.sections.edit', compact(['grades', 'teachers', 'section']));
+        return view('admin_dashboard.pages.sections.edit', compact(['grades', 'teachers', 'section']));
     }
 
     public function update(SectionRequest $request)
@@ -55,7 +55,7 @@ class SectionController extends Controller
         $Section = $this->section->update($request->all(), $request->id);
         $sectionFind = $this->section->getById($Section->id);
         $sectionFind->teachers()->sync($request->teacher_id);
-        return redirect()->route('Sections.index');
+        return redirect()->route('sections.index');
     }
 
     public function destroy(Request $request, StudentsRepository $s)

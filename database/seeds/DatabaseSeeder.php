@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BloodTypeSeeder::class,
             NationalitySeeder::class,
-            AdminSeeder::class,
+            //AdminSeeder::class,
             SpecializationSeeder::class,
             GradeSeeder::class,
             ClassroomSeeder::class,

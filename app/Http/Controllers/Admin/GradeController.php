@@ -18,7 +18,7 @@ class GradeController extends Controller
   public function index()
   {
     $grades = $this->grade->getData();
-    return view('pages.grades.index', compact(['grades']));
+    return view('admin_dashboard.pages.grades.index', compact(['grades']));
   }
 
   public function store(Request $request)

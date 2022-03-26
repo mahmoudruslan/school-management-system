@@ -14,7 +14,7 @@ class SchoolDataController extends Controller
     public function index()
     {
         $school_data = SchoolData::first();
-        return view('pages.school_data.index',compact('school_data'));
+        return view('admin_dashboard.pages.school_data.index',compact('school_data'));
     }
 
     public function update(Request $request)

@@ -22,7 +22,7 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = $this->subject->getData();
-        return view('pages.subjects.index',compact('subjects'));
+        return view('admin_dashboard.pages.subjects.index',compact('subjects'));
     }
 
 
@@ -31,14 +31,14 @@ class SubjectController extends Controller
         $grades = $g->getData();
         $classrooms = $c->getData();
         $teachers = $t->getData();
-        return view('pages.subjects.create',compact(['grades','classrooms','teachers']));
+        return view('admin_dashboard.pages.subjects.create',compact(['grades','classrooms','teachers']));
     }
 
 
     public function store(Request $request)
     {
             $this->subject->create($request->all());
-            return redirect()->route('Subjects.index');
+            return redirect()->route('subjects.index');
 
     }
 
@@ -48,14 +48,14 @@ class SubjectController extends Controller
         $classrooms = $c->getData();
         $teachers = $t->getData();
         $subject = $this->subject->getById($id);
-        return view('pages.subjects.edit',compact(['classrooms','grades','subject','teachers']));
+        return view('admin_dashboard.pages.subjects.edit',compact(['classrooms','grades','subject','teachers']));
     }
 
 
     public function update(Request $request, $id)
     {
             $this->subject->update($request->all(),$id);
-            return redirect()->route('Subjects.index');
+            return redirect()->route('subjects.index');
     }
 
 
