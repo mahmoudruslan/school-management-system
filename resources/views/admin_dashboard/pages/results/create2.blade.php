@@ -65,17 +65,7 @@
 
                     </select>
                 </div>
-                <div class="form-group col">
-                    <label for="from">{{ __('Degree') }} : <span
-                            class="text-danger">({{ __('From') }})</span></label><br>
-                    <div class="input-group">
-                        @error('from')
-                            <span class="error text-danger">{{ $message }}</span>
-                        @enderror
-                        <input style="height: 35px" name="from" type="number" class="form-control border" required>
-                    </div>
-                </div>
-                <input type="hidden" name="teacher_id" value="{{ $teacher_id }}">
+
                 <input type="hidden" name="grade_id" value="{{ $students->first()->grade_id }}">
                 <input type="hidden" name="classroom_id" value="{{ $students->first()->classroom_id }}">
             </div>
@@ -110,7 +100,7 @@
             </table>
         </div><br><br>
         {{-- @if (count($attendances->where('date', substr(now(), 0, 10))) > 0 && count($attendances->where('section_id', $section_id)) > 0) --}}
-        <button class="button" type="submit">{{ __('Date Saved') }}</button>
+        <button class="button" type="submit">{{ __('Submit') }}</button>
         {{-- @else
             <button class="button" type="submit" >{{__('Submit')}}</button>
         @endif --}}

@@ -1,6 +1,7 @@
 <?php
 
 use App\models\Admin;
+use App\models\Teacher;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -15,12 +16,23 @@ class AdminSeeder extends Seeder
         DB::table('admins')->delete();
     
 
-            Admin::create([
+            $admin = Admin::create([
                 'name_ar' => 'محمود',
                 'name_en' => 'mahmoud',
                 'email' => 'mahmoud.kora40@gmail.com',
                 'password' => '00000000',
-                'gender' => '1'
+                'gender' => '1',
+                'role_id' => '1'
+            ]);
+
+            Teacher::create([
+                'admin_id' => $admin->id,
+                'phone' => '01092199386',
+                'specialization_id' => '12',
+                'joining_date' => '2020-5-5',
+                'address' => 'دمياط',
+                'religion' => '1',
+                'note' => 'from seeder',
             ]);
 
         

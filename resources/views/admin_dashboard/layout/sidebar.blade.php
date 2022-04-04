@@ -61,6 +61,7 @@
                             </a>
                             <ul id="sections-menu" class="collapse" data-parent="#sidebarnav">
                                 <li><a href="{{ route('sections.index') }}">{{ __('Sections List') }}</a></li>
+                                <li><a href="{{ route('sections.create') }}">{{ __('Add Section') }}</a></li>
                             </ul>
                         </li>
                     @endcan
@@ -81,8 +82,6 @@
                         </li>
                     @endcan
 
-
-
                     <!-- Promotions-->
                     @can('promotions')
                         <li>
@@ -99,8 +98,6 @@
                         </li>
                     @endcan
 
-
-
                     <!-- Graduations-->
                     @can('graduated')
                         <li>
@@ -113,12 +110,10 @@
                             <ul id="Graduated-menu" class="collapse" data-parent="#sidebarnav">
                                 <li> <a href="{{ route('graduated.index') }}">{{ __('Graduating students') }}</a>
                                 </li>
-                                <li> <a href="{{ route('graduated.create') }}">{{ __('Add graduations') }}</a> </li>
+                                <li> <a href="{{ route('graduated.create') }}">{{ __('Add to graduates') }}</a> </li>
                             </ul>
                         </li>
                     @endcan
-
-
 
                     <!-- Teachers-->
                     @can('teachers')
@@ -136,8 +131,6 @@
                         </li>
                     @endcan
 
-
-
                     <!-- Parents-->
                     @can('parents')
                         <li>
@@ -149,13 +142,13 @@
                             </a>
                             <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
                                 <li> <a href="{{ route('parents.index') }}">{{ __('Parents List') }}</a> </li>
-
                             </ul>
                         </li>
                     @endcan
 
                     <!-- Accounts-->
-                    @can('accounting') <li>
+                    @can('accounting')
+                        <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#Accounts-menu">
                                 <div class="pull-left"><i class="fas fa-money-bill-wave-alt"></i><span
                                         class="right-nav-text">{{ __('Accounts') }}</span></div>
@@ -163,9 +156,7 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
-                                @can('Fees')
-                                    <li> <a href="{{ route('fees.index') }}">{{ __('Fees List') }}</a></li>
-                                @endcan
+                                <li> <a href="{{ route('fees.index') }}">{{ __('Fees List') }}</a></li>
                                 <li> <a href="{{ route('feesInvoices.index') }}">{{ __('Billing List') }}</a> </li>
                                 <li> <a href="{{ route('studentReceipt.index') }}">{{ __('Arrest receipts') }}</a>
                                 </li>
@@ -177,7 +168,6 @@
                         </li>
                     @endcan
 
-
                     <!-- Attendance-->
                     @can('attendances')
                         <li>
@@ -188,11 +178,13 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="Attendance-icon" class="collapse" data-parent="#sidebarnav">
-                                <li> <a
-                                        href="{{ route('attendances.indexx', $teacher_id = 2) }}">{{ __('Student absence detection') }}</a>
+                                <li>
+                                    <a href="{{ route('attendances.index') }}">{{ __('Student absence detection') }}
+                                    </a>
                                 </li>
-                                <li> <a
-                                        href="{{ route('attendances.showLayout', $teacher_id = 2) }}">{{ __('Absence Recording') }}</a>
+                                <li>
+                                    <a href="{{ route('attendances.create') }}">{{ __('Absence Recording') }}
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -215,7 +207,7 @@
                     @endcan
 
 
-                    <!-- Exams-->
+                    <!-- results-->
                     @can('results')
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#Exams-icon">
@@ -225,22 +217,19 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">
-                                <li> <a href="{{ route('results.index1') }}">{{ __('Results List') }}</a> </li>
-                                <li> <a
-                                        href="{{ route('results.create1', $teacher_id = 2) }}">{{ __('Add Results') }}</a>
+                                <li> <a href="{{ route('results.index') }}">{{ __('Results List') }}</a> </li>
+                                <li> <a href="{{ route('results.create') }}">{{ __('Add Results') }}</a>
                                 </li>
                             </ul>
                         </li>
                     @endcan
 
-
-
-                    <!-- Onlinec lasses-->
+                    <!-- books-->
                     @can('books')
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#Books-icon">
                                 <div class="pull-left"><i class="fas fa-book-open"></i><span
-                                        class="right-nav-text">{{ __('Books') }}</span></div>
+                                        class="right-nav-text">{{ __('Books and exams timetable') }}</span></div>
                                 <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
                                 <div class="clearfix"></div>
                             </a>
@@ -251,8 +240,6 @@
                             </ul>
                         </li>
                     @endcan
-
-
                     <!-- roles-->
                     @can('roles')
                         <li>
@@ -266,12 +253,10 @@
 
                             <ul id="role-icon" class="collapse" data-parent="#sidebarnav">
                                 <li> <a href="{{ route('roles.index') }}">{{ __('Roles') }}</a> </li>
-                                <li> <a href="{{ route('roles.create') }}">{{ __('Add role') }}</a> </li>
+                                <li> <a href="{{ route('roles.create') }}">{{ __('Add roles') }}</a> </li>
                             </ul>
                         </li>
                     @endcan
-
-
                     <!-- Settings-->
                     @can('school_data')
                         <li>
@@ -281,30 +266,9 @@
                             </a>
                         </li>
                     @endcan
-
-
-                    <!-- Users-->
-                    {{-- <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Users-icon">
-                            <div class="pull-left"><i class="fas fa-users"></i><span
-                                    class="right-nav-text">{{ __('Users') }}</span></div>
-                            <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="Users-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">font Awesome</a> </li>
-                            <li> <a href="themify-icons.html">Themify icons</a> </li>
-                            <li> <a href="weather-icon.html">Weather icons</a> </li>
-                        </ul>
-                    </li> --}}
-
                 </ul>
             </div>
-
-
-
         </div>
-
 
         <!-- Left Sidebar End-->
 
@@ -318,7 +282,8 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                <li class="breadcrumb-item"><a href="#" class="default-color">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"
+                                        class="default-color">{{ __('Home') }}</a></li>
                                 <li class="breadcrumb-item active">@yield("title")</li>
                             </ol>
                         </div>

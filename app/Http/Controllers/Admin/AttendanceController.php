@@ -4,60 +4,68 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\repositories\Eloquent\StudentsRepository;
-use App\repositories\Eloquent\TeachersRepository;
-use App\repositories\AttendancesRepositoryInterface;
-use App\repositories\Eloquent\GradesRepository;
-use App\repositories\Eloquent\SectionsRepository;
+use App\repositories\AttendanceRepositoryInterface;
+use App\repositories\Eloquent\SectionRepository;
+use App\repositories\GradeRepositoryInterface;
+use App\repositories\AdminRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
     private $attendance;
-    public function __construct(AttendancesRepositoryInterface $attendance)
+    public function __construct(AttendanceRepositoryInterface $attendance)
     {
         $this->attendance = $attendance;
     }
 
 
-    public function indexx($teacher_id, SectionsRepository $sections)
+    public function index(SectionRepository $sections)
     {
-        $attendances = $this->attendance->getData()->where('teacher_id',$teacher_id)->where('status',0);
+        $attendances = $this->attendance->getData();
         return view('admin_dashboard.pages.attendances.index',compact('attendances'));
+    }
+
+
+    public function create(AdminRepositoryInterface $a,GradeRepositoryInterface $g)
+    {
+        $sections = $a->getById(Auth::id())->sections;
+        $grades = $g->getData();
+        return view('admin_dashboard.pages.attendances.create',compact(['sections','grades']));
     }
 
     public function store(Request $request)
     {
-            foreach ($request->student_id as $id){
-
-                    $this->attendance->create([
+        if (!empty($request->status)) {
+            foreach ($request->student_id as $id) {
+                if (array_key_exists($id, $request->status)) {
+                    $this->attendance->createe([
+                        'student_id' => $id,
+                        'date' => date('y-m-d'),
                         'grade_id' => $request->grade_id,
                         'classroom_id' => $request->classroom_id,
                         'section_id' => $request->section_id,
-                        'teacher_id' => $request->teacher_id,
+                    ], [
+                        'grade_id' => $request->grade_id,
+                        'classroom_id' => $request->classroom_id,
+                        'section_id' => $request->section_id,
+                        'admin_id' => Auth::id(),
                         'student_id' => $id,
                         'date' => date('y-m-d'),
-                        'status' => $request->status[$id]??'1'
+                        'status' => '0'
                     ]);
+                }
             }
+        }
             return redirect()->back();
     }
 
-    public function showLayout($id,TeachersRepository $t,GradesRepository $g)
-    {
-        $sections = $t->getById($id)->sections;
-        $teacher_id = $id;
-        $grades = $g->getData();
-        return view('admin_dashboard.pages.attendances.create',compact(['sections','teacher_id','grades']));
-    }
-
     //Show students
-    public function show(Request $request,$section_id, StudentsRepository $s)
+    public function show(Request $request,$section_id, StudentRepositoryInterface $s)
     {
         $attendances = $this->attendance->getData();
-        $students = $s->getData()->where('section_id',$section_id);
-        $teacher_id = $request->teacher_id;
-        
-        return view('admin_dashboard.pages.attendances.create2',compact(['students', 'section_id', 'teacher_id','attendances']));
+        $students = $s->getData()->where('section_id',$section_id);        
+        return view('admin_dashboard.pages.attendances.create2',compact(['students', 'section_id','attendances']));
     }
 
 }

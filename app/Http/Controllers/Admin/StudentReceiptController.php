@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\Eloquent\FundAccountsRepository;
-use App\repositories\Eloquent\StudentAccountsRepository;
-use App\repositories\Eloquent\StudentsRepository;
+use App\repositories\FundAccountRepositoryInterface;
+use App\repositories\StudentAccountRepositoryInterface;
 use App\repositories\StudentReceiptRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class StudentReceiptController extends Controller
 {
@@ -24,7 +23,7 @@ class StudentReceiptController extends Controller
         return view('admin_dashboard.pages.student_receipt.index', compact(['receipts']));
     }
 
-    public function store(Request $request, FundAccountsRepository $f, StudentAccountsRepository $sa)
+    public function store(Request $request, FundAccountRepositoryInterface $f, StudentAccountRepositoryInterface $sa)
     {
 
         $where = $sa->where('student_id', $request->student_id);
@@ -57,12 +56,11 @@ class StudentReceiptController extends Controller
             'type' => 'receipt',
             'credit' => $request->debit,
         ]);
-
         return redirect()->route('studentReceipt.index');
     }
 
     //create function
-    public function show($id, StudentsRepository $s)
+    public function show($id, StudentRepositoryInterface $s)
     {
         $student = $s->getById($id);
         return view('admin_dashboard.pages.student_receipt.create', compact('student'));
@@ -74,7 +72,7 @@ class StudentReceiptController extends Controller
         return view('admin_dashboard.pages.student_receipt.edit', compact('receipt'));
     }
 
-    public function update(Request $request, $id, FundAccountsRepository $f, StudentAccountsRepository $sa)
+    public function update(Request $request, $id, FundAccountRepositoryInterface $f, StudentAccountRepositoryInterface $sa)
     {
 
         //update in student_receipt table

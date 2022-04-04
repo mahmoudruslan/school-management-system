@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('gender');
-            $table->foreignId('role_id')->references('id')->on('roles');
+            $table->foreignId('role_id')->nullable()->references('id')->on('roles');
             $table->timestamps();
         });
     }

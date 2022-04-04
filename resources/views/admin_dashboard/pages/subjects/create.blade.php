@@ -34,6 +34,14 @@
                                 @error('name_en') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <input type="text" name="name_en" class="form-control">
                             </div>
+
+                            <div class="form-group col">
+                                <label for="degree">{{__('Degree')}} ({{__('for two terms')}}) <span
+                                        class="text-danger">*</span></label><br>
+                                @error('degree') <span class="error text-danger">{{ $message }}</span> @enderror
+                                <input type="number" name="degree" class="form-control">
+                            </div>
+
                         </div><br>
                         <div class="form-row">
                             <div class="form-group col">
@@ -52,17 +60,6 @@
                                         class="text-danger">*</span></label><br>
                                 @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select class="custom-select mr-sm-2" name="classroom_id" >
-
-                                </select>
-                            </div>
-                            <div class="form-group col">
-                                <label for="section_id">{{__('Choose Teacher')}} : <span
-                                        class="text-danger">*</span></label><br>
-                                @error('teacher_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <select name="teacher_id" class="custom-select">
-                                    @foreach ($teachers as $teacher)
-                                        <option value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
-                                    @endforeach
 
                                 </select>
                             </div>

@@ -4,13 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\models\Role;
+use App\repositories\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    private $role;
+    public function __construct(RoleRepositoryInterface $role)
+    {
+        $this->role = $role;
+    }
     public function index()
     {
-        $roles = Role::all();
+        $roles = $this->role->getData();
         return view('admin_dashboard.pages.roles.index', compact('roles'));
     }
 
@@ -21,40 +27,30 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        Role::create([
-            'name_ar' => $request->name_ar,
-            'name_en' => $request->name_en,
-            'permissions' => $request->permissions
-        ]);
-
-        toastr()->success(__('Data saved successfully'));
+        $this->role->create($request->all());
         return redirect()->route('roles.index');
     }
 
     public function edit($id)
     {
-        $role = Role::find($id);
+        $role = $this->role->getById($id);
         return view('admin_dashboard.pages.roles.edit',['role' => $role]);
     }
 
     public function update(Request $request, $id)
     {
-        $role = Role::find($id);
-        $role->update([
+        $this->role->update([
             'name_ar' => $request->name_ar,
             'name_en' => $request->name_en,
             'permissions' => $request->permissions
-        ]);
+        ],$id);
 
-        toastr()->success(__('Data updated successfully'));
         return redirect()->route('roles.index');
     }
 
     public function destroy($id)
     {
-        $role = Role::find($id);
-        $role->delete();
-        toastr()->success(__('Data deleted successfully'));
+        $this->role->destroy($id);
         return redirect()->route('roles.index');
     }
 }

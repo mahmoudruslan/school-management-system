@@ -32,10 +32,9 @@
                                                     <option value="{{$student->id}}">{{$student['name_'.app()->getLocale()]}}</option>
                                                 </select>
                                             </div>
-
                                             <div class="col">
                                                 <label for="Name_en" class="mr-sm-2">{{__("Fee type")}}</label>
-                                                <div class="box">
+                                                <div class="box"> 
                                                     <select class="fancyselect" name="fee_id" required>
                                                         <option value="">-- {{__('Choose from the list')}} --</option>
                                                         @foreach($fees as $fee)

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\Eloquent\FeesInvoicesRepository;
-use App\repositories\Eloquent\StudentAccountsRepository;
-use App\repositories\Eloquent\StudentsRepository;
+use App\repositories\Eloquent\FeesInvoiceRepository;
+use App\repositories\Eloquent\StudentAccountRepository;
+use App\repositories\Eloquent\StudentRepository;
 use App\repositories\FeeProcessingRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -23,7 +23,7 @@ class FeeProcessingController extends Controller
         return view('admin_dashboard.pages.fee_processing.index', compact('feeProcessing'));
     }
 
-    public function store(Request $request, StudentAccountsRepository $sa)
+    public function store(Request $request, StudentAccountRepository $sa)
     {
         $where = $sa->where('student_id', $request->student_id);
         $debit = $where->sum('debit'); //student debit
@@ -49,7 +49,7 @@ class FeeProcessingController extends Controller
     }
 
     //create
-    public function show($student_id, StudentsRepository $s, FeesInvoicesRepository $f)
+    public function show($student_id, StudentRepository $s, FeesInvoiceRepository $f)
     {
         $feeInvoices = $f->getData('student_id')->where('student_id', $student_id);
         $student = $s->getById($student_id);
@@ -64,7 +64,7 @@ class FeeProcessingController extends Controller
     }
 
 
-    public function update(Request $request, $id, StudentAccountsRepository $sa)
+    public function update(Request $request, $id, StudentAccountRepository $sa)
     {
         $where = $sa->where('student_id', $request->student_id);
         $debit = $where->sum('debit'); //student debit

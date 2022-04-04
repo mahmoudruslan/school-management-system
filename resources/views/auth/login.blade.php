@@ -8,7 +8,7 @@
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>برنامج مورا سوفت لادارة المدارس</title>
+    <title>{{__('School Management System')}}</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico" />
@@ -25,18 +25,15 @@
 <body>
 
     <div class="wrapper">
-        <!--=================================
-preloader -->
+        <!--=================================preloader -->
 
         <div id="pre-loader">
             <img src="{{ URL::asset('assets/images/pre-loader/loader-01.svg') }}" alt="">
         </div>
 
-        <!--=================================
-preloader -->
+        <!--=================================preloader -->
 
-        <!--=================================
-login-->
+        <!--=================================login-->
         <section class="height-100vh d-flex align-items-center page-section-ptb login"
             style="background-image: url('{{ asset('assets/images/sativa.png') }}');">
             <div class="container">
@@ -45,13 +42,9 @@ login-->
                     <div class="col-lg-4 col-md-6 login-fancy-bg bg"
                         style="background-image: url('{{ asset('assets/images/login-inner-bg.jpg') }}');">
                         <div class="login-fancy">
-                            <h2 class="text-white mb-20">Hello world!</h2>
+                            <h3 class="text-white mb-20">{{__('Welcome to the school management system')}}</h3>
                             <p class="mb-20 text-white">Create tailor-cut websites with the exclusive multi-purpose
                                 responsive template along with powerful features.</p>
-                            <ul class="list-unstyled  pos-bot pb-30">
-                                <li class="list-inline-item"><a class="text-white" href="#"> Terms of Use</a> </li>
-                                <li class="list-inline-item"><a class="text-white" href="#"> Privacy Policy</a></li>
-                            </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 bg-white">
@@ -95,13 +88,15 @@ login-->
                                     @enderror
 
                                 </div>
+                                @if ($type == 'student')
                                 <div class="section-field">
                                     <div class="remember-checkbox mb-30">
                                         <input type="checkbox" class="form-control" name="two" id="two" />
                                         <label for="two"> تذكرني</label>
-                                        <a href="#" class="float-right">هل نسيت كلمةالمرور ؟</a>
+                                        <a href="{{route('reset.form')}}" class="float-right">هل نسيت كلمةالمرور ؟</a>
                                     </div>
                                 </div>
+                                @endif
                                 <button class="button"><span>دخول</span><i class="fa fa-check"></i></button>
                             </form>
                         </div>

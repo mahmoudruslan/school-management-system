@@ -34,20 +34,20 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($teachers as $teacher)
+            @foreach ($admins as $admin)
                 <tr>
                     <td>{{$loop->index+1}}</td>
-                    <td>{{$teacher->admin['name_'.app()->getLocale()]}}</td>
-                    <td>{{__($teacher->admin->gender)}}</td>
-                    <td>{{$teacher ->specializations['name_'.app()->getLocale()]}}</td>
-                    <td>{{$teacher ->joining_date}}</td>
-                    <td>{{$teacher->admin->roles['name_'.app()->getLocale()]}}</td>
-                    <td>{{$teacher ->address}}</td>
+                    <td>{{$admin['name_'.app()->getLocale()]}}</td>
+                    <td>{{__($admin->gender)}}</td>
+                    <td>{{$admin->teacher->specializations['name_'.app()->getLocale()]}}</td>
+                    <td>{{$admin->teacher->joining_date}}</td>
+                    <td>{{$admin->roles['name_'.app()->getLocale()]}}</td>
+                    <td>{{$admin->teacher->address}}</td>
                     <td>
-                        <button style="color: white" type="button" data-toggle="modal" class="btn btn-danger" data-target="#delete{{$teacher ->id}}">
+                        <button style="color: white" type="button" data-toggle="modal" class="btn btn-danger" data-target="#delete{{$admin ->id}}">
                             <i class="fa fa-trash"></i>
                         </button>
-                        <a  class="btn btn-info" type="button" href="{{route('teachers.edit',$teacher ->id)}}">
+                        <a  class="btn btn-info" type="button" href="{{route('teachers.edit',$admin ->id)}}">
                             <i class="fa fa-edit"></i>
                         </a>
                     </td>

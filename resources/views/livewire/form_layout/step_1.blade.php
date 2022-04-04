@@ -23,7 +23,7 @@
                 <label for="inputPassword4">{{__('Grade')}}</label><br>
                 @error('grade_id')<span class="error text-danger">{{ $message }}</span>@enderror
                 <select wire:model="grade_id" class="custom-select" wire:change="change">
-                    <option value="" disabled>{{__('Choose Grade')}}</option>
+                    <option value="" >{{__('Choose Grade')}}</option>
                     @foreach($grades as $grade)
                         <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                     @endforeach
@@ -34,7 +34,7 @@
                 @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                 <select wire:model="classroom_id" class="custom-select" wire:change="change">
                     @if(isset($classrooms))
-                    <option value="" disabled>{{__('Choose Classroom')}}</option>
+                    <option value="">{{__('Choose Classroom')}}</option>
                     @foreach ($classrooms as $classroom)
                     
                     <option value="{{$classroom->id}}">{{$classroom['name_'.app()->getLocale()]}}</option>
@@ -49,7 +49,7 @@
                 <select wire:model="section_id" class="custom-select">
 
                     @if(isset($sections))
-                    <option value="" disabled>{{__('Choose Section')}}</option>
+                    <option value="">{{__('Choose Section')}}</option>
                     @foreach ($sections as $section)
                     <option value="{{$section->id}}">{{$section['name_'.app()->getLocale()]}}</option>
                     @endforeach

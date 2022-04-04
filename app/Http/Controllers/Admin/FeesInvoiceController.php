@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\Eloquent\FeesRepository;
-use App\repositories\Eloquent\StudentAccountsRepository;
-use App\repositories\Eloquent\StudentsRepository;
-use App\repositories\FeesInvoicesRepositoryInterface;
+use App\repositories\Eloquent\FeeRepository;
+use App\repositories\Eloquent\StudentAccountRepository;
+use App\repositories\Eloquent\StudentRepository;
+use App\repositories\FeesInvoiceRepositoryInterface;
 use Illuminate\Http\Request;
 
 class FeesInvoiceController extends Controller
 {
     private $feesInvoices;
-    public function __construct(FeesInvoicesRepositoryInterface $feesInvoices)
+    public function __construct(FeesInvoiceRepositoryInterface $feesInvoices)
     {
         $this->feesInvoices = $feesInvoices;
     }
@@ -23,7 +23,7 @@ class FeesInvoiceController extends Controller
         return view('admin_dashboard.pages.fee_invoices.index', compact('feeInvoices'));
     }
 
-    public function store(Request $request, FeesRepository $f, StudentAccountsRepository $sa)
+    public function store(Request $request, FeeRepository $f, StudentAccountRepository $sa)
     {
         //create in feeInvoices table
         $list_feesInvoices = $request->list_feesInvoices;
@@ -45,7 +45,7 @@ class FeesInvoiceController extends Controller
     }
 
 
-    public function show($id, StudentsRepository $s, FeesRepository $f)
+    public function show($id, StudentRepository $s, FeeRepository $f)
     {
         $student = $s->getById($id);
         $fees = $f->getData()->where('grade_id', $student->grades->id)->where('classroom_id', $student->classrooms->id);
@@ -53,7 +53,7 @@ class FeesInvoiceController extends Controller
     }
 
 
-    public function edit($id, StudentsRepository $s, FeesRepository $f)
+    public function edit($id, StudentRepository $s, FeeRepository $f)
     {
         $feesInvoice = $this->feesInvoices->getById($id);
         $student = $s->getById($feesInvoice->student_id);
@@ -62,7 +62,7 @@ class FeesInvoiceController extends Controller
     }
 
 
-    public function update(Request $request, $id, FeesRepository $f, StudentAccountsRepository $sa)
+    public function update(Request $request, $id, FeeRepository $f, StudentAccountRepository $sa)
     {
 
         //update in feeInvoices

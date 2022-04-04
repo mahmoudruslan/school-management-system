@@ -66,7 +66,6 @@
                                             class="form-label">{{ __('Attachments') }}</label>
                                         <input class="form-control" type="file" id="formFileMultiple" name="file_name"
                                             required>
-                                        <input type="hidden" name="teacher_id" value="2">
                                     </div>
                                 </div>
                             </div><br>

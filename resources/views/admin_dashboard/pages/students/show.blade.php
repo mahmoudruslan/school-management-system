@@ -44,7 +44,7 @@
 
 
         </div><br>
-            <a href="{{route('students.index')}}" type="button" class="button">{{__('Back')}}</a>
+            <a href="{{url()->previous()}}" type="button" class="button">{{__('Back')}}</a>
         </div>
     </div>
 

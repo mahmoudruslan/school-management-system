@@ -26,7 +26,7 @@ public $timestamps =  true;
         return $this ->belongsTo('App\models\Classroom','classroom_id');
     }
 
-    public function teachers(){
-        return $this->belongsToMany('App\models\Teacher','App\models\TeacherSection');
+    public function admins(){
+        return $this->belongsToMany('App\models\Admin','App\models\AdminSection');
     }
 }

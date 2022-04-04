@@ -10,9 +10,9 @@ use App\models\BloodType;
 use App\models\Grade;
 use App\models\Nationality;
 use Illuminate\Support\Str;
-use App\repositories\ClassroomsRepositoryInterface;
-use App\repositories\SectionsRepositoryInterface;
-use App\repositories\StudentsRepositoryInterface;
+use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\SectionRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
 use App\Traits\SaveImgTrait;
 
 class Student extends Component
@@ -54,7 +54,7 @@ class Student extends Component
     public $successMsg = '';
     public $errorMsg = '';
 
-    public function render(StudentsRepositoryInterface $s)
+    public function render(StudentRepositoryInterface $s)
     {
 
 
@@ -67,7 +67,7 @@ class Student extends Component
         ]);
     }
     #######################################  start Add mode  #############################################
-    public function change(ClassroomsRepositoryInterface $c, SectionsRepositoryInterface $s)
+    public function change(ClassroomRepositoryInterface $c, SectionRepositoryInterface $s)
     {
         $this->classrooms = $c->myModel()->where('grade_id', $this->grade_id)->select('id', 'name_ar', 'name_en')->get();
         $this->sections = $s->myModel()->where('classroom_id', $this->classroom_id)->select('id', 'name_ar', 'name_en')->get();
@@ -121,7 +121,7 @@ class Student extends Component
         $this->addMode = false;
     }
     #######################################  start create parents  #############################################
-    public function store(StudentsRepositoryInterface $s)
+    public function store(StudentRepositoryInterface $s)
     {
         try {
             $parent = TheParent::create([
@@ -139,7 +139,7 @@ class Student extends Component
                 'mother_name_en' => $this->mother_name_en,
                 'mother_national_id' => $this->mother_national_id,
             ]);
-            $student = $s->create([
+            $s->create([
                 'name_ar' => $this->name_ar,
                 'name_en' => $this->name_en,
                 'email' => $this->email,
@@ -168,7 +168,7 @@ class Student extends Component
     }
     #######################################  start Edit parents  #############################################
     // Fetching the owner's ID number in form
-    public function edit($id, StudentsRepositoryInterface $s)
+    public function edit($id, StudentRepositoryInterface $s)
     {
         $this->currentStep = 1;
         $this->editMode = true;
@@ -200,8 +200,8 @@ class Student extends Component
         $this->date_of_birth = $student->date_of_birth;
         $this->religion = $student->religion;
         $this->grade_id = $student->grade_id;
-        $this->classroom_id = $student->classroom_id;
-        $this->section_id = $student->section_id;
+        // $this->classroom_id = $student->classroom_id;
+        // $this->section_id = $student->section_id;
         $this->parent_id = $student->parent_id;
         $this->gender = $student->gender;
         $this->student_address = $student->student_address;
@@ -223,7 +223,7 @@ class Student extends Component
     }
 
     #######################################  start update parents  #############################################
-    public function update($id, StudentsRepositoryInterface $s)
+    public function update($id, StudentRepositoryInterface $s)
     {
         try {
 
@@ -274,7 +274,7 @@ class Student extends Component
     }
     #######################################  start delete parents  #############################################
 
-    public function delete($id, StudentsRepositoryInterface $s)
+    public function delete($id, StudentRepositoryInterface $s)
     {
         try {
 

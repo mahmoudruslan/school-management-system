@@ -17,7 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('file_name');
-            $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreignId('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->unsignedInteger('grade_id');
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreignId('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');

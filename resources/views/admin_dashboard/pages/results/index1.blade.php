@@ -1,7 +1,7 @@
 @extends('admin_dashboard.layout.master')
 
 @section('title')
-    {{__('Sections List')}}
+    {{__('Results')}}
 @stop
 @section('content')
     <!-- start error messages -->

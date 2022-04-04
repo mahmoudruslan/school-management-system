@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\Eloquent\FundAccountsRepository;
-use App\repositories\Eloquent\StudentAccountsRepository;
-use App\repositories\Eloquent\StudentsRepository;
-use App\repositories\PaymentsRepositoryInterface;
+use App\repositories\Eloquent\FundAccountRepository;
+use App\repositories\Eloquent\StudentAccountRepository;
+use App\repositories\Eloquent\StudentRepository;
+use App\repositories\PaymentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
     private $payment;
-    public function __construct(PaymentsRepositoryInterface $payment)
+    public function __construct(PaymentRepositoryInterface $payment)
     {
         $this->payment = $payment;
     }
@@ -26,7 +26,7 @@ class PaymentController extends Controller
 
 
 
-    public function store(Request $request, FundAccountsRepository $f, StudentAccountsRepository $sa)
+    public function store(Request $request, FundAccountRepository $f, StudentAccountRepository $sa)
     {
         $payment = $this->payment->create($request->all());
         $f->create([
@@ -44,7 +44,7 @@ class PaymentController extends Controller
     }
 
 
-    public function show($id, StudentsRepository $s)
+    public function show($id, StudentRepository $s)
     {
         $student = $s->getById($id);
         return view('admin_dashboard.pages.payments.create', compact('student'));
@@ -58,7 +58,7 @@ class PaymentController extends Controller
     }
 
 
-    public function update(Request $request, $id, FundAccountsRepository $f, StudentAccountsRepository $sa)
+    public function update(Request $request, $id, FundAccountRepository $f, StudentAccountRepository $sa)
     {
 
         $this->payment->update($request->all(), $id);

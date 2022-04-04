@@ -20,7 +20,7 @@ class CreateSubjectsTable extends Migration
             $table->unsignedInteger('grade_id');
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreignId('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->integer('degree');
             $table->timestamps();
         });
     }

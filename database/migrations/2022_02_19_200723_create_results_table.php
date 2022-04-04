@@ -16,14 +16,13 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->foreignId('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreignId('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->foreignId('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->unsignedInteger('grade_id');
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreignId('classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
             $table->tinyInteger('term');
             $table->decimal('degree');
-            $table->integer('from');
             $table->string('academic_year');
             
             $table->timestamps();

@@ -43,32 +43,26 @@
                             <td>{{__($student->gender)}}</td>
                             <td>
                                 <div class="form-check inline">
-                                    <input class="form-check-input" type="checkbox" value="0" name="status[{{$student->id}}]" id="flexCheckCheckedDisabled" 
-                                        @if(count($attendances->where('date',substr(now(), 0, 10))) > 0 && count($attendances->where('section_id',$section_id)) > 0)
-                                            disabled 
-                                        @endif
-                                    >
+                                    <input class="form-check-input"
+                                    @if ($attendances->where('student_id', $student->id)->where('date', date('Y-m-d'))->count() > 0)
+                                        checked disabled
+                                    @endif
+                                    type="checkbox" value="0" name="status[{{$student->id}}]" id="flexCheckCheckedDisabled" >
                                     <label class="form-check-label text-danger" for="flexCheckCheckedDisabled">
                                         {{__('Absent')}}
                                     </label>
                                 </div>
-                                    
                                 <input type="hidden" name="student_id[]" value="{{ $student->id }}">
                                 <input type="hidden" name="grade_id" value="{{ $student->grade_id }}">
                                 <input type="hidden" name="classroom_id" value="{{ $student->classroom_id }}">
                                 <input type="hidden" name="section_id" value="{{ $student->section_id }}">
-                                <input type="hidden" name="teacher_id" value="{{$teacher_id }}">
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        @if(count($attendances->where('date',substr(now(), 0, 10))) > 0 && count($attendances->where('section_id',$section_id)) > 0)
-            <button disabled class="btn btn-danger" type="submit" >{{__('Absence is recorded') }}</button>
-        @else
             <button class="button" type="submit" >{{__('Submit')}}</button>
-        @endif
     </form><br>
 @endsection
 @section('js')

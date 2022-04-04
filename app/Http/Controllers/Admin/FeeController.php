@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeeRequest;
-use App\repositories\Eloquent\FeesInvoicesRepository;
-use App\repositories\Eloquent\StudentAccountsRepository;
-use App\repositories\FeesRepositoryInterface;
-use App\repositories\GradesRepositoryInterface;
-use App\repositories\StudentsRepositoryInterface;
+use App\repositories\Eloquent\FeesInvoiceRepository;
+use App\repositories\Eloquent\StudentAccountRepository;
+use App\repositories\FeeRepositoryInterface;
+use App\repositories\GradeRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
 
 
 class FeeController extends Controller
 {
     private $fee;
-    public function __construct(FeesRepositoryInterface $fee)
+    public function __construct(FeeRepositoryInterface $fee)
     {
         $this->fee = $fee;
     }
@@ -26,14 +26,14 @@ class FeeController extends Controller
     }
 
 
-    public function create(GradesRepositoryInterface $g)
+    public function create(GradeRepositoryInterface $g)
     {
         $grades = $g->getData();
         return view('admin_dashboard.pages.fees.create', compact('grades'));
     }
 
 
-    public function store(FeeRequest $request, StudentAccountsRepository $s_a, FeesInvoicesRepository $f_i, StudentsRepositoryInterface $s)
+    public function store(FeeRequest $request, StudentAccountRepository $s_a, FeesInvoiceRepository $f_i, StudentRepositoryInterface $s)
     {
             if ($request->all_student == '1') //if you want add the fee to all srudent
             {
@@ -70,7 +70,7 @@ class FeeController extends Controller
     }
 
 
-    public function edit($id, GradesRepository $g)
+    public function edit($id, GradeRepository $g)
     {
         $grades = $g->getData();
         $fee = $this->fee->getById($id);
@@ -87,7 +87,7 @@ class FeeController extends Controller
 
 
 
-    public function destroy($id, FeesInvoicesRepository $fi)
+    public function destroy($id, FeesInvoiceRepository $fi)
     {
         try {
             $feeInvoices = $fi->getData('fee_id')->where('fee_id', $id)->pluck('id');

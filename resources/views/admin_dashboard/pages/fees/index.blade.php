@@ -50,7 +50,7 @@
                         </button>
                     </td>
                 </tr>
-                @include('pages.fees.delete')
+                @include('admin_dashboard.pages.fees.delete')
             @endforeach
             </tbody>
         </table>

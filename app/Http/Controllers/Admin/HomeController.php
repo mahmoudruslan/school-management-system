@@ -4,50 +4,36 @@ namespace App\Http\Controllers\Admin;
 
 use App\Traits\SaveImgTrait;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
+use App\models\SchoolData;
+use App\models\Student;
+use App\repositories\GraduatedRepositoryInterface;
+use App\repositories\StudentAccountRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     use SaveImgTrait;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
-    public function admin()
+    public function admin(GraduatedRepositoryInterface $g,StudentAccountRepositoryInterface $s_a, StudentRepositoryInterface $student)
     {
-        return view('admin_dashboard.admin');
+        $g_count = $g->getData()->count();
+        $school = SchoolData::all('name_ar','name_en');
         
-    }
-
-
-
-    //save parents and students attachment
-    public function saveAttachments(Request $request,$id): RedirectResponse
-    {
-            $this->saveimg('attachments/'.$request->model .'s/'. $request->name_ar, $id, 'App\models\\'.$request->model, $request->photos);
-            toastr()->success(__('success'));
-            return redirect()->back();
-    }
-
-    //delete parents and students attachment
-    public function deleteAttachments(Request $request,$id):RedirectResponse
-    {
-            $this->deleteFiles($request->model.'s/'.$request->name_ar,$request->filename,$id);
-            toastr()->success(__('Deleted successfully'));
-            return redirect()->back();
+        $sum = 0;
+        for($i = 1; $i <= $student->myModel()->count(); $i++)
+        {
+            $debit = $student->getById($i)->StudentAccount->sum('debit');
+            $credit = $student->getById($i)->StudentAccount->sum('credit');
+            if($debit > $credit)
+            {
+                $sum += 1;
+            }
+            
+            
+        }
+        return view('admin_dashboard.admin',compact('g_count','school','sum'));
+        
     }
 
 

@@ -4,61 +4,59 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SectionRequest;
-use App\repositories\Eloquent\ClassroomsRepository;
-use App\repositories\Eloquent\GradesRepository;
-use App\repositories\Eloquent\TeachersRepository;
-use App\repositories\SectionsRepositoryInterface;
-use App\repositories\Eloquent\StudentsRepository;
+use App\repositories\SectionRepositoryInterface;
+use App\repositories\GradeRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
+use App\repositories\AdminRepositoryInterface;
 use Illuminate\Http\Request;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 class SectionController extends Controller
 {
     private $section;
-    public function __construct(SectionsRepositoryInterface $section)
+    public function __construct(SectionRepositoryInterface $section)
     {
         $this->section = $section;
     }
 
-    public function index(GradesRepository $g)
+    public function index(GradeRepositoryInterface $g)
     {
         $grades = $g->getData();
         return view('admin_dashboard.pages.sections.index', compact(['grades']));
     }
 
-    public function create(GradesRepository $g, TeachersRepository $t)
+    public function create(GradeRepositoryInterface $g, AdminRepositoryInterface $a)
     {
         $grades = $g->getData();
-        $teachers = $t->getData('admin_id');
-        return view('admin_dashboard.pages.sections.create', compact(['grades', 'teachers']));
+        $admins = $a->getData(['name_ar', 'name_en', 'id']);
+        return view('admin_dashboard.pages.sections.create', compact(['grades', 'admins']));
     }
 
     public function store(SectionRequest $request)
     {
         $Section = $this->section->create($request->all());
         $sectionFind = $this->section->getById($Section->id);
-        $sectionFind->teachers()->attach($request->teacher_id);
+        $sectionFind->teachers()->attach($request->admin_id);
         return redirect()->back();
     }
 
-    public function edit($id, GradesRepository $g, TeachersRepository $t)
+    public function edit($id, GradeRepositoryInterface $g, AdminRepositoryInterface $a)
     {
         $section = $this->section->getById($id);
         $grades = $g->getData();
-        $teachers = $t->getData(['admin_id', 'id']);
-        return view('admin_dashboard.pages.sections.edit', compact(['grades', 'teachers', 'section']));
+        $admins = $a->getData(['name_ar', 'name_en', 'id']);
+        return view('admin_dashboard.pages.sections.edit', compact(['grades', 'admins', 'section']));
     }
 
     public function update(SectionRequest $request)
     {
         $Section = $this->section->update($request->all(), $request->id);
         $sectionFind = $this->section->getById($Section->id);
-        $sectionFind->teachers()->sync($request->teacher_id);
+        $sectionFind->admins()->sync($request->admin_id);
         return redirect()->route('sections.index');
     }
 
-    public function destroy(Request $request, StudentsRepository $s)
+    public function destroy(Request $request, StudentRepositoryInterface $s)
     {
         $sections = $s->getData('section_id')->where('section_id', $request->id)->pluck('section_id');
         if (count($sections) > '0') {
@@ -69,9 +67,8 @@ class SectionController extends Controller
         return redirect()->back();
     }
 
-    public function getClassrooms($id, ClassroomsRepository $c) //related ajax code
-    {
-        $list_classes = $c->getData()->where("grade_id", $id)->pluck("name_" . LaravelLocalization::getCurrentLocale(), "id");
-        return $list_classes;
-    }
+
+    
+
+
 }

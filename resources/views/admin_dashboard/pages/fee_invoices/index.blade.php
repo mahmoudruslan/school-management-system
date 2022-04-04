@@ -43,7 +43,7 @@
                         </button>
                     </td>
                 </tr>
-                @include('pages.fee_invoices.delete')
+                @include('admin_dashboard.pages.fee_invoices.delete')
             @endforeach
             </tbody>
         </table>

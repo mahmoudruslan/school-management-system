@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-// use App\repositories\Eloquent\BooksRepository;
-// use App\repositories\BooksRepositoryInterface;
+// use App\repositories\Eloquent\BookRepository;
+// use App\repositories\BookRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -21,33 +21,33 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\repositories\GradesRepositoryInterface',
-            'App\repositories\Eloquent\GradesRepository'
+            'App\repositories\GradeRepositoryInterface',
+            'App\repositories\Eloquent\GradeRepository'
         );
 
         $this->app->bind(
-            'App\repositories\ClassroomsRepositoryInterface',
-            'App\repositories\Eloquent\ClassroomsRepository'
+            'App\repositories\ClassroomRepositoryInterface',
+            'App\repositories\Eloquent\ClassroomRepository'
         );
 
         $this->app->bind(
-            'App\repositories\SectionsRepositoryInterface',
-            'App\repositories\Eloquent\SectionsRepository'
+            'App\repositories\SectionRepositoryInterface',
+            'App\repositories\Eloquent\SectionRepository'
         );
 
         $this->app->bind(
-            'App\repositories\TeachersRepositoryInterface',
-            'App\repositories\Eloquent\TeachersRepository'
+            'App\repositories\AdminRepositoryInterface',
+            'App\repositories\Eloquent\AdminRepository'
         );
 
         $this->app->bind(
-            'App\repositories\StudentsRepositoryInterface',
-            'App\repositories\Eloquent\StudentsRepository'
+            'App\repositories\StudentRepositoryInterface',
+            'App\repositories\Eloquent\StudentRepository'
         );
 
         $this->app->bind(
-            'App\repositories\PromotionsRepositoryInterface',
-            'App\repositories\Eloquent\PromotionsRepository'
+            'App\repositories\PromotionRepositoryInterface',
+            'App\repositories\Eloquent\PromotionRepository'
         );
 
         $this->app->bind(
@@ -56,13 +56,13 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\repositories\FeesRepositoryInterface',
-            'App\repositories\Eloquent\FeesRepository'
+            'App\repositories\FeeRepositoryInterface',
+            'App\repositories\Eloquent\FeeRepository'
         );
 
         $this->app->bind(
-            'App\repositories\FeesInvoicesRepositoryInterface',
-            'App\repositories\Eloquent\FeesInvoicesRepository'
+            'App\repositories\FeesInvoiceRepositoryInterface',
+            'App\repositories\Eloquent\FeesInvoiceRepository'
         );
 
         $this->app->bind(
@@ -71,8 +71,8 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\repositories\FundAccountsRepositoryInterface',
-            'App\repositories\Eloquent\FundAccountsRepository'
+            'App\repositories\FundAccountRepositoryInterface',
+            'App\repositories\Eloquent\FundAccountRepository'
         );
 
         $this->app->bind(
@@ -81,38 +81,48 @@ class RepositoryServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'App\repositories\PaymentsRepositoryInterface',
-            'App\repositories\Eloquent\PaymentsRepository'
+            'App\repositories\PaymentRepositoryInterface',
+            'App\repositories\Eloquent\PaymentRepository'
         );
 
         $this->app->bind(
-            'App\repositories\StudentAccountsRepositoryInterface',
-            'App\repositories\Eloquent\StudentAccountsRepository'
+            'App\repositories\StudentAccountRepositoryInterface',
+            'App\repositories\Eloquent\StudentAccountRepository'
         );
 
         $this->app->bind(
-            'App\repositories\AttendancesRepositoryInterface',
-            'App\repositories\Eloquent\AttendancesRepository'
+            'App\repositories\AttendanceRepositoryInterface',
+            'App\repositories\Eloquent\AttendanceRepository'
         );
 
         $this->app->bind(
-            'App\repositories\SubjectsRepositoryInterface',
-            'App\repositories\Eloquent\SubjectsRepository'
+            'App\repositories\SubjectRepositoryInterface',
+            'App\repositories\Eloquent\SubjectRepository'
         );
 
         $this->app->bind(
-            'App\repositories\ResultsRepositoryInterface',
-            'App\repositories\Eloquent\ResultsRepository'
+            'App\repositories\ResultRepositoryInterface',
+            'App\repositories\Eloquent\ResultRepository'
         );
 
         $this->app->bind(
-            'App\repositories\BooksRepositoryInterface',
-            'App\repositories\Eloquent\BooksRepository'
+            'App\repositories\RoleRepositoryInterface',
+            'App\repositories\Eloquent\RoleRepository'
+        );
+
+        $this->app->bind(
+            'App\repositories\BookRepositoryInterface',
+            'App\repositories\Eloquent\BookRepository'
+        );
+
+        $this->app->bind(
+            'App\repositories\ExamsTimetableRepositoryInterface',
+            'App\repositories\Eloquent\ExamsTimetableRepository'
         );
 
         // $this->app->bind(
-        //     BooksRepositoryInterface::class,
-        //     BooksRepository::class
+        //     BookRepositoryInterface::class,
+        //     BookRepository::class
         // );
 
 

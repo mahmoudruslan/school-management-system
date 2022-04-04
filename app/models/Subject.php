@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subject extends Model
 {
-    protected $fillable = ['name_ar', 'name_en', 'grade_id', 'classroom_id', 'teacher_id'];
+    protected $fillable = ['name_ar', 'name_en', 'grade_id', 'classroom_id', 'degree'];
     public $timestamps = true;
 
         // grades
@@ -18,11 +18,5 @@ class Subject extends Model
         public function classrooms(){
             return $this->belongsTo('App\models\Classroom','classroom_id');
         }
-        
-        // teachers
-        public function teachers(){
-            return $this->belongsTo('App\models\Teacher','teacher_id');
-        }
-
 
 }

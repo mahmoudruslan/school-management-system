@@ -8,10 +8,13 @@
 <script type="text/javascript">var plugin_path = '{{ asset('assets/js') }}/';</script>
 
 <!--start toastr pakage -->
-{{-- alrt error messages --}}
 @toastr_js
 <!--end toastr pakage -->
 
+<!--related livewire calender -->
+@livewireScripts
+    @stack('scripts')
+    
 <!-- chart -->
 <script src="{{ URL::asset('assets/js/chart-init.js') }}"></script>
 <!-- calendar -->
@@ -31,11 +34,14 @@
         $('select[name="grade_id"]').on('change', function () {
             let grade_id = $(this).val();
             if (grade_id) {
+                
+
                 $.ajax({
-                    url: "{{URL::to('admin/classrooms') }}/" + grade_id,
+                    url: "{{URL::to('admin/get_classes') }}/" + grade_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
+                        
                         $('select[name="classroom_id"]').empty();
                         $('select[name="classroom_id"]').append('<option selected disabled >{{__('Choose Classroom')}}...</option>');
                         $.each(data, function (key, value) {
@@ -53,7 +59,7 @@
             let classroom_id = $(this).val();
             if (classroom_id) {
                 $.ajax({
-                    url: "{{URL::to('admin/section') }}/" + classroom_id,
+                    url: "{{URL::to('admin/get_sections') }}/" + classroom_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -75,7 +81,7 @@
             let grade_id = $(this).val();
             if (grade_id) {
                 $.ajax({
-                    url: "{{URL::to('admin/classrooms') }}/" + grade_id,
+                    url: "{{URL::to('admin/admin/get_classes') }}/" + grade_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
@@ -96,7 +102,7 @@
             let classroom_id = $(this).val();
             if (classroom_id) {
                 $.ajax({
-                    url: "{{URL::to('admin/section') }}/" + classroom_id,
+                    url: "{{URL::to('admin/get_sections') }}/" + classroom_id,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

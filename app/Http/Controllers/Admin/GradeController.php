@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\GradesRepositoryInterface;
+use App\repositories\GradeRepositoryInterface;
 use App\models\Classroom;
+use App\repositories\ClassroomRepositoryInterface;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
   private $grade;
-  public function __construct(GradesRepositoryInterface $grade)
+  public function __construct(GradeRepositoryInterface $grade)
   {
     $this->grade = $grade;
   }
@@ -33,9 +34,9 @@ class GradeController extends Controller
     return redirect()->back();
   }
 
-  public function destroy(Request $request)
+  public function destroy(Request $request,ClassroomRepositoryInterface $c)
   {
-    $ClassroomsOfTheGrade = Classroom::where('grade_id', $request->id)->pluck('grade_id'); //بيجيب كام جرييد اي دي بيحمل نفس الاي دي بتاع المرحلة
+    $ClassroomsOfTheGrade = $c->myModel()->where('grade_id', $request->id)->pluck('grade_id'); //بيجيب كام جرييد اي دي بيحمل نفس الاي دي بتاع المرحلة
     if (count($ClassroomsOfTheGrade) !== 0) {
       toastr()->error(__('It is not possible to delete the stage because there are classes affiliated with it'));
       return redirect()->back();

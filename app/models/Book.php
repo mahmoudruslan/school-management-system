@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
 
-    protected $fillable = ['title' ,'teacher_id' , 'grade_id', 'classroom_id' ,'section_id', 'file_name'];
+    protected $fillable = ['title' ,'admin_id' , 'grade_id', 'classroom_id' ,'section_id', 'file_name'];
     public $timestamps = true;
 
     public function images()
@@ -29,8 +29,8 @@ class Book extends Model
         return $this->belongsTo('App\models\Section','section_id');
     }
 
-    // teachers
-    public function teachers(){
-        return $this->belongsTo('App\models\Teacher','teacher_id');
+    // admin
+    public function admin(){
+        return $this->belongsTo('App\models\Admin','admin_id');
     }
 }

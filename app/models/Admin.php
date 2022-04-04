@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     protected $fillable = ['id', 'name_ar', 'name_en', 'gender', 'email','password','role_id'];
-    protected $hidden = [];
     public $timestamps = true;
 
 
@@ -20,6 +19,10 @@ class Admin extends Authenticatable
         return $value == '1'? 'Male' : 'Female';
     }
 
+    public function sections(){
+        return $this->belongsToMany('App\models\Section','App\models\AdminSection');
+    }
+    
     public function teacher()
     {
         return $this->hasOne(Teacher::class,'admin_id');

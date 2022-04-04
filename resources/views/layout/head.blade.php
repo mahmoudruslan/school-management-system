@@ -59,8 +59,9 @@
         </div>
 
 <!--start toastr pakage -->
-{{-- alrt error messages --}}
                 @jquery
                 @toastr_js
                 @toastr_render
 <!--end toastr pakage -->
+<!--related livewire calender -->
+@livewireStyles

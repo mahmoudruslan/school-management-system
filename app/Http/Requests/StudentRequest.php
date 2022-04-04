@@ -141,7 +141,6 @@ class StudentRequest extends FormRequest
             'mother_name_en.max' => __('This is field must be no more than 100 characters'),
             'password.required' => __('This field is required'),
             'password.max' => __('This is field must be no more than 8 characters'),
-            // 'password.max' => __('This is field must be no more than 8 characters'),
 
 
 
@@ -165,32 +164,11 @@ class StudentRequest extends FormRequest
             'father_job_en.required' => __('This field is required'),
             'father_job_en.max' => __('This is field must be no more than 50 characters'),
 
-            // 'job_mother_ar.required' => __('This field is required'),
-            // 'job_mother_ar.max' => __('This is field must be no more than 50 characters'),
-            // 'job_mother_en.required' => __('This field is required'),
-            // 'job_mother_en.max' => __('This is field must be no more than 50 characters'),
-
-            // 'religion_father_id.required' => __('This field is required'),
-            // 'religion_mother_id.required' => __('This field is required'),
-            // 'blood_Type_father_id.required' => __('This field is required'),
-            // 'blood_Type_mother_id.required' => __('This field is required'),
             'father_nationality_id.required' => __('This field is required'),
-            // 'nationality_mother_id.required' => __('This field is required'),
-            // 'passport_id_father.required' => __('This field is required'),
-            // 'passport_id_father.numeric' => __('It must be numbers'),
-            // 'passport_id_mother.required' => __('This field is required'),
-            // 'passport_id_mother.numeric' => __('It must be numbers'),
             'father_phone.required' => __('This field is required'),
             'father_phone.max' => __('This is field must be no more than 20 number'),
             'father_phone.min' => __('This field must be at least 6 number'),
-            // 'phone_mother.required' => __('This field is required'),
-            // 'phone_mother.regex' => __('The format is invalid.'),
 
-
-            // 'address_father.required' => __('This field is required'),
-            // 'address_father.max' => __('This is field must be no more than 200 characters'),
-            // 'address_mother.required' => __('This field is required'),
-            // 'address_mother.max' => __('This is field must be no more than 200 characters'),
 
 
         ];

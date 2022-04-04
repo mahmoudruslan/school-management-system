@@ -9,13 +9,12 @@ class Result extends Model
     
     protected $fillable = [
         'student_id', 
-        'teacher_id', 
+        'admin_id', 
         'subject_id', 
         'grade_id', 
         'classroom_id', 
         'degree', 
         'academic_year', 
-        'from', 
         'term'
     ];
     public $timestamps = true;
@@ -27,8 +26,8 @@ class Result extends Model
     public function students(){
         return $this ->belongsTo('App\models\Student','student_id');
     }
-    public function teachers(){
-        return $this ->belongsTo('App\models\Teacher','teacher_id');
+    public function admin(){
+        return $this ->belongsTo('App\models\Admin','admin_id');
     }
 
     public function subjects(){

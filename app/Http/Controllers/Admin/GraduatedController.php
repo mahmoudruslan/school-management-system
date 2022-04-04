@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\models\Attendance;
 use App\models\Student;
 use App\models\TheParent;
-use App\repositories\Eloquent\GradesRepository;
-use App\repositories\Eloquent\StudentsRepository;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\StudentRepository;
 use App\repositories\GraduatedRepositoryInterface;
-use App\repositories\StudentsRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class GraduatedController extends Controller
@@ -27,18 +27,17 @@ class GraduatedController extends Controller
         return view('admin_dashboard.pages.graduated.index', compact('students'));
     }
 
-    public function create(GradesRepository $g)
+    public function create(GradeRepository $g)
     {
         $grades = $g->getData();
         return view('admin_dashboard.pages.graduated.create', compact(['grades']));
     }
 
-    public function store(Request $request, StudentsRepository $s)
+    public function store(Request $request, StudentRepository $s)
     {
         $students = $s->getData()
             ->where('grade_id', $request->grade_id)
-            ->where('classroom_id', $request->classroom_id)
-            ->where('section_id', $request->section_id);
+            ->where('classroom_id', $request->classroom_id);
 
         if (count($students) > 0) {
             foreach ($students as $student) {

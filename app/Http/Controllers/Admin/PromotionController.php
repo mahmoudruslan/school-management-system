@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\Eloquent\GradesRepository;
-use App\repositories\Eloquent\StudentsRepository;
-use App\repositories\PromotionsRepositoryInterface;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\StudentRepository;
+use App\repositories\PromotionRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PromotionController extends Controller
 {
     private $promotion;
 
-    public function __construct(PromotionsRepositoryInterface $promotion)
+    public function __construct(PromotionRepositoryInterface $promotion)
     {
         $this->promotion = $promotion;
     }
@@ -23,13 +23,13 @@ class PromotionController extends Controller
         return view('admin_dashboard.pages.promotions.index', compact(['promotions']));
     }
 
-    public function create(GradesRepository $g)
+    public function create(GradeRepository $g)
     {
         $grades = $g->getData();
         return view('admin_dashboard.pages.promotions.create', compact('grades'));
     }
 
-    public function store(Request $request, StudentsRepository $s)
+    public function store(Request $request, StudentRepository $s)
     {
 
         $students = $s->getData(['id', 'grade_id', 'classroom_id', 'section_id'])
@@ -57,7 +57,7 @@ class PromotionController extends Controller
     }
 
 
-    public function destroy(Request $request, StudentsRepository $s)
+    public function destroy(Request $request, StudentRepository $s)
     {
 
         $ids = explode(",", $request->ids);

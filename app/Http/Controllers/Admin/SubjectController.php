@@ -3,19 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\models\Subject;
-use App\repositories\Eloquent\ClassroomsRepository;
-use App\repositories\Eloquent\GradesRepository;
-use App\repositories\Eloquent\TeachersRepository;
-use App\repositories\SubjectsRepositoryInterface;
+use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\GradeRepositoryInterface;
+use App\repositories\SubjectRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class SubjectController extends Controller
 {
 
     private $subject;
-    public function __construct(SubjectsRepositoryInterface $subject)
+    public function __construct(SubjectRepositoryInterface $subject)
     {
         $this->subject = $subject;
     }
@@ -26,12 +23,11 @@ class SubjectController extends Controller
     }
 
 
-    public function create(GradesRepository $g, ClassroomsRepository $c, TeachersRepository $t)
+    public function create(GradeRepositoryInterface $g, ClassroomRepositoryInterface $c)
     {
         $grades = $g->getData();
         $classrooms = $c->getData();
-        $teachers = $t->getData();
-        return view('admin_dashboard.pages.subjects.create',compact(['grades','classrooms','teachers']));
+        return view('admin_dashboard.pages.subjects.create',compact(['grades','classrooms']));
     }
 
 
@@ -42,13 +38,12 @@ class SubjectController extends Controller
 
     }
 
-    public function edit($id, GradesRepository $g, ClassroomsRepository $c, TeachersRepository $t)
+    public function edit($id, GradeRepositoryInterface $g, ClassroomRepositoryInterface $c)
     {
         $grades = $g->getData();
         $classrooms = $c->getData();
-        $teachers = $t->getData();
         $subject = $this->subject->getById($id);
-        return view('admin_dashboard.pages.subjects.edit',compact(['classrooms','grades','subject','teachers']));
+        return view('admin_dashboard.pages.subjects.edit',compact(['classrooms','grades','subject']));
     }
 
 

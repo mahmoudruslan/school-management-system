@@ -12,13 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            
             BloodTypeSeeder::class,
             NationalitySeeder::class,
-            //AdminSeeder::class,
+            RoleSeeder::class,
             SpecializationSeeder::class,
+            AdminSeeder::class,
             GradeSeeder::class,
             ClassroomSeeder::class,
             SectionSeeder::class,
+            
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <div class="tab-pane fade" id="parent-data" role="tabpanel" aria-labelledby="home-03-tab">
     <!-- but your table hair-->
-    <table class="table-hover">
+    <table class="table-hover table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-2"><h6>{{__("Father's Name")}}</h6></td>

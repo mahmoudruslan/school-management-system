@@ -39,7 +39,7 @@
 
 
                         <button type="submit" class="button">{{__("Submit")}}</button>
-                        <a href="{{route('results.index1')}}" class="btn btn-secondary">{{__("Back")}}</a>
+                        <a href="{{route('results.index')}}" class="btn btn-secondary">{{__("Back")}}</a>
                     </form>
 
                 </div>

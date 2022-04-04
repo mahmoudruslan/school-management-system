@@ -2,7 +2,6 @@
 
 namespace App\models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,15 +16,17 @@ class Student extends Authenticatable
 
     public function setPasswordAttribute($password)
     {
-            $this->attributes['password'] = Hash::make($password);
+        $this->attributes['password'] = Hash::make($password);
     }
 
-    public function getEntryStatusAttribute($value){
-        return $value == 'Noob' || $value == 1? 'Noob' : 'Left to return';
+    public function getEntryStatusAttribute($value)
+    {
+        return $value == 'Noob' || $value == 1 ? 'Noob' : 'Left to return';
     }
 
-    public function getGenderAttribute($value){
-        return $value == '1' || $value == 'Male'? 'Male' : 'Female';
+    public function getGenderAttribute($value)
+    {
+        return $value == '1' || $value == 'Male' ? 'Male' : 'Female';
     }
 
 
@@ -34,41 +35,55 @@ class Student extends Authenticatable
         return $this->morphMany('App\models\Image', 'imageable');
     }
 
-
-
-
     // nationalities
-    public function nationalities(){
-        return $this->belongsTo('App\models\Nationality','student_nationality_id');
+    public function nationalities()
+    {
+        return $this->belongsTo('App\models\Nationality', 'student_nationality_id');
     }
     // nationalities
-    public function bloodTypes(){
-        return $this->belongsTo('App\models\BloodType','blood_type_id');
+    public function bloodTypes()
+    {
+        return $this->belongsTo('App\models\BloodType', 'blood_type_id');
     }
     // grades
-    public function grades(){
-        return $this->belongsTo('App\models\Grade','grade_id');
+    public function grades()
+    {
+        return $this->belongsTo('App\models\Grade', 'grade_id');
     }
 
     // classrooms
-    public function classrooms(){
-        return $this->belongsTo('App\models\Classroom','classroom_id');
+    public function classrooms()
+    {
+        return $this->belongsTo('App\models\Classroom', 'classroom_id');
     }
 
     // sections
-    public function sections(){
-        return $this->belongsTo('App\models\Section','section_id');
+    public function sections()
+    {
+        return $this->belongsTo('App\models\Section', 'section_id');
     }
 
-    // sections
-    public function parents(){
-        return $this->belongsTo('App\models\TheParent','parent_id');
+    // parents
+    public function parents()
+    {
+        return $this->belongsTo('App\models\TheParent', 'parent_id');
     }
 
-    // sections
+    // attendances
     public function attendances()
     {
         return $this->hasMany('App\models\Attendance', 'student_id');
     }
 
+    // studentAccount
+    public function studentAccount()
+    {
+        return $this->hasMany('App\models\StudentAccount', 'student_id');
     }
+
+    // invoices
+    public function invoices()
+    {
+        return $this->hasMany('App\models\FeeInvoice', 'student_id');
+    }
+}

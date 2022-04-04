@@ -1,9 +1,7 @@
 @extends('admin_dashboard.layout.master')
 @section('title')
-    {{__('Add Graduated')}}
+    {{__('Add to graduates')}}
 @stop
-
-
 @section('content')
     <!-- start error messages -->
     @if(Session::has('error'))
@@ -43,12 +41,6 @@
                                 <label for="Classroom_id">{{__('Classrooms')}} : <span
                                         class="text-danger">*</span></label>
                                 <select class="custom-select mr-sm-2" name="classroom_id">
-                                </select>
-                            </div>
-                            <div class="form-group col">
-                                <label for="section_id">{{__('Section')}} : <span
-                                        class="text-danger">*</span> </label>
-                                <select class="custom-select mr-sm-2" name="section_id">
                                 </select>
                             </div>
                         </div><br>

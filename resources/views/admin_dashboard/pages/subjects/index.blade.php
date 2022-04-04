@@ -25,7 +25,7 @@
                 <th>{{__("Subject Name")}}</th>
                 <th>{{__("Grade")}}</th>
                 <th>{{__("Classroom")}}</th>
-                <th>{{__("Teacher Name")}}</th>
+                <th>{{__("Degree")}}({{__('for two terms')}})</th>
 
                 <th class="pl-5 pr-4">{{__("Processes")}}</th>
             </tr>
@@ -37,7 +37,7 @@
                     <td>{{$subject['name_'.app()->getLocale()]}}</td>
                     <td>{{$subject->grades['name_'.app()->getLocale()]}}</td>
                     <td>{{$subject->classrooms['name_'.app()->getLocale()]}}</td>
-                    <td>{{$subject->teachers['name_'.app()->getLocale()]}}</td>
+                    <td>{{$subject->degree}}</td>
 
                     <td>
                         <a href="{{route('subjects.edit',$subject->id)}}" class="btn btn-info" >

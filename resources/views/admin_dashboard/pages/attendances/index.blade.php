@@ -22,6 +22,7 @@
                 <th>{{__("Grade")}}</th>
                 <th>{{__("Classroom")}}</th>
                 <th>{{__("Section")}}</th>
+                <th>{{__("Teacher Name")}}</th>
                 <th class="pl-5 pr-4">{{__("Processes")}}</th>
             </tr>
             </thead>
@@ -34,6 +35,7 @@
                         <td>{{$attendance->grades['name_'.app()->getLocale()]}}</td>
                         <td>{{$attendance->classrooms['name_'.app()->getLocale()]}}</td>
                         <td>{{$attendance->sections['name_'.app()->getLocale()]}}</td>
+                        <td>{{$attendance->admin['name_'.app()->getLocale()]}}</td>
                         <td>
                             <a class="btn btn-warning" href="{{route('students.show',$attendance->students->id)}}">
                                 <i class="far fa-eye "></i>&nbsp;{{__('Show student information')}}

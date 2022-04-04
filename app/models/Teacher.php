@@ -16,9 +16,7 @@ class Teacher extends Authenticatable
         return $this->belongsTo('App\models\Specialization','specialization_id');
     }
 
-    public function sections(){
-        return $this->belongsToMany('App\models\Section','App\models\TeacherSection');
-    }
+
     public function admin()
     {
         return $this->belongsTo(Admin::class,'admin_id');

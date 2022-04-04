@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attendance extends Model
 {
-    protected $fillable = ['grade_id', 'classroom_id', 'section_id', 'teacher_id', 'student_id', 'date', 'status'];
+    protected $fillable = ['grade_id', 'classroom_id', 'section_id', 'admin_id', 'student_id', 'date', 'status'];
 
     public function students()
     {
@@ -24,9 +24,9 @@ class Attendance extends Model
     {
         return $this->belongsTo('App\models\Section','section_id');
     }
-    public function teachers()
+    public function admin()
     {
-        return $this->belongsTo('App\models\Teacher','teacher_id');
+        return $this->belongsTo('App\models\Admin','admin_id');
     }
 
 }

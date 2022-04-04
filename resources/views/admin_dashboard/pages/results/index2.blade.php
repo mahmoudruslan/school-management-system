@@ -35,10 +35,10 @@
                     <td>{{$result->students['name_'.app()->getLocale()]}}</td>
                     <td>{{$result->subjects['name_'.app()->getLocale()]}}</td>
                     <td>{{$result->degree}}</td>
-                    <td>{{$result->from}}</td>
+                    <td>{{$result->subjects->degree/2}}</td>
                     <td>{{__($result->term)}}</td>
                     <td>{{$result->academic_year}}</td>
-                    <td>{{$result->teachers['name_'.app()->getLocale()]}}</td>
+                    <td>{{$result->admin['name_'.app()->getLocale()]}}</td>
                     <td>
                         <a href="{{route('results.edit',$result->id)}}" class="btn btn-info" >
                             <i class="fa fa-edit"></i>

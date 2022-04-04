@@ -1,6 +1,6 @@
 @extends('admin_dashboard.layout.master')
 @section('title')
-    {{__('Attendances')}}
+    {{__('Attendance')}}
 @stop
 @section('content')
     <!-- start error messages -->
@@ -48,7 +48,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($classroom->sections as $section)
+                                                    @foreach ($sections as $section)
+                                                    @if($section->classroom_id == $classroom->id)
                                                         <tr>
                                                             <td>{{$loop->index}}</td>
                                                             <td>{{$section['name_'.app()->getLocale()]}}</td>
@@ -58,13 +59,13 @@
                                                             <td>
                                                                 <form action="{{route('attendances.show',$section->id)}}" method="">
                                                                     @csrf
-                                                                    <input name="teacher_id" type="hidden" value="{{$teacher_id}}">
                                                                     <button class="btn btn-warning" type="submit">
                                                                         <i class="fa fa-eye"></i> {{__('Show students')}}
                                                                     </button>
                                                                 </form>
                                                             </td>
                                                         </tr>
+                                                        @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>

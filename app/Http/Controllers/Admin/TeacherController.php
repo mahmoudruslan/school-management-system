@@ -4,32 +4,33 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeachersRequest;
-use App\models\Admin;
+use App\models\Teacher;
 use App\models\Role;
 use App\models\Specialization;
-use App\repositories\TeachersRepositoryInterface;
+use App\repositories\AdminRepositoryInterface;
+use App\repositories\RoleRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
 
-    protected $teacher;
-    public function __construct(TeachersRepositoryInterface $teacher)
+    protected $admin;
+    public function __construct(AdminRepositoryInterface $admin)
     {
-        $this->teacher = $teacher;
+        $this->admin = $admin;
     }
 
 
     public function index()
     {
-        $teachers = $this->teacher->getData();
-        return view('admin_dashboard.pages.teachers.index', compact('teachers'));
+        $admins = $this->admin->getData();
+        return view('admin_dashboard.pages.teachers.index', compact('admins'));
     }
 
 
-    public function create()
+    public function create(RoleRepositoryInterface $r)
     {
-        $roles = Role::all();
+        $roles = $r->getData();
         $specializations = Specialization::all();
         return view('admin_dashboard.pages.teachers.create', compact('roles','specializations'));
     }
@@ -37,7 +38,7 @@ class TeacherController extends Controller
 
     public function store(TeachersRequest $request)
     {
-        $admin = Admin::create([
+        $admin = $this->admin->create([
             'name_ar' => $request->name_ar,
             'name_en' => $request->name_en,
             'email' => $request->email,
@@ -46,7 +47,7 @@ class TeacherController extends Controller
             'role_id' => $request->role_id,
             
         ]);
-        $this->teacher->create([
+        Teacher::create([
             'phone' => $request->phone,
             'specialization_id' => $request->specialization_id,
             'joining_date' => $request->joining_date,
@@ -59,32 +60,33 @@ class TeacherController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit($id, RoleRepositoryInterface $r)
     {
 
         $specializations = Specialization::all();
-        $teacher = $this->teacher->getById($id);
-        $admin = Admin::find($teacher->admin_id);
-        return view('admin_dashboard.admin_dashboard.pages.teachers.edit', compact(['specializations', 'teacher','admin']));
+        $admin = $this->admin->getById($id);
+        $roles = $r->getData('id','name_ar','name_en');
+        return view('admin_dashboard.pages.teachers.edit', compact(['specializations','admin','roles']));
     }
 
 
     public function update(TeachersRequest  $request)
     {
-        $admin = Admin::find($request->admin_id);
-        $admin->update([
+        
+        $this->admin->update([
             'name_ar' => $request->name_ar,
             'name_en' => $request->name_en,
             'email' => $request->email,
-        ]);
-        $this->teacher->update($request->all(), $request->id);
+        ],$request->id);
+        $teacher = Teacher::where('admin_id', $request->id)->first();
+        $teacher->update($request->all());
         return redirect()->route('teachers.index');
     }
 
 
     public function destroy(Request $request)
     {
-        $this->teacher->destroy($request->id);
+        $this->admin->destroy($request->id);
         return redirect()->back();
     }
 }

@@ -42,7 +42,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $book->title }}</td>
-                                            <td>{{ $book->teachers['name_' . app()->getLocale()] }}</td>
+                                            <td>{{ $book->admin['name_' . app()->getLocale()] }}</td>
                                             <td>{{ $book->grades['name_' . app()->getLocale()] }}</td>
                                             <td>{{ $book->classrooms['name_' . app()->getLocale()] }}</td>
                                             <td>{{ $book->sections['name_' . app()->getLocale()] }}</td>
@@ -65,7 +65,7 @@
                                                     title="{{ __('Delete') }}"><i class="fa fa-trash"></i></button>
                                             </td>
                                         </tr>
-                                        @include('pages.books.destroy')
+                                        @include('admin_dashboard.pages.books.destroy')
                                     @endforeach
                             </table>
                         </div>

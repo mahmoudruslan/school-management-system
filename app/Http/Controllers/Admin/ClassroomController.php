@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\repositories\ClassroomsRepositoryInterface;
-use App\repositories\Eloquent\GradesRepository;
-use App\repositories\Eloquent\StudentsRepository;
+use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\StudentRepository;
 use Illuminate\Http\Request;
-use App\repositories\Eloquent\SectionsRepository;
+use App\repositories\Eloquent\SectionRepository;
 
 class ClassroomController extends Controller
 {
     private $classroom;
-    public function __construct(ClassroomsRepositoryInterface $classroom){
+    public function __construct(ClassroomRepositoryInterface $classroom){
         $this->classroom =$classroom;
     }
-    public function index(GradesRepository $g)
+    public function index(GradeRepository $g)
     {
         $grades = $g->getData();
         $classrooms = $this->classroom->getData();
@@ -34,7 +34,7 @@ class ClassroomController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Request $request,SectionsRepository $sec,StudentsRepository $stud)
+    public function destroy(Request $request,SectionRepository $sec,StudentRepository $stud)
     {
             $student = $stud->getRelatedStuff('classroom_id',$request->id);//في طلاب عندهم الكلاس رووم اي دي دا؟ تب كم واحد؟
             $sections = $sec->getRelatedStuff('classroom_id',$request -> id);
