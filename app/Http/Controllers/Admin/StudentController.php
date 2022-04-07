@@ -17,6 +17,10 @@ class StudentController extends Controller
     {
         return view('admin_dashboard.pages.students.index');
     }
+
+    public function edit($id){
+        return $id;
+    }
     public function show($id)
     {
         $student = $this->student->getById($id);

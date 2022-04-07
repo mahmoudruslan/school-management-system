@@ -17,7 +17,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="dashboard" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="index.html">{{ __('Dashboard') }} 01</a> </li>
+                            <li> <a href="{{route('dashboard')}}">{{ __('Dashboard') }}</a> </li>
 
                         </ul>
                     </li>

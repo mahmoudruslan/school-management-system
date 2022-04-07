@@ -30,31 +30,31 @@ class SectionSeeder extends Seeder
                 'ar' => 'ج',
                 'en' => 'c',
             ],
-
             [
                 'ar' => 'د',
                 'en' => 'd',
             ],
-
             [
-                'ar' => 'ع',
+                'ar' => 'و',
                 'en' => 'e',
             ],
-
             [
-                'ar' => 'س',
+                'ar' => 'ي',
                 'en' => 'f',
             ],
+
         ];
+        $i = 0;
         foreach($xs as $x)
         {
+            $i++;
             Section::create([
 
                 'name_ar'=> $x['ar'],
                 'name_en'=> $x['en'],
                 'status'=> 1,
                 'grade_id'=> 1,
-                'classroom_id'=> Classroom::all()->unique()->random()->id,
+                'classroom_id'=> rand(1,3),
             ]);
         }
     }

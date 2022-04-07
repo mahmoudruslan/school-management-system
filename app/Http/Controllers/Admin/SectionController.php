@@ -56,6 +56,13 @@ class SectionController extends Controller
         return redirect()->route('sections.index');
     }
 
+        //Show students
+        public function show(Request $request,$section_id, StudentRepositoryInterface $s)
+        {
+            $students = $s->getData()->where('section_id',$section_id);        
+            return view('admin_dashboard.pages.sections.show',compact(['students']));
+        }
+
     public function destroy(Request $request, StudentRepositoryInterface $s)
     {
         $sections = $s->getData('section_id')->where('section_id', $request->id)->pluck('section_id');

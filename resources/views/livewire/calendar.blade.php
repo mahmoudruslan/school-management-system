@@ -31,19 +31,14 @@
 
                                 @if (!empty($successM))
                                     <div class="alert alert-success">
-                                        <button type="button" class="close"
-                                            wire:click="clearMessage">x</button>
                                         {{ $successM }}
                                     </div>
                                 @endif
                                 @if (!empty($errorM))
                                 <div class="alert alert-danger">
-                                    <button type="button" class="close"
-                                        wire:click="clearMessage">x</button>
                                     {{ $errorM }}
                                 </div>
                             @endif
-
                                 <div id='calendar-container' wire:ignore>
                                     <div id='calendar'></div>
                                 </div>

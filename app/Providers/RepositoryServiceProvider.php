@@ -3,9 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-// use App\repositories\Eloquent\BookRepository;
-// use App\repositories\BookRepositoryInterface;
-
 class RepositoryServiceProvider extends ServiceProvider
 {
     /**

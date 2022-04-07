@@ -43,16 +43,15 @@ login-->
 
                 <div class="row justify-content-center no-gutters vertical-align">
                     <div class="col-lg-4 col-md-6 bg-white">
-                        @if (Session::has('error'))
-                            <div class="alert alert-danger">{{ Session::get('error') }}</div>
-                        @endif
+                        
                         <div class="login-fancy pb-40 clearfix">
                             <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">
                                 {{ __('Reset password') }}</h3>
-
+                                @if (Session::has('error'))
+                                <div class="text-danger">{{ Session::get('error') }}</div>
+                            @endif
                             <form method="POST" action="{{ route('reset.password') }}">
                                 @csrf
-
                                 <div class="section-field mb-20">
                                     <label class="mb-10" for="name">{{ __('Email') }}*</label>
                                     @error('email')

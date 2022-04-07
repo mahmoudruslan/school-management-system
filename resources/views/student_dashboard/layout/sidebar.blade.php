@@ -72,13 +72,8 @@
                             <div class="clearfix"></div>
                         </a>
                     </li>
-
-
                 </ul>
             </div>
-
-
-
         </div>
 
 

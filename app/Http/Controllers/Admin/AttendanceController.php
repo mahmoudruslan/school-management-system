@@ -20,7 +20,7 @@ class AttendanceController extends Controller
     }
 
 
-    public function index(SectionRepository $sections)
+    public function index()
     {
         $attendances = $this->attendance->getData();
         return view('admin_dashboard.pages.attendances.index',compact('attendances'));
@@ -39,13 +39,15 @@ class AttendanceController extends Controller
         if (!empty($request->status)) {
             foreach ($request->student_id as $id) {
                 if (array_key_exists($id, $request->status)) {
-                    $this->attendance->createe([
+                    $this->attendance->createe(
+                        [
                         'student_id' => $id,
                         'date' => date('y-m-d'),
                         'grade_id' => $request->grade_id,
                         'classroom_id' => $request->classroom_id,
                         'section_id' => $request->section_id,
-                    ], [
+                    ],
+                     [
                         'grade_id' => $request->grade_id,
                         'classroom_id' => $request->classroom_id,
                         'section_id' => $request->section_id,

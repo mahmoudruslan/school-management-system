@@ -24,31 +24,15 @@ class StudentRequest extends FormRequest
 
     public function editRule1(){
         $rules =  [
-            // 'email'=> 'required|email',
-
-            // 'father_national_id'=> 'required|string|min:10|max:10|regex:/[0-9]{9}/',
-            // 'father_phone'=> 'min:10|max:10',
-
-            // 'father_nationality_id'=> 'required',
-
             'name_ar' => 'required|max:100',
             'name_en' => 'required|max:100',
             'grade_id' => 'required',
-            'classroom_id' => 'required',
-            'section_id' => 'required',
+
             'student_nationality_id' => 'required',
             'religion' => 'required',
             'date_of_birth' => 'required|date',
             'student_address' => 'required|max:200',
             'gender' => 'required',
-
-            // 'phone_father'=> 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            // 'blood_Type_father_id'=> 'required',
-            // 'religion_father_id'=> 'required',
-            // 'address_father'=> 'required|max:200',
-
-
-
 
         ];
         return $rules;
@@ -56,10 +40,12 @@ class StudentRequest extends FormRequest
     public function rules1()
     {
         $x = $this->editRule1();
-        return $x;
-        //  += [
+        return $x
+         += [
+            'classroom_id' => 'required',
+            'section_id' => 'required',
         //     'password'=> 'required|max:8',
-        // ];
+        ];
     }
 
 

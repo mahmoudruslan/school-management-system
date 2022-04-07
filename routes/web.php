@@ -19,22 +19,20 @@ use App\Http\Livewire\Calendar;
 */
 
 ############################# Package MCamara ###########################################
-
+Route::post('student/edit/{id}',[App\Http\Livewire\Student::class,'edit'])->name('xxx');
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
-
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
 
 ], function () {
     ############################# dashboard ################################################################
 
+    
 
-
-    Route::group(['middleware' => 'guest'], function () {
-        Route::get('login-show/{type}', 'Auth\LoginController@showForm')->name('login.show');
-
-        Route::post('/login', 'Auth\LoginController@login')->name('login');
-
+    Route::group(['middleware' => 'guest',
+    'namespace' => 'Auth'], function () {
+        Route::get('login-show/{type}', 'LoginController@showForm')->name('login.show');
+        Route::post('/login', 'LoginController@login')->name('login');
         Route::get('/', function () {
             return view('auth.selection');
         })->name('selection');
@@ -56,6 +54,7 @@ Route::group([
         Route::resource('teachers', 'TeacherController')->middleware('can:teachers');
         ############################# begin Students ###################################################################
         Route::resource('students', 'StudentController')->middleware('can:students');
+        
         ####################### begin Students Promotions ##################################
         Route::group(['middleware' => 'can:promotions'], function () {
             Route::resource('promotions', 'PromotionController');

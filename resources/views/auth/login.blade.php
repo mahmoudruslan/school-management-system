@@ -50,15 +50,18 @@
                     <div class="col-lg-4 col-md-6 bg-white">
                         <div class="login-fancy pb-40 clearfix">
                             @if ($type == 'student')
-                                <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول طالب</h3>
+                                <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">{{__('Student login')}}</h3>
                             @else
-                                <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">تسجيل دخول ادمن</h3>
+                                <h3 style="font-family: 'Cairo', sans-serif" class="mb-30">{{__('Admin login')}}</h3>
+                            @endif
+                            @if (Session::has('password_error'))
+                                <div class="text-danger">{{Session::get('password_error')}}</div>
                             @endif
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
                                 <div class="section-field mb-20">
-                                    <label class="mb-10" for="name">البريدالالكتروني*</label>
+                                    <label class="mb-10" for="name">{{__('Email')}}*</label>
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>

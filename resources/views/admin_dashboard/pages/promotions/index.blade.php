@@ -16,6 +16,11 @@
     <button type="button" class="btn btn-danger" id="btn_delete_all">
         <i class="fas fa-check-square"></i>
     </button><span class="p-2">{{__('Delete')}}</span><br><br>
+
+    <button type="button" class="btn btn-primary" id="checked_all">
+        <i class="fas fa-check-square"></i>
+    </button><span class="p-2">{{__('Select all')}}</span><br><br>
+    
     <div class="table-responsive">
         <table  id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center" >
             <thead>

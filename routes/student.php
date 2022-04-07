@@ -14,19 +14,22 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | is assigned the "student" middleware group. Enjoy building your student!
 |
 */
+
 Route::group([
     
     'prefix' => LaravelLocalization::setLocale() .'/'.'student',
 
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
 
-    'namespace' => 'User'
+    'namespace' => 'User'], 
+    function () {
 
-], function () {
     Route::get('student/reset/password', function () {
         return view('student_dashboard.pages.reset_password');
     })->name('reset.form');
-    Route::post('student/reset/password', 'User\HomeController@resetPassword')->name('reset.password');
+
+
+    Route::post('student/reset/password', 'HomeController@resetPassword')->name('reset.password');
 });
 Route::group([
     

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\models\Grade;
 use App\repositories\GradeRepositoryInterface;
-use App\models\Classroom;
 use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
 use Illuminate\Http\Request;
+
 
 class GradeController extends Controller
 {
@@ -33,6 +35,13 @@ class GradeController extends Controller
     $this->grade->update($request->all(), $request->id);
     return redirect()->back();
   }
+
+      //Show students
+      public function show(Request $request, $grade_id, StudentRepositoryInterface $s)
+      {
+          $students = $s->getData()->where('grade_id', $grade_id);
+          return view('admin_dashboard.pages.grades.show', compact(['students']));
+      }
 
   public function destroy(Request $request,ClassroomRepositoryInterface $c)
   {

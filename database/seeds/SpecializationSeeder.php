@@ -12,6 +12,7 @@ class SpecializationSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('specializations')->delete();
         $specializations = [
 
 

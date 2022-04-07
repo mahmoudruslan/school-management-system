@@ -9,8 +9,10 @@ use Livewire\WithFileUploads;
 use App\models\BloodType;
 use App\models\Grade;
 use App\models\Nationality;
+use App\models\Student as ModelsStudent;
 use Illuminate\Support\Str;
 use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\GradeRepositoryInterface;
 use App\repositories\SectionRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;
 use App\Traits\SaveImgTrait;
@@ -36,6 +38,7 @@ class Student extends Component
         $student_address,
         $gender,
         $email,
+        
         $date_of_birth,
         $entry_status,
         $father_name_ar,
@@ -54,16 +57,16 @@ class Student extends Component
     public $successMsg = '';
     public $errorMsg = '';
 
-    public function render(StudentRepositoryInterface $s)
+    public function render(StudentRepositoryInterface $s, GradeRepositoryInterface $g)
     {
 
 
         return view('livewire.student', [
             'my_parents' => TheParent::all(),
-            'students' => $s->getData(),
+            'students' => $s->getData(['id', 'name_ar', 'name_en', 'gender', 'grade_id', 'classroom_id', 'section_id']),
             'bloodtypes' => BloodType::all(),
             'nationalitys' => Nationality::all(),
-            'grades' => Grade::all(),
+            'grades' => $g->getData(),
         ]);
     }
     #######################################  start Add mode  #############################################

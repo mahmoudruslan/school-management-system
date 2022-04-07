@@ -14,12 +14,10 @@ class GradeSeeder extends Seeder
     public function run()
     {
         DB::table('grades')->delete();
-
-
             Grade::create([
                 'name_ar' => 'المرحلة الثانوية',
                 'name_en' => 'High school',
-                'notes' => 'هذه المرحلة من السيدر',
+                'notes' => 'من السيدر',
             ]);
     }
 }

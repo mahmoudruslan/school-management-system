@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\Eloquent\GradeRepository;
-use App\repositories\Eloquent\StudentRepository;
+use App\repositories\GradeRepositoryInterface;
 use App\repositories\PromotionRepositoryInterface;
+use App\repositories\StudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PromotionController extends Controller
@@ -23,16 +23,15 @@ class PromotionController extends Controller
         return view('admin_dashboard.pages.promotions.index', compact(['promotions']));
     }
 
-    public function create(GradeRepository $g)
+    public function create(GradeRepositoryInterface $g)
     {
         $grades = $g->getData();
         return view('admin_dashboard.pages.promotions.create', compact('grades'));
     }
 
-    public function store(Request $request, StudentRepository $s)
+    public function store(Request $request, StudentRepositoryInterface $s)
     {
-
-        $students = $s->getData(['id', 'grade_id', 'classroom_id', 'section_id'])
+        $students = $s->getData(['id', 'grade_id', 'classroom_id'])
             ->where('grade_id', $request->grade_id)
             ->where('classroom_id', $request->classroom_id);
         if (count($students) > 0) {
@@ -57,7 +56,7 @@ class PromotionController extends Controller
     }
 
 
-    public function destroy(Request $request, StudentRepository $s)
+    public function destroy(Request $request, StudentRepositoryInterface $s)
     {
 
         $ids = explode(",", $request->ids);

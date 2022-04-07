@@ -65,7 +65,7 @@ class LoginController extends Controller
                 return redirect()->route('selection');
             }
         }else{
-            return 'correct this password';
+            return redirect()->back()->with('password_error', __('Incorrect email or password'));
         }
 
     }

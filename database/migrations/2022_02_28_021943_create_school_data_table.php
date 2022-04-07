@@ -26,7 +26,7 @@ class CreateSchoolDataTable extends Migration
             $table->string('school_manager')->nullable();
             $table->string('city')->nullable();
             $table->string('address');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

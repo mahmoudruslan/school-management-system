@@ -14,12 +14,13 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->delete();
+        DB::table('teachers')->delete();
     
 
             $admin = Admin::create([
                 'name_ar' => 'محمود',
                 'name_en' => 'mahmoud',
-                'email' => 'mahmoud.kora40@gmail.com',
+                'email' => 'mahmoud.40@gmail.com',
                 'password' => '00000000',
                 'gender' => '1',
                 'role_id' => '1'

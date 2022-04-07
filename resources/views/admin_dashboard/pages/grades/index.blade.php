@@ -42,6 +42,12 @@
                             <button  class="btn btn-info" type="button" data-toggle="modal" data-target="#edit{{$grade ->id}}">
                                 <i class="fa fa-edit"></i>
                             </button>
+                            <form class="d-inline" action="{{route('grades.show',$grade->id)}}" method="">
+                                @csrf
+                                <button class="btn btn-warning" type="submit">
+                                    <i class="fa fa-eye"></i> {{__('Show students')}}
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     @include('admin_dashboard.pages.grades.edit')
