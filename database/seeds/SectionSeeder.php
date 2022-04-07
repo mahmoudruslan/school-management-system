@@ -1,10 +1,8 @@
 <?php
 
-use App\models\Classroom;
 use App\models\Section;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class SectionSeeder extends Seeder
 {
@@ -44,18 +42,18 @@ class SectionSeeder extends Seeder
             ],
 
         ];
-        $i = 0;
         foreach($xs as $x)
         {
-            $i++;
-            Section::create([
+            $section = Section::create([
 
                 'name_ar'=> $x['ar'],
                 'name_en'=> $x['en'],
                 'status'=> 1,
                 'grade_id'=> 1,
-                'classroom_id'=> rand(1,3),
+                'classroom_id'=> rand(1,3)
             ]);
+            $x = Section::find($section->id);
+            $x->admins()->attach(1);
         }
     }
 }

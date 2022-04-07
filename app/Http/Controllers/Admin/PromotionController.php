@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\models\Student;
 use App\repositories\GradeRepositoryInterface;
 use App\repositories\PromotionRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;
@@ -31,14 +32,17 @@ class PromotionController extends Controller
 
     public function store(Request $request, StudentRepositoryInterface $s)
     {
-        $students = $s->getData(['id', 'grade_id', 'classroom_id'])
+            $students = $s->myModel()->select(['id', 'grade_id', 'classroom_id'])
             ->where('grade_id', $request->grade_id)
-            ->where('classroom_id', $request->classroom_id);
+            ->where('classroom_id', $request->classroom_id)
+            ->where('section_id', $request->section_id)->get();
+
         if (count($students) > 0) {
             foreach ($students as $student) {
                 $s->update([
                     'grade_id' => $request->grade_id_new,
                     'classroom_id' => $request->classroom_id_new,
+                    'section_id' => $request->section_id,
                     'entry_status' => 1
                 ], $student->id);
 
@@ -46,8 +50,10 @@ class PromotionController extends Controller
                     'student_id' => $student->id,
                     'from_grade_id' => $request->grade_id,
                     'from_classroom_id' => $request->classroom_id,
+                    'from_section_id' => $request->section_id,
                     'to_grade_id' => $request->grade_id_new,
                     'to_classroom_id' => $request->classroom_id_new,
+                    'to_section_id' => $request->section_id_new,
                 ]);
             }
             return redirect()->back();

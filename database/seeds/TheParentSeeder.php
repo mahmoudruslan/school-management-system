@@ -15,6 +15,6 @@ class TheParentSeeder extends Seeder
 
         DB::table('the_parents')->delete();
 
-        factory(TheParent::class, 300)->create();
+        factory(TheParent::class, 500)->create();
     }
 }

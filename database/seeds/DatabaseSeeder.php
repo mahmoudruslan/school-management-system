@@ -20,11 +20,13 @@ class DatabaseSeeder extends Seeder
             SpecializationSeeder::class,
             GradeSeeder::class,
             ClassroomSeeder::class,
-            SectionSeeder::class,
+            
             SubjectSeeder::class,
             TheParentSeeder::class,
-            StudentSeeder::class,
+            
             AdminSeeder::class,
+            SectionSeeder::class,
+            StudentSeeder::class,
             
         ]);
     }

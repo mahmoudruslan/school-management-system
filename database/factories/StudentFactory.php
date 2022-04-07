@@ -11,7 +11,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Student::class, function (Faker $faker) {
     $x = rand(1, 3);
-    //$sections = Section::where('classroom_id', $x)->get();
     return [
         
 
