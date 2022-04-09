@@ -87,10 +87,13 @@
     "Section Name_en" : "اسم القسم بالانجليزية",
     "This section already exists":"هذا القسم موجود مسبقا",
     "Student related to this section must be deleted first":"يجب ان تحذف الطلاب المتعلقين بهذا القسم أولا",
+    "Are you sure you want to delete the attachment?":"متأكد أنك تريد حذف المرفق؟",
 
     "Name_ar": "الاسم بالعربية",
     "Name_en": "الاسم بالانجليزية",
     "Students":"الطلاب",
+    "All students":"كل الطلاب",
+    "The student will be transferred to the alumni list":"يتم تحويل الطالب إلى قائمة الخريجين",
     "Student Information":"معلومات الطالب",
     "Student Attachments":"مرفقات الطالب",
     "Add Student":"اضافة طالب",
@@ -329,6 +332,7 @@
     "students in debt":"الطلاب المدينون",
     "change Password":"تغيير كلمة المرور",
 
+    "All fields are required":"كل الحقول مطلوبة",
     "Select all":"حدد الكل",
     "School Management System":"نظام إدارة المدرسة",
     "Login":"دخول",

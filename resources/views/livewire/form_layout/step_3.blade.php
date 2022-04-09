@@ -11,11 +11,8 @@
         <h3>{{__('Are you sure you want to save the data?')}}</h3>
         </div>
         <div class="modal-footer">
-          @if ($addMode)
-            <button style="background: #72ab2a;color:white" class="btn btn-lg" wire:click="store" type="submit">{{__('Finish')}}</button>
-          @else
-            <button style="background: #72ab2a;color:white" class="btn btn-lg" wire:click="update({{$student_id}})" type="button">{{__('Finish')}}</button>
-          @endif
+
+            <button style="background: #72ab2a;color:white" class="btn btn-lg" wire:click="finish" type="button">{{__('Finish')}}</button>
           <button class="btn btn-danger nextBtn btn-lg" type="button" wire:click="back(2)">{{__('Back')}}</button>
         </div>
   </div>

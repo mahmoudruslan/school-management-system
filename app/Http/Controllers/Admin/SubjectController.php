@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\repositories\ClassroomRepositoryInterface;
 use App\repositories\GradeRepositoryInterface;
 use App\repositories\SubjectRepositoryInterface;
+use App\Http\Requests\SubjectRequest;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -31,7 +32,7 @@ class SubjectController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(SubjectRequest $request)
     {
             $this->subject->create($request->all());
             return redirect()->route('subjects.index');

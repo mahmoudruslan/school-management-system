@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BloodType extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['id', 'name'];
     public $timestamps = true;
     
 }

@@ -10,6 +10,7 @@ use App\repositories\GradeRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;
 use App\repositories\Eloquent\StudentAccountRepository;
 use App\repositories\SubjectRepositoryInterface;
+use App\Http\Requests\ResultRequest;
 use Illuminate\Support\Facades\Auth;
 
 class ResultController extends Controller
@@ -40,7 +41,7 @@ class ResultController extends Controller
     }
 
 
-    public function store(Request $request, ResultRepositoryInterface $r)
+    public function store(ResultRequest $request, ResultRepositoryInterface $r)
     {
         foreach (array_keys($request->degree) as $studnet_id) { // in this array key = student_id _ value = degree
 

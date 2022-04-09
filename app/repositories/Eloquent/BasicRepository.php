@@ -75,6 +75,7 @@ abstract class BasicRepository implements EloquentRepositoryInterface
                 throw new ModelNotFoundException(__('Item not found'));
             }
             toastr()->success(__('Data deleted successfully'));
+            
             return $model->delete();
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);

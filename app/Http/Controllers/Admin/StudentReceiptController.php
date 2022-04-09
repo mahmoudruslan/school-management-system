@@ -23,19 +23,19 @@ class StudentReceiptController extends Controller
         return view('admin_dashboard.pages.student_receipt.index', compact(['receipts']));
     }
 
-    public function store(Request $request, FundAccountRepositoryInterface $f, StudentAccountRepositoryInterface $sa)
+    public function store(Request $request, FundAccountRepositoryInterface $f, StudentAccountRepositoryInterface $s_a)
     {
 
-        $where = $sa->where('student_id', $request->student_id);
-        $debit = $where->sum('debit'); //student debit
-        $credit = $where->sum('credit'); //student credit
+        $student_account = $s_a->where('student_id', $request->student_id);
+        $debit = $student_account->sum('debit');
+        $credit = $student_account->sum('credit'); 
 
         //number of student bills
-        $countStudent = $where->pluck('student_id');
+        $countStudent = $student_account->count();
 
-        if (!count($countStudent) > 0 || $debit - $credit == 0) {
+        if (!$countStudent > 0 || $debit - $credit == 0) {
             toastr()->error(__('This student does not owe any money'));
-            return redirect()->route('students.index');
+            return redirect()->back();
         } elseif ($request->debit > $debit - $credit) //check if the amount bigger than debit account
         {
             toastr()->error(__('This student owes only ') . ($debit - $credit) . __(' pounds'));
@@ -50,7 +50,7 @@ class StudentReceiptController extends Controller
             'description' => $request->description
         ]);
         //create in student_account table
-        $sa->create([
+        $s_a->create([
             'student_id' => $request->student_id,
             'receipt_id' => $receipt_id->id,
             'type' => 'receipt',

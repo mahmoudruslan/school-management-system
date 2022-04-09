@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\repositories\BookRepositoryInterface;
 use App\repositories\Eloquent\GradeRepository;
 use App\Traits\SaveImgTrait;
+use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
@@ -32,7 +33,7 @@ class BookController extends Controller
         return view('admin_dashboard.pages.books.create', compact(['grades', 'books']));
     }
 
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         $photo = $request->file_name->getClientOriginalExtension();
         $name = time() . Str::random(6) . '.' . $photo;

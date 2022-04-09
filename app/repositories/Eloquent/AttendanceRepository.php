@@ -13,10 +13,10 @@ class AttendanceRepository extends BasicRepository implements AttendanceReposito
         $this->model = $model;
     }
 
-    public function createe(array $x,array $attributes)
+    public function createOrup(array $x,array $attributes)
     {
         try {
-            return $this->model->updateOrCreate($x,$attributes);
+            $create = $this->model->updateOrCreate($x,$attributes);
             toastr()->success(__('Data saved successfully'));
             return $create;
         } catch (\Exception $e) {

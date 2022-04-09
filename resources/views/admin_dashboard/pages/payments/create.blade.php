@@ -34,8 +34,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>{{__('Amount')}} : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" name="amount" type="number">
-                                    <input  type="hidden" name="student_id"  value="{{$student->id}}" class="form-control">
+                                    <input  class="form-control" name="amount" type="number" required>
+                                    <input  type="hidden" name="student_id"  value="{{$student->id}}" class="form-control" >
                                 </div>
                             </div>
                         </div>

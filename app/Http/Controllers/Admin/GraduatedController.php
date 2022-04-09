@@ -9,7 +9,7 @@ use App\models\TheParent;
 use App\repositories\Eloquent\GradeRepository;
 use App\repositories\Eloquent\StudentRepository;
 use App\repositories\GraduatedRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\Http\Requests\GraduatedRequest;
 use Illuminate\Http\Request;
 
 class GraduatedController extends Controller
@@ -33,7 +33,7 @@ class GraduatedController extends Controller
         return view('admin_dashboard.pages.graduated.create', compact(['grades']));
     }
 
-    public function store(Request $request, StudentRepository $s)
+    public function store(GraduatedRequest $request, StudentRepository $s)
     {
         $students = $s->getData()
             ->where('grade_id', $request->grade_id)

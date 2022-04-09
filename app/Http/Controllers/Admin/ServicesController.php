@@ -29,7 +29,7 @@ class ServicesController extends Controller
         public function saveAttachments(Request $request,$id)
         {
                 $this->saveimg('attachments/'.$request->model .'s/'. $request->name_ar, $id, 'App\models\\'.$request->model, $request->photos);
-                toastr()->success(__('success'));
+                toastr()->success(__('Data saved successfully'));
                 return redirect()->back();
         }
     

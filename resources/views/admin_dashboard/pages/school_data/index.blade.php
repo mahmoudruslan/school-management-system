@@ -5,11 +5,7 @@
 
 @section('content')
     <!-- start error messages -->
-    @if (Session::has('error'))
-        <div class="alert alert-danger">
-            {{ Session::get('error') }}
-        </div>
-    @endif
+
     @if(isset($school_data))
     <div class="card-body">
         <form enctype="multipart/form-data" method="POST" action="{{ route('school_data.update', 'test') }}">
@@ -20,6 +16,9 @@
                     <div class="form-group row">
                         <h4 class="col-lg-2 col-form-label font-weight-bold">{{ __('School name in Arabic') }} : </h4>
                         <div class="col-lg-9">
+                            @error('name_ar')
+    <div class="text-danger">{{ $message }}</div>
+@enderror
                             <input name="name_ar" value="{{ $school_data->name_ar }}" type="text" class="form-control">
                         </div>
                     </div>
@@ -58,6 +57,9 @@
                     <div class="form-group row">
                         <h4 class="col-lg-2 col-form-label font-weight-bold">{{ __('Grade') }}</h4>
                         <div class="col-lg-9">
+                            @error('grade')
+    <div class="text-danger">{{ $message }}</div>
+@enderror
                             <input name="grade" value="{{ $school_data->grade }}" type="text" class="form-control">
                         </div>
                     </div>
@@ -65,6 +67,9 @@
                     <div class="form-group row">
                         <h4 class="col-lg-2 col-form-label font-weight-bold">{{ __('phone') }}</h4>
                         <div class="col-lg-9">
+                            @error('phone')
+    <div class="text-danger">{{ $message }}</div>
+@enderror
                             <input name="phone" value="{{ $school_data->phone }}" type="text" class="form-control">
                         </div>
                     </div>
@@ -72,6 +77,9 @@
                     <div class="form-group row">
                         <h4 class="col-lg-2 col-form-label font-weight-bold">{{ __('Email') }}</h4>
                         <div class="col-lg-9">
+                            @error('email')
+    <div class="text-danger">{{ $message }}</div>
+@enderror
                             <input name="email" value="{{ $school_data->email }}" type="text" class="form-control">
                         </div>
                     </div>
@@ -94,6 +102,9 @@
                     <div class="form-group row">
                         <h4 class="col-lg-2 col-form-label font-weight-bold">{{ __('Address') }}</h4>
                         <div class="col-lg-9">
+                            @error('address')
+    <div class="text-danger">{{ $message }}</div>
+@enderror
                             <input name="address" value="{{ $school_data->address }}" type="text" class="form-control">
                         </div>
                     </div>

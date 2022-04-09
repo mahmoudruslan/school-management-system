@@ -7,14 +7,6 @@
 @section('content')
     <!-- row -->
 
-    @if (session()->has('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>{{ session()->get('error') }}</strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-@endif
     <div class="row">
         <div class="col-md-12 mb-30">
             <div class="card-body">
@@ -50,11 +42,9 @@
                                                 <td>{{ $img->id }}</td>
                                             @endforeach
                                             <td>
-                                                <form class="d-inline"
-                                                    action="{{ route('books.download', $book->file_name) }}"
-                                                    method="GET">
-                                                    @csrf
+                                                <form class="d-inline" action="{{ route('admin.books.download', $book->file_name) }}" method="get">
                                                     @method('patch')
+                                                    @csrf
                                                     <input type="hidden" name="file_name" value="{{ $book->file_name }}">
                                                     <input type="hidden" name="title" value="{{ $book->title }}">
                                                     <button type="submit" class="btn btn-primary btn-sm" role="button"><i

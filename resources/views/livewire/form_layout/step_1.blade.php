@@ -5,6 +5,7 @@
         @else
             <div id="step-1">
         @endif
+        
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="title">{{__("Name_ar")}}</label><br>
@@ -23,8 +24,12 @@
                 <label for="inputPassword4">{{__('Grade')}}</label><br>
                 @error('grade_id')<span class="error text-danger">{{ $message }}</span>@enderror
                 <select wire:model="grade_id" class="custom-select" wire:change="change">
-                    <option value="" >{{__('Choose Grade')}}</option>
-                    @foreach($grades as $grade)
+                    @if(isset($student))
+                        <option value="{{$student->grade_id}}">{{$student->grades['name_'.app()->getLocale()]}}</option>
+                    @else
+                    <option value="">{{__('Choose Grade')}}</option>
+                    @endif
+                      @foreach($grades as $grade)
                         <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
                     @endforeach
                 </select>
@@ -33,6 +38,7 @@
                 <label for="title">{{__("Classroom")}}</label><br>
                 @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                 <select wire:model="classroom_id" class="custom-select" wire:change="change">
+                    {{-- <option value="{{$student->classroom_id}}">{{$student->classrooms['name_'.app()->getLocale()]}}</option> --}}
                     @if(isset($classrooms))
                     <option value="">{{__('Choose Classroom')}}</option>
                     @foreach ($classrooms as $classroom)
@@ -47,7 +53,7 @@
                 <label for="title">{{__("Section")}}</label><br>
                 @error('section_id') <span class="error text-danger">{{ $message }}</span> @enderror
                 <select wire:model="section_id" class="custom-select">
-
+                    {{-- <option value="{{$student->section_id}}">{{$student->sections['name_'.app()->getLocale()]}}</option> --}}
                     @if(isset($sections))
                     <option value="">{{__('Choose Section')}}</option>
                     @foreach ($sections as $section)
@@ -100,17 +106,8 @@
             </div>
 
             <div class="form-row col-md-6">
-                {{-- <div class="col-md-5">
-                    <label for="title">{{__("Parent's Attachments")}}</label><br>
-                    @error('photoss') <span class="error text-danger">{{ $message }}</span> @enderror
-                    <div class="form-group">
-                        <input type="file" wire:model="photoss"  class="form-control">
-
-                    </div>
-                </div> --}}
                 
                 <div class="col-md-4">
-                    @if($addMode)
                         <label for="inputState">{{__('Gender')}}</label><br>
                         @error('gender')<span class="error text-danger">{{ $message }}<br></span>@enderror
                         <div class="form-check form-check-inline">
@@ -121,13 +118,13 @@
                             <input class="form-check-input" type="radio" wire:model="gender" id="inlineRadio2" value="0">
                             <label class="form-check-label" for="inlineRadio2">{{__('Female')}}</label>
                         </div>
-                        @endif
                 </div>
-                <br>
+                {{-- @if(!isset($student))
                 <div class="col-md-2"><br>
                     <input type="checkbox" value="Noob" id="flexCheckChecked" class="form-check-input" wire:model="entry_status">
                     <label class="form-check-label" for="flexCheckChecked">{{__('Noob')}}</label>
                 </div>
+                @endif --}}
             </div>
 
             <div class="col-md-12">
@@ -136,13 +133,8 @@
                 <textarea wire:model="student_address" class='form-control'></textarea>
             </div>
         </div>
-            @if ($addMode)
-                <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="firstStepSubmit" type="button">{{__('Next')}}</button>
 
-            @else
-                <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="firstStepSubmitEdit" type="button">{{__('Next')}}</button>
-            @endif
-            <button class="btn btn-danger btn-sm nextBtn btn-lg mt-3" wire:click="toParentList" type="button">{{__('Back')}}</button>
+                <button style="background: #72ab2a;color:white" class="btn btn-sm nextBtn btn-lg mt-3" wire:click="step2" type="button">{{__('Next')}}</button>
         </div>
 
 

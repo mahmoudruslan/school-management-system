@@ -77,7 +77,8 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="students-menu" class="collapse">
-                                <li> <a href="{{ route('students.index') }}">{{ __('Students List') }}</a></li>
+                                <li> <a href="{{ route('students.create') }}">{{ __('Add Student') }}</a></li>
+                                <li> <a href="{{ route('students.index') }}">{{ __('All students') }}</a></li>
                             </ul>
                         </li>
                     @endcan

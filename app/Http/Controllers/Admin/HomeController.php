@@ -21,16 +21,14 @@ class HomeController extends Controller
         $school = SchoolData::all('name_ar','name_en');
         
         $sum = 0;
-        for($i = 1; $i <= $student->myModel()->count(); $i++)
+        foreach($student->myModel()->select('id')->get() as $student)
         {
-            $debit = $student->getById($i)->StudentAccount->sum('debit');
-            $credit = $student->getById($i)->StudentAccount->sum('credit');
+            $debit = $student->StudentAccount->sum('debit');
+            $credit = $student->StudentAccount->sum('credit');
             if($debit > $credit)
             {
                 $sum += 1;
             }
-            
-            
         }
         return view('admin_dashboard.admin',compact('g_count','school','sum'));
         

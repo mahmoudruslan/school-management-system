@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Event;
 
-class Calendar extends Component
+class AdminCalender extends Component
 {
     
     public $events = '';
@@ -51,7 +51,7 @@ class Calendar extends Component
 
         $events2 = Event::select('id', 'title', 'start')->get();
 
-        return view('livewire.calendar',['events2' => $events2]);
+        return view('livewire.admin-calender',['events2' => $events2]);
     }
 
     public function clearMessage()
@@ -68,5 +68,6 @@ class Calendar extends Component
     }
 
 }
+
 
 

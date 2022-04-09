@@ -10,7 +10,7 @@
         <div class="col-md-12 mb-30">
             <div class="card-body">
                 @if (session()->has('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="text-danger alert-dismissible fade show" role="alert">
                         <strong>{{ session()->get('error') }}</strong>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -25,6 +25,9 @@
                             <div class="form-row">
                                 <div class="col">
                                     <label for="title">{{ __('Book name') }}</label>
+                                    @error('title')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                     <input type="text" name="title" class="form-control">
                                 </div>
                             </div>
@@ -34,6 +37,9 @@
                                     <div class="form-group">
                                         <label for="grade_id">{{ trans('Grade') }} : <span
                                                 class="text-danger">*</span></label>
+                                                @error('grade_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         <select class="custom-select mr-sm-2" name="grade_id">
                                             <option selected disabled>{{ trans('Choose Grade') }}...</option>
                                             @foreach ($grades as $grade)
@@ -47,6 +53,9 @@
                                     <div class="form-group">
                                         <label for="classroom_id">{{ trans('Classroom') }} : <span
                                                 class="text-danger">*</span></label>
+                                        @error('classroom_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         <select class="custom-select mr-sm-2" name="classroom_id">
                                         </select>
                                     </div>
@@ -54,6 +63,9 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="section_id">{{ trans('Section') }} : </label>
+                                        @error('section_id')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         <select class="custom-select mr-sm-2" name="section_id">
                                         </select>
                                     </div>
@@ -69,8 +81,7 @@
                                     </div>
                                 </div>
                             </div><br>
-                            <button class="button"
-                                type="submit">{{ __('Submit') }}</button>
+                            <button class="button" type="submit">{{ __('Submit') }}</button>
                         </form>
                     </div>
                 </div>

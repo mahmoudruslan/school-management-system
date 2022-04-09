@@ -39,7 +39,7 @@ class AttendanceController extends Controller
         if (!empty($request->status)) {
             foreach ($request->student_id as $id) {
                 if (array_key_exists($id, $request->status)) {
-                    $this->attendance->createe(
+                    $this->attendance->createOrup(
                         [
                         'student_id' => $id,
                         'date' => date('y-m-d'),

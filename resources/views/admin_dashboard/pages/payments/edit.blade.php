@@ -34,7 +34,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>{{__('Amount')}} : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" name="amount" type="number" value="{{$payment->amount}}">
+                                    <input  class="form-control" name="amount" type="number" value="{{$payment->amount}}" required>
                                     <input  type="hidden" name="student_id"  value="{{$payment->students->id}}" class="form-control">
                                 </div>
                             </div>

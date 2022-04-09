@@ -19,7 +19,6 @@ use App\Http\Livewire\Calendar;
 */
 
 ############################# Package MCamara ###########################################
-Route::post('student/edit/{id}',[App\Http\Livewire\Student::class,'edit'])->name('xxx');
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
@@ -101,7 +100,7 @@ Route::group([
         ################################################## begin Books ##########################################
         Route::group(['middleware' => 'can:books'], function () {
             Route::resource('books', 'BookController');
-            Route::get('download/{id}', 'BookController@download')->name('books.download');
+            Route::get('download/{id}', 'BookController@download')->name('admin.books.download');
         });
 
         ################################################## begin Books ##########################################
@@ -125,6 +124,6 @@ Route::group([
             //دي ميدل ويير نازلة مع لارفيل عشان لو حد عمل ريكوستات كتيير علي السيرفر ورا بعض يوقفه وقت معين ميعرفش يعمل ريكوستات     دقيقة مثلا اوي زي من 
         });
 
-        Livewire::component('calendar', Calendar::class);;
+        //Livewire::component('calendar', Calendar::class);;
     });
 });

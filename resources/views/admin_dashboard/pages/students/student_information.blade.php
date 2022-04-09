@@ -29,7 +29,7 @@
 
             <tr>
                 <td class="col-md-2"><h6>{{__("Religion")}}</h6></td>
-                <td class="col-md-6"><h6>{{__($student->religion)}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->religion == 1 ? __('Muslim') : __('Christian')}}</h6></td>
             </tr>
 
             <tr>

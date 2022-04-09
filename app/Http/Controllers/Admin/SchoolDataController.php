@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\models\SchoolData;
-use Illuminate\Http\Request;
+use App\Http\Requests\SchoolDataRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 
@@ -17,7 +17,7 @@ class SchoolDataController extends Controller
         return view('admin_dashboard.pages.school_data.index',compact('school_data'));
     }
 
-    public function update(Request $request)
+    public function update(SchoolDataRequest $request)
     {
         if(!isset($request->logo))
         {

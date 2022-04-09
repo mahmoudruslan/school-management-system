@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\models\Role;
 use App\repositories\RoleRepositoryInterface;
+use App\Http\Requests\RoleRequest;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -25,7 +26,7 @@ class RoleController extends Controller
         return view('admin_dashboard.pages.roles.create');
     }
 
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         $this->role->create($request->all());
         return redirect()->route('roles.index');

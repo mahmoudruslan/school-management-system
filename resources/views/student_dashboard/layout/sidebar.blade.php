@@ -38,14 +38,7 @@
                             <div class="clearfix"></div>
                         </a>
                     </li>
-                    <!-- Exams Table-->
-                    <li>
-                        <a href="{{ route('exams.table') }}">
-                            <div class="pull-left"><i class="fas fa-calendar-alt"></i><span
-                                    class="right-nav-text">{{ __('Exams Table') }}</span></div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </li>
+
                     <!-- Absence-->
                     <li>
                         <a href="{{ route('student.absence') }}">

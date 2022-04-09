@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\models\Student;
 use App\repositories\GradeRepositoryInterface;
+use App\Http\Requests\PromotionRequest;
 use App\repositories\PromotionRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class PromotionController extends Controller
         return view('admin_dashboard.pages.promotions.create', compact('grades'));
     }
 
-    public function store(Request $request, StudentRepositoryInterface $s)
+    public function store(PromotionRequest $request, StudentRepositoryInterface $s)
     {
             $students = $s->myModel()->select(['id', 'grade_id', 'classroom_id'])
             ->where('grade_id', $request->grade_id)

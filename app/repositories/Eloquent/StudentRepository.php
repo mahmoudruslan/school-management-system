@@ -7,6 +7,8 @@ use App\models\Nationality;
 use App\models\Religion;
 use App\models\Student;
 use App\models\TheParent;
+use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\GradeRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -14,7 +16,7 @@ class StudentRepository extends BasicRepository implements StudentRepositoryInte
 {
     public $g;
     public $c;
-    public function __construct(Student $model,GradeRepository $g,ClassroomRepository $c)
+    public function __construct(Student $model,GradeRepositoryInterface $g,ClassroomRepositoryInterface $c)
     {
         parent::__construct($model);
         $this->g = $g;

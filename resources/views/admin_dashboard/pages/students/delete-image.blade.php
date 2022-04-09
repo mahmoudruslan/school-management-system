@@ -13,7 +13,7 @@
                     <input type="hidden" name="filename" value="{{$image->filename}}">
                     <input type="hidden" name="name_ar" value="{{$student->name_ar}}">
                     <h5 style="font-family: 'Cairo', sans-serif;">{{__('Warning')}}:</h5>
-                    <h6>{{__('When you delete a Student, all attachments will be deleted...')}}</h6>
+                    <h6>{{__('Are you sure you want to delete the attachment?')}}</h6>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
                         <button  class="btn btn-danger">{{__('Submit')}}</button>

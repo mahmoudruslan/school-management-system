@@ -273,7 +273,7 @@
     </div>
 
     
-    <livewire:calendar />
+    <livewire:admin-calender />
 
     <!--=================================wrapper -->
 

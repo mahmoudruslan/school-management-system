@@ -24,13 +24,15 @@ class HomeController extends Controller
         return view('student_dashboard.student');
     }
 
-
+    //student information
     public function getData(StudentRepositoryInterface $s)
     {
         $student = $s->getById(Auth::id());
         return view('student_dashboard.pages.show', ['student' => $student]);
     }
 
+
+    //student results
     public function getResults(
         ResultRepositoryInterface $r,
         StudentRepositoryInterface $s,
@@ -50,11 +52,17 @@ class HomeController extends Controller
 
         return view('student_dashboard.pages.result', compact(['total', 'student_result', 'classrooms', 'credit', 'debit']));
     }
+
+
+        //student Courses
+
     public function getCourses(SubjectRepositoryInterface $subject, StudentRepositoryInterface $student)
     {
         $subjects = $subject->myModel()->where('classroom_id', Auth::user()->classroom_id)->get();
         return view('student_dashboard.pages.subjects', compact('subjects'));
     }
+
+    //student fees
     public function getFees(FeesInvoiceRepositoryInterface $f, StudentRepositoryInterface $s, StudentAccountRepositoryInterface $s_a)
     {
         $credit = $s_a->myModel()->where('student_id', Auth::id())->select('credit')->sum('credit');
@@ -66,34 +74,40 @@ class HomeController extends Controller
         return view('student_dashboard.pages.fees', compact('invoices', 'debit', 'credit'));
     }
 
+    //student absence
     public function getAbsence(AttendanceRepositoryInterface $a)
     {
-        return view('auth.passwords.reset');
         $attendances = $a->myModel()->where('student_id', Auth::id())->select('date', 'admin_id')->get();
         return view('student_dashboard.pages.absence', compact('attendances'));
     }
+
+    //student PDF
     public function getBooks(BookRepositoryInterface $b)
     {
         $books = $b->myModel()->where('classroom_id', Auth::user()->classroom_id)->select('title', 'admin_id', 'file_name')->get();
         return view('student_dashboard.pages.books', compact('books'));
     }
 
+
+    //download PDF
     public function download(Request $request)
     {
         return response()->download(public_path('attachments/books/' . $request->title . '/' . $request->file_name));
     }
 
+    //change password form
     public function setting()
     {
         return view('student_dashboard.pages.edit_password');
     }
+
+    //change password
     public function editPassword(Request $request, StudentRepositoryInterface $s)
     {
-
         $request->validate([
             'curent_password' => 'required',
             'new_password' => 'required|max:8',
-            'confirm_password' => 'required|max:8|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/|',
+            'confirm_password' => 'required|max:8',
         ]);
         $curentPassword = Auth::user()->password;
         if (!Hash::check($request->curent_password, $curentPassword)) {
@@ -107,10 +121,11 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+
+    //If the student forgets the password
     public function resetPassword(ResetPasswordRequest $request, StudentRepositoryInterface $s)
     {
         $student = $s->myModel()->where('email', $request->email)->first();
-
 
         if (!isset($student)) {
             return redirect()->back()->with('error', __('The Email is incorrect'));

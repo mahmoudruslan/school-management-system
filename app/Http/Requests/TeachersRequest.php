@@ -31,6 +31,8 @@ class TeachersRequest extends FormRequest
             'address'=> 'required|max:200',
             'joining_date'=> 'required',
             'phone'=> 'required',
+            'role_id'=> 'required',
+            'religion'=> 'required',
             
 
 
@@ -50,6 +52,8 @@ class TeachersRequest extends FormRequest
     {
         return [
             'gender.required' => __('This field is required'),
+            'role_id.required' => __('This field is required'),
+            'religion.required' => __('This field is required'),
             'joining_date.required' => __('This field is required'),
             'email.required' => __('This field is required'),
             'email.email' => __('This field must be an email'),

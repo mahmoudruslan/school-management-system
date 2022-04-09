@@ -4,8 +4,14 @@
     {{__('Show students')}}
 @stop
 
-
 @section('content')
+    <!-- start error messages -->
+    @if(Session::has('error'))
+        <div class="alert alert-danger">
+            {{ Session::get('error')}}
+        </div>
+    @endif
+
         {{-- myTable --}}
         <div class="table-responsive ">
             <table id="datatable" class="table table-hover table-sm table-bordered p-0 data-table" data-page-length="50"
@@ -43,10 +49,10 @@
                                             <i style="color: #ffc107"
                                                 class="far fa-eye "></i>&nbsp;{{ __('Show student information') }}
                                         </a>
-                                        <button class="dropdown-item" wire:click="edit({{ $student->id }})">
+                                        <a class="dropdown-item" href="{{route('students.edit', $student->id)}}">
                                             <i style="color:green"
                                                 class="fa fa-edit"></i>&nbsp;{{ __('Edit student data') }}
-                                        </button>
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('feesInvoices.show', $student->id) }}">
                                             <i style="color: #0000cc"
                                                 class="fa fa-edit"></i>&nbsp;{{ __('Add a fee invoice') }}&nbsp;
@@ -76,6 +82,10 @@
                         </tr>
                         <div class="modal fade" id="Delete_Student{{ $student->id }}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <form action="{{route('students.destroy', $student->id)}}" method="POST">
+                                
+                                @method('delete')
+                                @csrf
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -85,17 +95,18 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <h6>{{ __('Warning') . ':' . __('When you delete a Student, all attachments will be deleted...') }}
+                                        <h6>{{ __('Warning') . ' : ' . __('The student will be transferred to the alumni list') }}
                                         </h6>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">{{ __('Close') }}</button>
-                                        <button type="submit" wire:click="delete({{ $student->id }})"
-                                            data-dismiss="modal" class="btn btn-danger">{{ __('Delete') }}</button>
+                                        <button type="submit" class="btn btn-danger">{{ __('Delete') }}
+                                        </button>
                                     </div>
                                 </div>
                             </div>
+                        </form>
                         </div>
                     @endforeach
                 </tbody>

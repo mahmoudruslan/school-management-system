@@ -56,16 +56,11 @@
                                 </select>
                             </div>
                             <div class="form-group col">
-                                <label for="section_id">{{__('Choose Teacher')}} : <span
+                                <label for="section_id">{{__('From')}} : <span
                                         class="text-danger">*</span></label><br>
-                                @error('teacher_id') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <select name="teacher_id" class="custom-select">
-                                    <option value="{{$subject->teacher_id}}">{{$subject->teachers['name_'.app()->getLocale()]}}</option>
-                                    @foreach ($teachers as $teacher)
-                                        <option value="{{$teacher->id}}">{{$teacher['name_'.app()->getLocale()]}}</option>
-                                    @endforeach
-
-                                </select>
+                                @error('from') <span class="error text-danger">{{ $message }}</span> @enderror
+                                <input type="number" value="{{$subject->degree}}" name="degree" class="form-control">
+                                
                             </div>
                         </div><br><br>
                         <button type="submit" class="button">{{__("Submit")}}</button>
