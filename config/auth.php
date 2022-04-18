@@ -50,10 +50,15 @@ return [
         ],
 
 
-        'api' => [
-            'driver' => 'token',
+        'admin-api' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
+        ],
+
+        
+        'user-api' => [
+            'driver' => 'jwt',
             'provider' => 'users',
-            'hash' => false,
         ],
     ],
 
@@ -86,6 +91,8 @@ return [
             'driver' => 'eloquent',
             'model' => App\models\Student::class,
         ],
+
+
 
     ],
 

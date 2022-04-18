@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Section;
+use App\Models\Section;
 use App\repositories\SectionRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

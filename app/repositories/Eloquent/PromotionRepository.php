@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Promotion;
+use App\Models\Promotion;
 use App\repositories\PromotionRepositoryInterface;
 
 class PromotionRepository extends BasicRepository implements PromotionRepositoryInterface

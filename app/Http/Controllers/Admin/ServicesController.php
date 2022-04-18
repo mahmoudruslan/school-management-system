@@ -28,7 +28,7 @@ class ServicesController extends Controller
         //save parents and students attachment
         public function saveAttachments(Request $request,$id)
         {
-                $this->saveimg('attachments/'.$request->model .'s/'. $request->name_ar, $id, 'App\models\\'.$request->model, $request->photos);
+                $this->saveimg('attachments/'.$request->model .'s/'. $request->name_ar, $id, 'App\Models\\'.$request->model, $request->photos);
                 toastr()->success(__('Data saved successfully'));
                 return redirect()->back();
         }

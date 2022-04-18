@@ -1,12 +1,14 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class TheParent extends Authenticatable
 {
+    use HasFactory;
     protected $fillable = [
         'father_name_ar',
         'father_name_en',
@@ -28,12 +30,12 @@ class TheParent extends Authenticatable
     // nationalitys
     public function nationality()
     {
-        return $this->belongsTo('App\models\Nationality', 'father_nationality_id');
+        return $this->belongsTo('App\Models\Nationality', 'father_nationality_id');
     }
 
     // public function student()
     // {
-    //     return $this->belongsTo('App\models\Nationality', 'father_nationality_id');
+    //     return $this->belongsTo('App\Models\Nationality', 'father_nationality_id');
     // }
 
 

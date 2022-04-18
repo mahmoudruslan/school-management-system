@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Attendance;
+use App\Models\Attendance;
 use App\repositories\AttendanceRepositoryInterface;
 
 class AttendanceRepository extends BasicRepository implements AttendanceRepositoryInterface

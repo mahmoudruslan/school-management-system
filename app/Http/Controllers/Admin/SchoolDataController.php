@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\models\SchoolData;
+use App\Models\SchoolData;
 use App\Http\Requests\SchoolDataRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;

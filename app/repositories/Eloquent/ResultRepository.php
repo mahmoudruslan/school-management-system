@@ -1,7 +1,7 @@
 <?php
 namespace App\repositories\Eloquent;
 
-use App\models\Result;
+use App\Models\Result;
 use App\repositories\ResultRepositoryInterface;
 
 class ResultRepository extends BasicRepository implements ResultRepositoryInterface{

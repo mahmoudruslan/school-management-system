@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\models\TheParent;
 use App\repositories\StudentRepositoryInterface;
 
 class StudentController extends Controller

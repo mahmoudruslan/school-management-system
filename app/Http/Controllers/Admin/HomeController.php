@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Traits\SaveImgTrait;
 use App\Http\Controllers\Controller;
-use App\models\SchoolData;
-use App\models\Student;
+use App\Models\SchoolData;
 use App\repositories\GraduatedRepositoryInterface;
 use App\repositories\StudentAccountRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;

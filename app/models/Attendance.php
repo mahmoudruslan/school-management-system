@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,23 +10,23 @@ class Attendance extends Model
 
     public function students()
     {
-        return $this->belongsTo('App\models\Student','student_id');
+        return $this->belongsTo('App\Models\Student','student_id');
     }
     public function grades()
     {
-        return $this->belongsTo('App\models\Grade','grade_id');
+        return $this->belongsTo('App\Models\Grade','grade_id');
     }
     public function classrooms()
     {
-        return $this->belongsTo('App\models\Classroom','classroom_id');
+        return $this->belongsTo('App\Models\Classroom','classroom_id');
     }
     public function sections()
     {
-        return $this->belongsTo('App\models\Section','section_id');
+        return $this->belongsTo('App\Models\Section','section_id');
     }
     public function admin()
     {
-        return $this->belongsTo('App\models\Admin','admin_id');
+        return $this->belongsTo('App\Models\Admin','admin_id');
     }
 
 }

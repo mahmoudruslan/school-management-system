@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +10,6 @@ class Payment extends Model
     public $timestamps = true;
     public function students()
     {
-        return $this->belongsTo('App\models\Student','student_id');
+        return $this->belongsTo('App\Models\Student','student_id');
     }
 }

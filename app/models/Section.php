@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,18 +15,18 @@ public $timestamps =  true;
         return $value == '1'? 'Active' : 'Not Active';
     }
     public function students(){
-        return $this ->hasMany('App\models\Student','section_id');
+        return $this ->hasMany('App\Models\Student','section_id');
     }
 
     public function grades(){
-        return $this ->belongsTo('App\models\Grade','grade_id');
+        return $this ->belongsTo('App\Models\Grade','grade_id');
     }
 
     public function classrooms(){
-        return $this ->belongsTo('App\models\Classroom','classroom_id');
+        return $this ->belongsTo('App\Models\Classroom','classroom_id');
     }
 
     public function admins(){
-        return $this->belongsToMany('App\models\Admin','App\models\AdminSection');
+        return $this->belongsToMany('App\Models\Admin','App\Models\AdminSection');
     }
 }

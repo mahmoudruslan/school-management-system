@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\StudentAccount;
+use App\Models\StudentAccount;
 use App\repositories\StudentAccountRepositoryInterface;
 
 class StudentAccountRepository extends BasicRepository implements StudentAccountRepositoryInterface

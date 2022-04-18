@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,36 +18,36 @@ class Promotion extends Model
             ];
     // grades
     public function students(){
-        return $this->belongsTo('App\models\Student','student_id');
+        return $this->belongsTo('App\Models\Student','student_id');
     }
 
     // grades
     public function f_grade(){
-        return $this->belongsTo('App\models\Grade','from_grade_id');
+        return $this->belongsTo('App\Models\Grade','from_grade_id');
     }
 
     // classrooms
     public function f_classroom(){
-        return $this->belongsTo('App\models\Classroom','from_classroom_id');
+        return $this->belongsTo('App\Models\Classroom','from_classroom_id');
     }
 
     // sections
     public function f_section(){
-        return $this->belongsTo('App\models\Section','from_section_id');
+        return $this->belongsTo('App\Models\Section','from_section_id');
     }
 
     // grades
     public function to_grade(){
-        return $this->belongsTo('App\models\Grade','to_grade_id');
+        return $this->belongsTo('App\Models\Grade','to_grade_id');
     }
 
     // classrooms
     public function to_classroom(){
-        return $this->belongsTo('App\models\Classroom','to_classroom_id');
+        return $this->belongsTo('App\Models\Classroom','to_classroom_id');
     }
 
     // sections
     public function to_section(){
-        return $this->belongsTo('App\models\Section','to_section_id');
+        return $this->belongsTo('App\Models\Section','to_section_id');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Grade;
+use App\Models\Grade;
 use App\repositories\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\models\Image;
+use App\Models\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use function PHPUnit\Framework\directoryExists;

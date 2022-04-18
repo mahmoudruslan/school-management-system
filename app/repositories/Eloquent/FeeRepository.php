@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Fee;
+use App\Models\Fee;
 use App\repositories\FeeRepositoryInterface;
 
 class FeeRepository extends BasicRepository implements FeeRepositoryInterface

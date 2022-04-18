@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\FeeInvoice;
+use App\Models\FeeInvoice;
 use App\repositories\FeesInvoiceRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 

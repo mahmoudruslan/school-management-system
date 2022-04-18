@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Payment;
+use App\Models\Payment;
 use App\repositories\PaymentRepositoryInterface;
 
 class PaymentRepository extends BasicRepository implements PaymentRepositoryInterface

@@ -2,11 +2,11 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\BloodType;
-use App\models\Nationality;
-use App\models\Religion;
-use App\models\Student;
-use App\models\TheParent;
+use App\Models\BloodType;
+use App\Models\Nationality;
+use App\Models\Religion;
+use App\Models\Student;
+use App\Models\TheParent;
 use App\repositories\ClassroomRepositoryInterface;
 use App\repositories\GradeRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;

@@ -1,14 +1,18 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Database\Factories\StudentFactory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Student extends Authenticatable
+class Student extends Authenticatable implements JWTSubject
 {
+    use HasFactory;
     use SoftDeletes;
     protected $guarded = [];
     public $timestamps = true;
@@ -32,58 +36,80 @@ class Student extends Authenticatable
 
     public function images()
     {
-        return $this->morphMany('App\models\Image', 'imageable');
+        return $this->morphMany('App\Models\Image', 'imageable');
     }
 
     // nationalities
     public function nationalities()
     {
-        return $this->belongsTo('App\models\Nationality', 'student_nationality_id');
+        return $this->belongsTo('App\Models\Nationality', 'student_nationality_id');
     }
     // nationalities
     public function bloodTypes()
     {
-        return $this->belongsTo('App\models\BloodType', 'student_blood_type_id');
+        return $this->belongsTo('App\Models\BloodType', 'student_blood_type_id');
     }
     // grades
     public function grades()
     {
-        return $this->belongsTo('App\models\Grade', 'grade_id');
+        return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
 
     // classrooms
     public function classrooms()
     {
-        return $this->belongsTo('App\models\Classroom', 'classroom_id');
+        return $this->belongsTo('App\Models\Classroom', 'classroom_id');
     }
 
     // sections
     public function sections()
     {
-        return $this->belongsTo('App\models\Section', 'section_id');
+        return $this->belongsTo('App\Models\Section', 'section_id');
     }
 
     // parents
     public function parents()
     {
-        return $this->belongsTo('App\models\TheParent', 'parent_id');
+        return $this->belongsTo('App\Models\TheParent', 'parent_id');
     }
 
     // attendances
     public function attendances()
     {
-        return $this->hasMany('App\models\Attendance', 'student_id');
+        return $this->hasMany('App\Models\Attendance', 'student_id');
     }
 
     // studentAccount
     public function studentAccount()
     {
-        return $this->hasMany('App\models\StudentAccount', 'student_id');
+        return $this->hasMany('App\Models\StudentAccount', 'student_id');
     }
 
     // invoices
     public function invoices()
     {
-        return $this->hasMany('App\models\FeeInvoice', 'student_id');
+        return $this->hasMany('App\Models\FeeInvoice', 'student_id');
+    }
+
+        // Rest omitted for brevity
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

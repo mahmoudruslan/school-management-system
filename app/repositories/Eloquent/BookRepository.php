@@ -1,7 +1,7 @@
 <?php
 namespace App\repositories\Eloquent;
 use App\repositories\BookRepositoryInterface;
-use App\models\Book;
+use App\Models\Book;
 
 class BookRepository extends BasicRepository implements BookRepositoryInterface{
 

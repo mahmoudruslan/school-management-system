@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeachersRequest;
-use App\models\Teacher;
-use App\models\Role;
-use App\models\Specialization;
+use App\Models\Teacher;
+use App\Models\Specialization;
 use App\repositories\AdminRepositoryInterface;
 use App\repositories\RoleRepositoryInterface;
 use Illuminate\Http\Request;

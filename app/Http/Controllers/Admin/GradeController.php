@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\models\Grade;
 use App\repositories\GradeRepositoryInterface;
 use App\repositories\ClassroomRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;

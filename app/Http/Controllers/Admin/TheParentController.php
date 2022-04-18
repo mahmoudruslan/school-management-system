@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\models\TheParent;
+use App\Models\TheParent;
 
 class TheParentController extends Controller
 {

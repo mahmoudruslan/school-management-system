@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,12 +17,12 @@ class Classroom extends Model
 
     public function grades()
     {
-        return $this->belongsTo('App\models\Grade','grade_id');
+        return $this->belongsTo('App\Models\Grade','grade_id');
     }
 
     public function sections()
     {
-        return $this->hasMany('App\models\Section','classroom_id');
+        return $this->hasMany('App\Models\Section','classroom_id');
     }
 
 

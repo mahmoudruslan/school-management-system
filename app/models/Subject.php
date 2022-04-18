@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,12 +11,12 @@ class Subject extends Model
 
         // grades
         public function grades(){
-            return $this->belongsTo('App\models\Grade','grade_id');
+            return $this->belongsTo('App\Models\Grade','grade_id');
         }
     
         // classrooms
         public function classrooms(){
-            return $this->belongsTo('App\models\Classroom','classroom_id');
+            return $this->belongsTo('App\Models\Classroom','classroom_id');
         }
 
 }

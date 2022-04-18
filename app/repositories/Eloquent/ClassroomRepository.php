@@ -2,8 +2,8 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Classroom;
-use App\models\Section;
+use App\Models\Classroom;
+use App\Models\Section;
 use App\repositories\ClassroomRepositoryInterface;
 
 class ClassroomRepository extends BasicRepository implements ClassroomRepositoryInterface

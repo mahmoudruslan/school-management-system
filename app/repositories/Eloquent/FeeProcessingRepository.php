@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\FeeProcessing;
+use App\Models\FeeProcessing;
 use App\repositories\FeeProcessingRepositoryInterface;
 
 class FeeProcessingRepository extends BasicRepository implements FeeProcessingRepositoryInterface

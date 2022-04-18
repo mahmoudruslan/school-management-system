@@ -1,7 +1,7 @@
 <?php
 namespace App\repositories\Eloquent;
 
-use App\models\Subject;
+use App\Models\Subject;
 use App\repositories\Eloquent\BasicRepository;
 use App\repositories\SubjectRepositoryInterface;
 

@@ -3,11 +3,11 @@
 namespace App\Http\Livewire\Student;
 
 use App\Http\Requests\StudentRequest;
-use App\models\TheParent;
+use App\Models\TheParent;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\models\BloodType;
-use App\models\Nationality;
+use App\Models\BloodType;
+use App\Models\Nationality;
 use App\repositories\ClassroomRepositoryInterface;
 use App\repositories\GradeRepositoryInterface;
 use App\repositories\SectionRepositoryInterface;

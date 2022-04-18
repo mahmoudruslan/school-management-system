@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\models\Attendance;
-use App\models\Student;
-use App\models\TheParent;
+use App\Models\Attendance;
+use App\Models\TheParent;
 use App\repositories\Eloquent\GradeRepository;
 use App\repositories\Eloquent\StudentRepository;
 use App\repositories\GraduatedRepositoryInterface;

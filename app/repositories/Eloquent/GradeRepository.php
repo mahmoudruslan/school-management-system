@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\Grade;
+use App\Models\Grade;
 use App\repositories\GradeRepositoryInterface;
 
 class GradeRepository extends BasicRepository implements GradeRepositoryInterface

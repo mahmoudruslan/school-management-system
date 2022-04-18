@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,11 +15,11 @@ class FeeInvoice extends Model
     }
     public function students()
     {
-        return $this->belongsTo('App\models\Student','student_id');
+        return $this->belongsTo('App\Models\Student','student_id');
     }
 
     public function fees()
     {
-        return $this->belongsTo('App\models\Fee','fee_id');
+        return $this->belongsTo('App\Models\Fee','fee_id');
     }
 }

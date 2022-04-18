@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\User\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::group([
     })->name('reset.form');
 
 
-    Route::post('student/reset/password', 'HomeController@resetPassword')->name('reset.password');
+    Route::post('student/reset/password', [HomeController::class, 'resetPassword'])->name('reset.password');
 });
 Route::group([
     
@@ -42,17 +43,17 @@ Route::group([
 ], function () {
 
 
-        Route::get('dashboard', 'HomeController@student');
-        Route::get('student/data', 'HomeController@getData')->name('student.data');
-        Route::get('student/results', 'HomeController@getResults')->name('student.results');
-        Route::get('student/courses', 'HomeController@getCourses')->name('student.courses');
-        Route::get('student/fees', 'HomeController@getFees')->name('student.fees');
-        Route::get('exams/table', 'HomeController@getExams')->name('exams.table');
-        Route::get('student/absence', 'HomeController@getAbsence')->name('student.absence');
-        Route::get('student/books', 'HomeController@getBooks')->name('student.books');
-        Route::get('student/settings', 'HomeController@setting')->name('student.settings');
-        Route::patch('student/edit/password', 'HomeController@editPassword')->name('edit.password');
-        Route::get('download/{id}', 'HomeController@download')->name('books.download');
+        Route::get('dashboard', [HomeController::class, 'student']);
+        Route::get('student/data', [HomeController::class, 'getData'])->name('student.data');
+        Route::get('student/results', [HomeController::class, 'getResults'])->name('student.results');
+        Route::get('student/courses', [HomeController::class, 'getCourses'])->name('student.courses');
+        Route::get('student/fees', [HomeController::class, 'getFees'])->name('student.fees');
+        Route::get('exams/table', [HomeController::class, 'getExams'])->name('exams.table');
+        Route::get('student/absence', [HomeController::class, 'getAbsence'])->name('student.absence');
+        Route::get('student/books', [HomeController::class, 'getBooks'])->name('student.books');
+        Route::get('student/settings', [HomeController::class, 'setting'])->name('student.settings');
+        Route::patch('student/edit/password', [HomeController::class, 'editPassword'])->name('edit.password');
+        Route::get('download/{id}', [HomeController::class, 'download'])->name('books.download');
 
         
 });

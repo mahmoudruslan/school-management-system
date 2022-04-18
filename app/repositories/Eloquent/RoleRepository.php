@@ -3,7 +3,7 @@
 namespace App\repositories\Eloquent;
 
 
-use App\models\Role;
+use App\Models\Role;
 use App\repositories\RoleRepositoryInterface;
 
 class RoleRepository extends BasicRepository implements RoleRepositoryInterface

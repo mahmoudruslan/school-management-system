@@ -1,6 +1,6 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -13,7 +13,7 @@ class Teacher extends Authenticatable
 
 
     public function specializations(){
-        return $this->belongsTo('App\models\Specialization','specialization_id');
+        return $this->belongsTo('App\Models\Specialization','specialization_id');
     }
 
 

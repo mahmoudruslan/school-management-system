@@ -2,7 +2,7 @@
 
 namespace App\repositories\Eloquent;
 
-use App\models\FundAccount;
+use App\Models\FundAccount;
 use App\repositories\FundAccountRepositoryInterface;
 
 class FundAccountRepository extends BasicRepository implements FundAccountRepositoryInterface
