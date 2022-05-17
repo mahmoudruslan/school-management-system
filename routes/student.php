@@ -17,43 +17,43 @@ use App\Http\Controllers\User\HomeController;
 */
 
 Route::group([
-    
-    'prefix' => LaravelLocalization::setLocale() .'/'.'student',
-
+    'prefix' => LaravelLocalization::setLocale() . '/' . 'student',
     'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
+    'namespace' => 'User'
 
-    'namespace' => 'User'], 
-    function () {
+], function () {
 
     Route::get('student/reset/password', function () {
         return view('student_dashboard.pages.reset_password');
     })->name('reset.form');
 
-
     Route::post('student/reset/password', [HomeController::class, 'resetPassword'])->name('reset.password');
 });
-Route::group([
-    
-    'prefix' => LaravelLocalization::setLocale() .'/'.'student',
-
-    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student'],
-
+Route::group(['prefix' => LaravelLocalization::setLocale() . '/' . 'student',
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student', 'throttle:10,1'],
     'namespace' => 'User'
 
 ], function () {
 
+    Route::get('dashboard',                 [HomeController::class, 'student']);
 
-        Route::get('dashboard', [HomeController::class, 'student']);
-        Route::get('student/data', [HomeController::class, 'getData'])->name('student.data');
-        Route::get('student/results', [HomeController::class, 'getResults'])->name('student.results');
-        Route::get('student/courses', [HomeController::class, 'getCourses'])->name('student.courses');
-        Route::get('student/fees', [HomeController::class, 'getFees'])->name('student.fees');
-        Route::get('exams/table', [HomeController::class, 'getExams'])->name('exams.table');
-        Route::get('student/absence', [HomeController::class, 'getAbsence'])->name('student.absence');
-        Route::get('student/books', [HomeController::class, 'getBooks'])->name('student.books');
-        Route::get('student/settings', [HomeController::class, 'setting'])->name('student.settings');
-        Route::patch('student/edit/password', [HomeController::class, 'editPassword'])->name('edit.password');
-        Route::get('download/{id}', [HomeController::class, 'download'])->name('books.download');
+    Route::get('student/data',              [HomeController::class, 'getData'])->name('student.data');
 
-        
+    Route::get('student/results',           [HomeController::class, 'getResults'])->name('student.results');
+
+    Route::get('student/courses',           [HomeController::class, 'getCourses'])->name('student.courses');
+
+    Route::get('student/fees',              [HomeController::class, 'getFees'])->name('student.fees');
+
+    Route::get('exams/table',               [HomeController::class, 'getExams'])->name('exams.table');
+
+    Route::get('student/absence',           [HomeController::class, 'getAbsence'])->name('student.absence');
+
+    Route::get('student/books',             [HomeController::class, 'getBooks'])->name('student.books');
+
+    Route::get('student/settings',          [HomeController::class, 'setting'])->name('student.settings');
+
+    Route::patch('student/edit/password',   [HomeController::class, 'editPassword'])->name('edit.password');
+    
+    Route::get('download/{id}',             [HomeController::class, 'download'])->name('books.download');
 });

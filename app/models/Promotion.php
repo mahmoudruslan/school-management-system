@@ -9,9 +9,9 @@ class Promotion extends Model
     
     protected $fillable = [
                 'student_id',
-                'from_grade_id',
-                'from_classroom_id',
-                'from_section_id',
+                'grade_id',
+                'classroom_id',
+                'section_id',
                 'to_grade_id',
                 'to_classroom_id',
                 'to_section_id',
@@ -23,17 +23,17 @@ class Promotion extends Model
 
     // grades
     public function f_grade(){
-        return $this->belongsTo('App\Models\Grade','from_grade_id');
+        return $this->belongsTo('App\Models\Grade','grade_id');
     }
 
     // classrooms
     public function f_classroom(){
-        return $this->belongsTo('App\Models\Classroom','from_classroom_id');
+        return $this->belongsTo('App\Models\Classroom','classroom_id');
     }
 
     // sections
     public function f_section(){
-        return $this->belongsTo('App\Models\Section','from_section_id');
+        return $this->belongsTo('App\Models\Section','section_id');
     }
 
     // grades

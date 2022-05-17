@@ -29,7 +29,7 @@ abstract class BasicRepository implements EloquentRepositoryInterface
     public function create(array $attributes)
     {
         try {
-             $create = $this->model->create($attributes);
+            $create = $this->model->create($attributes);
             toastr()->success(__('Data saved successfully'));
             return $create;
         } catch (\Exception $e) {
@@ -71,11 +71,10 @@ abstract class BasicRepository implements EloquentRepositoryInterface
 
             $model = $this->model->find($id);
             if (!$model) {
-                //دي بتغير نص الايرور اللي راح السيشن ف بدل ميروح بشرح المشكلة بيروح بالكلمة اللي انا كتبتها دي ودي زيادة أمان عشان محدش يعرف المشكلة فين بالظبط والتراي والكاتش بتظهر الكلام دا في الألرت
                 throw new ModelNotFoundException(__('Item not found'));
             }
             toastr()->success(__('Data deleted successfully'));
-            
+
             return $model->delete();
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);

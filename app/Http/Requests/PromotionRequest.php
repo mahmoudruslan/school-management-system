@@ -26,9 +26,9 @@ class PromotionRequest extends FormRequest
     {
 
         return  [
-            'from_grade_id' => 'required',
-            'from_classroom_id' => 'required',
-            'from_section_id' => 'required',
+            'grade_id' => 'required',
+            'classroom_id' => 'required',
+            'section_id' => 'required',
             'to_grade_id' => 'required',
             'to_classroom_id' => 'required',
             'to_section_id' => 'required',

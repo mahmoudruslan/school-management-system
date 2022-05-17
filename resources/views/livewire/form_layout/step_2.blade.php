@@ -13,6 +13,7 @@
         @enderror
         <input type="text" wire:model="email" class="form-control">
     </div>
+    @if ($edit_mode)
     <div class="form-group col-md">
         <label for="title">{{ __("Password") }}</label><br>
         @error('password')
@@ -20,6 +21,8 @@
         @enderror
         <input type="password" wire:model="password" class="form-control">
     </div>
+    @endif
+
     <div class="form-group col-md">
         <label for="title">{{ __("Father's Phone") }}</label><br>
         @error('father_phone')

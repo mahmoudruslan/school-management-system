@@ -50,7 +50,7 @@ class GraduatedController extends Controller
     public function show($id)
     {
         $student = $this->student->getById($id);
-        return view('admin_dashboard.pages.graduated.show', compact('student'));
+        return view('admin_dashboard.pages.students.show', compact('student'));
     }
 
     public function returnStudents(Request $request)

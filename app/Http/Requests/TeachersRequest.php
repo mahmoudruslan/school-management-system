@@ -38,13 +38,13 @@ class TeachersRequest extends FormRequest
 
         ];
         // in update case
-        if(!Request::input('id') > '0')
-        {
-            $rules += [
-                'password' => 'required|max:8',
-                'gender'=> 'required|in:1,0',
-            ];
-        }
+        // if(!Request::input('id') > '0')
+        // {
+        //     $rules += [
+        //         'password' => 'required|max:8',
+        //         'gender'=> 'required|in:1,0',
+        //     ];
+        // }
         return $rules;
     }
 

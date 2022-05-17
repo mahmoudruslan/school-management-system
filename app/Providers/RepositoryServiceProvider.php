@@ -116,13 +116,6 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\repositories\ExamsTimetableRepositoryInterface',
             'App\repositories\Eloquent\ExamsTimetableRepository'
         );
-
-        // $this->app->bind(
-        //     BookRepositoryInterface::class,
-        //     BookRepository::class
-        // );
-
-
     }
 
     /**

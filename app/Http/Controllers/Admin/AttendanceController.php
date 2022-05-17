@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\repositories\AttendanceRepositoryInterface;
-use App\repositories\Eloquent\SectionRepository;
 use App\repositories\GradeRepositoryInterface;
 use App\repositories\AdminRepositoryInterface;
 use App\repositories\StudentRepositoryInterface;

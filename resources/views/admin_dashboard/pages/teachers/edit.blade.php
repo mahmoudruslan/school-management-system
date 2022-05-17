@@ -13,6 +13,7 @@
             {{ Session::get('error')}}
         </div>
     @endif
+    
     {{-- end show validation error --}}
     <form action="{{route('teachers.update','test')}}" method="POST">
         {{method_field('patch')}}

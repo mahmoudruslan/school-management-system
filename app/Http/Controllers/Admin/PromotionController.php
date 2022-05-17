@@ -32,32 +32,32 @@ class PromotionController extends Controller
 
     public function store(PromotionRequest $request, StudentRepositoryInterface $s)
     {
-            $students = $s->myModel()->select(['id', 'grade_id', 'classroom_id'])
+            $students = $s->myModel()->select(['id', 'grade_id', 'classroom_id', 'section_id'])
             ->where('grade_id', $request->grade_id)
             ->where('classroom_id', $request->classroom_id)
             ->where('section_id', $request->section_id)->get();
-
         if (count($students) > 0) {
             foreach ($students as $student) {
                 $s->update([
-                    'grade_id' => $request->grade_id_new,
-                    'classroom_id' => $request->classroom_id_new,
-                    'section_id' => $request->section_id,
+                    'grade_id' => $request->to_grade_id,
+                    'classroom_id' => $request->to_classroom_id,
+                    'section_id' => $request->to_section_id,
                     'entry_status' => 1
                 ], $student->id);
 
                 $this->promotion->create([
                     'student_id' => $student->id,
-                    'from_grade_id' => $request->grade_id,
-                    'from_classroom_id' => $request->classroom_id,
-                    'from_section_id' => $request->section_id,
-                    'to_grade_id' => $request->grade_id_new,
-                    'to_classroom_id' => $request->classroom_id_new,
-                    'to_section_id' => $request->section_id_new,
+                    'grade_id' => $request->grade_id,
+                    'classroom_id' => $request->classroom_id,
+                    'section_id' => $request->section_id,
+                    'to_grade_id' => $request->to_grade_id,
+                    'to_classroom_id' => $request->to_classroom_id,
+                    'to_section_id' => $request->to_section_id,
                 ]);
             }
             return redirect()->back();
         }
+        toastr()->success(__('There are no students'));
         return redirect()->back();
     }
 

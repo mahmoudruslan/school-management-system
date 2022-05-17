@@ -46,7 +46,8 @@ class Edit extends Component
         $mother_name_ar,
         $mother_name_en,
         $mother_national_id,
-        $address_father;
+        $address_father,
+        $edit_mode;
     public $successMsg = '';
     public $errorMsg = '';
 
@@ -86,8 +87,9 @@ class Edit extends Component
     }
     public function render(StudentRepositoryInterface $s, GradeRepositoryInterface $g)
     {
+        $edit_mode = false;
         return view('livewire.student.edit', [
-
+            
             'student' => $s->getById($this->student->id),
             'bloodtypes' => BloodType::all(),
             'nationalitys' => Nationality::all(),

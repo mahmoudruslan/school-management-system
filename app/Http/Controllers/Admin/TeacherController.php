@@ -61,7 +61,6 @@ class TeacherController extends Controller
 
     public function edit($id, RoleRepositoryInterface $r)
     {
-
         $specializations = Specialization::all();
         $admin = $this->admin->getById($id);
         $roles = $r->getData('id','name_ar','name_en');
@@ -69,9 +68,8 @@ class TeacherController extends Controller
     }
 
 
-    public function update(TeachersRequest  $request)
-    {
-        
+    public function update(Request  $request)
+    {        
         $this->admin->update([
             'name_ar' => $request->name_ar,
             'name_en' => $request->name_en,

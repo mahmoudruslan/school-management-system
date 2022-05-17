@@ -57,7 +57,7 @@
                         <div class="form-row">
                             <div class="form-group col">
                                 <label for="inputState">{{ __('Grade') }}</label>
-                                <select class="custom-select mr-sm-2" name="grade_id_new" required>
+                                <select class="custom-select mr-sm-2" name="to_grade_id" required>
                                     <option selected disabled>{{ __('Choose Grade') }}...</option>
                                     @foreach ($grades as $grade)
                                         <option value="{{ $grade->id }}">{{ $grade['name_' . app()->getLocale()] }}
@@ -68,7 +68,7 @@
                             <div class="form-group col">
                                 <label for="Classroom_id">{{ trans('Classrooms') }}: <span
                                         class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="classroom_id_new">
+                                <select class="custom-select mr-sm-2" name="to_classroom_id">
 
                                 </select>
                             </div>
@@ -76,7 +76,7 @@
                             <div class="form-group col">
                                 <label for="Classroom_id">{{ trans('Sections') }}: <span
                                         class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="section_id_new">
+                                <select class="custom-select mr-sm-2" name="to_section_id">
 
                                 </select>
                             </div>
@@ -95,8 +95,34 @@
 @endsection
 @section('js')
     <script>
+$(document).ready(function() {
+            $('select[name="to_grade_id"]').on('change', function() {
+                let classroom_id = $(this).val();
+                if (classroom_id) {
+                    $.ajax({
+                        url: "{{ URL::to('admin/get_classes') }}/" + classroom_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="to_classroom_id"]').empty();
+                            $('select[name="to_classroom_id"]').append(
+                                '<option selected disabled >{{ __('Choose Classroom') }}...</option>'
+                            );
+                            $.each(data, function(key, value) {
+                                $('select[name="to_classroom_id"]').append(
+                                    '<option value="' + key + '">' + value +
+                                    '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    console.log('AJAX load did not work');
+                }
+            });
+        });
+
         $(document).ready(function() {
-            $('select[name="classroom_id_new"]').on('change', function() {
+            $('select[name="to_classroom_id"]').on('change', function() {
                 let classroom_id = $(this).val();
                 if (classroom_id) {
                     $.ajax({
@@ -104,12 +130,12 @@
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            $('select[name="section_id_new"]').empty();
-                            $('select[name="section_id_new"]').append(
+                            $('select[name="to_section_id"]').empty();
+                            $('select[name="to_section_id"]').append(
                                 '<option selected disabled >{{ __('Choose Section') }}...</option>'
                             );
                             $.each(data, function(key, value) {
-                                $('select[name="section_id_new"]').append(
+                                $('select[name="to_section_id"]').append(
                                     '<option value="' + key + '">' + value +
                                     '</option>');
                             });

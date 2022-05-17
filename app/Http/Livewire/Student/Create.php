@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\DB;
 class Create extends Component
 {
     use WithFileUploads;
-    public $editMode = false;
     public $currentStep = 1;
     public $addMode = false;
     public $photoss;
@@ -49,6 +48,7 @@ class Create extends Component
         $mother_name_ar,
         $mother_name_en,
         $mother_national_id,
+        $edit_mode = true,
         $address_father;
     public $successMsg = '';
     public $errorMsg = '';

@@ -36,7 +36,7 @@ class SectionController extends Controller
     {
         $Section = $this->section->create($request->all());
         $sectionFind = $this->section->getById($Section->id);
-        $sectionFind->teachers()->attach($request->admin_id);
+        $sectionFind->admins()->attach($request->admin_id);
         return redirect()->back();
     }
 
