@@ -50,19 +50,19 @@ class Student extends Authenticatable implements JWTSubject
         return $this->belongsTo('App\Models\BloodType', 'student_blood_type_id');
     }
     // grades
-    public function grades()
+    public function grade()
     {
         return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
 
     // classrooms
-    public function classrooms()
+    public function classroom()
     {
         return $this->belongsTo('App\Models\Classroom', 'classroom_id');
     }
 
     // sections
-    public function sections()
+    public function section()
     {
         return $this->belongsTo('App\Models\Section', 'section_id');
     }

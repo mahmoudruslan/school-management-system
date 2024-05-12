@@ -18,11 +18,11 @@ public $timestamps =  true;
         return $this ->hasMany('App\Models\Student','section_id');
     }
 
-    public function grades(){
+    public function grade(){
         return $this ->belongsTo('App\Models\Grade','grade_id');
     }
 
-    public function classrooms(){
+    public function classroom(){
         return $this ->belongsTo('App\Models\Classroom','classroom_id');
     }
 

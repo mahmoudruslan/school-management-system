@@ -12,6 +12,4 @@ class GradeRepository extends BasicRepository implements GradeRepositoryInterfac
         Parent::__construct($model);
     }
 
-
-
 }

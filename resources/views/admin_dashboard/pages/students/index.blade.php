@@ -43,9 +43,9 @@
                             <td>{{ $loop->index + 1 }}</td>
                             <td>{{ $student['name_' . app()->getLocale()] }}</td>
                             <td>{{ __($student->gender) }}</td>
-                            <td>{{ $student->grades['name_' . app()->getLocale()] ?? '' }}</td>
-                            <td>{{ $student->classrooms['name_' . app()->getLocale()] ?? '' }}</td>
-                            <td>{{ $student->sections['name_' . app()->getLocale()] ?? '' }}</td>
+                            <td>{{ $student->grade['name_' . app()->getLocale()] ?? '' }}</td>
+                            <td>{{ $student->classroom['name_' . app()->getLocale()] ?? '' }}</td>
+                            <td>{{ $student->section['name_' . app()->getLocale()] ?? '' }}</td>
                             <td>
                                 <div class="dropdown show">
                                     <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button"

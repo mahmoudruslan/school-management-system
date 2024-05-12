@@ -15,11 +15,14 @@ abstract class BasicRepository implements EloquentRepositoryInterface
         $this->model = $model;
     }
 
-    public function getData($columns = '*'): object
+    // public function getData($columns = '*'): object
+    // {
+    //     return $this->model->all($columns);
+    // }
+    public function all($relations, $columns = '*'): object
     {
-        return $this->model->all($columns);
+        return $this->model->with($relations)->get($columns);
     }
-
     public function myModel(): object
     {
         return $this->model;

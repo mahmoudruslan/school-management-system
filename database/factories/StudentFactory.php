@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\TheParent;
 use App\Models\Nationality;
 use App\Models\BloodType;
+use App\Models\Classroom;
+use App\Models\Grade;
 use App\Models\Section;
 
 class StudentFactory extends Factory
@@ -19,19 +21,21 @@ class StudentFactory extends Factory
 
     public function definition()
     {
-        $x = rand(1, 3);
+        $grade_ids = Grade::pluck('id');
+        $classrooms = Classroom::select('id', 'grade_id')->get();
+        $sections = Section::select('id', 'classroom_id')->get();
         return [
             'name_ar' => $this->faker->name,
             'name_en' => $this->faker->name,
-            'email' => $this->faker->unique()->email,
+            'email' => $this->faker->unique()->safeEmail(),
             'password' => '11111111',
             'student_nationality_id' => Nationality::all()->random()->id,
             'student_blood_type_id' => BloodType::all()->unique()->random()->id,
             'date_of_birth' => $this->faker->date(),
             'religion' => 1,
-            'grade_id' => 1,
-            'classroom_id' => $x,
-            'section_id' => Section::where('classroom_id', $x)->get()->random()->id,
+            'grade_id' => $grade_id = $grade_ids->random(),
+            'classroom_id' => $classroom_id = $classrooms->where('grade_id',$grade_id)->random()->id,
+            'section_id' => $sections->where('classroom_id', $classroom_id)->random()->id,
             'parent_id' => TheParent::all()->unique()->random()->id,
             'joining_date' => $this->faker->date(),
             'gender' => 1,

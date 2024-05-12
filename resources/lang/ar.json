@@ -130,6 +130,8 @@
     "When the promotion is deleted, the student returns to the previous stage, and the registration status will remain for replay":
     "عند حذف الترقية يرجع الطالب إلي المرحلة السابقة وستكون حالة القيد باق للإعادة",
     "Delete Promotion": "حذف الترقية",
+    "Deleted Promotions successfully": "تم حذف الترقيات بنجاح",
+    "The students were successfully promoted": "تم ترقية الطلاب بنجاح",
 
     "Graduations":"التخرجات",
     "Graduating students":"الطلاب المتخرجين",

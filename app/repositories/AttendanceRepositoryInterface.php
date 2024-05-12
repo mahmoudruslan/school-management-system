@@ -2,11 +2,7 @@
 
 namespace App\repositories;
 
-interface AttendanceRepositoryInterface
-{
-    public function getData($columns='*'):object;
-    public function myModel():object;
+interface AttendanceRepositoryInterface extends EloquentRepositoryInterface{
     public function createOrup(array $x, array $attributes);
-    public function getById($id);
-    public function update(array $attributes,int $id);
+
 }

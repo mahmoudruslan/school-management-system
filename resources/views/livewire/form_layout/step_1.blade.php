@@ -25,7 +25,7 @@
                 @error('grade_id')<span class="error text-danger">{{ $message }}</span>@enderror
                 <select wire:model="grade_id" class="custom-select" wire:change="change">
                     @if(isset($student))
-                        <option value="{{$student->grade_id}}">{{$student->grades['name_'.app()->getLocale()]}}</option>
+                        <option value="{{$student->grade_id}}">{{$student->grade['name_'.app()->getLocale()]}}</option>
                     @else
                     <option value="">{{__('Choose Grade')}}</option>
                     @endif

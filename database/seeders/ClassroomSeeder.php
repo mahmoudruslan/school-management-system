@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 use App\Models\Classroom;
+use App\Models\Grade;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,8 @@ class ClassroomSeeder extends Seeder
     public function run()
     {
         DB::table('classrooms')->delete();
-
-        $xs = [
+        $grades = Grade::pluck('id');
+        $classroom_numbers = [
                 [
                     'ar' => 'الأول',
                     'en' => 'first',
@@ -29,13 +30,17 @@ class ClassroomSeeder extends Seeder
                     'en' => 'third',
                 ],
         ];
-        foreach($xs as $x)
+        foreach($grades as $grade)
         {
-            Classroom::create([
-                'name_ar' => 'الصف '.$x['ar'],
-                'name_en' => $x['en'].' classroom',
-                'grade_id' => 1,
-            ]);
+            foreach($classroom_numbers as $classroom_number)
+            {
+                Classroom::create([
+                    'name_ar' => 'الصف '.$classroom_number['ar'],
+                    'name_en' => $classroom_number['en'].' classroom',
+                    'grade_id' => $grade,
+                ]);
+            }
         }
+        
     }
 }

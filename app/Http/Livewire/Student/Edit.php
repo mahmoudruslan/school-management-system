@@ -85,22 +85,22 @@ class Edit extends Component
         $this->mother_name_en = $parent->mother_name_en;
         $this->mother_national_id = $parent->mother_national_id;
     }
-    public function render(StudentRepositoryInterface $s, GradeRepositoryInterface $g)
+    public function render(StudentRepositoryInterface $student, GradeRepositoryInterface $grade)
     {
         $edit_mode = false;
         return view('livewire.student.edit', [
             
-            'student' => $s->getById($this->student->id),
+            'student' => $student->getById($this->student->id),
             'bloodtypes' => BloodType::all(),
             'nationalitys' => Nationality::all(),
-            'grades' => $g->getData(),
+            'grades' => $grade->all([]),
         ]);
     }
     #######################################  start Add mode  #############################################
-    public function change(ClassroomRepositoryInterface $c, SectionRepositoryInterface $s)
+    public function change(ClassroomRepositoryInterface $classroom, SectionRepositoryInterface $section)
     {
-        $this->classrooms = $c->myModel()->where('grade_id', $this->grade_id)->select('id', 'name_ar', 'name_en')->get();
-        $this->sections = $s->myModel()->where('classroom_id', $this->classroom_id)->select('id', 'name_ar', 'name_en')->get();
+        $this->classrooms = $classroom->myModel()->where('grade_id', $this->grade_id)->select('id', 'name_ar', 'name_en')->get();
+        $this->sections = $section->myModel()->where('classroom_id', $this->classroom_id)->select('id', 'name_ar', 'name_en')->get();
     }
     //real time validation
     public function updated($probertyName)

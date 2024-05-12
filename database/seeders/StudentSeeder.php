@@ -10,7 +10,7 @@ class StudentSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('students')->delete();
-        Student::factory()->count(10)->create();
+        // DB::table('students')->delete();
+        Student::factory()->count(200)->create();
     }
 }

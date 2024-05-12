@@ -60,7 +60,7 @@ class Create extends Component
 
             'bloodtypes' => BloodType::all(),
             'nationalitys' => Nationality::all(),
-            'grades' => $g->getData(),
+            'grades' => $g->all([]),
         ]);
     }
     #######################################  start Add mode  #############################################

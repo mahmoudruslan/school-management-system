@@ -15,7 +15,11 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = $this->student->getData();
+        $students = $this->student->all([
+            'grade:id,name_ar,name_en', 
+            'classroom:id,name_ar,name_en', 
+            'section:id,name_ar,name_en'
+        ]);
         return view('admin_dashboard.pages.students.index',compact('students'));
     }
 

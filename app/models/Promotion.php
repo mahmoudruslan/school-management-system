@@ -17,7 +17,7 @@ class Promotion extends Model
                 'to_section_id',
             ];
     // grades
-    public function students(){
+    public function student(){
         return $this->belongsTo('App\Models\Student','student_id');
     }
 

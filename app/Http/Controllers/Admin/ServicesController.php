@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\GradeRepositoryInterface;
 use App\repositories\SectionRepositoryInterface;
 use App\Traits\SaveImgTrait;
 use Illuminate\Http\Request;
@@ -12,16 +13,26 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class ServicesController extends Controller
 {
     use SaveImgTrait;
-    public function getClassrooms($id, ClassroomRepositoryInterface $c) //related ajax code
+    private $lang;
+
+    public function __construct()
     {
-        $list_classes = $c->getData()->where("grade_id", $id)->pluck("name_" . LaravelLocalization::getCurrentLocale(), "id");
+        $this->lang = LaravelLocalization::getCurrentLocale();
+    }
+    public function getClassrooms($id, GradeRepositoryInterface $grade) //related ajax code
+    {
+        // $list_classes = $classroom->all([])->where("grade_id", $id)->pluck("name_" . LaravelLocalization::getCurrentLocale(), "id");
+        $grade = $grade->getById($id);
+        $list_classes = $grade->classrooms->pluck("name_" . $this->lang, "id");
         return $list_classes;
     }
 
 
-    public function getSections($id, SectionRepositoryInterface $s) //related ajax code
+    public function getSections($id, ClassroomRepositoryInterface $classroom) //related ajax code
     {
-        $list_sections = $s->getData()->where("classroom_id", $id)->pluck("name_" . LaravelLocalization::getCurrentLocale(), "id");
+        $classroom = $classroom->getById($id);
+        $list_sections = $classroom->sections->pluck("name_" . $this->lang, "id");
+        // $list_sections = $s->getData()->where("classroom_id", $id)->pluck("name_" . LaravelLocalization::getCurrentLocale(), "id");
         return $list_sections;
     }
 

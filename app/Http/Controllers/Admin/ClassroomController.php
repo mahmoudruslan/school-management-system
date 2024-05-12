@@ -17,10 +17,10 @@ class ClassroomController extends Controller
     {
         $this->classroom = $classroom;
     }
-    public function index(GradeRepositoryInterface $g)
+    public function index(GradeRepositoryInterface $grade)
     {
-        $grades = $g->getData();
-        $classrooms = $this->classroom->getData();
+        $grades = $grade->all([]);
+        $classrooms = $this->classroom->all(['grades:id,name_ar,name_en']);
         return view('admin_dashboard.pages.myclassroom.index', compact(['grades', 'classrooms']));
     }
 
@@ -39,7 +39,7 @@ class ClassroomController extends Controller
     //Show students
     public function show(Request $request, $classroom_id, StudentRepositoryInterface $s)
     {
-        $students = $s->getData()->where('classroom_id', $classroom_id);
+        $students = $s->all([])->where('classroom_id', $classroom_id);
         return view('admin_dashboard.pages.myclassroom.show', compact(['students']));
     }
     public function destroy(Request $request, SectionRepository $sec, StudentRepository $stud)

@@ -4,7 +4,7 @@
         <tbody>
             <tr>
                 <td class="col-md-2"><h6>{{__("Name")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student['name_'.app()->getLocale()]}}</h6></td>
+                <td class="col-md-6"><h6>{{$student['name_'.$lang]}}</h6></td>
             </tr>
 
             <tr>
@@ -19,7 +19,7 @@
 
             <tr>
                 <td class="col-md-2"><h6>{{__("Nationality")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student->nationalities['name_'.app()->getLocale()]}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->nationalities['name_'.$lang]}}</h6></td>
             </tr>
 
             <tr>
@@ -39,17 +39,17 @@
 
             <tr>
                 <td class="col-md-2"><h6>{{__("Grade")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student->grades['name_'.app()->getLocale()]}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->grade['name_'.$lang]}}</h6></td>
             </tr>
 
             <tr>
                 <td class="col-md-2"><h6>{{__("Classroom")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student->classrooms['name_'.app()->getLocale()] ?? ''}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->classroom['name_'.$lang] ?? ''}}</h6></td>
             </tr>
 
             <tr>
                 <td class="col-md-2"><h6>{{__("Section")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student->sections['name_'.app()->getLocale()] ?? ''}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->section['name_'.$lang] ?? ''}}</h6></td>
             </tr>
 
             <tr>

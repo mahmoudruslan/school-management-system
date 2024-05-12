@@ -11,6 +11,9 @@
             {{ Session::get('error')}}
         </div>
     @endif
+    @php
+        $lang = app()->getLocale();
+    @endphp
     <!-- end error messages -->
     <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
         {{ __('Add Classroom') }}
@@ -31,8 +34,8 @@
                 @foreach ($classrooms as $classroom)
                     <tr>
                         <td>{{ $loop->index + 1}}</td>
-                        <td>{{$classroom['name_'.app()->getLocale()]}}</td>
-                        <td>{{$classroom->grades['name_'.app()->getLocale()]}}</td>
+                        <td>{{$classroom['name_'. $lang]}}</td>
+                        <td>{{$classroom->grades['name_'. $lang]}}</td>
                         <td>
                             <button style="color: white" type="button" data-toggle="modal" class="btn btn-danger" data-target="#delete{{$classroom ->id}}">
                                 <i class="fa fa-trash"></i>

@@ -12,6 +12,9 @@
             </button>
         </div>
     @endif
+    @php
+        $lang = app()->getLocale();
+    @endphp
     {{-- myTable --}}
     <button type="button" class="btn btn-danger" id="btn_delete_all">
         <i class="fas fa-check-square"></i>
@@ -41,11 +44,11 @@
                     <td>
                         <input type="checkbox" class="mr-4" value="{{$promotion->id}}">{{$loop->index+1}}
                     </td>
-                    <td>{{$promotion->students->name_ar}}</td>
-                    <td>{{$promotion->f_grade['name_'.app()->getLocale()]}}</td>
-                    <td>{{$promotion->f_classroom['name_'.app()->getLocale()]}}</td>
-                    <td>{{$promotion->to_grade['name_'.app()->getLocale()]}}</td>
-                    <td>{{$promotion->to_classroom['name_'.app()->getLocale()]}}</td>
+                    <td>{{$promotion->student['name_'.$lang]}}</td>
+                    <td>{{$promotion->f_grade['name_'.$lang]}}</td>
+                    <td>{{$promotion->f_classroom['name_'.$lang]}}</td>
+                    <td>{{$promotion->to_grade['name_'.$lang]}}</td>
+                    <td>{{$promotion->to_classroom['name_'.$lang]}}</td>
 
                     <td>
 

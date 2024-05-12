@@ -37,7 +37,7 @@
                 <select  name="grade_id" class="custom-select"
                         onchange="console.log($(this).val())">
                     <!--placeholder-->
-                    <option value="{{$section->grades->id}}" selected >{{$section->grades['name_'.app()->getLocale()]}}</option>
+                    <option value="{{$section->grade->id}}" selected >{{$section->grade['name_'.app()->getLocale()]}}</option>
 
                     @foreach ($grades as $grade)
                         <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
@@ -50,7 +50,7 @@
                        class="control-label">{{__('Classroom')}}</label><br>
                 @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                 <select name="classroom_id" class="custom-select">
-                    <option value="{{$section->classrooms->id}}" selected >{{$section->classrooms['name_'.app()->getLocale()]}}</option>
+                    <option value="{{$section->classroom->id}}" selected >{{$section->classroom['name_'.app()->getLocale()]}}</option>
 
 
                 </select>
@@ -63,13 +63,8 @@
             <div class="form-group col-md-6">
                 <label for="inputName" class="control-label">{{__('Choose Teacher')}}</label><br>
                 <select  name="admin_id[]" class="custom-select {{ $errors->has('admin_id') ? ' is-invalid' : '' }}" multiple aria-label="multiple select example">
-                    @foreach($section->admins as $admin)
-                        <option selected value="{{$admin->id}}">{{$admin['name_'.app()->getLocale()]}}</option>
-                    @endforeach
-
-
                     @foreach($admins as $admin)
-                        <option value="{{$admin->id}}">{{$admin['name_'.app()->getLocale()]}}</option>
+                        <option {{in_array($admin->id, $section->admins->pluck('id')->toArray()) ? 'selected' : ''}} value="{{$admin->id}}">{{$admin['name_'.app()->getLocale()]}}</option>
                     @endforeach
                 </select>
                 @if($errors->has('admin_id'))

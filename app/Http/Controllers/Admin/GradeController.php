@@ -19,7 +19,7 @@ class GradeController extends Controller
 
   public function index()
   {
-    $grades = $this->grade->getData();
+    $grades = $this->grade->all([]);
     return view('admin_dashboard.pages.grades.index', compact(['grades']));
   }
 
@@ -38,7 +38,7 @@ class GradeController extends Controller
       //Show students
       public function show(Request $request, $grade_id, StudentRepositoryInterface $s)
       {
-          $students = $s->getData()->where('grade_id', $grade_id);
+          $students = $s->all([])->where('grade_id', $grade_id);
           return view('admin_dashboard.pages.grades.show', compact(['students']));
       }
 

@@ -4,15 +4,15 @@
         <tbody>
             <tr>
                 <td class="col-md-2"><h6>{{__("Father's Name")}}</h6></td>
-                <td class="col-md-6"><h6>{{__($student->parents['father_name_'.app()->getLocale()])}}</h6></td>
+                <td class="col-md-6"><h6>{{__($student->parents['father_name_'.$lang])}}</h6></td>
             </tr>
             <tr>
                 <td class="col-md-2"><h6>{{__("Mother's Name")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student->parents['mother_name_'.app()->getLocale()]}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->parents['mother_name_'.$lang]}}</h6></td>
             </tr>
             <tr>
                 <td class="col-md-2"><h6>{{__("Father's Nationality")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student->parents->nationality['name_'.app()->getLocale()]}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->parents->nationality['name_'.$lang]}}</h6></td>
             </tr>
             <tr>
                 <td class="col-md-2"><h6>{{__("Father's Phone")}}</h6></td>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td class="col-md-2"><h6>{{__("Father's Job")}}</h6></td>
-                <td class="col-md-6"><h6>{{$student->parents['father_job_'.app()->getLocale()]}}</h6></td>
+                <td class="col-md-6"><h6>{{$student->parents['father_job_'.$lang]}}</h6></td>
             </tr>
 
             <tr>

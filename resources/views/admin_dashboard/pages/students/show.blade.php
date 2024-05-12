@@ -12,6 +12,9 @@
         </div>
     @endif
     <!-- end error messages -->
+    @php
+        $lang = app()->getLocale();
+    @endphp
     <!-- row -->
     <div class="card card-body card-statistics h-100">
         <div class="tab nav-border">
