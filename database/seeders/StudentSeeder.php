@@ -11,6 +11,6 @@ class StudentSeeder extends Seeder
     public function run()
     {
         // DB::table('students')->delete();
-        Student::factory()->count(200)->create();
+        Student::factory()->count(50)->create();
     }
 }

@@ -10,6 +10,9 @@
             {{ Session::get('error')}}
         </div>
     @endif
+    @php
+        $lang = app()->getLocale();
+    @endphp
 
     {{-- myTable --}}
     <div class="table-responsive">
@@ -29,9 +32,9 @@
             @foreach ($feeInvoices as $feeInvoice)
                 <tr>
                     <td>{{$loop->index+1}}</td>
-                    <td>{{$feeInvoice->students['name_'.app()->getLocale()]}}</td>
+                    <td>{{$feeInvoice->students['name_'.$lang]}}</td>
                     <td>{{$feeInvoice->date}}</td>
-                    <td>{{$feeInvoice->fees['name_'.app()->getLocale()]}}</td>
+                    <td>{{$feeInvoice->fees['name_'.$lang]}}</td>
                     <td>{{$feeInvoice->fees->amount}}</td>
                     <td>{{$feeInvoice->description}}</td>
                     <td>

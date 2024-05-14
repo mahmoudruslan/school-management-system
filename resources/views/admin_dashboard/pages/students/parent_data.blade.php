@@ -1,4 +1,7 @@
 <div class="tab-pane fade" id="parent-data" role="tabpanel" aria-labelledby="home-03-tab">
+    @php
+        $lang = app()->getLocale();
+    @endphp
     <!-- but your table hair-->
     <table class="table-hover table-bordered">
         <tbody>

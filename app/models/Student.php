@@ -44,7 +44,7 @@ class Student extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo('App\Models\Nationality', 'student_nationality_id');
     }
-    // nationalities
+    // blood type
     public function bloodTypes()
     {
         return $this->belongsTo('App\Models\BloodType', 'student_blood_type_id');
@@ -91,6 +91,11 @@ class Student extends Authenticatable implements JWTSubject
         return $this->hasMany('App\Models\FeeInvoice', 'student_id');
     }
 
+        // blood type
+        public function results()
+        {
+            return $this->hasMany('App\Models\Result', 'student_id');
+        }
         // Rest omitted for brevity
 
     /**

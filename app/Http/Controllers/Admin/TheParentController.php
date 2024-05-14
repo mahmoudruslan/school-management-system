@@ -9,7 +9,7 @@ class TheParentController extends Controller
 
     public function index()
     {
-        $parents = TheParent::all();
+        $parents = TheParent::with('nationality')->get();
         return view('admin_dashboard.pages.parents.index',compact('parents'));
     }
 }

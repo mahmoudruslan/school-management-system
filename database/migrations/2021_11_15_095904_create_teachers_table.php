@@ -15,14 +15,14 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->unsignedBigInteger('specialization_id')->nullable();
-            $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('cascade');
-            $table->string('joining_date');
-            $table->string('address');
-            $table->string('religion');
-            $table->string('note')->nullable();
-            $table->foreignId('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            // $table->string('phone');
+            // $table->unsignedBigInteger('specialization_id')->nullable();
+            // $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('cascade');
+            // $table->string('joining_date');
+            // $table->string('address');
+            // $table->string('religion');
+            // $table->string('note')->nullable();
+            // $table->foreignId('admin_id')->references('id')->on('admins')->onDelete('cascade');
 
             $table->timestamps();
         });

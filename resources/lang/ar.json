@@ -157,12 +157,13 @@
 
 
 
-    "Teachers":"المعلمين",
+    "Teachers/Admins":"المشرفين/المعلمين",
+    "Teacher informations":"بيانات المشرف",
     "phone number":"رقم الهاتف",
-    "List Teachers" : "قائمة المعلمين",
+    "List Teachers/Admins" : "قائمة المعلمين",
     "Choose Teacher": "حدد المعلم",
-    "Teachers List" : "قائمة المعلمين",
-    "Add Teachers" : "إضافة معلمين",
+    "Teachers/Admins List" : "قائمة المعلمين",
+    "Add Teachers/Admins" : "إضافة معلمين",
     "Edit Teachers": "تعديل المعلم",
     "Delete Teachers": "حذف المعلم",
     "Choose Specialization":"اختر تخصص",

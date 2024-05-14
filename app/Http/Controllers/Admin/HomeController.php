@@ -16,7 +16,7 @@ class HomeController extends Controller
 
     public function admin(GraduatedRepositoryInterface $g,StudentAccountRepositoryInterface $s_a, StudentRepositoryInterface $student)
     {
-        $g_count = $g->getData()->count();
+        $g_count = $g->all([])->count();
         $school = SchoolData::all('name_ar','name_en');
         
         $sum = 0;

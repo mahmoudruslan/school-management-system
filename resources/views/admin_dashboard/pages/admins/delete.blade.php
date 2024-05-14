@@ -12,7 +12,7 @@
                 </h5>
             </div>
             <div class="modal-footer">
-                <form action="{{ route('teachers.destroy','test') }}" method="POST">
+                <form action="{{ route('admins.destroy','test') }}" method="POST">
                     {{ method_field('Delete') }}
                     @csrf
                     <input type="hidden" name="id"  value="{{$admin ->id}}">

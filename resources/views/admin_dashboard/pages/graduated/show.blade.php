@@ -12,6 +12,9 @@
         </div>
     @endif
     <!-- end error messages -->
+    @php
+        $lang = app()->getLocale();
+    @endphp
     <!-- row -->
     <div class="card card-body card-statistics h-100">
         <div class="tab nav-border">
@@ -35,7 +38,7 @@
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Name")}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student['name_'.app()->getLocale()]}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student['name_'.$lang]}}</h6></td>
                         </tr>
 
                         <tr>
@@ -50,7 +53,7 @@
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Nationality")}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->nationalities['name_'.app()->getLocale()]}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->nationalities['name_'.$lang]}}</h6></td>
                         </tr>
 
                         <tr>
@@ -70,17 +73,17 @@
                         </tr>
                         <tr>
                             <td class="col-md-2"><h6>{{__("Grade")}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->grades['name_'.app()->getLocale()]}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->grades['name_'.$lang]}}</h6></td>
                         </tr>
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Classroom")}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->classrooms['name_'.app()->getLocale()] ?? ''}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->classrooms['name_'.$lang] ?? ''}}</h6></td>
                         </tr>
 
                         <tr>
                             <td class="col-md-2"><h6>{{__("Section")}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->sections['name_'.app()->getLocale()] ?? ''}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->sections['name_'.$lang] ?? ''}}</h6></td>
                         </tr>
 
                         <tr>
@@ -90,12 +93,12 @@
 
                         <tr>
                             <td class="col-md-2"><h6>{{__('Father\'s Name')}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->parents['name_father_'.app()->getLocale()]}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->parents['name_father_'.$lang]}}</h6></td>
                         </tr>
 
                         <tr>
                             <td class="col-md-2"><h6>{{__('Mother\'s Name')}}</h6></td>
-                            <td class="col-md-6"><h6>{{$student->parents['name_mother_'.app()->getLocale()]}}</h6></td>
+                            <td class="col-md-6"><h6>{{$student->parents['name_mother_'.$lang]}}</h6></td>
                         </tr>
 
                         <tr>

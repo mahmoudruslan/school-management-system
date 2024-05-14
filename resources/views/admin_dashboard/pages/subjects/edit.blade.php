@@ -2,6 +2,9 @@
 @section('title')
     {{__('Edit Subject')}}
 @stop
+@php
+    $lang = app()->getLocale();
+@endphp
 @section('content')
     <!-- row -->
     <div class="row">
@@ -41,9 +44,9 @@
                                     class="text-danger">*</span></label><br>
                                 @error('grade_id') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select class="custom-select mr-sm-2" name="grade_id">
-                                    <option value="{{$subject->grade_id}}">{{$subject->grades['name_'.app()->getLocale()]}}</option>
+                                    <option value="{{$subject->grade_id}}">{{$subject->grades['name_'.$lang]}}</option>
                                     @foreach($grades as $grade)
-                                        <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
+                                        <option value="{{$grade->id}}">{{$grade['name_'.$lang]}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -52,7 +55,7 @@
                                         class="text-danger">*</span></label><br>
                                 @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select class="custom-select mr-sm-2" name="classroom_id" >
-                                    <option value="{{$subject->classroom_id}}">{{$subject->classrooms['name_'.app()->getLocale()]}}</option>
+                                    <option value="{{$subject->classroom_id}}">{{$subject->classrooms['name_'.$lang]}}</option>
                                 </select>
                             </div>
                             <div class="form-group col">

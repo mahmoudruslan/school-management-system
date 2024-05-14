@@ -2,8 +2,6 @@
 
 @include('layout.header')
 
-
-
 @include('admin_dashboard.layout.sidebar')
 
 @yield('content')

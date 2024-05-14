@@ -18,18 +18,22 @@ class AttendanceController extends Controller
         $this->attendance = $attendance;
     }
 
-
     public function index()
     {
-        $attendances = $this->attendance->getData();
+        $attendances = $this->attendance->all(
+            ['students:id,name_ar,name_en',
+            'grades:id,name_ar,name_en',
+            'classrooms:id,name_ar,name_en',
+            'sections:id,name_ar,name_en',
+            'admin:id,name_ar,name_en' 
+        ]);
         return view('admin_dashboard.pages.attendances.index',compact('attendances'));
     }
 
-
-    public function create(AdminRepositoryInterface $a,GradeRepositoryInterface $g)
+    public function create(AdminRepositoryInterface $admin,GradeRepositoryInterface $grade)
     {
-        $sections = $a->getById(Auth::id())->sections;
-        $grades = $g->getData();
+        $sections = $admin->getById(Auth::id())->sections;
+        $grades = $grade->all([]);
         return view('admin_dashboard.pages.attendances.create',compact(['sections','grades']));
     }
 
@@ -46,7 +50,7 @@ class AttendanceController extends Controller
                         'classroom_id' => $request->classroom_id,
                         'section_id' => $request->section_id,
                     ],
-                     [
+                    [
                         'grade_id' => $request->grade_id,
                         'classroom_id' => $request->classroom_id,
                         'section_id' => $request->section_id,
@@ -62,10 +66,10 @@ class AttendanceController extends Controller
     }
 
     //Show students
-    public function show(Request $request,$section_id, StudentRepositoryInterface $s)
+    public function show(Request $request,$section_id, StudentRepositoryInterface $student)
     {
-        $attendances = $this->attendance->getData();
-        $students = $s->getData()->where('section_id',$section_id);        
+        $attendances = $this->attendance->all([]);
+        $students = $student->all([])->where('section_id',$section_id);        
         return view('admin_dashboard.pages.attendances.create2',compact(['students', 'section_id','attendances']));
     }
 

@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('admins')->delete();
-        DB::table('teachers')->delete();
+        // DB::table('teachers')->delete();
     
 
             $admin = Admin::create([
@@ -25,11 +25,11 @@ class AdminSeeder extends Seeder
                 'email' => 'mahmoud.40@gmail.com',
                 'password' => '00000000',
                 'gender' => '1',
-                'role_id' => '1'
-            ]);
+                'role_id' => '1',
+            // ]);
 
-            Teacher::create([
-                'admin_id' => $admin->id,
+            // Teacher::create([
+                // 'admin_id' => $admin->id,
                 'phone' => '01092199386',
                 'specialization_id' => '12',
                 'joining_date' => '2020-5-5',

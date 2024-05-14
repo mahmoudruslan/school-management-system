@@ -10,12 +10,15 @@
         </div>
     @endif
     <!-- end error messages -->
+    @php
+        $lang = app()->getLocale();
+    @endphp
     {{-- start according gray --}}
     <div class="accordion gray plus-icon round">
         <?php $x=0;?>
         @foreach ($grades as $grade)
             <div class="acd-group">
-                <a href="#" class="acd-heading">{{$grade['name_'.app()->getLocale()]}}</a>
+                <a href="#" class="acd-heading">{{$grade['name_'.$lang]}}</a>
                 <div class="acd-des">
                     {{-- start my according classrooms --}}
                     @foreach ($grade->classrooms as $classroom)
@@ -24,7 +27,7 @@
                                 <div class="card-header text-center" id="headingTwo">
                                     <button class="btn btn-light collapsed" data-toggle="collapse" data-target="#collapseOne{{$x}}" aria-expanded="false" aria-controls="collapseTwo">
                                         <h5 class="mb-0">
-                                            {{$classroom['name_'.app()->getLocale()]}}
+                                            {{$classroom['name_'.$lang]}}
                                         </h5>
                                     </button>
                                 </div>
@@ -52,7 +55,7 @@
                                                     @if($section->classroom_id == $classroom->id)
                                                         <tr>
                                                             <td>{{$loop->index}}</td>
-                                                            <td>{{$section['name_'.app()->getLocale()]}}</td>
+                                                            <td>{{$section['name_'.$lang]}}</td>
                                                             <td>
                                                                 <span class="badge {{$section->status == 'Active'? 'badge-success' : 'badge-danger'}}">{{__($section->status)}}</span>
                                                             </td>

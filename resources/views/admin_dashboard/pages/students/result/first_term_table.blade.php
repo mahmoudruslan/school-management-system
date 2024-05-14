@@ -13,14 +13,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($student_result->where('classroom_id', $result->classrooms->id)->where('term', 'First semester') as $result_term)
+            <!--get results to this classroom and this term -->
+            @php
+                $term_results = $student_results->where('classroom_id', $result_classroom->classroom->id)->where('term', '1');
+            @endphp
+            @forelse ($term_results as $term_result)
                 <tr>
                     <th class="p-15" scope="row">
-                        {{ $result_term->subjects['name_' . app()->getLocale()] }}</th>
-                    <td class="p-15">{{ $result_term->degree }}</td>
-                    <td class="p-15">{{ $result_term->subjects->degree / 2 }}</td>
+                        {{ $term_result->subject['name_' . app()->getLocale()] }}</th>
+                    <td class="p-15">{{ $term_result->degree }}</td>
+                    <td class="p-15">{{ $term_result->subject->degree / 2 }}</td>
                 </tr>
-            @endforeach
+                @empty
+                <tr>{{ __('No results') }}</tr>
+            @endforelse
         </tbody>
     </table>
 </div>

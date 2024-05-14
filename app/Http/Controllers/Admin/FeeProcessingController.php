@@ -19,27 +19,27 @@ class FeeProcessingController extends Controller
 
     public function index()
     {
-        $feeProcessing = $this->feeProcessing->getData();
+        $feeProcessing = $this->feeProcessing->all([]);
         return view('admin_dashboard.pages.fee_processing.index', compact('feeProcessing'));
     }
 
-    public function store(Request $request, StudentAccountRepository $sa)
+    public function store(Request $request, StudentAccountRepository $stu_account)
     {
-        $where = $sa->where('student_id', $request->student_id);
-        $debit = $where->sum('debit'); //student debit
-        $credit = $where->sum('credit'); //student credit
+        $student_account = $stu_account->where('student_id', $request->student_id);
+        $debit = $student_account->sum('debit'); //student debit
+        $credit = $student_account->sum('credit'); //student credit
 
         //number of student bills
-        $countStudent = $where->pluck('student_id');
-        if (!count($countStudent) > 0 || $debit - $credit == 0) {
+        $countStudent = $student_account->pluck('student_id');
+        if (count($countStudent) < 1|| $debit - $credit == 0) {//if student doesn't have accounts or is not in debit
             toastr()->error(__('This student does not owe any money'));
             return redirect()->back();
-        } elseif ($request->amount + $credit > $debit) {
+        } elseif ($request->amount + $credit > $debit) {// لو كان المبلغ الليي هيتم اسبعاده من على الطالب اكبر من اللى الطالب مدين بيه
             toastr()->error(__('This student owes only ') . ($debit - $credit) . __(' pounds'));
             return redirect()->back();
         }
         $feeProcessing = $this->feeProcessing->create($request->all());
-        $sa->create([
+        $student_account->create([
             'student_id' => $request->student_id,
             'fee_processing_id' => $feeProcessing->id,
             'type' => 'Fee exclusion',
@@ -51,7 +51,7 @@ class FeeProcessingController extends Controller
     //create
     public function show($student_id, StudentRepository $s, FeesInvoiceRepository $f)
     {
-        $feeInvoices = $f->getData('student_id')->where('student_id', $student_id);
+        $feeInvoices = $f->all([],'student_id')->where('student_id', $student_id);
         $student = $s->getById($student_id);
         return view('admin_dashboard.pages.fee_processing.create', compact('student', 'feeInvoices'));
     }

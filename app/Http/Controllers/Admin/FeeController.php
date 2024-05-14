@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FeeRequest;
 use App\repositories\Eloquent\FeesInvoiceRepository;
+use App\repositories\Eloquent\GradeRepository;
 use App\repositories\Eloquent\StudentAccountRepository;
 use App\repositories\FeeRepositoryInterface;
 use App\repositories\GradeRepositoryInterface;
@@ -21,77 +22,69 @@ class FeeController extends Controller
 
     public function index()
     {
-        $fees = $this->fee->getData();
+        $fees = $this->fee->all([]);
         return view('admin_dashboard.pages.fees.index', compact('fees'));
     }
 
-
     public function create(GradeRepositoryInterface $g)
     {
-        $grades = $g->getData();
+        $grades = $g->all([]);
         return view('admin_dashboard.pages.fees.create', compact('grades'));
     }
 
-
-    public function store(FeeRequest $request, StudentAccountRepository $s_a, FeesInvoiceRepository $f_i, StudentRepositoryInterface $s)
+    public function store(
+        FeeRequest $request, 
+        StudentAccountRepository $stu_a, 
+        FeesInvoiceRepository $fee_i, 
+        StudentRepositoryInterface $stu)
     {
-            if ($request->all_student == '1') //if you want add the fee to all srudent
+        $fee = $this->fee->create($request->all());
+            if ($request->all_student == '1') //if you want add the fee to all students
             {
-                $fee = $this->fee->create($request->all()); //insert in fees table
-
-                $students = $s->myModel()
+                $student_ids = $stu->myModel()
                     ->where('grade_id', $request->grade_id)
                     ->where('classroom_id', $request->classroom_id)
-                    ->select('id')->get();
+                    ->select('id')->pluck('id');
 
-                foreach ($students as $student) {
-                    $fee_invoice = $f_i->create([ //insert in fee_incoices table
+                foreach ($student_ids as $student_id) {
+                    $fee_invoice = $fee_i->create([ //insert in fee_invoices table
                         'date' => date('Y-m-d'),
-                        'student_id' => $student->id,
+                        'student_id' => $student_id,
                         'grade_id' => $request->grade_id,
                         'classroom_id' => $request->classroom_id,
                         'fee_id' => $fee->id,
                     ]);
-
-                    $s_a->create([ //insert in student_account table
-                        'student_id' => $student->id,
+                    $stu_a->create([ //insert in student_account table
+                        'student_id' => $student_id,
                         'type' => 'invoice',
                         'fee_id' => $fee->id,
                         'debit' => $request->amount,
                         'fee_invoice_id' => $fee_invoice->id
                     ]);
                 }
-                return redirect()->back();
-            } else {
-                $this->fee->create($request->all());
-                return redirect()->back();
-            }
-
+            } 
+            return redirect()->route('fees.index');
     }
 
 
-    public function edit($id, GradeRepository $g)
+    public function edit($id, GradeRepository $grade)
     {
-        $grades = $g->getData();
+        $grades = $grade->all([]);
         $fee = $this->fee->getById($id);
         return view('admin_dashboard.pages.fees.edit', compact(['fee', 'grades']));
     }
-
 
     public function update(FeeRequest $request, $id)
     {
             $this->fee->update($request->all(), $id);
             return redirect()->route('fees.index');
-
     }
 
-
-
-    public function destroy($id, FeesInvoiceRepository $fi)
+    public function destroy($id, FeesInvoiceRepository $fee_invoice)
     {
         try {
-            $feeInvoices = $fi->getData('fee_id')->where('fee_id', $id)->pluck('id');
-            if (count($feeInvoices) > 0) {
+            $feeInvoices = $fee_invoice->all([],'fee_id')->where('fee_id', $id)->pluck('id');
+            if (count($feeInvoices) > 0) {// لو كانت الرسوم دي اتضافت فى فواتير على الطلاب مش هتتمسح
                 toastr()->error(__('These fees have been added to some students before, so they cannot be deleted '));
                 return redirect()->back();
             }

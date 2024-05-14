@@ -13,6 +13,7 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
+
         Schema::create('admins', function (Blueprint $table) {
             $table->id('id');
             $table->string('name_ar');
@@ -21,6 +22,13 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->string('gender');
             $table->foreignId('role_id')->nullable()->references('id')->on('roles');
+            $table->string('phone');
+            $table->unsignedBigInteger('specialization_id')->nullable();
+            $table->foreign('specialization_id')->references('id')->on('specializations')->onDelete('cascade');
+            $table->string('joining_date');
+            $table->string('address');
+            $table->string('religion');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

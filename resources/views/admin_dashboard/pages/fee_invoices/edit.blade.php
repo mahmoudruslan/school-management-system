@@ -13,6 +13,9 @@
             </button>
         </div>
     @endif
+    @php
+        $lang = app()->getLocale();
+    @endphp
 
     <!-- row -->
     <div class="row">
@@ -25,14 +28,15 @@
                         <div class="form-row">
                             <div class="form-group col">
                                 <label for="Name" class="mr-sm-2">{{__("Student Name")}}</label>
-                                <input class="form-control" readonly value="{{$student['name_'.app()->getLocale()]}}">
+                                <input class="form-control" readonly value="{{$feesInvoice->students['name_'.$lang]}}">
                             </div>
                             <div class="form-group col">
                                 <label for="fee_id" class="mr-sm-2">{{__("Fee type")}}</label>
-                                <select class="form-control p-0 h-73" name="fee_id" required>
-{{--                                    <option selected disabled>{{$feesInvoice->fees['name_'.app()->getLocale()]}}</option>--}}
+                                <select class="form-control p-0 h-73" name="fee_id">
+                                <option selected value="{{$feesInvoice->fees->id}}">{{$feesInvoice->fees['name_'.$lang]}}</option>
+
                                     @foreach($fees as $fee)
-                                        <option value="{{$fee->id}}">{{$fee['name_'.app()->getLocale()]}}</option>
+                                        <option value="{{$fee->id}}">{{$fee['name_'.$lang]}}</option>
                                     @endforeach
                                 </select>
                             </div>

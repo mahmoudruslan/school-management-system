@@ -13,7 +13,7 @@ class GraduatedRepository extends BasicRepository implements GraduatedRepository
         parent::__construct($model);
     }
 
-    public function getData($columns='*'):object
+    public function all($related, $columns='*'):object
     {
         return $this->model->onlyTrashed()->get();
     }

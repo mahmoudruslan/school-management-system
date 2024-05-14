@@ -27,7 +27,7 @@
                                     class="text-danger">*</span>
                                 </label><br>
                                 @error('name_ar') <span class="error text-danger">{{ $message }}</span> @enderror
-                                <input type="text" readonly value="{{$result->students['name_' . app()->getLocale()]}}" name="student_id" class="form-control">
+                                <input type="text" readonly value="{{$result->student['name_' . app()->getLocale()]}}" name="student_id" class="form-control">
                             </div>
                             <div class="form-group col">
                                 <label for="Classroom_id">{{__('Degree')}} : <span

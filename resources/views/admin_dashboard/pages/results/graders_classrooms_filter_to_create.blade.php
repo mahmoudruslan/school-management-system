@@ -24,15 +24,13 @@
                             <div class="card">
                                 <div class="card-header text-center" id="headingTwo">
                                         <h5>
-                                            <form action="{{route('results.create2')}}" method="get">
+                                            <form action="{{route('results.subject.time.filter')}}" method="get">
                                                 <input type="hidden" name="classroom_id" value="{{$classroom->id}}">
                                                 <input type="hidden" name="grade_id" value="{{$classroom->grade_id}}">
                                                 <button type="submit" class="btn btn-light">{{$classroom['name_'.app()->getLocale()]}}</button>
                                             </form>
-
                                         </h5>
                                 </div>
-                                
                             </div>
                         </div>
                     @endforeach

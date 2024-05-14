@@ -116,18 +116,18 @@
                         </li>
                     @endcan
 
-                    <!-- Teachers-->
+                    <!-- admins-->
                     @can('teachers')
                         <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Admins-menu">
                                 <div class="pull-left"><i class="fas fa-chalkboard-teacher"></i><span
-                                        class="right-nav-text">{{ __('Teachers') }}</span></div>
+                                        class="right-nav-text">{{ __('Teachers/Admins') }}</span></div>
                                 <div class="pull-right"><i class="fas fa-chevron-down"></i></div>
                                 <div class="clearfix"></div>
                             </a>
-                            <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
-                                <li> <a href="{{ route('teachers.index') }}">{{ __('List Teachers') }}</a> </li>
-                                <li> <a href="{{ route('teachers.create') }}">{{ __('Add Teachers') }}</a> </li>
+                            <ul id="Admins-menu" class="collapse" data-parent="#sidebarnav">
+                                <li> <a href="{{ route('admins.index') }}">{{ __('List Teachers/Admins') }}</a> </li>
+                                <li> <a href="{{ route('admins.create') }}">{{ __('Add Teachers/Admins') }}</a> </li>
                             </ul>
                         </li>
                     @endcan
@@ -219,7 +219,7 @@
                             </a>
                             <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">
                                 <li> <a href="{{ route('results.index') }}">{{ __('Results List') }}</a> </li>
-                                <li> <a href="{{ route('results.create') }}">{{ __('Add Results') }}</a>
+                                <li> <a href="{{ route('results.grades.classrooms.filter') }}">{{ __('Add Results') }}</a>
                                 </li>
                             </ul>
                         </li>

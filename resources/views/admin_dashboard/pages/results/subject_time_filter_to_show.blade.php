@@ -32,10 +32,10 @@
             @foreach ($results as $result)
                 <tr>
                     <td>{{$loop->index+1}}</td>
-                    <td>{{$result->students['name_'.app()->getLocale()]}}</td>
-                    <td>{{$result->subjects['name_'.app()->getLocale()]}}</td>
+                    <td>{{$result->student['name_'.app()->getLocale()]}}</td>
+                    <td>{{$result->subject['name_'.app()->getLocale()]}}</td>
                     <td>{{$result->degree}}</td>
-                    <td>{{$result->subjects->degree/2}}</td>
+                    <td>{{$result->subject->degree/2}}</td>
                     <td>{{__($result->term)}}</td>
                     <td>{{$result->academic_year}}</td>
                     <td>{{$result->admin['name_'.app()->getLocale()]}}</td>

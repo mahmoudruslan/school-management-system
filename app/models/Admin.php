@@ -9,7 +9,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class Admin extends Authenticatable implements JWTSubject
 {
-    protected $fillable = ['id', 'name_ar', 'name_en', 'gender', 'email','password','role_id'];
+    protected $guarded = [];
     public $timestamps = true;
 
 
@@ -33,6 +33,10 @@ class Admin extends Authenticatable implements JWTSubject
     public function roles()
     {
         return $this->belongsTo(Role::class,'role_id');
+    }
+
+    public function specializations(){
+        return $this->belongsTo('App\Models\Specialization','specialization_id');
     }
 
     public function hasAbility($permissions)

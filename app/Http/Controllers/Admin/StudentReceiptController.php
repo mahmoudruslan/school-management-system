@@ -19,14 +19,14 @@ class StudentReceiptController extends Controller
 
     public function index()
     {
-        $receipts = $this->studentReceipt->getData();
+        $receipts = $this->studentReceipt->all([]);
         return view('admin_dashboard.pages.student_receipt.index', compact(['receipts']));
     }
 
-    public function store(Request $request, FundAccountRepositoryInterface $f, StudentAccountRepositoryInterface $s_a)
+    public function store(Request $request, FundAccountRepositoryInterface $fund_account, StudentAccountRepositoryInterface $stu_account)
     {
 
-        $student_account = $s_a->where('student_id', $request->student_id);
+        $student_account = $stu_account->where('student_id', $request->student_id);
         $debit = $student_account->sum('debit');
         $credit = $student_account->sum('credit'); 
 
@@ -44,13 +44,13 @@ class StudentReceiptController extends Controller
         //create in student_receipt table
         $receipt_id = $this->studentReceipt->create($request->all());
         //create in fund_account table
-        $f->create([
+        $fund_account->create([
             'receipt_id' => $receipt_id->id,
             'debit' => $request->debit,
             'description' => $request->description
         ]);
         //create in student_account table
-        $s_a->create([
+        $stu_account->create([
             'student_id' => $request->student_id,
             'receipt_id' => $receipt_id->id,
             'type' => 'receipt',
@@ -72,23 +72,23 @@ class StudentReceiptController extends Controller
         return view('admin_dashboard.pages.student_receipt.edit', compact('receipt'));
     }
 
-    public function update(Request $request, $id, FundAccountRepositoryInterface $f, StudentAccountRepositoryInterface $sa)
+    public function update(Request $request, $id, FundAccountRepositoryInterface $fund_account, StudentAccountRepositoryInterface $stu_account)
     {
 
         //update in student_receipt table
         $this->studentReceipt->update($request->all(), $id);
 
-        $fund_id = $f->getData(['id', 'receipt_id'])->where('receipt_id', $id)->first()->id;
+        $fund_id = $fund_account->all([],['id', 'receipt_id'])->where('receipt_id', $id)->first()->id;
 
         //update in fund_account table
-        $f->update([
+        $fund_account->update([
             'debit' => $request->debit,
             'description' => $request->description
         ], $fund_id);
 
         //update in student_account table
-        $sa_id = $sa->where('receipt_id', $id)->first()->id;
-        $sa->update([
+        $sa_id = $stu_account->where('receipt_id', $id)->first()->id;
+        $stu_account->update([
             'credit' => $request->debit,
         ], $sa_id);
 

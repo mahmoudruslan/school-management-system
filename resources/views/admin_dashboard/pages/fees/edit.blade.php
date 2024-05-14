@@ -18,6 +18,9 @@
                             </button>
                         </div>
                     @endif
+                    @php
+                        $lang = app()->getLocale();
+                    @endphp
                     <form method="post" action="{{ route('fees.update',$fee->id)}}">
                         @csrf
                         {{ method_field('PUT') }}
@@ -50,8 +53,8 @@
                                 <select class="custom-select mr-sm-2" name="grade_id" required>
 
                                     @foreach($grades as $grade)
-                                        <option value="{{$grade->id}}" selected>{{$grade['name_'.app()->getLocale()]}}</option>
-                                        <option value="{{$grade->id}}">{{$grade['name_'.app()->getLocale()]}}</option>
+                                        <option value="{{$grade->id}}" selected>{{$grade['name_'.$lang]}}</option>
+                                        <option value="{{$grade->id}}">{{$grade['name_'.$lang]}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -60,7 +63,7 @@
                                         class="text-danger">*</span></label><br>
                                 @error('classroom_id') <span class="error text-danger">{{ $message }}</span> @enderror
                                 <select class="custom-select mr-sm-2" name="classroom_id" >
-                                    <option value="{{$fee->classrooms->id}}" selected>{{$fee->classrooms['name_'.app()->getLocale()]}}</option>
+                                    <option value="{{$fee->classrooms->id}}" selected>{{$fee->classrooms['name_'.$lang]}}</option>
                                 </select>
                             </div>
                             <div class="form-group col">

@@ -1,12 +1,29 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\FeeController;
+use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Admin\ResultController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ServicesController;
-
-
-
+use App\Http\Controllers\Admin\ClassroomController;
+use App\Http\Controllers\Admin\GraduatedController;
+use App\Http\Controllers\Admin\PromotionController;
+use App\Http\Controllers\Admin\TheParentController;
+use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\SchoolDataController;
+use App\Http\Controllers\Admin\FeesInvoiceController;
+use App\Http\Controllers\Admin\FeeProcessingController;
+use App\Http\Controllers\Admin\StudentReceiptController;
+use App\Http\Controllers\Admin\SubjectController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 //define('PAGINATION_COUNT',20);
 /*
@@ -40,7 +57,9 @@ Route::group([
 
     Route::get('logout/{type}',             [LoginController::class, 'logout'])->name('logout');
 
-    Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::group([
+        // 'namespace' => 'Admin', 
+        'prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
         Route::get('dashboard',             [HomeController::class, 'admin'])->name('dashboard');
 
                             ############## begin grades ###############
@@ -56,7 +75,7 @@ Route::group([
         Route::resource('parents',          TheParentController::class)->middleware('can:parents');
 
     #                       ################# begin Teachers #################
-        Route::resource('teachers',         TeacherController::class)->middleware('can:teachers');
+        Route::resource('admins',         AdminController::class)->middleware('can:teachers');
 
     #                       ################# begin Students #################
         Route::resource('students',         StudentController::class)->middleware('can:students');
@@ -64,7 +83,7 @@ Route::group([
     #                       ########### begin Students Promotions #############
         Route::group(['middleware' => 'can:promotions'], function () {
             Route::resource('promotions',    PromotionController::class);
-            Route::post('destroy.all',      [App\Http\Controllers\Admin\PromotionController::class, 'deleteAll'])->name('destroy.all');
+            Route::post('destroy.all',      [PromotionController::class, 'deleteAll'])->name('destroy.all');
         });
     ##                      ########## begin Students Graduated #################
         Route::group(['middleware' => 'can:graduated'], function () {
@@ -83,7 +102,7 @@ Route::group([
             Route::resource('studentReceipt', StudentReceiptController::class);
 
                         ############# begin Students fees invoices ######################
-            Route::resource('fundAccounts',     FundAccountsController::class);
+            // Route::resource('fundAccounts',     FundAccountsController::class);
 
                         ############ begin Fee processing ##############################
             Route::resource('feeProcessing',    FeeProcessingController::class);
@@ -100,15 +119,17 @@ Route::group([
         
     #                       ###################################### begin exams #######################
         Route::group(['middleware' => 'can:results'], function () {
+            Route::get('results/grades-classrooms-filter', [ResultController::class, 'gradesClassroomsFilter'])->name('results.grades.classrooms.filter');
+            Route::get('results/subject-time-filter', [ResultController::class, 'subjectTimeFilter'])->name('results.subject.time.filter');
+            Route::post('results/giving-degrees', [ResultController::class, 'givingDegrees'])->name('results.giving.degrees');
+            Route::get('results/choose-subject-time/{classroom_id}', [ResultController::class, 'chooseSubjectAndTime'])->name('results.choose.subject.time');
             Route::resource('results',          ResultController::class);
-            Route::get('create2',               [App\Http\Controllers\Admin\ResultController::class, 'create2'])->name('results.create2');
-            Route::get('index2/{classroom_id}', [App\Http\Controllers\Admin\ResultController::class, 'index2'])->name('results.index2');
         });
 
 #                           ############################## begin Books #######################
         Route::group(['middleware' => 'can:books'], function () {
             Route::resource('books',            BookController::class);
-            Route::get('download/{id}',         [App\Http\Controllers\Admin\BookController::class, 'download'])->name('admin.books.download');
+            Route::get('download/{id}',         [BookController::class, 'download'])->name('admin.books.download');
         });
 
 // #                           ####################### begin Books ########################

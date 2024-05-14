@@ -1,7 +1,7 @@
 @extends('admin_dashboard.layout.master')
 
 @section('title')
-    {{ __('Add Teachers') }}
+    {{ __('Add Teachers/Admins') }}
 @stop
 @section('content')
     <!-- start error messages -->
@@ -11,7 +11,7 @@
         </div>
     @endif
     <!-- end error messages -->
-    <form action="{{ route('teachers.store') }}" method="POST">
+    <form action="{{ route('admins.store') }}" method="POST">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -153,7 +153,7 @@
             </div>
         </div>
         <button style="background: #72ab2a;color: white" type="submit" class="btn">{{ __('Submit') }}</button>
-        <a href="{{ route('teachers.index') }}" class="btn btn-danger" type="button">{{ __('Back') }}</a>
+        <a href="{{ route('admins.index') }}" class="btn btn-danger" type="button">{{ __('Back') }}</a>
     </form>
 
 

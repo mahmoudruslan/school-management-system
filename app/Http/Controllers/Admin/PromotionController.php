@@ -24,9 +24,9 @@ class PromotionController extends Controller
         return view('admin_dashboard.pages.promotions.index', compact(['promotions']));
     }
 
-    public function create(GradeRepositoryInterface $g)
+    public function create(GradeRepositoryInterface $grade)
     {
-        $grades = $g->all([]);
+        $grades = $grade->all([]);
         return view('admin_dashboard.pages.promotions.create', compact('grades'));
     }
 
@@ -49,14 +49,8 @@ class PromotionController extends Controller
             ]);
             // insert student data in promotion table
             foreach ($student_collection as $student) {
-                $this->promotion->create([
+                $this->promotion->create($request->validated()+[
                     'student_id' => $student->id,
-                    'grade_id' => $request->grade_id,
-                    'classroom_id' => $request->classroom_id,
-                    'section_id' => $request->section_id,
-                    'to_grade_id' => $request->to_grade_id,
-                    'to_classroom_id' => $request->to_classroom_id,
-                    'to_section_id' => $request->to_section_id,
                 ]);
             }
             toastr()->success(__('The students were successfully promoted'));

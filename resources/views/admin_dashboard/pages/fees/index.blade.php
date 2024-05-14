@@ -10,6 +10,9 @@
             {{ Session::get('error')}}
         </div>
     @endif
+    @php
+        $lang = app()->getLocale();
+    @endphp
     <!-- end error messages -->
     <a href="{{route('fees.create')}}" type="button" class="button x-small" >
         {{ __('Add Fees') }}
@@ -35,10 +38,10 @@
             @foreach ($fees as $fee)
                 <tr>
                     <td>{{$loop->index+1}}</td>
-                    <td>{{$fee['name_'.app()->getLocale()]}}</td>
+                    <td>{{$fee['name_'.$lang]}}</td>
                     <td>{{$fee->amount}}</td>
-                    <td>{{$fee->grades['name_'.app()->getLocale()]}}</td>
-                    <td>{{$fee->classrooms['name_'.app()->getLocale()]}}</td>
+                    <td>{{$fee->grades['name_'.$lang]}}</td>
+                    <td>{{$fee->classrooms['name_'.$lang]}}</td>
                     <td>{{$fee->year}}</td>
                     <td>{{$fee->notes}}</td>
                     <td>

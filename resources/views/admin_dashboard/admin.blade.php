@@ -3,6 +3,9 @@
 @section('title')
 {{ __('admin control panel') }}
 @endsection
+@php
+    $lang = app()->getLocale();
+@endphp
 @section('content')
     <!--=================================Main content ===================================-->
     <!-- main-content -->
@@ -61,11 +64,11 @@
                         </div>
                         <div class="float-right text-right">
                             <p class="card-text text-dark">{{ __('number of teachers') }}</p>
-                            <h4>{{ \App\Models\Teacher::count() }}</h4>
+                            <h4>{{ \App\Models\Admin::count() }}</h4>
                         </div>
                     </div>
                     <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{ route('teachers.index') }}"
+                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{ route('admins.index') }}"
                             target="_blank"><span class="text-danger">{{__('Show data')}}</span></a>
                     </p>
                 </div>
@@ -153,11 +156,11 @@
                                             @forelse(\App\Models\Student::latest()->take(5)->get() as $student)
                                                 <tr>
                                                     <td>{{$loop->index+1}}</td>
-                                                    <td>{{$student['name_'.app()->getLocale()]}}</td>
+                                                    <td>{{$student['name_'.$lang]}}</td>
                                                     <td>{{__($student->gender)}}</td>
-                                                    <td>{{$student->grades['name_'.app()->getLocale()]}}</td>
-                                                    <td>{{$student->classrooms['name_'.app()->getLocale()]}}</td>
-                                                    <td>{{$student->sections['name_'.app()->getLocale()] ??  ''}}</td>
+                                                    <td>{{$student->grade['name_'.$lang]}}</td>
+                                                    <td>{{$student->classroom['name_'.$lang]}}</td>
+                                                    <td>{{$student->section['name_'.$lang] ??  ''}}</td>
                                                     <td>{{$student->updated_at}}</td>
                                                 @empty
                                                     <td class="alert-danger" colspan="8">لاتوجد بيانات</td>
@@ -186,7 +189,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{$loop->index+1}}</td>
-                                                    <td>{{$payment->students['name_'.app()->getLocale()]}}</td>
+                                                    <td>{{$payment->students['name_'.$lang]}}</td>
                                                     <td>{{$payment->amount}}</td>
                                                     <td>{{$payment->date}}</td>
                                                     <td>{{$payment->description}}</td>
@@ -216,7 +219,7 @@
                                             @forelse(\App\Models\StudentReceipt::latest()->take(5)->get() as $receipt)
                                                 <tr>
                                                     <td>{{$loop->index+1}}</td>
-                                                    <td>{{$receipt->students['name_'.app()->getLocale()]}}</td>
+                                                    <td>{{$receipt->students['name_'.$lang]}}</td>
                                                     <td>{{$receipt->debit}}</td>
                                                     <td>{{$receipt->date}}</td>
                                                     <td>{{$receipt->description}}</td>
@@ -248,9 +251,9 @@
                                             @forelse(\App\Models\FeeInvoice::latest()->take(10)->get() as $feeInvoice)
                                                 <tr>
                                                     <td>{{$loop->index+1}}</td>
-                                                    <td>{{$feeInvoice->students['name_'.app()->getLocale()]}}</td>
+                                                    <td>{{$feeInvoice->students['name_'.$lang]}}</td>
                                                     <td>{{$feeInvoice->date}}</td>
-                                                    <td>{{$feeInvoice->fees['name_'.app()->getLocale()]}}</td>
+                                                    <td>{{$feeInvoice->fees['name_'.$lang]}}</td>
                                                     <td>{{$feeInvoice->fees->amount}}</td>
                                                     <td>{{$feeInvoice->description}}</td>
                                                 </tr>

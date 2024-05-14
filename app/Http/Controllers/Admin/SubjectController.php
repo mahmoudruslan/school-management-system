@@ -7,11 +7,9 @@ use App\repositories\ClassroomRepositoryInterface;
 use App\repositories\GradeRepositoryInterface;
 use App\repositories\SubjectRepositoryInterface;
 use App\Http\Requests\SubjectRequest;
-use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
-
     private $subject;
     public function __construct(SubjectRepositoryInterface $subject)
     {
@@ -19,15 +17,15 @@ class SubjectController extends Controller
     }
     public function index()
     {
-        $subjects = $this->subject->getData();
+        $subjects = $this->subject->all(['grades', 'classrooms']);
         return view('admin_dashboard.pages.subjects.index',compact('subjects'));
     }
 
 
-    public function create(GradeRepositoryInterface $g, ClassroomRepositoryInterface $c)
+    public function create(GradeRepositoryInterface $grade, ClassroomRepositoryInterface $classroom)
     {
-        $grades = $g->getData();
-        $classrooms = $c->getData();
+        $grades = $grade->all([]);
+        $classrooms = $classroom->all([]);
         return view('admin_dashboard.pages.subjects.create',compact(['grades','classrooms']));
     }
 
@@ -36,24 +34,21 @@ class SubjectController extends Controller
     {
             $this->subject->create($request->all());
             return redirect()->route('subjects.index');
-
     }
 
-    public function edit($id, GradeRepositoryInterface $g, ClassroomRepositoryInterface $c)
+    public function edit($id, GradeRepositoryInterface $grade, ClassroomRepositoryInterface $classroom)
     {
-        $grades = $g->getData();
-        $classrooms = $c->getData();
+        $grades = $grade->all([]);
+        $classrooms = $classroom->all([]);
         $subject = $this->subject->getById($id);
         return view('admin_dashboard.pages.subjects.edit',compact(['classrooms','grades','subject']));
     }
 
-
-    public function update(Request $request, $id)
+    public function update(SubjectRequest $request, $id)
     {
             $this->subject->update($request->all(),$id);
             return redirect()->route('subjects.index');
     }
-
 
     public function destroy($id)
     {

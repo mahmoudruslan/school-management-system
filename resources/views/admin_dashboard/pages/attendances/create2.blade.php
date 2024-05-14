@@ -12,12 +12,15 @@
         </div>
     @endif
     <!-- end error messages -->
+    @php
+        $lang = app()->getLocale();
+    @endphp
 
     <ul style="list-style: none;color:#3f51b5;font-size: 14px">
         <li>{{__('today\'s date')}} : {{ date('Y-m-d') }}</li>
-        <li>{{__('Grade')}} : {{$students->first()->grades['name_'.app()->getLocale()]??''}}</li>
-        <li>{{__('Classroom')}} : {{$students->first()->classrooms['name_'.app()->getLocale()]??''}}</li>
-        <li>{{__('Section')}} : {{$students->first()->sections['name_'.app()->getLocale()]??''}}</li>
+        <li>{{__('Grade')}} : {{$students->first()->grades['name_'.$lang]??''}}</li>
+        <li>{{__('Classroom')}} : {{$students->first()->classrooms['name_'.$lang]??''}}</li>
+        <li>{{__('Section')}} : {{$students->first()->sections['name_'.$lang]??''}}</li>
     </ul><br>
     <form method="post" action="{{ route('attendances.store') }}">
 
@@ -39,13 +42,17 @@
                     @foreach ($students as $student)
                         <tr>
                             <td>{{$loop->index + 1 }}</td>
-                            <td>{{$student['name_'.app()->getLocale()]}}</td>
+                            <td>{{$student['name_'.$lang]}}</td>
                             <td>{{$student->email}}</td>
                             <td>{{__($student->gender)}}</td>
                             <td>
                                 <div class="form-check inline">
                                     <input class="form-check-input"
-                                    @if ($attendances->where('student_id', $student->id)->where('date', date('Y-m-d'))->count() > 0)
+                                    @if ($attendances
+                                    ->where('student_id', $student->id)
+                                    ->where('admin_id', auth()->id())
+                                    ->where('date', date('Y-m-d'))
+                                    ->count() > 0)
                                         checked disabled
                                     @endif
                                     type="checkbox" value="0" name="status[{{$student->id}}]" id="flexCheckCheckedDisabled" >

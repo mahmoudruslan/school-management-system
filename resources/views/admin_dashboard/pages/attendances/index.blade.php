@@ -10,6 +10,9 @@
         </div>
     @endif
     <!-- end error messages -->
+    @php
+        $lang = app()->getLocale();
+    @endphp
 
     {{-- myTable --}}
     <div class="table-responsive">
@@ -30,12 +33,12 @@
                 @foreach ($attendances as $attendance)
                     <tr>
                         <td>{{$loop->index+1}}</td>
-                        <td>{{$attendance->students['name_'.app()->getLocale()]}}</td>
+                        <td>{{$attendance->students['name_'.$lang]}}</td>
                         <td>{{$attendance->date}}</td>
-                        <td>{{$attendance->grades['name_'.app()->getLocale()]}}</td>
-                        <td>{{$attendance->classrooms['name_'.app()->getLocale()]}}</td>
-                        <td>{{$attendance->sections['name_'.app()->getLocale()]}}</td>
-                        <td>{{$attendance->admin['name_'.app()->getLocale()]}}</td>
+                        <td>{{$attendance->grades['name_'.$lang]}}</td>
+                        <td>{{$attendance->classrooms['name_'.$lang]}}</td>
+                        <td>{{$attendance->sections['name_'.$lang]}}</td>
+                        <td>{{$attendance->admin['name_'.$lang]}}</td>
                         <td>
                             <a class="btn btn-warning" href="{{route('students.show',$attendance->students->id)}}">
                                 <i class="far fa-eye "></i>&nbsp;{{__('Show student information')}}

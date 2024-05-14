@@ -17,16 +17,13 @@ class PaymentController extends Controller
         $this->payment = $payment;
     }
 
-
     public function index()
     {
-        $payments = $this->payment->getData();
+        $payments = $this->payment->all([]);
         return view('admin_dashboard.pages.payments.index', compact('payments'));
     }
 
-
-
-    public function store(Request $request, FundAccountRepository $f, StudentAccountRepository $sa)
+    public function store(Request $request, FundAccountRepository $f, StudentAccountRepository $stu_account)
     {
         $payment = $this->payment->create($request->all());
         $f->create([
@@ -34,7 +31,7 @@ class PaymentController extends Controller
             'credit' => $request->amount,
             'description' => $request->description,
         ]);
-        $sa->create([
+        $stu_account->create([
             'student_id' => $request->student_id,
             'payment_id' => $payment->id,
             'type' => 'payment',
@@ -58,26 +55,25 @@ class PaymentController extends Controller
     }
 
 
-    public function update(Request $request, $id, FundAccountRepository $f, StudentAccountRepository $sa)
+    public function update(Request $request, $id, FundAccountRepository $fund_account, StudentAccountRepository $stu_account)
     {
 
         $this->payment->update($request->all(), $id);
 
-        $fund_id = $f->getData(['id', 'payment_id'])->where('payment_id', $id)->first()->id;
+        $fund_id = $fund_account->all([],['id', 'payment_id'])->where('payment_id', $id)->first()->id;
 
-        $f->update([
+        $fund_account->update([
             'credit' => $request->amount,
             'description' => $request->description
         ], $fund_id);
 
-        $sa_id = $sa->where('payment_id', $id)->first()->id;
-        $sa->update([
+        $sa_id = $stu_account->where('payment_id', $id)->first()->id;
+        $stu_account->update([
             'debit' => $request->amount,
         ], $sa_id);
 
         return  redirect()->route('payments.index');
     }
-
 
     public function destroy($id)
     {
