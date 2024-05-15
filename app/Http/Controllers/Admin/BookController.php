@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\repositories\BookRepositoryInterface;
+use App\repositories\Eloquent\BookRepository;
 use App\repositories\Eloquent\GradeRepository;
 use App\Traits\SaveImgTrait;
 use App\Http\Requests\BookRequest;
@@ -15,21 +15,20 @@ class BookController extends Controller
 {
     use SaveImgTrait;
     private $book;
-    public function __construct(BookRepositoryInterface $book)
+    public function __construct(BookRepository $book)
     {
         $this->book = $book;
     }
     public function index(Request $request)
     {
-
-        $books = $this->book->getData();
+        $books = $this->book->all(['images', 'grade', 'classroom', 'section', 'admin:id,name_ar,name_en']);
         return view('admin_dashboard.pages.books.index', compact(['books']));
     }
 
-    public function create(GradeRepository $g)
+    public function create(GradeRepository $grade)
     {
-        $books = $this->book->getData();
-        $grades = $g->getData();
+        $books = $this->book->all([]);
+        $grades = $grade->all([]);
         return view('admin_dashboard.pages.books.create', compact(['grades', 'books']));
     }
 

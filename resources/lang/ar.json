@@ -38,6 +38,8 @@
     "Attachments related to the parent will be deleted" : "سيتم حذف المرفقات المتعلقة بولي الأمر",
     "Are you sure you want to save the data?": "هل أنت متأكد أنك تريد حفظ البيانات؟",
     "Parent's data":"بيانات ولي الأمر",
+    "Edit profile": "تعديل الملف الشخصى",
+    "The password doesn't match":"كلمة المرور غير متطابقة",
 
 
     "Add Grades" : "إضافة مراحل دراسية",
@@ -339,8 +341,6 @@
     "something went wrong":"هناك خطأ ما",
     "Signed out successfully":"تم تسجيل الخروج بنجاح ",
     "All fields are required":"كل الحقول مطلوبة",
-    "validation.required":"كل الحقول مطلوبة",
-    "validation.exists":"بريد إلكتروني خاطئ",
     "Select all":"حدد الكل",
     "School Management System":"نظام إدارة المدرسة",
     "Login":"دخول",

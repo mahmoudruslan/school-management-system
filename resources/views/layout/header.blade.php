@@ -111,6 +111,9 @@
                 </div>
             </div>
         </li> --}}
+        @php
+            $user = Auth::user();
+        @endphp
         <li class="nav-item dropdown mr-30">
             <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
                 aria-haspopup="true" aria-expanded="false">
@@ -120,13 +123,13 @@
                 <div class="dropdown-header">
                     <div class="media">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-0">{{Auth::user()['name_'.app()->getLocale()]}}</h5>
-                            <span>{{Auth::user()->email}}</span>
+                            <h5 class="mt-0 mb-0">{{$user['name_'.app()->getLocale()]}}</h5>
+                            <span>{{$user->email}}</span>
                         </div>
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
+                <a class="dropdown-item" href="{{route('admins.edit', $user->id)}}">{{__('Edit profile')}}</a>
 
 
                 @if (auth('student')->check())

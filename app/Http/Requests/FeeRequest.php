@@ -34,20 +34,5 @@ class FeeRequest extends FormRequest
         ];
     }
 
-    public function messages()
-    {
-        return [
 
-            'name_ar.required' => __('This field is required'),
-            'name_en.required' => __('This field is required'),
-            'grade_id.required' => __('This field is required'),
-            'classroom_id.required' => __('This field is required'),
-            'year.required' => __('This field is required'),
-            'amount.required' => __('This field is required'),
-            'name_ar.max' => __('The name field must be no more than 100 characters'),
-            'name_en.max' => __('The name field must be no more than 100 characters'),
-            'notes.max' => __('The name field must be no more than 100 characters'),
-
-        ];
-    }
 }

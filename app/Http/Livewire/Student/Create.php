@@ -9,9 +9,9 @@ use App\Models\TheParent;
 use App\Models\BloodType;
 use App\Models\Nationality;
 use App\Models\Student;
-use App\repositories\ClassroomRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\SectionRepositoryInterface;
+use App\repositories\Eloquent\ClassroomRepository;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\SectionRepository;
 use Illuminate\Support\Facades\DB;
 
 class Create extends Component
@@ -54,7 +54,7 @@ class Create extends Component
     public $errorMsg = '';
 
 
-    public function render(GradeRepositoryInterface $g)
+    public function render(GradeRepository $g)
     {
         return view('livewire.student.create', [
 
@@ -64,10 +64,10 @@ class Create extends Component
         ]);
     }
     #######################################  start Add mode  #############################################
-    public function change(ClassroomRepositoryInterface $c, SectionRepositoryInterface $s)
+    public function change(ClassroomRepository $classroom, SectionRepository $section)
     {
-        $this->classrooms = $c->myModel()->where('grade_id', $this->grade_id)->select('id', 'name_ar', 'name_en')->get();
-        $this->sections = $s->myModel()->where('classroom_id', $this->classroom_id)->select('id', 'name_ar', 'name_en')->get();
+        $this->classrooms = $classroom->myModel()->where('grade_id', $this->grade_id)->select('id', 'name_ar', 'name_en')->get();
+        $this->sections = $section->myModel()->where('classroom_id', $this->classroom_id)->select('id', 'name_ar', 'name_en')->get();
     }
 
 

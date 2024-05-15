@@ -3,9 +3,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\StudentAccount;
-use App\repositories\StudentAccountRepositoryInterface;
 
-class StudentAccountRepository extends BasicRepository implements StudentAccountRepositoryInterface
+class StudentAccountRepository extends BasicRepository
 {
     public function __construct(StudentAccount $model)
     {

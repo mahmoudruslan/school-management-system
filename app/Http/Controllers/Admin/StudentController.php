@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\StudentRepository;
 
 class StudentController extends Controller
 {
     private $student;
-    public function __construct(StudentRepositoryInterface $student)
+    public function __construct(StudentRepository $student)
     {
         $this->student = $student;
     }

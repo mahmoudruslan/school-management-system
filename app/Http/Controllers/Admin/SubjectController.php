@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\ClassroomRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\SubjectRepositoryInterface;
+use App\repositories\Eloquent\ClassroomRepository;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\SubjectRepository;
 use App\Http\Requests\SubjectRequest;
 
 class SubjectController extends Controller
 {
     private $subject;
-    public function __construct(SubjectRepositoryInterface $subject)
+    public function __construct(SubjectRepository $subject)
     {
         $this->subject = $subject;
     }
@@ -22,7 +22,7 @@ class SubjectController extends Controller
     }
 
 
-    public function create(GradeRepositoryInterface $grade, ClassroomRepositoryInterface $classroom)
+    public function create(GradeRepository $grade, ClassroomRepository $classroom)
     {
         $grades = $grade->all([]);
         $classrooms = $classroom->all([]);
@@ -36,7 +36,7 @@ class SubjectController extends Controller
             return redirect()->route('subjects.index');
     }
 
-    public function edit($id, GradeRepositoryInterface $grade, ClassroomRepositoryInterface $classroom)
+    public function edit($id, GradeRepository $grade, ClassroomRepository $classroom)
     {
         $grades = $grade->all([]);
         $classrooms = $classroom->all([]);

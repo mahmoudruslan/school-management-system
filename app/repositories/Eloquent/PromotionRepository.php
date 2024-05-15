@@ -3,9 +3,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\Promotion;
-use App\repositories\PromotionRepositoryInterface;
 
-class PromotionRepository extends BasicRepository implements PromotionRepositoryInterface
+class PromotionRepository extends BasicRepository
 {
     public function __construct(Promotion $model)
     {

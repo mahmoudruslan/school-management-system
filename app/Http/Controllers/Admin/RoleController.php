@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\RoleRepositoryInterface;
+use App\repositories\Eloquent\RoleRepository;
 use App\Http\Requests\RoleRequest;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
     private $role;
-    public function __construct(RoleRepositoryInterface $role)
+    public function __construct(RoleRepository $role)
     {
         $this->role = $role;
     }
     public function index()
     {
-        $roles = $this->role->getData();
+        $roles = $this->role->all([]);
         return view('admin_dashboard.pages.roles.index', compact('roles'));
     }
 

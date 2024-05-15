@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
-use App\repositories\ResultRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\ResultRepository;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\StudentRepository;
 use App\repositories\Eloquent\StudentAccountRepository;
-use App\repositories\SubjectRepositoryInterface;
+use App\repositories\Eloquent\SubjectRepository;
 use App\Http\Requests\ResultRequest;
-use App\Models\Student;
-use App\repositories\ClassroomRepositoryInterface;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use App\repositories\Eloquent\ClassroomRepository;
 use Illuminate\Support\Facades\Auth;
 
 class ResultController extends Controller
@@ -23,39 +20,39 @@ class ResultController extends Controller
     private $classroom;
     private $subject;
     private $student;
-    public function __construct(
-        ResultRepositoryInterface $result,
-        GradeRepositoryInterface $grade,
-        ClassroomRepositoryInterface $classroom,
-        SubjectRepositoryInterface $subject,
-        StudentRepositoryInterface $student
-    ) {
-        $this->result = $result;
-        $this->grade = $grade;
-        $this->classroom = $classroom;
-        $this->subject = $subject;
-        $this->student = $student;
-    }
+    public function __construct(ResultRepository $result,GradeRepository $grade,
+        ClassroomRepository $classroom, SubjectRepository $subject, StudentRepository $student) 
+        {
+            $this->result = $result;
+            $this->grade = $grade;
+            $this->classroom = $classroom;
+            $this->subject = $subject;
+            $this->student = $student;
+        }
 
-    public function index()
+    public function index()//choose grade and classroom
     {
+        return true;
         $grades = $this->grade->all([]);
         return view('admin_dashboard.pages.results.grades_classrooms_filter_to_show', compact('grades'));
     }
 
-    public function chooseSubjectAndTime($classroom_id)
+    //filtered students table
+    public function gradeAndClassroomStudents($classroom_id)
     {
-        $results = $this->result->all([])->where('classroom_id', $classroom_id);
-        return view('admin_dashboard.pages.results.subject_time_filter_to_show', compact('results'));
+        $results = $this->result->all(['grade', 'classroom','student:id,name_ar,name_en', 'admin:id,name_ar,name_en', 'subject'])//relationships
+        ->where('classroom_id', $classroom_id);
+        return view('admin_dashboard.pages.results.grade_classroom_students', compact('results'));
     }
 
-
+    //choose grade and classroom
     public function gradesClassroomsFilter()
     {
         $grades = $this->grade->all([]);
         return view('admin_dashboard.pages.results.graders_classrooms_filter_to_create', compact(['grades']));
     }
 
+    //choose subject and term
     public function subjectTimeFilter(Request $request)
     {
         $grade = $this->grade->getById($request->grade_id);
@@ -66,7 +63,7 @@ class ResultController extends Controller
 
         return view('admin_dashboard.pages.results.subject_time_filter_to_create', compact(['grade', 'classroom', 'subjects']));
     }
-
+    //show filtered students and giving degree
     public function givingDegrees(ResultRequest $request)
     {
         $data['academic_year'] = $request->academic_year;

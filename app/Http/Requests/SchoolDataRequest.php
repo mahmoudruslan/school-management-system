@@ -35,21 +35,4 @@ class SchoolDataRequest extends FormRequest
         ];
 
     }
-
-    public function messages()
-    {
-        return [
-            'name_ar.required' => __('This field is required'),
-            'grade.required' => __('This field is required'),
-            'phone.required' => __('This field is required'),
-            'email.required' => __('This field is required'),
-            'address.required' => __('This field is required'),
-            'name_ar.max' => __('The name field must be no more than 50 characters'),
-            'name_en.max' => __('The name field must be no more than 50 characters'),
-        ];
-    }
-
-
-
-
 }

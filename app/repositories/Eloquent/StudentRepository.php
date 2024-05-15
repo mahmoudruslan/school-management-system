@@ -7,20 +7,19 @@ use App\Models\Nationality;
 use App\Models\Religion;
 use App\Models\Student;
 use App\Models\TheParent;
-use App\repositories\ClassroomRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\ClassroomRepository;
+use App\repositories\Eloquent\GradeRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class StudentRepository extends BasicRepository implements StudentRepositoryInterface
+class StudentRepository extends BasicRepository
 {
-    public $g;
-    public $c;
-    public function __construct(Student $model,GradeRepositoryInterface $g,ClassroomRepositoryInterface $c)
+    public $grade;
+    public $classroom;
+    public function __construct(Student $model,GradeRepository $grade,ClassroomRepository $classroom)
     {
         parent::__construct($model);
-        $this->g = $g;
-        $this->c = $c;
+        $this->grade = $grade;
+        $this->classroom = $classroom;
     }
 
     public function getMyData(){
@@ -28,8 +27,8 @@ class StudentRepository extends BasicRepository implements StudentRepositoryInte
         $data['religions'] = Religion::all();
         $data['Blood_types'] = BloodType::all();
         $data['TheParents'] = TheParent::all('id', 'name_father_ar', 'name_father_en');
-        $data['grades'] = $this->g->getData();
-        $data['classrooms'] = $this->c->getData();
+        $data['grades'] = $this->grade->all([]);
+        $data['classrooms'] = $this->classroom->all([]);
         return $data;
     }
 

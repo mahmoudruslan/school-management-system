@@ -3,10 +3,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\Classroom;
-use App\Models\Section;
-use App\repositories\ClassroomRepositoryInterface;
 
-class ClassroomRepository extends BasicRepository implements ClassroomRepositoryInterface
+class ClassroomRepository extends BasicRepository
 {
     public function __construct(Classroom $model)
     {

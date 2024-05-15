@@ -3,10 +3,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\FeeInvoice;
-use App\repositories\FeesInvoiceRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 
-class FeesInvoiceRepository extends BasicRepository implements FeesInvoiceRepositoryInterface
+class FeesInvoiceRepository extends BasicRepository
 {
     public function __construct(FeeInvoice $model)
     {

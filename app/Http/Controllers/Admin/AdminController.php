@@ -6,26 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TeachersRequest;
 use App\Models\Teacher;
 use App\Models\Specialization;
-use App\repositories\AdminRepositoryInterface;
-use App\repositories\RoleRepositoryInterface;
+use App\repositories\Eloquent\AdminRepository;
+use App\repositories\Eloquent\RoleRepository;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
 
     protected $admin;
-    public function __construct(AdminRepositoryInterface $admin)
+    public function __construct(AdminRepository $admin)
     {
         $this->admin = $admin;
     }
     
     public function index()
     {
-        $admins = $this->admin->all([]);
+        $admins = $this->admin->all([])->except(auth()->user()->id);
         return view('admin_dashboard.pages.admins.index', compact('admins'));
     }
 
-    public function create(RoleRepositoryInterface $role)
+    public function create(RoleRepository $role)
     {
         $roles = $role->all([]);
         $specializations = Specialization::all();
@@ -44,7 +44,7 @@ class AdminController extends Controller
         return view('admin_dashboard.pages.admins.show', compact('admin'));
     }
 
-    public function edit($id, RoleRepositoryInterface $role)
+    public function edit($id, RoleRepository $role)
     {
         $specializations = Specialization::all();
         $admin = $this->admin->getById($id);

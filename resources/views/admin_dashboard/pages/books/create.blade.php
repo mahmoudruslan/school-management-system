@@ -76,9 +76,11 @@
                                     <div class="mb-3">
                                         <label for="formFileMultiple"
                                             class="form-label">{{ __('Attachments') }}</label>
-                                        <input class="form-control" type="file" id="formFileMultiple" name="file_name"
-                                            required>
+                                        <input class="form-control" type="file" id="formFileMultiple" name="file_name">
                                     </div>
+                                    @error('file_name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div><br>
                             <button class="button" type="submit">{{ __('Submit') }}</button>

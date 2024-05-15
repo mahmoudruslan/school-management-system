@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\GradeRepositoryInterface;
+use App\repositories\Eloquent\GradeRepository;
 use App\Http\Requests\PromotionRequest;
-use App\repositories\PromotionRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\PromotionRepository;
+use App\repositories\Eloquent\StudentRepository;
 use Illuminate\Http\Request;
 
 class PromotionController extends Controller
 {
     private $promotion;
 
-    public function __construct(PromotionRepositoryInterface $promotion)
+    public function __construct(PromotionRepository $promotion)
     {
         $this->promotion = $promotion;
     }
@@ -24,13 +24,13 @@ class PromotionController extends Controller
         return view('admin_dashboard.pages.promotions.index', compact(['promotions']));
     }
 
-    public function create(GradeRepositoryInterface $grade)
+    public function create(GradeRepository $grade)
     {
         $grades = $grade->all([]);
         return view('admin_dashboard.pages.promotions.create', compact('grades'));
     }
 
-    public function store(PromotionRequest $request, StudentRepositoryInterface $student)
+    public function store(PromotionRequest $request, StudentRepository $student)
     {
         //student only query to use update method to all data
         $students = $student->myModel()->select(['id', 'grade_id', 'classroom_id', 'section_id'])
@@ -61,7 +61,7 @@ class PromotionController extends Controller
     }
 
 
-    public function destroy(Request $request, StudentRepositoryInterface $student)
+    public function destroy(Request $request, StudentRepository $student)
     {
         $ids = explode(",", $request->ids);
         foreach ($ids as $id) {

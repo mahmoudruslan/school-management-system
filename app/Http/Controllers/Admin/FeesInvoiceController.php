@@ -7,12 +7,12 @@ use App\Http\Requests\FeeInvoiceRequest;
 use App\repositories\Eloquent\FeeRepository;
 use App\repositories\Eloquent\StudentAccountRepository;
 use App\repositories\Eloquent\StudentRepository;
-use App\repositories\FeesInvoiceRepositoryInterface;
+use App\repositories\Eloquent\FeesInvoiceRepository;
 
 class FeesInvoiceController extends Controller
 {
     private $feesInvoices;
-    public function __construct(FeesInvoiceRepositoryInterface $feesInvoices)
+    public function __construct(FeesInvoiceRepository $feesInvoices)
     {
         $this->feesInvoices = $feesInvoices;
     }

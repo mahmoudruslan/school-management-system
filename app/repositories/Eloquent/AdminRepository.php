@@ -4,9 +4,8 @@ namespace App\repositories\Eloquent;
 
 
 use App\Models\Admin;
-use App\repositories\AdminRepositoryInterface;
 
-class AdminRepository extends BasicRepository implements AdminRepositoryInterface
+class AdminRepository extends BasicRepository
 {
     public function __construct(Admin $model)
     {

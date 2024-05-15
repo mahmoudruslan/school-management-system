@@ -3,9 +3,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\FundAccount;
-use App\repositories\FundAccountRepositoryInterface;
 
-class FundAccountRepository extends BasicRepository implements FundAccountRepositoryInterface
+class FundAccountRepository extends BasicRepository
 {
     public function __construct(FundAccount $model)
     {

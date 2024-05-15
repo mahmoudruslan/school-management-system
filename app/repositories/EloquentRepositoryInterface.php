@@ -1,8 +1,7 @@
 <?php
 
 namespace App\repositories;
-interface EloquentRepositoryInterface{
-    // public function getData($columns='*');
+interface EloquentRepositoryInterface {
     public function all($related, $columns='*');
     public function myModel():object;
     public function create(array $attributes);

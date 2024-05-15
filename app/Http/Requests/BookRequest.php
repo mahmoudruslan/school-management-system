@@ -29,29 +29,10 @@ class BookRequest extends FormRequest
             'grade_id' => 'required',
             'classroom_id' => 'required',
             'section_id' => 'required',
+            'file_name' => 'required',
             'title' => 'required|max:100',
 
         ];
 
     }
-
-    public function messages()
-    {
-        return [
-
-            'grade_id.required' => __('This field is required'),
-            'classroom_id.required' => __('This field is required'),
-            'section_id.required' => __('This field is required'),
-            'title.required' => __('This field is required'),
-            'title.max' => __('This is field must be no more than 100 characters'),
-
-
-
-
-        ];
-    }
-
-
-
-
 }

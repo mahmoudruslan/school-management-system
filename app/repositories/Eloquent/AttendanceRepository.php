@@ -3,9 +3,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\Attendance;
-use App\repositories\AttendanceRepositoryInterface;
 
-class AttendanceRepository extends BasicRepository implements AttendanceRepositoryInterface
+class AttendanceRepository extends BasicRepository
 {
     public $model;
     public function __construct(Attendance $model)

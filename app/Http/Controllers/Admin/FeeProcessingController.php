@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\repositories\Eloquent\FeesInvoiceRepository;
 use App\repositories\Eloquent\StudentAccountRepository;
 use App\repositories\Eloquent\StudentRepository;
-use App\repositories\FeeProcessingRepositoryInterface;
+use App\repositories\Eloquent\FeeProcessingRepository;
 use Illuminate\Http\Request;
 
 class FeeProcessingController extends Controller
 {
     private $feeProcessing;
-    public function __construct(FeeProcessingRepositoryInterface $feeProcessing)
+    public function __construct(FeeProcessingRepository $feeProcessing)
     {
         $this->feeProcessing = $feeProcessing;
     }

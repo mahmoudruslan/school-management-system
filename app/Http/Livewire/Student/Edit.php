@@ -8,46 +8,21 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\BloodType;
 use App\Models\Nationality;
-use App\repositories\ClassroomRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\SectionRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\ClassroomRepository;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\SectionRepository;
+use App\repositories\Eloquent\StudentRepository;
 
 class Edit extends Component
 {
     use WithFileUploads;
     public $currentStep = 1;
-    public $name_ar,
-        $student,
-        $route,
-        $name_en,
-        $password,
-        $grade_id = '',
-        $classroom_id = '',
-        $section_id = '',
-        $student_nationality_id = '',
-        $student_blood_type_id = '',
-        $religion = '',
-        $joining_date,
-        $student_address,
-        $gender,
-        $email,
-        $date_of_birth,
-        $entry_status,
-        $father_name_ar,
-        $father_name_en,
-        $father_national_id,
-        $father_phone,
-        $father_job_ar,
-        $classrooms,
-        $sections,
-        $father_job_en,
-        $father_nationality_id = '',
-        $mother_name_ar,
-        $mother_name_en,
-        $mother_national_id,
-        $address_father,
-        $edit_mode;
+    public $name_ar,$student,$route,$name_en,$password,$grade_id = '',$classroom_id = '',
+            $section_id = '',$student_nationality_id = '',$student_blood_type_id = '',
+            $religion = '',$joining_date,$student_address,$gender,$email,
+            $date_of_birth,$entry_status,$father_name_ar,$father_name_en,$father_national_id,
+            $father_phone,$father_job_ar,$classrooms,$sections,$father_job_en,$father_nationality_id = '',
+            $mother_name_ar,$mother_name_en,$mother_national_id,$address_father,$edit_mode;
     public $successMsg = '';
     public $errorMsg = '';
 
@@ -85,7 +60,7 @@ class Edit extends Component
         $this->mother_name_en = $parent->mother_name_en;
         $this->mother_national_id = $parent->mother_national_id;
     }
-    public function render(StudentRepositoryInterface $student, GradeRepositoryInterface $grade)
+    public function render(StudentRepository $student, GradeRepository $grade)
     {
         $edit_mode = false;
         return view('livewire.student.edit', [
@@ -97,7 +72,7 @@ class Edit extends Component
         ]);
     }
     #######################################  start Add mode  #############################################
-    public function change(ClassroomRepositoryInterface $classroom, SectionRepositoryInterface $section)
+    public function change(ClassroomRepository $classroom, SectionRepository $section)
     {
         $this->classrooms = $classroom->myModel()->where('grade_id', $this->grade_id)->select('id', 'name_ar', 'name_en')->get();
         $this->sections = $section->myModel()->where('classroom_id', $this->classroom_id)->select('id', 'name_ar', 'name_en')->get();
@@ -131,7 +106,7 @@ class Edit extends Component
     }
 
     #######################################  start update parents  #############################################
-    public function finish(StudentRepositoryInterface $s)
+    public function finish(StudentRepository $s)
     {
         try {
             $student = $s->getById($this->student_id);

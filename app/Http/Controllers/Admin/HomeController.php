@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Traits\SaveImgTrait;
 use App\Http\Controllers\Controller;
 use App\Models\SchoolData;
-use App\repositories\GraduatedRepositoryInterface;
-use App\repositories\StudentAccountRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\GraduatedRepository;
+use App\repositories\Eloquent\StudentAccountRepository;
+use App\repositories\Eloquent\StudentRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     use SaveImgTrait;
 
-    public function admin(GraduatedRepositoryInterface $g,StudentAccountRepositoryInterface $s_a, StudentRepositoryInterface $student)
+    public function admin(GraduatedRepository $g,StudentAccountRepository $s_a, StudentRepository $student)
     {
         $g_count = $g->all([])->count();
         $school = SchoolData::all('name_ar','name_en');

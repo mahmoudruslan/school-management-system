@@ -39,8 +39,8 @@ class StudentRequest extends FormRequest
     }
     public function editStep1()
     {
-        $x = $this->createStep1();
-        return $x
+        $step1_rule = $this->createStep1();
+        return $step1_rule
          += [
             'classroom_id' => 'required',
             'section_id' => 'required',
@@ -70,8 +70,8 @@ class StudentRequest extends FormRequest
 
     public function createStep2()
     {
-        $x = $this->editStep2();
-        return $x +=
+        $edit_step2 = $this->editStep2();
+        return $edit_step2 +=
             [
                 'password'=> 'required|max:8',
             ];
@@ -88,61 +88,6 @@ class StudentRequest extends FormRequest
             'name_ar' => 'required|max:100',
             'name_en' => 'required|max:100',
             'date_of_birth' => 'required|date',
-
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-
-            'name_ar.required' => __('This field is required'),
-            'name_en.required' => __('This field is required'),
-            'grade_id.required' => __('This field is required'),
-            'classroom_id.required' => __('This field is required'),
-            'section_id.required' => __('This field is required'),
-            'student_nationality_id.required' => __('This field is required'),
-            'student_blood_type_id.required' => __('This field is required'),
-            'religion.required' => __('This field is required'),
-            'date_of_birth.required' => __('This field is required'),
-            'date_of_birth.date' => __('This field must be a date'),
-            'student_address.required' => __('This field is required'),
-            'gender.required' => __('This field is required'),
-            'email.required' => __('This field is required'),
-            'email.email' => __('This field must be an email'),
-            'email.unique' => __('A user with this email address already exists.'),
-            'father_name_ar.required' => __('This field is required'),
-            'father_name_ar.max' => __('This is field must be no more than 100 characters'),
-            'father_name_en.required' => __('This field is required'),
-            'father_name_en.max' => __('This is field must be no more than 100 characters'),
-            'mother_name_ar.required' => __('This field is required'),
-            'mother_name_ar.max' => __('This is field must be no more than 100 characters'),
-            'mother_name_en.required' => __('This field is required'),
-            'mother_name_en.max' => __('This is field must be no more than 100 characters'),
-            'password.required' => __('This field is required'),
-            'password.max' => __('This is field must be no more than 8 characters'),
-            'father_national_id.required' => __('This field is required'),
-            'father_national_id.regex' => __('The format is invalid.'),
-            'father_national_id.required' => __('This field is required'),
-            'father_national_id.regex' => __('The format is invalid.'),
-            'father_national_id.max' => __('This is field must be no more than 14 number'),
-            'father_national_id.min' => __('This field must be at least 14 number'),
-            'mother_national_id.required' => __('This field is required'),
-            'mother_national_id.regex' => __('The format is invalid.'),
-            'mother_national_id.required' => __('This field is required'),
-            'mother_national_id.regex' => __('The format is invalid.'),
-            'mother_national_id.max' => __('This is field must be no more than 14 number'),
-            'mother_national_id.min' => __('This field must be at least 14 number'),
-            'father_job_ar.required' => __('This field is required'),
-            'father_job_ar.max' => __('This is field must be no more than 50 characters'),
-            'father_job_en.required' => __('This field is required'),
-            'father_job_en.max' => __('This is field must be no more than 50 characters'),
-            'father_nationality_id.required' => __('This field is required'),
-            'father_phone.required' => __('This field is required'),
-            'father_phone.max' => __('This is field must be no more than 20 number'),
-            'father_phone.min' => __('This field must be at least 6 number'),
-
-
 
         ];
     }

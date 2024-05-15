@@ -3,11 +3,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\Section;
-use App\repositories\SectionRepositoryInterface;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
-class SectionRepository extends BasicRepository implements SectionRepositoryInterface
+class SectionRepository extends BasicRepository
 {
     public function __construct(Section $model)
     {

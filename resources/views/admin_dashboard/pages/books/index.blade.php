@@ -35,9 +35,9 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $book->title }}</td>
                                             <td>{{ $book->admin['name_' . app()->getLocale()] }}</td>
-                                            <td>{{ $book->grades['name_' . app()->getLocale()] }}</td>
-                                            <td>{{ $book->classrooms['name_' . app()->getLocale()] }}</td>
-                                            <td>{{ $book->sections['name_' . app()->getLocale()] }}</td>
+                                            <td>{{ $book->grade['name_' . app()->getLocale()] }}</td>
+                                            <td>{{ $book->classroom['name_' . app()->getLocale()] }}</td>
+                                            <td>{{ $book->section['name_' . app()->getLocale()] }}</td>
                                             @foreach ($book->images as $img)
                                                 <td>{{ $img->id }}</td>
                                             @endforeach

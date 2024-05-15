@@ -27,7 +27,7 @@ class Admin extends Authenticatable implements JWTSubject
     
     public function teacher()
     {
-        return $this->hasOne(Teacher::class,'admin_id');
+        return $this->hasOne(Admin::class,'admin_id');
     }
 
     public function roles()

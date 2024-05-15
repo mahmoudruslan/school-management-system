@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\FundAccountRepositoryInterface;
-use App\repositories\StudentAccountRepositoryInterface;
-use App\repositories\StudentReceiptRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\FundAccountRepository;
+use App\repositories\Eloquent\StudentAccountRepository;
+use App\repositories\Eloquent\StudentReceiptRepository;
+use App\repositories\Eloquent\StudentRepository;
 use Illuminate\Http\Request;
 
 class StudentReceiptController extends Controller
 {
     private $studentReceipt;
-    public function __construct(StudentReceiptRepositoryInterface $studentReceipt)
+    public function __construct(StudentReceiptRepository $studentReceipt)
     {
         $this->studentReceipt = $studentReceipt;
     }
@@ -23,7 +23,7 @@ class StudentReceiptController extends Controller
         return view('admin_dashboard.pages.student_receipt.index', compact(['receipts']));
     }
 
-    public function store(Request $request, FundAccountRepositoryInterface $fund_account, StudentAccountRepositoryInterface $stu_account)
+    public function store(Request $request, FundAccountRepository $fund_account, StudentAccountRepository $stu_account)
     {
 
         $student_account = $stu_account->where('student_id', $request->student_id);
@@ -60,7 +60,7 @@ class StudentReceiptController extends Controller
     }
 
     //create function
-    public function show($id, StudentRepositoryInterface $s)
+    public function show($id, StudentRepository $s)
     {
         $student = $s->getById($id);
         return view('admin_dashboard.pages.student_receipt.create', compact('student'));
@@ -72,7 +72,7 @@ class StudentReceiptController extends Controller
         return view('admin_dashboard.pages.student_receipt.edit', compact('receipt'));
     }
 
-    public function update(Request $request, $id, FundAccountRepositoryInterface $fund_account, StudentAccountRepositoryInterface $stu_account)
+    public function update(Request $request, $id, FundAccountRepository $fund_account, StudentAccountRepository $stu_account)
     {
 
         //update in student_receipt table

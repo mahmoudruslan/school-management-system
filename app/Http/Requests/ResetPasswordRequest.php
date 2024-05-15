@@ -31,17 +31,4 @@ class ResetPasswordRequest extends FormRequest
 
         ];
     }
-
-    public function messages()
-    {
-        return[
-            'email.required' => __('This field is required'),
-            'email.email' => __('This field must be an email'),
-            'father_national_id.required' => __('This field is required'),
-            'new_password.required' => __('This field is required'),
-            'new_password.max' => __('This is field must be no more than 8 characters'),
-            'confirm_password.required' => __('This field is required'),
-            'confirm_password.max' => __('This is field must be no more than 8 characters'),
-        ];
-    }
 }

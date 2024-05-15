@@ -33,11 +33,11 @@
                 @foreach ($attendances as $attendance)
                     <tr>
                         <td>{{$loop->index+1}}</td>
-                        <td>{{$attendance->students['name_'.$lang]}}</td>
+                        <td>{{$attendance->student['name_'.$lang]}}</td>
                         <td>{{$attendance->date}}</td>
-                        <td>{{$attendance->grades['name_'.$lang]}}</td>
-                        <td>{{$attendance->classrooms['name_'.$lang]}}</td>
-                        <td>{{$attendance->sections['name_'.$lang]}}</td>
+                        <td>{{$attendance->grade['name_'.$lang]}}</td>
+                        <td>{{$attendance->classroom['name_'.$lang]}}</td>
+                        <td>{{$attendance->section['name_'.$lang]}}</td>
                         <td>{{$attendance->admin['name_'.$lang]}}</td>
                         <td>
                             <a class="btn btn-warning" href="{{route('students.show',$attendance->students->id)}}">

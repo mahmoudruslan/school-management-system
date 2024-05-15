@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\ClassroomRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\SectionRepositoryInterface;
+use App\repositories\Eloquent\ClassroomRepository;
+use App\repositories\Eloquent\GradeRepository;
 use App\Traits\SaveImgTrait;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -19,7 +18,7 @@ class ServicesController extends Controller
     {
         $this->lang = LaravelLocalization::getCurrentLocale();
     }
-    public function getClassrooms($id, GradeRepositoryInterface $grade) //related ajax code
+    public function getClassrooms($id, GradeRepository $grade) //related ajax code
     {
         // $list_classes = $classroom->all([])->where("grade_id", $id)->pluck("name_" . LaravelLocalization::getCurrentLocale(), "id");
         $grade = $grade->getById($id);
@@ -28,7 +27,7 @@ class ServicesController extends Controller
     }
 
 
-    public function getSections($id, ClassroomRepositoryInterface $classroom) //related ajax code
+    public function getSections($id, ClassroomRepository $classroom) //related ajax code
     {
         $classroom = $classroom->getById($id);
         $list_sections = $classroom->sections->pluck("name_" . $this->lang, "id");

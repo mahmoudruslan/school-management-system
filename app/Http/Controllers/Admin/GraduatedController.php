@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\repositories\Eloquent\GradeRepository;
 use App\repositories\Eloquent\StudentRepository;
-use App\repositories\GraduatedRepositoryInterface;
+use App\repositories\Eloquent\GraduatedRepository;
 use App\Http\Requests\GraduatedRequest;
 use Illuminate\Http\Request;
 
 class GraduatedController extends Controller
 {
     private $student_graduated;
-    public function __construct(GraduatedRepositoryInterface $student_graduated)
+    public function __construct(GraduatedRepository $student_graduated)
     {
         $this->student_graduated = $student_graduated;
     }
@@ -46,7 +46,7 @@ class GraduatedController extends Controller
 
     public function show($id)
     {
-        $student = $this->student->getById($id);
+        $student = $this->student_graduated->getById($id);
         return view('admin_dashboard.pages.students.show', compact('student'));
     }
 

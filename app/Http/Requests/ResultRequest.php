@@ -31,18 +31,4 @@ class ResultRequest extends FormRequest
             'term' => 'required',
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'subject_id.required' => __('This field is required'),
-            'academic_year.required' => __('This field is required'),
-            'term.required' => __('This field is required')
-
-        ];
-    }
-
-
-
-
 }

@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\repositories\Eloquent\FundAccountRepository;
 use App\repositories\Eloquent\StudentAccountRepository;
 use App\repositories\Eloquent\StudentRepository;
-use App\repositories\PaymentRepositoryInterface;
+use App\repositories\Eloquent\PaymentRepository;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
     private $payment;
-    public function __construct(PaymentRepositoryInterface $payment)
+    public function __construct(PaymentRepository $payment)
     {
         $this->payment = $payment;
     }

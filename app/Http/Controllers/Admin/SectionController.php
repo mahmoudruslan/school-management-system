@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SectionRequest;
-use App\repositories\SectionRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
-use App\repositories\AdminRepositoryInterface;
+use App\repositories\Eloquent\SectionRepository;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\StudentRepository;
+use App\repositories\Eloquent\AdminRepository;
 use Illuminate\Http\Request;
 
 
 class SectionController extends Controller
 {
     private $section;
-    public function __construct(SectionRepositoryInterface $section)
+    public function __construct(SectionRepository $section)
     {
         $this->section = $section;
     }
 
-    public function index(GradeRepositoryInterface $grade)
+    public function index(GradeRepository $grade)
     {
         $sections = $this->section->all(['grade', 'classroom']);
         return view('admin_dashboard.pages.sections.index', compact(['sections']));
     }
 
-    public function create(GradeRepositoryInterface $grade, AdminRepositoryInterface $admin)
+    public function create(GradeRepository $grade, AdminRepository $admin)
     {
         $grades = $grade->all([]);
         $admins = $admin->all([] ,['name_ar', 'name_en', 'id']);
@@ -40,7 +40,7 @@ class SectionController extends Controller
         return redirect()->back();
     }
 
-    public function edit($id, GradeRepositoryInterface $grade, AdminRepositoryInterface $admin)
+    public function edit($id, GradeRepository $grade, AdminRepository $admin)
     {
         
         $section = $this->section->getById($id);
@@ -59,13 +59,13 @@ class SectionController extends Controller
     }
 
         //Show students
-        public function show($section_id, StudentRepositoryInterface $student)
+        public function show($section_id, StudentRepository $student)
         {
             $students = $student->all(['grade', 'classroom', 'section'])->where('section_id',$section_id);        
             return view('admin_dashboard.pages.sections.show',compact(['students']));
         }
 
-    public function destroy(Request $request, StudentRepositoryInterface $student)
+    public function destroy(Request $request, StudentRepository $student)
     {
         $sections = $student->all([], 'section_id')->where('section_id', $request->id)->pluck('section_id');
         if (count($sections) > '0') {

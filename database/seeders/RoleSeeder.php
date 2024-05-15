@@ -19,7 +19,23 @@ class RoleSeeder extends Seeder
         Role::create([
             'name_ar' => 'مدير',
             'name_en' => 'supervisor',
-            'permissions' => ["grades","classrooms","sections","parents","teachers","students","promotions","graduated","accounting","attendances","subjects","results","books","school_data","roles"]
-        ]);
+            'permissions' => [
+                "grades",
+                "classrooms",
+                "sections",
+                "parents",
+                "teachers",
+                "students",
+                "promotions",
+                "graduated",
+                "accounting",
+                "attendances",
+                "subjects",
+                "results",
+                "books",
+                "school_data",
+                "roles"
+                ]
+            ]);
     }
 }

@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\ClassroomRepositoryInterface;
+use App\repositories\Eloquent\ClassroomRepository;
 use App\repositories\Eloquent\StudentRepository;
 use Illuminate\Http\Request;
 use App\repositories\Eloquent\SectionRepository;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\GradeRepository;
 
 class ClassroomController extends Controller
 {
     private $classroom;
-    public function __construct(ClassroomRepositoryInterface $classroom)
+    public function __construct(ClassroomRepository $classroom)
     {
         $this->classroom = $classroom;
     }
-    public function index(GradeRepositoryInterface $grade)
+    public function index(GradeRepository $grade)
     {
         $grades = $grade->all([]);
         $classrooms = $this->classroom->all(['grades:id,name_ar,name_en']);
@@ -37,7 +36,7 @@ class ClassroomController extends Controller
     }
 
     //Show students
-    public function show(Request $request, $classroom_id, StudentRepositoryInterface $s)
+    public function show(Request $request, $classroom_id, StudentRepository $s)
     {
         $students = $s->all([])->where('classroom_id', $classroom_id);
         return view('admin_dashboard.pages.myclassroom.show', compact(['students']));

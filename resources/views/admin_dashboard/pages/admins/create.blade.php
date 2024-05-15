@@ -21,12 +21,19 @@
                 @enderror
                 <input name="email" type="email" class="form-control" id="inputEmail4">
             </div>
-            <div class="form-group col-md-6">
-                <label for="inputPassword4">{{ __('Password') }}</label><br>
-                @error('password')
-                    <span class="error text-danger">{{ $message }}</span>
-                @enderror
-                <input name="password" type="password" class="form-control">
+            <div class="form-group col-md-6 row">
+                <div class="col-md-6"> <label for="inputCity">{{ __('Password') }}</label><br>
+                    @error('password')
+                        <span class="error text-danger">{{ $message }}</span>
+                    @enderror
+                    <input name="password" type="password" class="form-control">
+                </div>
+                <div class="col-md-6"> <label for="inputCity">{{ __('Confirm Password') }}</label><br>
+                    @error('confirm')
+                        <span class="error text-danger">{{ $message }}</span>
+                    @enderror
+                    <input name="password_confirmation" type="password" class="form-control">
+                </div>
             </div>
         </div>
         <div class="form-row">

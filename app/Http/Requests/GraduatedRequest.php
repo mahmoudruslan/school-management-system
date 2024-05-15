@@ -33,14 +33,7 @@ class GraduatedRequest extends FormRequest
         ];
 
     }
-    public function messages()
-    {
-        return [
 
-            'grade_id.required' => __('This field is required'),
-            'classroom_id.required' => __('This field is required'),
-        ];
-    }
 
 
 

@@ -2,9 +2,8 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\Result;
-use App\repositories\ResultRepositoryInterface;
 
-class ResultRepository extends BasicRepository implements ResultRepositoryInterface{
+class ResultRepository extends BasicRepository {
 
     public function __construct(Result $model)
     {

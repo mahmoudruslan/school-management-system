@@ -3,10 +3,9 @@
 namespace App\repositories\Eloquent;
 
 use App\Models\Student;
-use App\repositories\GraduatedRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class GraduatedRepository extends BasicRepository implements GraduatedRepositoryInterface
+class GraduatedRepository extends BasicRepository
 {
     public function __construct(Student $model)
     {

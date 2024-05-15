@@ -36,22 +36,4 @@ class PromotionRequest extends FormRequest
 
     }
 
-    public function messages()
-    {
-        return [
-
-            'from_grade_id.required' => __('This field is required'),
-            'from_classroom_id.required' => __('This field is required'),
-            'from_section_id.required' => __('This field is required'),
-            'to_grade_id.required' => __('This field is required'),
-            'to_classroom_id.required' => __('This field is required'),
-            'to_section_id.required' => __('This field is required'),
-
-
-        ];
-    }
-
-
-
-
 }

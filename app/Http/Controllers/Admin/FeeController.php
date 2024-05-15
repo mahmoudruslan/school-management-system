@@ -7,15 +7,14 @@ use App\Http\Requests\FeeRequest;
 use App\repositories\Eloquent\FeesInvoiceRepository;
 use App\repositories\Eloquent\GradeRepository;
 use App\repositories\Eloquent\StudentAccountRepository;
-use App\repositories\FeeRepositoryInterface;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\FeeRepository;
+use App\repositories\Eloquent\StudentRepository;
 
 
 class FeeController extends Controller
 {
     private $fee;
-    public function __construct(FeeRepositoryInterface $fee)
+    public function __construct(FeeRepository $fee)
     {
         $this->fee = $fee;
     }
@@ -26,7 +25,7 @@ class FeeController extends Controller
         return view('admin_dashboard.pages.fees.index', compact('fees'));
     }
 
-    public function create(GradeRepositoryInterface $g)
+    public function create(GradeRepository $g)
     {
         $grades = $g->all([]);
         return view('admin_dashboard.pages.fees.create', compact('grades'));
@@ -36,7 +35,7 @@ class FeeController extends Controller
         FeeRequest $request, 
         StudentAccountRepository $stu_a, 
         FeesInvoiceRepository $fee_i, 
-        StudentRepositoryInterface $stu)
+        StudentRepository $stu)
     {
         $fee = $this->fee->create($request->all());
             if ($request->all_student == '1') //if you want add the fee to all students

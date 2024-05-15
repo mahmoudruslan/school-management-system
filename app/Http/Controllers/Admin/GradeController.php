@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\repositories\GradeRepositoryInterface;
-use App\repositories\ClassroomRepositoryInterface;
-use App\repositories\StudentRepositoryInterface;
+use App\repositories\Eloquent\GradeRepository;
+use App\repositories\Eloquent\ClassroomRepository;
+use App\repositories\Eloquent\StudentRepository;
 use Illuminate\Http\Request;
 
 
 class GradeController extends Controller
 {
   private $grade;
-  public function __construct(GradeRepositoryInterface $grade)
+  public function __construct(GradeRepository $grade)
   {
     $this->grade = $grade;
   }
@@ -36,13 +36,13 @@ class GradeController extends Controller
   }
 
       //Show students
-      public function show(Request $request, $grade_id, StudentRepositoryInterface $s)
+      public function show(Request $request, $grade_id, StudentRepository $s)
       {
           $students = $s->all([])->where('grade_id', $grade_id);
           return view('admin_dashboard.pages.grades.show', compact(['students']));
       }
 
-  public function destroy(Request $request,ClassroomRepositoryInterface $c)
+  public function destroy(Request $request,ClassroomRepository $c)
   {
     $ClassroomsOfTheGrade = $c->myModel()->where('grade_id', $request->id)->pluck('grade_id'); //بيجيب كام جرييد اي دي بيحمل نفس الاي دي بتاع المرحلة
     if (count($ClassroomsOfTheGrade) !== 0) {

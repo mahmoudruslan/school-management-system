@@ -25,7 +25,7 @@
                             <div class="card">
                                 <div class="card-header text-center" id="headingTwo">
                                     <button class="btn btn-light collapsed" >
-                                        <a href="{{route('results.choose.subject.time', $classroom->id)}}" class="mb-0">
+                                        <a href="{{route('results.grade.classroom.students', $classroom->id)}}" class="mb-0">
                                             {{$classroom['name_'.app()->getLocale()]}}
                                         </a>
                                     </button>

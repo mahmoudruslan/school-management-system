@@ -17,8 +17,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="dashboard" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{route('dashboard')}}">{{ __('Dashboard') }}</a> </li>
-
+                            <li> <a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a> </li>
                         </ul>
                     </li>
                     @can('grades')
@@ -161,8 +160,7 @@
                                 <li> <a href="{{ route('feesInvoices.index') }}">{{ __('Billing List') }}</a> </li>
                                 <li> <a href="{{ route('studentReceipt.index') }}">{{ __('Arrest receipts') }}</a>
                                 </li>
-                                <li> <a
-                                        href="{{ route('feeProcessing.index') }}">{{ __('Accounting treatments') }}</a>
+                                <li> <a href="{{ route('feeProcessing.index') }}">{{ __('Accounting treatments') }}</a>
                                 </li>
                                 <li> <a href="{{ route('payments.index') }}">{{ __('Payment List') }}</a> </li>
                             </ul>
@@ -219,7 +217,8 @@
                             </a>
                             <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">
                                 <li> <a href="{{ route('results.index') }}">{{ __('Results List') }}</a> </li>
-                                <li> <a href="{{ route('results.grades.classrooms.filter') }}">{{ __('Add Results') }}</a>
+                                <li> <a
+                                        href="{{ route('results.grades.classrooms.filter') }}">{{ __('Add Results') }}</a>
                                 </li>
                             </ul>
                         </li>
@@ -262,8 +261,7 @@
                     @can('school_data')
                         <li>
                             <a href="{{ route('school_data.index') }}">
-                                <i class="fas fa-cogs"></i><span
-                                    class="right-nav-text">{{ __('school data') }}</span>
+                                <i class="fas fa-cogs"></i><span class="right-nav-text">{{ __('school data') }}</span>
                             </a>
                         </li>
                     @endcan
@@ -279,13 +277,13 @@
                 <div class="page-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h4 class="mb-0"> @yield("title")</h4>
+                            <h4 class="mb-0"> @yield('title')</h4>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}"
                                         class="default-color">{{ __('Home') }}</a></li>
-                                <li class="breadcrumb-item active">@yield("title")</li>
+                                <li class="breadcrumb-item active">@yield('title')</li>
                             </ol>
                         </div>
                     </div>
