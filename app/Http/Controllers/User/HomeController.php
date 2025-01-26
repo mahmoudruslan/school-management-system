@@ -13,7 +13,13 @@ use App\repositories\StudentRepositoryInterface;
 use App\repositories\SubjectRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
-
+use App\repositories\Eloquent\AttendanceRepository;
+use App\repositories\Eloquent\BookRepository;
+use App\repositories\Eloquent\FeesInvoiceRepository;
+use App\repositories\Eloquent\ResultRepository;
+use App\repositories\Eloquent\StudentAccountRepository;
+use App\repositories\Eloquent\StudentRepository;
+use App\repositories\Eloquent\SubjectRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,17 +31,17 @@ class HomeController extends Controller
     private $subject;
 
     public function __construct(
-        StudentRepositoryInterface  $student,
-        ResultRepositoryInterface   $result,
-        StudentAccountRepositoryInterface $student_account,
-        SubjectRepositoryInterface $subject
+        StudentRepository  $student,
+        ResultRepository   $result,
+        StudentAccountRepository $student_account,
+        SubjectRepository $subject
     )
     {
         $this->student = $student;
         $this->result = $result;
         $this->student_account = $student_account;
         $this->subject = $subject;
-        
+
     }
 
     public function student()
@@ -57,7 +63,7 @@ class HomeController extends Controller
         $debit = $this->student_account->myModel()->where('student_id', Auth::id())->select('debit')->sum('debit');// student debit
         $student = Auth::user();
         $student_results = $this->result->all([])->where('student_id', $student->id);//student results
-            
+
         $results_classrooms = $student_results->unique('classroom_id'); //get classroom names without repetition
         $results_grades = $student_results->unique('grade_id'); //get grade names without repetition
         $total = $this->subject->myModel()->where('classroom_id', $student->classroom_id)->sum('degree');
@@ -72,7 +78,7 @@ class HomeController extends Controller
     }
 
     //student fees
-    public function getFees(FeesInvoiceRepositoryInterface $fee)
+    public function getFees(FeesInvoiceRepository $fee)
     {
         $credit = $this->student_account->myModel()->where('student_id', Auth::id())->select('credit')->sum('credit');
         $debit = $this->student_account->myModel()->where('student_id', Auth::id())->select('debit')->sum('debit');
@@ -84,14 +90,14 @@ class HomeController extends Controller
     }
 
     //student absence
-    public function getAbsence(AttendanceRepositoryInterface $attendance)
+    public function getAbsence(AttendanceRepository $attendance)
     {
         $attendances = $attendance->myModel()->where('student_id', Auth::id())->select('date', 'admin_id')->get();
         return view('student_dashboard.pages.absence', compact('attendances'));
     }
 
     //student PDF
-    public function getBooks(BookRepositoryInterface $book)
+    public function getBooks(BookRepository $book)
     {
         $books = $book->myModel()->where('classroom_id', Auth::user()->classroom_id)->select('title', 'admin_id', 'file_name')->get();
         return view('student_dashboard.pages.books', compact('books'));

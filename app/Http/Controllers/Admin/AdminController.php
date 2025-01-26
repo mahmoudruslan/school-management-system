@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TeachersRequest;
-use App\Models\Teacher;
+use App\Http\Requests\AdminRequest;
 use App\Models\Specialization;
 use App\repositories\Eloquent\AdminRepository;
 use App\repositories\Eloquent\RoleRepository;
 use Illuminate\Http\Request;
+
+
 
 class AdminController extends Controller
 {
@@ -18,7 +19,7 @@ class AdminController extends Controller
     {
         $this->admin = $admin;
     }
-    
+
     public function index()
     {
         $admins = $this->admin->all([])->except(auth()->user()->id);
@@ -32,7 +33,7 @@ class AdminController extends Controller
         return view('admin_dashboard.pages.admins.create', compact('roles','specializations'));
     }
 
-    public function store(TeachersRequest $request)
+    public function store(AdminRequest $request)
     {
         $this->admin->create($request->validated());
         return redirect()->route('admins.index');
@@ -52,12 +53,12 @@ class AdminController extends Controller
         return view('admin_dashboard.pages.admins.edit', compact(['specializations','admin','roles']));
     }
 
-    public function update(TeachersRequest  $request)
+    public function update(AdminRequest  $request)
     {
         $this->admin->update($request->validated(),$request->id);
         return redirect()->route('admins.index');
     }
-
+    
     public function destroy(Request $request)
     {
         $this->admin->destroy($request->id);
